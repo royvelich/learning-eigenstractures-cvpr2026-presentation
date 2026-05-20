@@ -1,0 +1,184 @@
+/* ---------------------------------------------------------------
+ * Light academic palette for a white-background CVPR oral.
+ * Inspired by Slate + a deep indigo→teal gradient for emphasis,
+ * with a warm amber accent for highlights / call-outs.
+ * --------------------------------------------------------------- */
+:root {
+  /* Surfaces */
+  --c-bg:        #ffffff;
+  --c-bg-soft:   #f8fafc;   /* slate-50  — for cards / callouts */
+  --c-border:    #e2e8f0;   /* slate-200 */
+
+  /* Text */
+  --c-fg:        #0f172a;   /* slate-900 — primary text */
+  --c-fg-body:   #1f2937;   /* slate-800 — body copy */
+  --c-fg-muted:  #475569;   /* slate-600 — secondary text */
+  --c-fg-subtle: #94a3b8;   /* slate-400 — labels, eyebrows */
+
+  /* Brand (used in gradients on titles + key terms) */
+  --c-brand-from: #4E4376;  /* deep indigo */
+  --c-brand-to:   #2B5876;  /* deep teal-blue */
+
+  /* Accents */
+  --c-accent:    #b45309;   /* amber-700 — warm highlight */
+  --c-link:      #1d4ed8;   /* blue-700 */
+  --c-success:   #047857;   /* emerald-700 */
+  --c-danger:    #b91c1c;   /* red-700 */
+}
+
+/* Force white slide background and dark text regardless of OS theme. */
+.slidev-layout {
+  background: var(--c-bg) !important;
+  color: var(--c-fg-body);
+}
+
+/* Headings: solid dark by default; the title-style gradient is opt-in via .grad */
+.slidev-layout h1,
+.slidev-layout h2,
+.slidev-layout h3,
+.slidev-layout h4 {
+  color: var(--c-fg);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+/* Body links pop without being loud. */
+.slidev-layout a {
+  color: var(--c-link);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+
+/* Inline emphasis */
+.slidev-layout em {
+  color: var(--c-accent);
+  font-style: italic;
+}
+
+/* Reusable utility classes ------------------------------------- */
+
+/* Gradient text used for titles & key terms */
+.grad,
+.lbo {
+  background-image: linear-gradient(135deg, var(--c-brand-from) 0%, var(--c-brand-to) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+  font-weight: 700;
+}
+
+/* Subtle uppercase eyebrow label above slide titles */
+.eyebrow {
+  color: var(--c-fg-subtle);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+  font-weight: 500;
+}
+
+/* Soft muted caption text */
+.muted {
+  color: var(--c-fg-muted);
+}
+
+/* KaTeX math should sit at full body strength on white. */
+.katex,
+.katex * {
+  color: var(--c-fg-body);
+}
+
+/* Shared layout primitives ------------------------------------- */
+
+.eq-row {
+  margin: 0.35rem 0;
+}
+
+/* "So what?" cascade — chain of step chips with arrows between */
+.cascade-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.45rem;
+}
+.cascade-label {
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 0.62rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--c-success);
+  font-weight: 600;
+}
+.cascade {
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  gap: 0.35rem;
+  width: 100%;
+}
+.cascade .step {
+  flex: 1 1 0;
+  border: 1px solid var(--c-border);
+  background: var(--c-bg-soft);
+  padding: 0.4rem 0.55rem;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  line-height: 1.35;
+  color: var(--c-fg-body);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.cascade .step .hint {
+  font-size: 0.62rem;
+  color: var(--c-fg-muted);
+  margin-top: 0.15rem;
+  font-style: italic;
+}
+.cascade .step.punchline {
+  border: 1px solid rgba(4, 120, 87, 0.45);
+  border-left: 3px solid var(--c-success);
+  background: rgba(4, 120, 87, 0.08);
+  color: var(--c-fg);
+  font-size: 0.85rem;
+}
+.cascade .arrow {
+  display: flex;
+  align-items: center;
+  color: var(--c-fg-subtle);
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+.cascade .arrow.strong {
+  color: var(--c-success);
+  font-size: 1.25rem;
+}
+
+/* Big equivalence / arrow glyph between two side-by-side boxes */
+.equiv {
+  font-size: 1.7rem;
+  font-weight: 700;
+  color: var(--c-fg-subtle);
+  padding: 0 0.15rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Small definition / "where" caption line inside content boxes */
+.def-line {
+  font-size: 0.78rem;
+  color: var(--c-fg-muted);
+  margin: 0.05rem 0 0.15rem;
+}
+
+/* Paper / source attribution under a slide title */
+.attribution {
+  text-align: center;
+  font-size: 0.78rem;
+  font-style: italic;
+  color: var(--c-fg-muted);
+}

@@ -1,0 +1,20 @@
+node_modules/
+dist/
+.slidev/
+*.log
+.DS_Store
+
+# Local working files
+paper_full.pdf
+paper_full.txt
+others.txt
+
+# Claude Code local settings
+.claude/settings.local.json
+
+# Python environment for the image generators
+gen/.venv/
+**/__pycache__/
+
+# Build artifacts (regenerable from slides.md)
+*.pptx

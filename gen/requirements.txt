@@ -1,0 +1,8 @@
+numpy
+scipy
+pyvista
+libigl
+trimesh
+scikit-learn
+matplotlib
+pillow
