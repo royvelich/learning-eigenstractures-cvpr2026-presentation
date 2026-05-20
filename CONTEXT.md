@@ -34,8 +34,9 @@ Hot-reload is on — edits to `slides.md` / `style.css` reflect instantly.
   - `cvpr2026_logo.png` — CVPR 2026 Denver logo
   - `laplace_beltrami_swiss_knife_transparent.png` — used on slide 2
   - `swiss_knife_transparent.png` — older variant, unused
-- `paper_full.pdf` — accepted paper (41 pages)
-- `_CVPR_2026__Learning_Eigenstructures...pdf` — rebuttal letter
+- `_CVPR_2026__Learning_Eigenstructures_of_Unstructured_Data_Manifolds (1).pdf` — the accepted paper
+- `_CVPR_2026__Learning_Eigenstructures_of_Unstructured_Data_Manifolds.pdf` — the rebuttal letter
+- `paper_full.pdf` — full paper incl. supplementary (41 pages; gitignored, local only)
 - `old_presentation.pdf` — earlier version of the talk (38 slides)
 - `AflaoBrezisBrucksteinKimmelSochen_CRMA2016.pdf` — **Brezis et al. 2016**, "Best bases for signal spaces" (CRAS, 13 pp). Source of Theorem 2.1 (min-max optimality of eigenvectors, α_k = 1/λ_{k+1}) and §5 (relation to PCA over C_L). Cited on slides 9/10.
 
