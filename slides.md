@@ -63,17 +63,219 @@ layout: default
 class: text-center
 ---
 
+<div class="flex flex-col items-center h-full pt-5 pb-4 text-center">
+
+<div class="eyebrow mb-3">
+Primer · the Laplacian, intuitively
+</div>
+
+<div class="relative w-[78%] max-w-[560px]" style="aspect-ratio: 5.6 / 3.4;">
+  <img
+    :src="`${$slidev.configs.base ?? '/'}applications/data_manifold_grey.png`"
+    class="absolute inset-0 w-full h-full object-contain"
+    v-click.hide="1"
+  />
+  <img
+    :src="`${$slidev.configs.base ?? '/'}applications/data_manifold_coloured.png`"
+    class="absolute inset-0 w-full h-full object-contain"
+    v-click="[1, 2]"
+  />
+  <img
+    :src="`${$slidev.configs.base ?? '/'}applications/data_manifold_focal.png`"
+    class="absolute inset-0 w-full h-full object-contain"
+    v-click="[2, 4]"
+  />
+  <img
+    :src="`${$slidev.configs.base ?? '/'}applications/data_manifold_laplacian.png`"
+    class="absolute inset-0 w-full h-full object-contain"
+    v-click="4"
+  />
+</div>
+
+<div v-click="3" class="mt-4">
+
+<h2 class="!text-xl !leading-snug !mb-2 max-w-4xl font-serif" style="color: var(--c-fg-muted)">
+At every point, the <span class="lbo">Laplacian</span> asks
+</h2>
+
+<h1 class="!text-3xl !leading-tight max-w-5xl font-serif grad italic">
+"how different am I from my neighbours?"
+</h1>
+
+</div>
+
+</div>
+
+---
+layout: default
+class: text-center
+---
+
+<div class="h-full relative">
+
+<div class="absolute top-6 left-0 right-0 text-center">
+  <div class="eyebrow">Primer · the Laplacian as an operator</div>
+</div>
+
+<!-- f-cloud: starts large/centred, scales down & slides left on click 1 -->
+<div
+  v-motion
+  :initial="{ x: 0, scale: 1 }"
+  :click-1="{ x: -150, scale: 0.50 }"
+  class="absolute"
+  style="top: 137px; left: 260px;"
+>
+  <img
+    :src="`${$slidev.configs.base ?? '/'}applications/data_manifold_coloured.png`"
+    style="width: 460px; display: block;"
+    alt="f, the input function"
+  />
+</div>
+
+<!-- Δ on the left -->
+<div v-click="1" class="absolute math-grad"
+     style="top: 50%; left: 130px; font-size: 60px; transform: translateY(calc(-50% + 8px));">
+
+$\Delta$
+
+</div>
+
+<!-- ( opening paren -->
+<div v-click="1" class="absolute"
+     style="top: 50%; left: 205px; font-size: 60px; color: var(--c-fg-muted); font-family: 'EB Garamond', serif; transform: translateY(-50%);">
+  (
+</div>
+
+<!-- ) closing paren -->
+<div v-click="1" class="absolute"
+     style="top: 50%; left: 450px; font-size: 60px; color: var(--c-fg-muted); font-family: 'EB Garamond', serif; transform: translateY(-50%);">
+  )
+</div>
+
+<!-- = sign -->
+<div v-click="2" class="absolute"
+     style="top: 50%; left: 510px; font-size: 48px; color: var(--c-fg); font-family: 'EB Garamond', serif; transform: translateY(-50%);">
+  =
+</div>
+
+<!-- Δf-cloud, the output -->
+<img v-click="3"
+  :src="`${$slidev.configs.base ?? '/'}applications/data_manifold_laplacian_full.png`"
+  class="absolute"
+  style="top: 50%; left: 560px; transform: translateY(-50%); width: 230px;"
+  alt="Δf, the Laplacian output"
+/>
+
+<!-- Bottom caption -->
+<div v-click="3" class="absolute left-0 right-0 text-center" style="bottom: 80px;">
+
+the Laplacian <em>eats</em> a function and returns another
+
+</div>
+
+<!-- Eigendecomposition motivator -->
+<div v-click="4" class="absolute left-0 right-0 text-center" style="bottom: 32px;">
+
+it's an operator — so we can ask for its <span class="lbo">spectrum</span>: eigenfunctions and eigenvalues.
+
+</div>
+
+</div>
+
+---
+layout: default
+class: text-center
+---
+
+<div class="h-full flex flex-col pt-4 pb-4 px-6 text-center">
+
+<div class="eyebrow mb-1">
+Primer · in Euclidean space
+</div>
+
+<h2 class="!text-xl !leading-snug !mb-3 font-serif" style="color: var(--c-fg)">
+Same question — the neighbourhood is a <span class="lbo">unit ball</span>.
+</h2>
+
+<div class="flex-1 min-h-0 grid grid-cols-2 gap-x-8 gap-y-3" style="grid-template-rows: 1fr auto;">
+
+<div class="min-h-0 flex items-center justify-center">
+  <img
+    :src="`${$slidev.configs.base ?? '/'}applications/lap_euclidean_1d.png`"
+    class="max-h-full max-w-full object-contain"
+    alt="Laplacian setup on R — focal x0 with interval neighbourhood"
+  />
+</div>
+
+<div class="min-h-0 flex items-center justify-center">
+  <img
+    :src="`${$slidev.configs.base ?? '/'}applications/lap_euclidean_2d.png`"
+    class="max-h-full max-w-full object-contain"
+    alt="Laplacian setup on R^2 — focal x0 with disk neighbourhood"
+  />
+</div>
+
+<div class="text-center flex items-center justify-center" style="font-size: 20px;">
+
+$\Delta f = \dfrac{d^2 f}{dx^2}$
+
+</div>
+
+<div class="text-center flex items-center justify-center" style="font-size: 20px;">
+
+$\Delta f = \dfrac{\partial^2 f}{\partial u^2} + \dfrac{\partial^2 f}{\partial v^2}$
+
+</div>
+
+</div>
+
+</div>
+
+---
+layout: default
+class: text-center
+---
+
+<div class="h-full flex flex-col pt-2 pb-2 px-2 text-center">
+
+<div class="eyebrow mb-0">
+Primer · on a curved domain
+</div>
+
+<h2 class="!text-lg !leading-snug !mb-1 font-serif" style="color: var(--c-fg)">
+Same question — the domain itself is now a <span class="lbo">curved manifold</span>.
+</h2>
+
+<div class="flex-1 min-h-0 flex items-center justify-center">
+  <img
+    :src="`${$slidev.configs.base ?? '/'}applications/lap_curved_2d.png`"
+    class="max-h-full max-w-full object-contain"
+    style="height: 100%;"
+    alt="curved domain M with the function f as a sheet floating above it"
+  />
+</div>
+
+<div class="text-center mt-1" style="font-size: 18px;">
+
+$\Delta_M f \;=\; \operatorname{div}_M\!\big(\nabla_M f\big)$ &nbsp;·&nbsp; the <span class="lbo">Laplace–Beltrami operator</span> (LBO)
+
+</div>
+
+</div>
+
+---
+layout: default
+class: text-center
+---
+
 <div class="flex flex-col items-center h-full pt-6 pb-4 text-center">
 
 <div class="eyebrow mb-3">
 Motivation
 </div>
 
-<h2 class="!text-3xl !leading-snug !mb-2 max-w-5xl font-serif">
-The <span class="lbo">Laplace–Beltrami operator</span> (LBO)
-</h2>
-<h2 class="!text-3xl !leading-snug !mb-4 max-w-5xl font-serif" style="color: var(--c-fg-body)">
-is the <em>workhorse</em> of geometry processing.
+<h2 class="!text-3xl !leading-snug !mb-4 max-w-5xl font-serif">
+The <span class="lbo">LBO</span> is the <em>swiss knife</em> of geometry processing.
 </h2>
 
 <div class="flex-1 min-h-0 w-full flex items-center justify-center">
@@ -101,101 +303,68 @@ Motivation &nbsp;·&nbsp; What its eigendecomposition unlocks
 A single spectral basis &mdash; <span class="grad">many families of tools</span>.
 </h2>
 
-<div class="grid grid-cols-3 gap-4 flex-1 min-h-0">
+<div class="grid grid-cols-3 gap-x-6 gap-y-2 flex-1 min-h-0">
 
-<div class="app-card">
-  <div class="app-num">01</div>
-  <div class="app-title">Shape Descriptors</div>
-  <div class="app-body">
-    Heat Kernel Signature (HKS), Wave Kernel Signature (WKS), Global Point Signature.
-  </div>
+<div class="app-tile" v-click="1">
+  <img :src="`${$slidev.configs.base ?? '/'}applications/app_01_descriptors.png`" alt="Shape descriptors" />
+  <div class="app-cap">Shape descriptors</div>
 </div>
 
-<div class="app-card">
-  <div class="app-num">02</div>
-  <div class="app-title">Shape Correspondence</div>
-  <div class="app-body">
-    Functional maps, spectral &amp; partial matching, isometry-invariant retrieval.
-  </div>
+<div class="app-tile" v-click="2">
+  <img :src="`${$slidev.configs.base ?? '/'}applications/app_02_corr_cat.png`" alt="Shape correspondence" />
+  <div class="app-cap">Shape correspondence</div>
 </div>
 
-<div class="app-card">
-  <div class="app-num">03</div>
-  <div class="app-title">Manifold Learning</div>
-  <div class="app-body">
-    Laplacian Eigenmaps, Diffusion Maps, spectral embeddings &amp; dimensionality reduction.
-  </div>
+<div class="app-tile" v-click="3">
+  <img :src="`${$slidev.configs.base ?? '/'}applications/app_03_manifold_learning.png`" alt="Manifold learning" />
+  <div class="app-cap">Manifold learning</div>
 </div>
 
-<div class="app-card">
-  <div class="app-num">04</div>
-  <div class="app-title">Signal Processing on Manifolds</div>
-  <div class="app-body">
-    Low- / band-pass filtering, spectral compression, denoising, convolution on graphs.
-  </div>
+<div class="app-tile" v-click="4">
+  <img :src="`${$slidev.configs.base ?? '/'}applications/app_05_geometry_processing.png`" alt="Geodesics" />
+  <div class="app-cap">Geodesics</div>
 </div>
 
-<div class="app-card">
-  <div class="app-num">05</div>
-  <div class="app-title">Geometry Processing</div>
-  <div class="app-body">
-    Mesh smoothing, parameterization, segmentation, remeshing, topology repair.
-  </div>
+<div class="app-tile" v-click="5">
+  <img :src="`${$slidev.configs.base ?? '/'}applications/app_07_mesh_smoothing.png`" alt="Mesh smoothing" />
+  <div class="app-cap">Mesh smoothing</div>
 </div>
 
-<div class="app-card">
-  <div class="app-num">06</div>
-  <div class="app-title">Physics &amp; Simulation</div>
-  <div class="app-body">
-    Heat diffusion, wave propagation, Hamiltonian dynamics on curved domains.
-  </div>
+<div class="app-tile" v-click="6">
+  <img :src="`${$slidev.configs.base ?? '/'}applications/app_09_arap_horse.png`" alt="Shape deformation" />
+  <div class="app-cap">Shape deformation</div>
 </div>
 
 </div>
 
-<div class="text-center mt-4 text-sm muted italic">
-All of these reduce to one ingredient: <span style="color: var(--c-fg-body); font-style: normal;">the eigenbasis of&nbsp;<span class="lbo">∆</span></span>.
+<div v-click="7" class="text-center mt-3 muted italic" style="font-size: 0.95rem;">
+…and more.
 </div>
 
 </div>
 
 <style>
-.app-card {
+.app-tile {
   display: flex;
   flex-direction: column;
-  padding: 0.85rem 1rem;
-  border: 1px solid var(--c-border);
-  border-radius: 10px;
-  background: var(--c-bg-soft);
-  position: relative;
-  overflow: hidden;
+  align-items: center;
+  justify-content: flex-end;
+  min-height: 0;
 }
-.app-card::before {
-  content: '';
-  position: absolute;
-  left: 0; top: 0; bottom: 0;
-  width: 3px;
-  background: linear-gradient(180deg, var(--c-brand-from), var(--c-brand-to));
-  opacity: 0.85;
+.app-tile img {
+  flex: 1 1 0;
+  min-height: 0;
+  max-height: 100%;
+  max-width: 100%;
+  object-fit: contain;
 }
-.app-num {
-  font-family: 'JetBrains Mono', ui-monospace, monospace;
-  font-size: 0.7rem;
-  color: var(--c-fg-subtle);
-  letter-spacing: 0.1em;
-  margin-bottom: 0.25rem;
-}
-.app-title {
-  font-weight: 700;
-  font-size: 1.05rem;
-  color: var(--c-fg);
-  margin-bottom: 0.35rem;
-  letter-spacing: -0.01em;
-}
-.app-body {
+.app-cap {
+  font-weight: 600;
   font-size: 0.85rem;
-  line-height: 1.45;
-  color: var(--c-fg-muted);
+  color: var(--c-fg);
+  margin-top: 0.25rem;
+  letter-spacing: -0.005em;
+  text-align: center;
 }
 </style>
 
@@ -214,135 +383,112 @@ Background &nbsp;·&nbsp; The traditional pipeline
 Computing the Laplacian eigenstructure, <span class="grad">step by step</span>
 </h2>
 
-<div class="flex-1 flex items-center">
+<div class="flex-1 min-h-0 pipe-grid">
 
-<div class="flex items-stretch justify-center gap-3 w-full">
+<!-- Titles (row 1) -->
+<div class="pipe-title" style="grid-column: 1; grid-row: 1;" v-click="1">Triangulation</div>
+<div class="pipe-title" style="grid-column: 3; grid-row: 1;" v-click="3">Stiffness &amp; Mass</div>
+<div class="pipe-title" style="grid-column: 5; grid-row: 1;" v-click="4">Eigensolve</div>
+<div class="pipe-title" style="grid-column: 7; grid-row: 1;" v-click="5">Eigenbasis</div>
 
-<div class="pipe-card">
+<!-- Arrows span the content row -->
+<div class="pipe-arrow" style="grid-column: 2; grid-row: 2;" v-click="3">›</div>
+<div class="pipe-arrow" style="grid-column: 4; grid-row: 2;" v-click="4">›</div>
+<div class="pipe-arrow" style="grid-column: 6; grid-row: 2;" v-click="5">›</div>
 
-<div class="pipe-num">01</div>
-
-<div class="pipe-title">Mesh / Triangulation</div>
-
-<div class="pipe-body">
-
-Build a triangle mesh (a **2-manifold**); often *remesh* to Delaunay for well-shaped triangles.
-
+<!-- Content (row 2) -->
+<div class="pipe-img-wrap relative" style="grid-column: 1; grid-row: 2;">
+  <img
+    v-click="1"
+    :src="`${$slidev.configs.base ?? '/'}applications/pipeline_vertices.png`"
+    class="absolute inset-0 m-auto"
+    style="max-height: 100%; max-width: 100%; object-fit: contain;"
+    alt="Vertices"
+  />
+  <img
+    v-click="2"
+    :src="`${$slidev.configs.base ?? '/'}applications/pipeline_triangulation.png`"
+    class="absolute inset-0 m-auto"
+    style="max-height: 100%; max-width: 100%; object-fit: contain;"
+    alt="Triangle mesh"
+  />
 </div>
 
+<div class="pipe-img-wrap" style="grid-column: 3; grid-row: 2;" v-click="3">
+  <img :src="`${$slidev.configs.base ?? '/'}applications/pipeline_voronoi_cot.png`" alt="Voronoi cell and cotangent angles" />
 </div>
 
-<div class="pipe-arrow">›</div>
-
-<div class="pipe-card">
-
-<div class="pipe-num">02</div>
-
-<div class="pipe-title">Stiffness &amp; Mass</div>
-
-<div class="pipe-body">
-
-Assemble the **stiffness** $S$ (cotangent weights) and **mass** $M$ (vertex areas) matrices.
-
-</div>
-
-</div>
-
-<div class="pipe-arrow">›</div>
-
-<div class="pipe-card">
-
-<div class="pipe-num">03</div>
-
-<div class="pipe-title">Eigensolve</div>
-
-<div class="pipe-body">
-
-Solve the generalized eigenproblem
-
-<div class="pipe-eq">
+<div class="pipe-eq-only" style="grid-column: 5; grid-row: 2;" v-click="4">
 
 $$S\boldsymbol{\phi} = \lambda\, M\boldsymbol{\phi}$$
 
 </div>
 
-via Lanczos / ARPACK.
+<div class="pipe-eq-only" style="grid-column: 7; grid-row: 2;" v-click="5">
+
+$\{\boldsymbol{\phi}_i\}$ &nbsp;,&nbsp; $\{\lambda_i\}$
 
 </div>
 
-</div>
+<!-- Captions (row 3) -->
+<div class="pipe-caption" style="grid-column: 1; grid-row: 3;">&nbsp;</div>
+<div class="pipe-caption" style="grid-column: 3; grid-row: 3;" v-click="3">
 
-<div class="pipe-arrow">›</div>
-
-<div class="pipe-card">
-
-<div class="pipe-num">04</div>
-
-<div class="pipe-title">Eigenbasis</div>
-
-<div class="pipe-body">
-
-Out comes $\{\boldsymbol{\phi}_i\}_{i=1}^{k}$ and $\{\lambda_i\}$ &mdash; ready for any downstream task.
+$M$ &nbsp;,&nbsp; $S$
 
 </div>
-
-</div>
-
-</div>
+<div class="pipe-caption" style="grid-column: 5; grid-row: 3;">&nbsp;</div>
+<div class="pipe-caption" style="grid-column: 7; grid-row: 3;">&nbsp;</div>
 
 </div>
 
 </div>
 
 <style>
-.pipe-card {
-  flex: 1 1 0;
-  min-width: 0;
-  display: flex;
-  flex-direction: column;
-  padding: 0.85rem 1rem;
-  border: 1px solid var(--c-border);
-  border-radius: 10px;
-  background: var(--c-bg-soft);
-  position: relative;
-  overflow: hidden;
-}
-.pipe-card::before {
-  content: '';
-  position: absolute;
-  left: 0; top: 0; right: 0;
-  height: 3px;
-  background: linear-gradient(90deg, var(--c-brand-from), var(--c-brand-to));
-  opacity: 0.85;
-}
-.pipe-num {
-  font-family: 'JetBrains Mono', ui-monospace, monospace;
-  font-size: 0.65rem;
-  color: var(--c-fg-subtle);
-  letter-spacing: 0.15em;
-  margin-bottom: 0.35rem;
+.pipe-grid {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr auto 1fr auto 1fr;
+  grid-template-rows: auto 1fr auto;
+  column-gap: 0.5rem;
+  row-gap: 0.4rem;
+  width: 100%;
+  align-items: stretch;
 }
 .pipe-title {
   font-weight: 700;
-  font-size: 0.95rem;
+  font-size: 1rem;
   color: var(--c-fg);
-  margin-bottom: 0.4rem;
   letter-spacing: -0.01em;
   line-height: 1.2;
-  min-height: 2.4rem;     /* reserve room for up to 2 title lines */
-  display: flex;
-  align-items: flex-start;
-}
-.pipe-body {
-  font-size: 0.78rem;
-  line-height: 1.5;
-  color: var(--c-fg-muted);
-}
-.pipe-eq {
   text-align: center;
-  margin: 0.4rem 0;
-  font-size: 0.95rem;
+}
+.pipe-img-wrap {
+  min-height: 0;
+  min-width: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.pipe-img-wrap img {
+  max-height: 100%;
+  max-width: 100%;
+  object-fit: contain;
+}
+.pipe-eq-only {
+  min-height: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 1.2rem;
   color: var(--c-fg-body);
+}
+.pipe-caption {
+  text-align: center;
+  font-size: 1.2rem;
+  color: var(--c-fg-body);
+  min-height: 1.4em;
 }
 .pipe-arrow {
   display: flex;
@@ -392,51 +538,39 @@ Background &nbsp;·&nbsp; Where the pipeline breaks down
 Three <span class="grad">unavoidable bottlenecks</span>.
 </h2>
 
-<div class="grid grid-cols-3 gap-4 flex-1 min-h-0">
+<div class="grid grid-cols-3 gap-8 flex-1 min-h-0 bottleneck-grid">
 
-<div class="limit-card">
+<div class="bottleneck-tile">
+  <div class="bottleneck-img-wrap">
+    <img :src="`${$slidev.configs.base ?? '/'}applications/pipeline_triangulation.png`" alt="Triangulation of a 2-manifold" />
+  </div>
+  <div class="bottleneck-cap">
 
-<div class="limit-num">01</div>
-
-<div class="limit-title">Hard-coded intrinsic dimension</div>
-
-<div class="limit-body">
-
-Cotangent weights and vertex areas are intrinsically **2-D constructs**. The discretization itself bakes in $d_\text{int} = 2$ &mdash; there is no principled lift to higher dimensions.
+Hard-coded $d_\text{int} = 2$
 
 </div>
-
 </div>
 
-<div class="limit-card">
+<div class="bottleneck-tile">
+  <div class="bottleneck-img-wrap">
+    <img :src="`${$slidev.configs.base ?? '/'}applications/bottleneck_high_d_graph.png`" alt="High-dimensional graph" />
+  </div>
+  <div class="bottleneck-cap">
 
-<div class="limit-num">02</div>
-
-<div class="limit-title">No clean extension to high-d manifolds</div>
-
-<div class="limit-body">
-
-For high-dimensional data we fall back to **graph Laplacians**, which depend heavily on local density and connectivity and drift away from the smooth LBO. There is no mesh equivalent in&nbsp;$\mathbb{R}^d$.
+Doesn't scale to $\mathbb{R}^n$
 
 </div>
-
 </div>
 
-<div class="limit-card">
+<div class="bottleneck-tile">
+  <div class="bottleneck-img-wrap">
+    <img :src="`${$slidev.configs.base ?? '/'}applications/bottleneck_no_grad.png`" alt="No backpropagation" />
+  </div>
+  <div class="bottleneck-cap">
 
-<div class="limit-num">03</div>
-
-<div class="limit-title">Not differentiable in practice</div>
-
-<div class="limit-body">
-
-You cannot backprop through the eigensolver:
-
-- `torch.linalg.eigh` &mdash; eigenvector gradients blow up near degenerate eigenvalues.
-- `torch.lobpcg` &mdash; no gradients for the generalized problem.
+Not differentiable
 
 </div>
-
 </div>
 
 </div>
@@ -450,97 +584,42 @@ We need a pipeline that is <span style="color: var(--c-fg-body); font-style: nor
 </div>
 
 <style>
-.limit-card {
+.bottleneck-tile {
   display: flex;
   flex-direction: column;
-  padding: 0.75rem 0.9rem;
-  border: 1px solid var(--c-border);
-  border-radius: 10px;
-  background: var(--c-bg-soft);
-  position: relative;
-  overflow: hidden;
+  align-items: center;
+  justify-content: flex-end;
+  min-height: 0;
 }
-.limit-card::before {
-  content: '';
-  position: absolute;
-  left: 0; top: 0; bottom: 0;
-  width: 3px;
-  background: var(--c-accent);
-  opacity: 0.85;
+.bottleneck-img-wrap {
+  flex: 1 1 0;
+  min-height: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-.limit-num {
-  font-family: 'JetBrains Mono', ui-monospace, monospace;
-  font-size: 0.65rem;
-  color: var(--c-accent);
-  letter-spacing: 0.15em;
-  margin-bottom: 0.3rem;
+.bottleneck-img-wrap img {
+  max-height: 100%;
+  max-width: 100%;
+  object-fit: contain;
 }
-.limit-title {
+.bottleneck-cap {
+  margin-top: 0.6rem;
   font-weight: 700;
-  font-size: 0.95rem;
+  font-size: 1.05rem;
   color: var(--c-fg);
-  margin-bottom: 0.4rem;
-  letter-spacing: -0.01em;
-  line-height: 1.2;
+  text-align: center;
+  letter-spacing: -0.005em;
+  min-height: 2.6em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-.limit-body {
-  font-size: 0.78rem;
-  line-height: 1.5;
-  color: var(--c-fg-muted);
-}
-.limit-body code {
-  font-family: 'JetBrains Mono', ui-monospace, monospace;
-  font-size: 0.72rem;
-  background: rgba(180, 83, 9, 0.10);
-  color: var(--c-accent);
-  padding: 1px 4px;
-  border-radius: 3px;
-}
-.limit-body ul {
-  list-style: none;
-  padding-left: 0;
-  margin: 0.35rem 0 0 0;
-}
-.limit-body li {
-  position: relative;
-  padding-left: 0.8rem;
-  margin-top: 0.25rem;
-}
-.limit-body li::before {
-  content: '–';
-  position: absolute;
-  left: 0;
-  color: var(--c-fg-subtle);
+.bottleneck-cap p {
+  margin: 0;
 }
 </style>
-
----
-layout: default
-class: text-center
----
-
-<div class="h-full flex flex-col items-center justify-center px-12">
-
-<div class="eyebrow mb-10">
-The question
-</div>
-
-<h1 class="!text-4xl !leading-[1.6] font-serif max-w-5xl mb-10" style="color: var(--c-fg)">
-Can we <span class="grad">bypass the bottlenecks</span><br/>
-and learn the eigenbasis of the LBO<br/>
-of <em>any</em> manifold &mdash; given only a<br/>
-<span class="grad">point cloud in arbitrary dimension</span>?
-</h1>
-
-<div class="text-base muted max-w-3xl flex items-center justify-center gap-6">
-  <span>No mesh.</span>
-  <span class="text-xs opacity-50">●</span>
-  <span>No operator construction.</span>
-  <span class="text-xs opacity-50">●</span>
-  <span>No eigensolver.</span>
-</div>
-
-</div>
 
 ---
 layout: default
@@ -557,23 +636,29 @@ Our approach
 Skip the operator. <span class="grad">Learn the eigenbasis directly.</span>
 </h2>
 
+<div class="pipeline-block mb-4" v-click="1">
+
 <div class="pipeline-row-label">Traditional</div>
 
-<div class="flex items-center justify-center gap-1 mb-8 trad-row">
-  <div class="chip">Point cloud</div>
-  <div class="chip-arrow">›</div>
-  <div class="chip chip-skip">Mesh</div>
-  <div class="chip-arrow">›</div>
-  <div class="chip chip-skip">Stiffness &amp; Mass</div>
-  <div class="chip-arrow">›</div>
-  <div class="chip chip-skip">Eigensolve</div>
-  <div class="chip-arrow">›</div>
-  <div class="chip">Eigenbasis</div>
+<div class="pipeline-row-static">
+  <div class="chip chip-hero">Point cloud</div>
+  <div class="chip-arrow chip-arrow-hero">›</div>
+  <div class="chip chip-hero" :class="{ 'chip-bypassed': $clicks >= 2 }">Triangulation</div>
+  <div class="chip-arrow chip-arrow-hero">›</div>
+  <div class="chip chip-hero" :class="{ 'chip-bypassed': $clicks >= 2 }">Stiffness &amp; Mass</div>
+  <div class="chip-arrow chip-arrow-hero">›</div>
+  <div class="chip chip-hero" :class="{ 'chip-bypassed': $clicks >= 2 }">Eigensolve</div>
+  <div class="chip-arrow chip-arrow-hero">›</div>
+  <div class="chip chip-hero">Eigenbasis</div>
 </div>
+
+</div>
+
+<div class="pipeline-block mb-8" v-click="3">
 
 <div class="pipeline-row-label ours-label">Ours</div>
 
-<div class="flex items-center justify-center gap-2 mb-10 ours-row">
+<div class="pipeline-row-static">
   <div class="chip chip-hero">Point cloud</div>
   <div class="chip-arrow chip-arrow-hero">›</div>
   <div class="chip chip-hero chip-net">Neural network</div>
@@ -581,7 +666,9 @@ Skip the operator. <span class="grad">Learn the eigenbasis directly.</span>
   <div class="chip chip-hero">Eigenbasis</div>
 </div>
 
-<div class="grid grid-cols-2 gap-6 max-w-4xl mx-auto w-full">
+</div>
+
+<div class="grid grid-cols-2 gap-6 max-w-4xl mx-auto w-full" v-click="4">
 
 <div class="benefit-card">
 
@@ -608,6 +695,11 @@ Skip the operator. <span class="grad">Learn the eigenbasis directly.</span>
 </div>
 
 <style>
+.pipeline-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 .pipeline-row-label {
   font-family: 'JetBrains Mono', ui-monospace, monospace;
   font-size: 0.65rem;
@@ -615,11 +707,25 @@ Skip the operator. <span class="grad">Learn the eigenbasis directly.</span>
   text-transform: uppercase;
   color: var(--c-fg-subtle);
   text-align: center;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.4rem;
 }
 .ours-label {
   color: var(--c-brand-from);
   font-weight: 600;
+}
+.pipeline-row-static {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+.chip-bypassed {
+  opacity: 0.55;
+  text-decoration: line-through;
+  text-decoration-color: #b91c1c;
+  text-decoration-thickness: 3px;
+  box-shadow: none;
+  transition: opacity 220ms ease, text-decoration-color 220ms ease;
 }
 
 .chip {
