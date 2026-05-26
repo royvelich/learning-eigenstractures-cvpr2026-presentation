@@ -944,6 +944,7 @@ Reconstruction / least-squares loss.
 ---
 layout: default
 class: text-left
+clicks: 13
 ---
 
 <div class="h-full flex flex-col pt-4 pb-3 px-2">
@@ -952,125 +953,652 @@ class: text-left
 Optimal approximation theory &nbsp;·&nbsp; Aflalo, Brezis et&nbsp;al. (2016)
 </div>
 
-<h2 class="!text-2xl !leading-snug !mb-3 font-serif text-center" style="color: var(--c-fg)">
+<h2 class="!text-2xl !leading-snug !mb-4 font-serif text-center" style="color: var(--c-fg)">
 Recover the <span class="grad">eigenbasis</span> <em>and</em> the <span class="grad">eigenvalues</span> of <i>L</i>.
 </h2>
 
-<div class="setup-cascade mb-4">
+<div class="flex-1 min-h-0 relative px-4 optimal-pair-host">
 
-<div class="setup-chip" v-click="1">
+  <!-- LEFT figure (first basis): starts centered, slides LEFT once the
+       second figure appears on click 7. -->
+  <div class="absolute inset-0 flex items-center justify-center">
+    <div
+      v-motion
+      :initial="{ x: 0 }"
+      :enter="{ x: 0 }"
+      :click-7="{ x: -240, scale: 0.9 }"
+      class="optimal-stage-wrap"
+    >
+      <img class="optimal-stage" :style="{ opacity: $clicks === 0 ? 1 : 0 }"
+           :src="`${$slidev.configs.base ?? '/'}applications/optimal_basis_stage1.png`"
+           alt="3D coordinate axes" />
+      <img class="optimal-stage" :style="{ opacity: $clicks === 1 ? 1 : 0 }"
+           :src="`${$slidev.configs.base ?? '/'}applications/optimal_basis_stage2.png`"
+           alt="the 3D vector v" />
+      <img class="optimal-stage" :style="{ opacity: $clicks === 2 ? 1 : 0 }"
+           :src="`${$slidev.configs.base ?? '/'}applications/optimal_basis_stage3.png`"
+           alt="basis b1, b2 and the plane they span" />
+      <img class="optimal-stage" :style="{ opacity: $clicks === 3 ? 1 : 0 }"
+           :src="`${$slidev.configs.base ?? '/'}applications/optimal_basis_stage4.png`"
+           alt="projection of v onto b1" />
+      <img class="optimal-stage" :style="{ opacity: $clicks === 4 ? 1 : 0 }"
+           :src="`${$slidev.configs.base ?? '/'}applications/optimal_basis_stage5.png`"
+           alt="projection of v onto b2" />
+      <img class="optimal-stage" :style="{ opacity: $clicks === 5 ? 1 : 0 }"
+           :src="`${$slidev.configs.base ?? '/'}applications/optimal_basis_stage6.png`"
+           alt="sum: v_proj = c1 b1 + c2 b2" />
+      <!-- Final state of first basis — stays visible from click 6 onwards
+           (i.e. once revealed, it stays put while the right figure builds). -->
+      <img class="optimal-stage" :style="{ opacity: $clicks >= 6 ? 1 : 0 }"
+           :src="`${$slidev.configs.base ?? '/'}applications/optimal_basis_stage7.png`"
+           alt="residual error v - v_proj" />
+    </div>
+  </div>
 
-**SPD operator** $L$
-
-<div class="chip-sub">whose eigenbasis we want to learn</div>
+  <!-- RIGHT figure (better basis): hidden initially, slides in from
+       center to the RIGHT on click 7, then builds up. -->
+  <div class="absolute inset-0 flex items-center justify-center">
+    <div
+      v-motion
+      :initial="{ x: 0, opacity: 0, scale: 0.9 }"
+      :enter="{ x: 0, opacity: 0, scale: 0.9 }"
+      :click-7="{ x: 240, opacity: 1, scale: 0.9 }"
+      class="optimal-stage-wrap"
+    >
+      <img class="optimal-stage" :style="{ opacity: $clicks === 7 ? 1 : 0 }"
+           :src="`${$slidev.configs.base ?? '/'}applications/optimal_basis_better_stage1.png`"
+           alt="3D coordinate axes" />
+      <img class="optimal-stage" :style="{ opacity: $clicks === 8 ? 1 : 0 }"
+           :src="`${$slidev.configs.base ?? '/'}applications/optimal_basis_better_stage2.png`"
+           alt="the 3D vector v (better basis)" />
+      <img class="optimal-stage" :style="{ opacity: $clicks === 9 ? 1 : 0 }"
+           :src="`${$slidev.configs.base ?? '/'}applications/optimal_basis_better_stage3.png`"
+           alt="better basis b1, b2 and the tilted plane they span" />
+      <img class="optimal-stage" :style="{ opacity: $clicks === 10 ? 1 : 0 }"
+           :src="`${$slidev.configs.base ?? '/'}applications/optimal_basis_better_stage4.png`"
+           alt="projection of v onto b1 (better)" />
+      <img class="optimal-stage" :style="{ opacity: $clicks === 11 ? 1 : 0 }"
+           :src="`${$slidev.configs.base ?? '/'}applications/optimal_basis_better_stage5.png`"
+           alt="projection of v onto b2 (better)" />
+      <img class="optimal-stage" :style="{ opacity: $clicks === 12 ? 1 : 0 }"
+           :src="`${$slidev.configs.base ?? '/'}applications/optimal_basis_better_stage6.png`"
+           alt="sum: v_proj (better)" />
+      <img class="optimal-stage" :style="{ opacity: $clicks >= 13 ? 1 : 0 }"
+           :src="`${$slidev.configs.base ?? '/'}applications/optimal_basis_better_stage7.png`"
+           alt="residual error (better basis) — smaller" />
+    </div>
+  </div>
 
 </div>
 
-<div class="setup-chip" v-click="2">
+<!-- Caption row — reserves its vertical space from the start so the
+     figure above doesn't shrink when a caption appears. -->
+<div class="caption-row mt-3 mb-1">
 
-**Signal class** $\mathcal{C}_L = \{f : \|f\|_L^2 \le 1\}$
+  <div :style="{ opacity: ($clicks >= 6 && $clicks < 13) ? 1 : 0 }"
+       class="caption-line">
 
-<div class="chip-sub">functions with bounded <i>L</i>-energy</div>
+  A 2D basis $\{b_1, b_2\}$ reconstructs a 3D vector $v$ — error $= v - v_{\text{proj}}$.
 
-</div>
+  </div>
 
-<div class="setup-chip" v-click="3">
+  <div :style="{ opacity: $clicks >= 13 ? 1 : 0 }"
+       class="caption-line">
 
-**Distribution** $p_L$
+  A <span class="grad">better basis</span> — the same projection scheme, but a much smaller residual.
 
-<div class="chip-sub">uniform measure over <i>C</i><sub><i>L</i></sub></div>
-
-</div>
-
-</div>
-
-<div class="theorem-lead mb-3" v-click="4">
-
-The theorem says:
-
-</div>
-
-<div class="outcome-box train mb-3" v-click="4">
-
-<div class="outcome-label">Eigenbasis</div>
-
-The basis $\{b_i\}$ that minimizes the **expected** reconstruction error over $p_L$ is the **first $k$ eigenvectors of $L$**.
-
-</div>
-
-<div class="outcome-box theory mt-auto" v-click="5">
-
-<div class="outcome-label">Eigenvalues</div>
-
-At the eigenbasis, the **worst-case** reconstruction error over $\mathcal{C}_L$ is $\alpha_k = 1/\lambda_k$ &mdash; the **$k$-th eigenvalue** of $L$.
+  </div>
 
 </div>
 
 </div>
 
 <style>
-.setup-cascade {
-  display: flex;
-  align-items: stretch;
-  justify-content: center;
-  gap: 0.4rem;
+.optimal-stage-wrap {
+  position: relative;
+  height: 100%;
+  /* aspect ratio matches the cropped APNG canvases (717 / 677 ≈ 1.059) */
+  aspect-ratio: 717 / 677;
 }
-.setup-chip {
-  flex: 1 1 0;
-  border: 1px solid var(--c-border);
-  border-left: 3px solid var(--c-brand-from);
-  background: var(--c-bg-soft);
-  padding: 0.5rem 0.7rem;
-  border-radius: 8px;
+.caption-row {
+  position: relative;
+  min-height: 1.6em;       /* reserve a single line of caption space */
   text-align: center;
-  font-size: 0.85rem;
-  line-height: 1.35;
+  font-size: 0.95rem;
+  color: var(--c-fg-body);
+}
+.caption-line {
+  position: absolute;
+  inset: 0;
+  transition: opacity 200ms ease;
+}
+.caption-line p { margin: 0; }
+.optimal-stage {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transition: opacity 250ms ease;
+}
+</style>
+
+---
+layout: default
+class: text-left
+clicks: 7
+---
+
+<div class="h-full flex flex-col pt-4 pb-3 px-2">
+
+<div class="eyebrow mb-1 text-center">
+Optimal approximation theory &nbsp;·&nbsp; signals on a manifold
+</div>
+
+<h2 class="!text-2xl !leading-snug !mb-3 font-serif text-center" style="color: var(--c-fg)">
+From a vector to a <span class="grad">smooth signal on a sampled manifold</span>.
+</h2>
+
+<div class="flex-1 min-h-0 flex flex-col items-center justify-center gap-4 px-4">
+<div class="flex items-center justify-center gap-6 pc-row">
+<div class="pc-group" :style="{ opacity: $clicks >= 1 ? 1 : 0 }">
+<img class="pc-img" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_mesh.png`" alt="armadillo mesh" />
+<div class="pc-brace-spacer"></div>
+<div class="pc-cap">smooth manifold</div>
+</div>
+<div class="pc-group" :style="{ opacity: $clicks >= 2 ? 1 : 0 }">
+<img class="pc-img" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_points.png`" alt="armadillo point cloud" />
+<div class="pc-brace-spacer"></div>
+<div class="pc-cap">sampled manifold</div>
+</div>
+<div class="pc-group" :style="{ opacity: $clicks >= 3 ? 1 : 0 }">
+<div class="pc-signals-block">
+<div class="pc-signals-row">
+<img class="pc-img" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_signal_diff_01.png`" alt="signal 1" />
+<img class="pc-img" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_signal_diff_02.png`" alt="signal 2" />
+<span class="pc-dots">⋯</span>
+<img class="pc-img" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_signal_diff_03.png`" alt="signal 3" />
+<img class="pc-img" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_signal_diff_04.png`" alt="signal 4" />
+</div>
+<svg class="pc-brace" viewBox="0 0 100 6" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg"><path d="M 0.5 0.5 Q 0.5 4.5 3 4.5 L 48 4.5 Q 50 4.5 50 6 Q 50 4.5 52 4.5 L 97 4.5 Q 99.5 4.5 99.5 0.5" stroke="currentColor" stroke-width="1.4" fill="none" vector-effect="non-scaling-stroke" stroke-linecap="round" /></svg>
+</div>
+<div class="pc-cap">smooth scalar functions</div>
+</div>
+</div>
+<div class="pc-basis-row">
+<div class="pc-basis-set" :style="{ opacity: $clicks === 4 ? 1 : 0 }">
+<div class="pc-signals-row">
+<img class="pc-img" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_basis_1_1.png`" alt="basis 1 · 1" />
+<img class="pc-img" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_basis_1_2.png`" alt="basis 1 · 2" />
+<img class="pc-img" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_basis_1_3.png`" alt="basis 1 · 3" />
+<img class="pc-img" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_basis_1_4.png`" alt="basis 1 · 4" />
+<img class="pc-img" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_basis_1_5.png`" alt="basis 1 · 5" />
+<img class="pc-img" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_basis_1_6.png`" alt="basis 1 · 6" />
+<span class="pc-dots">⋯</span>
+</div>
+<svg class="pc-brace" viewBox="0 0 100 6" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg"><path d="M 0.5 0.5 Q 0.5 4.5 3 4.5 L 48 4.5 Q 50 4.5 50 6 Q 50 4.5 52 4.5 L 97 4.5 Q 99.5 4.5 99.5 0.5" stroke="currentColor" stroke-width="1.4" fill="none" vector-effect="non-scaling-stroke" stroke-linecap="round" /></svg>
+<div class="pc-cap">orthogonal basis #1</div>
+</div>
+<div class="pc-basis-set" :style="{ opacity: $clicks === 5 ? 1 : 0 }">
+<div class="pc-signals-row">
+<img class="pc-img" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_basis_2_1.png`" alt="basis 2 · 1" />
+<img class="pc-img" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_basis_2_2.png`" alt="basis 2 · 2" />
+<img class="pc-img" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_basis_2_3.png`" alt="basis 2 · 3" />
+<img class="pc-img" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_basis_2_4.png`" alt="basis 2 · 4" />
+<img class="pc-img" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_basis_2_5.png`" alt="basis 2 · 5" />
+<img class="pc-img" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_basis_2_6.png`" alt="basis 2 · 6" />
+<span class="pc-dots">⋯</span>
+</div>
+<svg class="pc-brace" viewBox="0 0 100 6" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg"><path d="M 0.5 0.5 Q 0.5 4.5 3 4.5 L 48 4.5 Q 50 4.5 50 6 Q 50 4.5 52 4.5 L 97 4.5 Q 99.5 4.5 99.5 0.5" stroke="currentColor" stroke-width="1.4" fill="none" vector-effect="non-scaling-stroke" stroke-linecap="round" /></svg>
+<div class="pc-cap">orthogonal basis #2</div>
+</div>
+<div class="pc-basis-set" :style="{ opacity: $clicks === 6 ? 1 : 0 }">
+<div class="pc-signals-row">
+<img class="pc-img" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_basis_3_1.png`" alt="basis 3 · 1" />
+<img class="pc-img" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_basis_3_2.png`" alt="basis 3 · 2" />
+<img class="pc-img" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_basis_3_3.png`" alt="basis 3 · 3" />
+<img class="pc-img" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_basis_3_4.png`" alt="basis 3 · 4" />
+<img class="pc-img" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_basis_3_5.png`" alt="basis 3 · 5" />
+<img class="pc-img" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_basis_3_6.png`" alt="basis 3 · 6" />
+<span class="pc-dots">⋯</span>
+</div>
+<svg class="pc-brace" viewBox="0 0 100 6" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg"><path d="M 0.5 0.5 Q 0.5 4.5 3 4.5 L 48 4.5 Q 50 4.5 50 6 Q 50 4.5 52 4.5 L 97 4.5 Q 99.5 4.5 99.5 0.5" stroke="currentColor" stroke-width="1.4" fill="none" vector-effect="non-scaling-stroke" stroke-linecap="round" /></svg>
+<div class="pc-cap">orthogonal basis #3</div>
+</div>
+<div class="pc-basis-set" :style="{ opacity: $clicks === 7 ? 1 : 0, transform: $clicks === 7 ? 'scale(1.12)' : 'scale(0.92)' }">
+<div class="pc-signals-row">
+<img class="pc-img" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_basis_4_0.png`" alt="LBO basis · 0" />
+<img class="pc-img" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_basis_4_1.png`" alt="LBO basis · 1" />
+<img class="pc-img" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_basis_4_2.png`" alt="LBO basis · 2" />
+<img class="pc-img" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_basis_4_3.png`" alt="LBO basis · 3" />
+<img class="pc-img" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_basis_4_4.png`" alt="LBO basis · 4" />
+<img class="pc-img" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_basis_4_5.png`" alt="LBO basis · 5" />
+<span class="pc-dots">⋯</span>
+</div>
+<svg class="pc-brace" viewBox="0 0 100 6" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg"><path d="M 0.5 0.5 Q 0.5 4.5 3 4.5 L 48 4.5 Q 50 4.5 50 6 Q 50 4.5 52 4.5 L 97 4.5 Q 99.5 4.5 99.5 0.5" stroke="currentColor" stroke-width="1.4" fill="none" vector-effect="non-scaling-stroke" stroke-linecap="round" /></svg>
+<div class="pc-cap pc-cap-hero"><span class="grad">LBO eigenbasis</span></div>
+</div>
+</div>
+</div>
+
+</div>
+
+<style>
+.pc-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: opacity 450ms ease;
+}
+.pc-signals-block {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+.pc-signals-row {
+  display: flex;
+  gap: 0.4rem;
+  align-items: center;
+  justify-content: center;
+}
+.pc-brace {
+  width: 100%;
+  height: 12px;
+  margin-top: 0.3rem;
+  color: var(--c-fg-muted);
+  display: block;
+}
+.pc-cap-hero {
+  /* slightly bigger + drops the muted italic styling of regular captions */
+  font-size: 1.05rem;
+  font-style: normal;
+  font-weight: 700;
   color: var(--c-fg);
 }
-.setup-chip p {
-  margin: 0;
+.pc-dots {
+  font-size: 1.6rem;
+  line-height: 1;
+  color: var(--c-fg-subtle);
+  font-family: 'EB Garamond', serif;
+  padding-left: 0.3rem;
+  align-self: center;
+  letter-spacing: 0.05em;
 }
-.chip-sub {
-  font-size: 0.72rem;
+.pc-brace-spacer {
+  /* Reserves the same vertical space the brace occupies, so the
+     "smooth manifold" / "sampled manifold" captions sit on the same
+     baseline as "smooth scalar functions". */
+  height: 12px;
+  margin-top: 0.3rem;
+}
+.pc-basis-row {
+  position: relative;
+  width: 100%;
+  height: 160px;
+}
+.pc-basis-set {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transform-origin: center center;
+  transition: opacity 350ms ease,
+              transform 520ms cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.pc-img {
+  /* Single shared size so every thumbnail (mesh, point cloud, signals, basis) is identical. */
+  max-width: 110px;
+  max-height: 110px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+}
+.pc-cap {
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+  font-style: italic;
   color: var(--c-fg-muted);
-  font-style: italic;
-  margin-top: 0.2rem;
-}
-.theorem-lead {
   text-align: center;
-  font-size: 0.88rem;
-  line-height: 1.5;
-  color: var(--c-fg-body);
-  font-style: italic;
 }
-.outcome-box {
-  border: 1px solid var(--c-border);
-  background: var(--c-bg-soft);
-  padding: 0.85rem 1.2rem;
-  border-radius: 8px;
+</style>
+
+---
+layout: default
+class: text-left
+clicks: 8
+---
+
+<div class="h-full flex flex-col pt-4 pb-3 px-2">
+
+<div class="eyebrow mb-1 text-center">
+Method &nbsp;·&nbsp; pipeline overview
+</div>
+
+<h2 class="!text-2xl !leading-snug !mb-4 font-serif text-center" style="color: var(--c-fg)">
+Our <span class="grad">pipeline</span>.
+</h2>
+
+<div class="flex-1 min-h-0 flex items-center justify-center px-2 ml-stage">
+<div class="ml-grid" :style="{ transform: $clicks >= 4 ? 'translateY(-90px)' : 'translateY(0)' }">
+
+<!-- Input (spans both rows) -->
+<div class="ml-box ml-input" :style="{ opacity: $clicks >= 1 ? 1 : 0 }">
+<img class="ml-img" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_points_tight.png`" alt="armadillo point cloud" />
+</div>
+
+<!-- Fork split (single tail from input → two arrowheads at row centres) -->
+<div class="ml-arrow-split" :style="{ opacity: $clicks >= 2 ? 1 : 0 }">
+<svg viewBox="0 0 80 200" width="80" height="200" xmlns="http://www.w3.org/2000/svg">
+<path d="M 2 100 L 32 100" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" />
+<path d="M 32 45 L 32 155" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" />
+<path d="M 32 45 L 64 45" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="butt" />
+<path d="M 64 40 L 74 45 L 64 50 Z" fill="currentColor" />
+<path d="M 32 155 L 64 155" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="butt" />
+<path d="M 64 150 L 74 155 L 64 160 Z" fill="currentColor" />
+</svg>
+</div>
+<!-- Row 1: upper branch -->
+<div class="ml-box ml-card" :style="{ opacity: $clicks >= 2 ? 1 : 0 }">smooth function<br/>sampler</div>
+<div class="ml-arrow-h" :style="{ opacity: $clicks >= 2 ? 1 : 0 }">
+<svg viewBox="0 0 40 16" width="40" height="16" xmlns="http://www.w3.org/2000/svg">
+<path d="M 2 8 L 28 8" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="butt" />
+<path d="M 28 3 L 38 8 L 28 13 Z" fill="currentColor" />
+</svg>
+</div>
+<div class="ml-thumb-wrap" :style="{ opacity: $clicks >= 2 ? 1 : 0 }">
+<div class="ml-box ml-thumb-box">
+<span class="ml-thumb-cell"><img class="ml-thumb" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_signal_diff_01_tight.png`" alt="smooth function 1" /></span>
+<span class="ml-thumb-cell"><img class="ml-thumb" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_signal_diff_02_tight.png`" alt="smooth function 2" /></span>
+<span class="ml-dots">⋯</span>
+<span class="ml-thumb-cell"><img class="ml-thumb" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_signal_diff_03_tight.png`" alt="smooth function 3" /></span>
+<span class="ml-thumb-cell"><img class="ml-thumb" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_signal_diff_04_tight.png`" alt="smooth function 4" /></span>
+<!-- Projection clones (fly from each scalar thumbnail down onto phi_1 on click 6) -->
+<img class="ml-clone" :class="{ flying: $clicks === 6 }" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_signal_diff_01_tight.png`" style="left: 0px; --tx: 0px;" alt="" />
+<img class="ml-clone" :class="{ flying: $clicks === 6 }" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_signal_diff_02_tight.png`" style="left: 91px; --tx: -91px;" alt="" />
+<img class="ml-clone" :class="{ flying: $clicks === 6 }" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_signal_diff_03_tight.png`" style="left: 217px; --tx: -217px;" alt="" />
+<img class="ml-clone" :class="{ flying: $clicks === 6 }" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_signal_diff_04_tight.png`" style="left: 308px; --tx: -308px;" alt="" />
+<!-- Scalar replicas (click 7): copies of each scalar function detach from the originals and translate down into a row below the recon row. -->
+<img class="ml-scalar-replica" :class="{ flying: $clicks >= 7 }" style="left: 0px; --tx: -540px; --ty: 330px;" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_signal_diff_01_tight.png`" alt="" />
+<img class="ml-scalar-replica" :class="{ flying: $clicks >= 7 }" style="left: 91px; --tx: -540px; --ty: 330px;" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_signal_diff_02_tight.png`" alt="" />
+<span class="ml-scalar-replica-dots" :class="{ flying: $clicks >= 7 }" style="left: 176px; --tx: -531px; --ty: 330px;">⋯</span>
+<img class="ml-scalar-replica" :class="{ flying: $clicks >= 7 }" style="left: 217px; --tx: -540px; --ty: 330px;" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_signal_diff_03_tight.png`" alt="" />
+<img class="ml-scalar-replica" :class="{ flying: $clicks >= 7 }" style="left: 308px; --tx: -540px; --ty: 330px;" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_signal_diff_04_tight.png`" alt="" />
+</div>
+</div>
+
+<!-- Row 2: lower branch -->
+<div class="ml-box ml-card" :style="{ opacity: $clicks >= 3 ? 1 : 0 }">neural<br/>network</div>
+<div class="ml-arrow-h" :style="{ opacity: $clicks >= 3 ? 1 : 0 }">
+<svg viewBox="0 0 40 16" width="40" height="16" xmlns="http://www.w3.org/2000/svg">
+<path d="M 2 8 L 28 8" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="butt" />
+<path d="M 28 3 L 38 8 L 28 13 Z" fill="currentColor" />
+</svg>
+</div>
+<div class="ml-thumb-wrap" :style="{ opacity: $clicks >= 3 ? 1 : 0 }">
+<div class="ml-box ml-thumb-box">
+<span class="ml-thumb-cell"><img class="ml-thumb" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_basis_4_0_tight.png`" alt="phi_0" /></span>
+<span class="ml-thumb-cell" :class="{ masked: $clicks >= 5 && $clicks < 9 }"><img class="ml-thumb" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_basis_4_1_tight.png`" alt="phi_1" /></span>
+<span class="ml-dots" :class="{ masked: $clicks >= 5 && $clicks < 11 }">⋯</span>
+<span class="ml-thumb-cell" :class="{ masked: $clicks >= 5 && $clicks < 11 }"><img class="ml-thumb" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_basis_4_48_tight.png`" alt="phi_48" /></span>
+<span class="ml-thumb-cell" :class="{ masked: $clicks >= 5 && $clicks < 13 }"><img class="ml-thumb" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_basis_4_49_tight.png`" alt="phi_49" /></span>
+<!-- Reconstruction (k=1) outputs — emerge FROM phi_0 (left=0 of this thumb-box) outward into the recon row below the pipeline. -->
+<img class="ml-recon-out" :class="{ flying: $clicks >= 6 }" style="--tx: -540px; --ty: 120px;" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_signal_diff_01_recon_k1_tight.png`" alt="" />
+<img class="ml-recon-out" :class="{ flying: $clicks >= 6 }" style="--tx: -449px; --ty: 120px;" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_signal_diff_02_recon_k1_tight.png`" alt="" />
+<span class="ml-recon-dots" :class="{ flying: $clicks >= 6 }" style="--tx: -364px; --ty: 120px;">⋯</span>
+<img class="ml-recon-out" :class="{ flying: $clicks >= 6 }" style="--tx: -323px; --ty: 120px;" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_signal_diff_03_recon_k1_tight.png`" alt="" />
+<img class="ml-recon-out" :class="{ flying: $clicks >= 6 }" style="--tx: -232px; --ty: 120px;" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_signal_diff_04_recon_k1_tight.png`" alt="" />
+</div>
+</div>
+
+</div>
+</div>
+
+<!-- Loss overlay (click 8): vertical brace on the right of the two rows, arrow leading further right to a "Reconstruction Loss" box. -->
+<div class="ml-loss-overlay" :class="{ visible: $clicks >= 8 }">
+<svg class="ml-brace" viewBox="0 0 20 185" width="20" height="185" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M 2 2 Q 10 2 10 12 L 10 86 Q 10 92.5 20 92.5 Q 10 92.5 10 99 L 10 173 Q 10 183 2 183" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" />
+</svg>
+<svg class="ml-loss-arrow" viewBox="0 0 60 16" width="60" height="16" xmlns="http://www.w3.org/2000/svg">
+<path d="M 2 8 L 48 8" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="butt" />
+<path d="M 48 3 L 58 8 L 48 13 Z" fill="currentColor" />
+</svg>
+<div class="ml-loss-box">Reconstruction<br/>Loss</div>
+</div>
+
+</div>
+
+<style>
+.ml-stage {
+  position: relative;
+}
+.ml-loss-overlay {
+  position: absolute;
+  bottom: 1.5rem;
+  left: 470px;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  opacity: 0;
+  transform: translateX(12px);
+  transition: opacity 450ms ease, transform 450ms ease;
+  pointer-events: none;
+  color: var(--c-fg-subtle);
+}
+.ml-loss-overlay.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+.ml-loss-box {
+  border-radius: 10px;
+  background-image: linear-gradient(135deg, var(--c-brand-from), var(--c-brand-to));
+  color: white;
+  padding: 0.7rem 0.6rem;
   font-size: 0.95rem;
-  line-height: 1.55;
-  color: var(--c-fg-body);
+  font-weight: 700;
   text-align: center;
+  line-height: 1.2;
+  letter-spacing: -0.005em;
+  box-shadow: 0 4px 12px rgba(43, 88, 118, 0.22);
+  flex-shrink: 0;
 }
-.outcome-box.theory {
-  border-left: 3px solid var(--c-danger);
-  background: rgba(185, 28, 28, 0.05);
+.ml-loss-arrow { flex-shrink: 0; }
+.ml-brace { flex-shrink: 0; }
+.ml-recon-out {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 85px;
+  height: 85px;
+  object-fit: contain;
+  opacity: 0;
+  pointer-events: none;
+  transform-origin: center center;
+  transform: translate(0, 0) scale(0.45);
 }
-.outcome-box.train {
-  border-left: 3px solid var(--c-link);
-  background: rgba(29, 78, 216, 0.05);
+.ml-recon-out.flying {
+  animation: ml-recon-emerge 1.1s cubic-bezier(0.4, 0, 0.2, 1) 0.95s forwards;
 }
-.outcome-label {
-  font-family: 'JetBrains Mono', ui-monospace, monospace;
-  font-size: 0.62rem;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  font-weight: 600;
-  margin-bottom: 0.3rem;
+@keyframes ml-recon-emerge {
+  0%   { opacity: 0;    transform: translate(0, 0)             scale(0.45); }
+  18%  { opacity: 0.95; transform: translate(0, 0)             scale(0.55); }
+  100% { opacity: 1;    transform: translate(var(--tx), var(--ty)) scale(1); }
 }
-.outcome-box.theory .outcome-label { color: var(--c-danger); }
-.outcome-box.train .outcome-label { color: var(--c-link); }
+.ml-recon-dots {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 85px;
+  display: flex;
+  align-items: center;
+  font-size: 1.6rem;
+  line-height: 1;
+  color: var(--c-fg-subtle);
+  font-family: 'EB Garamond', serif;
+  letter-spacing: 0.05em;
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(0, 0);
+}
+.ml-recon-dots.flying {
+  animation: ml-recon-dots-emerge 1.1s cubic-bezier(0.4, 0, 0.2, 1) 0.95s forwards;
+}
+@keyframes ml-recon-dots-emerge {
+  0%   { opacity: 0; transform: translate(0, 0); }
+  18%  { opacity: 1; transform: translate(0, 0); }
+  100% { opacity: 1; transform: translate(var(--tx), var(--ty)); }
+}
+.ml-scalar-replica {
+  position: absolute;
+  top: 0;
+  width: 85px;
+  height: 85px;
+  object-fit: contain;
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(0, 0);
+}
+.ml-scalar-replica.flying {
+  animation: ml-scalar-replicate 1.0s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+.ml-scalar-replica-dots {
+  position: absolute;
+  top: 0;
+  height: 85px;
+  display: flex;
+  align-items: center;
+  font-size: 1.6rem;
+  line-height: 1;
+  color: var(--c-fg-subtle);
+  font-family: 'EB Garamond', serif;
+  letter-spacing: 0.05em;
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(0, 0);
+}
+.ml-scalar-replica-dots.flying {
+  animation: ml-scalar-replicate 1.0s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+@keyframes ml-scalar-replicate {
+  0%   { opacity: 0; transform: translate(0, 0); }
+  10%  { opacity: 1; transform: translate(0, 0); }
+  100% { opacity: 1; transform: translate(var(--tx), var(--ty)); }
+}
+.ml-grid {
+  display: grid;
+  grid-template-columns: auto auto auto auto auto;
+  grid-template-rows: 90px 90px;
+  align-items: center;
+  column-gap: 0.6rem;
+  row-gap: 20px;
+  transition: transform 600ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+.ml-arrow-split {
+  grid-column: 2;
+  grid-row: 1 / span 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--c-fg-subtle);
+  transition: opacity 350ms ease;
+}
+.ml-arrow-split svg { width: 80px; height: 200px; }
+.ml-input {
+  grid-column: 1;
+  grid-row: 1 / span 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0.4rem;
+  transition: opacity 350ms ease;
+}
+.ml-img {
+  width: 200px;
+  height: auto;
+  object-fit: contain;
+}
+.ml-arrow-h {
+  color: var(--c-fg-subtle);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 350ms ease;
+}
+.ml-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.ml-card {
+  border-radius: 10px;
+  background-image: linear-gradient(135deg, var(--c-brand-from), var(--c-brand-to));
+  color: white;
+  border: none;
+  box-shadow: 0 4px 12px rgba(43, 88, 118, 0.22);
+  padding: 0.85rem 0.7rem;
+  font-size: 1.05rem;
+  font-weight: 700;
+  text-align: center;
+  line-height: 1.25;
+  letter-spacing: -0.005em;
+  min-width: 0;
+  transition: opacity 350ms ease;
+}
+.ml-thumb-wrap {
+  position: relative;
+  transition: opacity 350ms ease;
+}
+.ml-thumb-box {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.4rem;
+  position: relative;
+}
+.ml-clone {
+  position: absolute;
+  top: 0;
+  width: 85px;
+  height: 85px;
+  object-fit: contain;
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(0, 0);
+}
+.ml-clone.flying {
+  animation: ml-clone-fly 1.3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+@keyframes ml-clone-fly {
+  0%   { opacity: 0;   transform: translate(0, 0); }
+  8%   { opacity: 0.95; transform: translate(0, 0); }
+  100% { opacity: 0;   transform: translate(var(--tx), 110px); }
+}
+.ml-thumb {
+  width: 85px;
+  height: 85px;
+  object-fit: contain;
+  display: block;
+  transition: opacity 400ms ease, filter 400ms ease;
+}
+.ml-thumb-cell {
+  position: relative;
+  display: inline-block;
+  line-height: 0;
+}
+.ml-thumb-cell.masked .ml-thumb {
+  opacity: 0.18;
+}
+.ml-dots { transition: opacity 400ms ease; }
+.ml-dots.masked { opacity: 0.18; }
+.ml-dots {
+  color: var(--c-fg-subtle);
+  font-family: 'EB Garamond', serif;
+  font-size: 1.2rem;
+  line-height: 1;
+  padding: 0 0.15rem;
+}
 </style>
 
 ---
