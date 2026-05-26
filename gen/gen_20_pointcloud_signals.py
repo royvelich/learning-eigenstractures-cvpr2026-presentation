@@ -360,7 +360,7 @@ for k in range(N_LSYM_VECS):
 # We render reconstructions at k = 1, 2, 49, 50 for each diffusion signal,
 # using the SAME colour limits as the original signal so visual comparison
 # across k is meaningful.
-RECON_KS = (1, 2, 49, 50)
+RECON_KS = (1, 2, 5, 20, 49, 50)
 
 for _sig_i, (_f_orig, _m_orig) in _diff_signals.items():
     _coeffs = psi.T @ _f_orig    # shape (N_LSYM_VECS,)
@@ -378,3 +378,46 @@ for _sig_i, (_f_orig, _m_orig) in _diff_signals.items():
         name = f"manifold_pc_signal_diff_{_sig_i:02d}_recon_k{_k}"
         render(name, build_recon)
         write_tight(name)
+
+
+# ----------------------------- 6. Per-component projection of signal_diff_01
+# onto each eigenvector of L_sym. For each i in [0, N_LSYM_VECS):
+#     component_i = (psi_i^T f) * psi_i
+# i.e. the i-th term in the Euclidean Fourier expansion of f in the L_sym
+# basis. Rendered with the SAME colour limit as the original signal so the
+# magnitude (sign + amplitude) of each spectral component is comparable.
+_f0, _m0 = _diff_signals[1]
+_coeffs0 = psi.T @ _f0
+
+for _i in range(N_LSYM_VECS):
+    _comp = _coeffs0[_i] * psi[:, _i]
+
+    # Shared clim (original signal's m_0): high-i components fade to ~zero,
+    # making amplitude comparison meaningful across i.
+    def build_comp_global(p, _f=_comp, _m=_m0):
+        cloud = pv.PolyData(P)
+        cloud["f"] = _f
+        p.add_mesh(cloud, scalars="f", cmap="coolwarm", clim=[-_m, _m],
+                   render_points_as_spheres=True, point_size=12,
+                   show_scalar_bar=False,
+                   ambient=0.30, diffuse=0.72)
+
+    name = f"manifold_pc_signal_diff_01_proj_i{_i}"
+    render(name, build_comp_global)
+    write_tight(name)
+
+    # Per-image clim: each component drawn at its own dynamic range, so
+    # high-i modes are still visible (loses cross-i amplitude comparison).
+    _m_local = max(float(np.abs(_comp).max()), 1e-9)
+
+    def build_comp_local(p, _f=_comp, _m=_m_local):
+        cloud = pv.PolyData(P)
+        cloud["f"] = _f
+        p.add_mesh(cloud, scalars="f", cmap="coolwarm", clim=[-_m, _m],
+                   render_points_as_spheres=True, point_size=12,
+                   show_scalar_bar=False,
+                   ambient=0.30, diffuse=0.72)
+
+    name = f"manifold_pc_signal_diff_01_proj_local_i{_i}"
+    render(name, build_comp_local)
+    write_tight(name)

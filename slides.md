@@ -1267,7 +1267,7 @@ From a vector to a <span class="grad">smooth signal on a sampled manifold</span>
 ---
 layout: default
 class: text-left
-clicks: 8
+clicks: 9
 ---
 
 <div class="h-full flex flex-col pt-4 pb-3 px-2">
@@ -1310,21 +1310,15 @@ Our <span class="grad">pipeline</span>.
 <div class="ml-thumb-wrap" :style="{ opacity: $clicks >= 2 ? 1 : 0 }">
 <div class="ml-box ml-thumb-box">
 <span class="ml-thumb-cell"><img class="ml-thumb" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_signal_diff_01_tight.png`" alt="smooth function 1" /></span>
-<span class="ml-thumb-cell"><img class="ml-thumb" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_signal_diff_02_tight.png`" alt="smooth function 2" /></span>
-<span class="ml-dots">⋯</span>
-<span class="ml-thumb-cell"><img class="ml-thumb" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_signal_diff_03_tight.png`" alt="smooth function 3" /></span>
-<span class="ml-thumb-cell"><img class="ml-thumb" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_signal_diff_04_tight.png`" alt="smooth function 4" /></span>
-<!-- Projection clones (fly from each scalar thumbnail down onto phi_1 on click 6) -->
+<span class="ml-thumb-cell" :class="{ masked: $clicks >= 5 }"><img class="ml-thumb" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_signal_diff_02_tight.png`" alt="smooth function 2" /></span>
+<span class="ml-dots" :class="{ masked: $clicks >= 5 }">⋯</span>
+<span class="ml-thumb-cell" :class="{ masked: $clicks >= 5 }"><img class="ml-thumb" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_signal_diff_03_tight.png`" alt="smooth function 3" /></span>
+<span class="ml-thumb-cell" :class="{ masked: $clicks >= 5 }"><img class="ml-thumb" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_signal_diff_04_tight.png`" alt="smooth function 4" /></span>
+<!-- Projection clones (click 6): four copies of signal_01 fly DOWN from row 1 to each of the four visible eigenfunctions (psi_0, psi_1, psi_48, psi_49). -->
 <img class="ml-clone" :class="{ flying: $clicks === 6 }" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_signal_diff_01_tight.png`" style="left: 0px; --tx: 0px;" alt="" />
-<img class="ml-clone" :class="{ flying: $clicks === 6 }" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_signal_diff_02_tight.png`" style="left: 91px; --tx: -91px;" alt="" />
-<img class="ml-clone" :class="{ flying: $clicks === 6 }" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_signal_diff_03_tight.png`" style="left: 217px; --tx: -217px;" alt="" />
-<img class="ml-clone" :class="{ flying: $clicks === 6 }" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_signal_diff_04_tight.png`" style="left: 308px; --tx: -308px;" alt="" />
-<!-- Scalar replicas (click 7): copies of each scalar function detach from the originals and translate down into a row below the recon row. -->
-<img class="ml-scalar-replica" :class="{ flying: $clicks >= 7 }" style="left: 0px; --tx: -540px; --ty: 330px;" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_signal_diff_01_tight.png`" alt="" />
-<img class="ml-scalar-replica" :class="{ flying: $clicks >= 7 }" style="left: 91px; --tx: -540px; --ty: 330px;" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_signal_diff_02_tight.png`" alt="" />
-<span class="ml-scalar-replica-dots" :class="{ flying: $clicks >= 7 }" style="left: 176px; --tx: -531px; --ty: 330px;">⋯</span>
-<img class="ml-scalar-replica" :class="{ flying: $clicks >= 7 }" style="left: 217px; --tx: -540px; --ty: 330px;" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_signal_diff_03_tight.png`" alt="" />
-<img class="ml-scalar-replica" :class="{ flying: $clicks >= 7 }" style="left: 308px; --tx: -540px; --ty: 330px;" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_signal_diff_04_tight.png`" alt="" />
+<img class="ml-clone" :class="{ flying: $clicks === 6 }" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_signal_diff_01_tight.png`" style="left: 0px; --tx: 91px;" alt="" />
+<img class="ml-clone" :class="{ flying: $clicks === 6 }" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_signal_diff_01_tight.png`" style="left: 0px; --tx: 217px;" alt="" />
+<img class="ml-clone" :class="{ flying: $clicks === 6 }" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_signal_diff_01_tight.png`" style="left: 0px; --tx: 308px;" alt="" />
 </div>
 </div>
 
@@ -1339,39 +1333,122 @@ Our <span class="grad">pipeline</span>.
 <div class="ml-thumb-wrap" :style="{ opacity: $clicks >= 3 ? 1 : 0 }">
 <div class="ml-box ml-thumb-box">
 <span class="ml-thumb-cell"><img class="ml-thumb" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_basis_4_0_tight.png`" alt="phi_0" /></span>
-<span class="ml-thumb-cell" :class="{ masked: $clicks >= 5 && $clicks < 9 }"><img class="ml-thumb" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_basis_4_1_tight.png`" alt="phi_1" /></span>
-<span class="ml-dots" :class="{ masked: $clicks >= 5 && $clicks < 11 }">⋯</span>
-<span class="ml-thumb-cell" :class="{ masked: $clicks >= 5 && $clicks < 11 }"><img class="ml-thumb" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_basis_4_48_tight.png`" alt="phi_48" /></span>
-<span class="ml-thumb-cell" :class="{ masked: $clicks >= 5 && $clicks < 13 }"><img class="ml-thumb" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_basis_4_49_tight.png`" alt="phi_49" /></span>
-<!-- Reconstruction (k=1) outputs — emerge FROM phi_0 (left=0 of this thumb-box) outward into the recon row below the pipeline. -->
-<img class="ml-recon-out" :class="{ flying: $clicks >= 6 }" style="--tx: -540px; --ty: 120px;" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_signal_diff_01_recon_k1_tight.png`" alt="" />
-<img class="ml-recon-out" :class="{ flying: $clicks >= 6 }" style="--tx: -449px; --ty: 120px;" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_signal_diff_02_recon_k1_tight.png`" alt="" />
-<span class="ml-recon-dots" :class="{ flying: $clicks >= 6 }" style="--tx: -364px; --ty: 120px;">⋯</span>
-<img class="ml-recon-out" :class="{ flying: $clicks >= 6 }" style="--tx: -323px; --ty: 120px;" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_signal_diff_03_recon_k1_tight.png`" alt="" />
-<img class="ml-recon-out" :class="{ flying: $clicks >= 6 }" style="--tx: -232px; --ty: 120px;" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_signal_diff_04_recon_k1_tight.png`" alt="" />
+<span class="ml-thumb-cell"><img class="ml-thumb" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_basis_4_1_tight.png`" alt="phi_1" /></span>
+<span class="ml-dots">⋯</span>
+<span class="ml-thumb-cell"><img class="ml-thumb" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_basis_4_48_tight.png`" alt="phi_48" /></span>
+<span class="ml-thumb-cell"><img class="ml-thumb" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_basis_4_49_tight.png`" alt="phi_49" /></span>
 </div>
 </div>
 
 </div>
 </div>
 
-<!-- Loss overlay (click 8): vertical brace on the right of the two rows, arrow leading further right to a "Reconstruction Loss" box. -->
-<div class="ml-loss-overlay" :class="{ visible: $clicks >= 8 }">
-<svg class="ml-brace" viewBox="0 0 20 185" width="20" height="185" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M 2 2 Q 10 2 10 12 L 10 86 Q 10 92.5 20 92.5 Q 10 92.5 10 99 L 10 173 Q 10 183 2 183" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" />
-</svg>
-<svg class="ml-loss-arrow" viewBox="0 0 60 16" width="60" height="16" xmlns="http://www.w3.org/2000/svg">
-<path d="M 2 8 L 48 8" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="butt" />
-<path d="M 48 3 L 58 8 L 48 13 Z" fill="currentColor" />
-</svg>
-<div class="ml-loss-box">Reconstruction<br/>Loss</div>
+<!-- Projection components (click 7): centered row, fixed at the bottom of .ml-stage; each img animates IN from its corresponding eigenfunction's position. -->
+<div class="ml-proj-row" :class="{ visible: $clicks >= 7, collapsing: $clicks >= 9 }">
+<img class="ml-proj-img" style="--sx: 240px; --sy: -180px;" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_signal_diff_01_proj_local_i0_tight.png`" alt="" />
+<span class="ml-plus" :class="{ visible: $clicks >= 8 }">+</span>
+<img class="ml-proj-img" style="--sx: 240px; --sy: -180px;" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_signal_diff_01_proj_local_i1_tight.png`" alt="" />
+<span class="ml-plus" :class="{ visible: $clicks >= 8 }">+</span>
+<span class="ml-proj-dots" style="--sx: 240px; --sy: -180px;">⋯</span>
+<span class="ml-plus" :class="{ visible: $clicks >= 8 }">+</span>
+<img class="ml-proj-img" style="--sx: 240px; --sy: -180px;" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_signal_diff_01_proj_local_i48_tight.png`" alt="" />
+<span class="ml-plus" :class="{ visible: $clicks >= 8 }">+</span>
+<img class="ml-proj-img" style="--sx: 240px; --sy: -180px;" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_signal_diff_01_proj_local_i49_tight.png`" alt="" />
 </div>
+
+<!-- Sum image (click 9): the row of projection components + signs collapses into a single thumbnail of their sum — the Euclidean k=50 reconstruction. -->
+<img class="ml-sum-img" :class="{ visible: $clicks >= 9 }" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_signal_diff_01_recon_k5_tight.png`" alt="" />
 
 </div>
 
 <style>
 .ml-stage {
   position: relative;
+}
+.ml-proj-row {
+  position: absolute;
+  left: 50%;
+  bottom: 5rem;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 0.4rem;
+  align-items: center;
+  pointer-events: none;
+  transform-origin: center center;
+  transition: transform 600ms cubic-bezier(0.4, 0, 0.2, 1), opacity 500ms ease;
+}
+.ml-proj-row.collapsing {
+  transform: translateX(-50%) scale(0);
+  opacity: 0;
+}
+.ml-sum-img {
+  position: absolute;
+  left: 50%;
+  bottom: 5rem;
+  width: 85px;
+  height: 85px;
+  object-fit: contain;
+  opacity: 0;
+  transform: translateX(-50%) scale(0.4);
+  transform-origin: center center;
+  transition: opacity 500ms ease 200ms, transform 600ms cubic-bezier(0.4, 0, 0.2, 1) 200ms;
+  pointer-events: none;
+}
+.ml-sum-img.visible {
+  opacity: 1;
+  transform: translateX(-50%) scale(1);
+}
+.ml-proj-img {
+  width: 85px;
+  height: 85px;
+  object-fit: contain;
+  opacity: 0;
+  transform-origin: center center;
+  transform: translate(var(--sx), var(--sy)) scale(0.45);
+}
+.ml-proj-row.visible .ml-proj-img {
+  animation: ml-proj-emerge 1.1s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+.ml-proj-dots {
+  font-size: 1.6rem;
+  line-height: 1;
+  color: var(--c-fg-subtle);
+  font-family: 'EB Garamond', serif;
+  letter-spacing: 0.05em;
+  opacity: 0;
+  transform: translate(var(--sx), var(--sy));
+}
+.ml-proj-row.visible .ml-proj-dots {
+  animation: ml-proj-dots-emerge 1.1s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+@keyframes ml-proj-emerge {
+  0%   { opacity: 0;    transform: translate(var(--sx), var(--sy)) scale(0.45); }
+  18%  { opacity: 0.95; transform: translate(var(--sx), var(--sy)) scale(0.55); }
+  100% { opacity: 1;    transform: translate(0, 0)                 scale(1);    }
+}
+@keyframes ml-proj-dots-emerge {
+  0%   { opacity: 0; transform: translate(var(--sx), var(--sy)); }
+  18%  { opacity: 1; transform: translate(var(--sx), var(--sy)); }
+  100% { opacity: 1; transform: translate(0, 0); }
+}
+.ml-plus {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.6rem;
+  line-height: 1;
+  color: var(--c-fg-subtle);
+  font-family: 'EB Garamond', serif;
+  max-width: 0;
+  opacity: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  transition: max-width 500ms ease, opacity 400ms ease;
+  pointer-events: none;
+}
+.ml-plus.visible {
+  max-width: 1.4rem;
+  opacity: 1;
 }
 .ml-loss-overlay {
   position: absolute;
@@ -1418,7 +1495,7 @@ Our <span class="grad">pipeline</span>.
   transform: translate(0, 0) scale(0.45);
 }
 .ml-recon-out.flying {
-  animation: ml-recon-emerge 1.1s cubic-bezier(0.4, 0, 0.2, 1) 0.95s forwards;
+  animation: ml-recon-emerge 1.1s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
 @keyframes ml-recon-emerge {
   0%   { opacity: 0;    transform: translate(0, 0)             scale(0.45); }
@@ -1442,7 +1519,7 @@ Our <span class="grad">pipeline</span>.
   transform: translate(0, 0);
 }
 .ml-recon-dots.flying {
-  animation: ml-recon-dots-emerge 1.1s cubic-bezier(0.4, 0, 0.2, 1) 0.95s forwards;
+  animation: ml-recon-dots-emerge 1.1s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
 @keyframes ml-recon-dots-emerge {
   0%   { opacity: 0; transform: translate(0, 0); }
