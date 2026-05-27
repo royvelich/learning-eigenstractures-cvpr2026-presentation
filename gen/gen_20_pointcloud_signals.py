@@ -157,7 +157,7 @@ render("manifold_pc_mesh", build_mesh)
 def build_points(p):
     cloud = pv.PolyData(P)
     p.add_mesh(cloud, color="#cbd5e1", render_points_as_spheres=True,
-               point_size=12, ambient=0.30, diffuse=0.72)
+               point_size=16, ambient=0.30, diffuse=0.72)
 
 
 render("manifold_pc_points", build_points)
@@ -192,7 +192,7 @@ for i in range(N_SIGNALS):
         cloud = pv.PolyData(P)
         cloud["f"] = _f
         p.add_mesh(cloud, scalars="f", cmap="coolwarm", clim=[-_m, _m],
-                   render_points_as_spheres=True, point_size=12,
+                   render_points_as_spheres=True, point_size=16,
                    show_scalar_bar=False,
                    ambient=0.30, diffuse=0.72)
 
@@ -242,7 +242,7 @@ for i in range(N_DSIGNALS):
         cloud = pv.PolyData(P)
         cloud["f"] = _f
         p.add_mesh(cloud, scalars="f", cmap="coolwarm", clim=[-_m, _m],
-                   render_points_as_spheres=True, point_size=12,
+                   render_points_as_spheres=True, point_size=16,
                    show_scalar_bar=False,
                    ambient=0.30, diffuse=0.72)
 
@@ -291,8 +291,8 @@ def render_basis_set(set_i, basis_vecs, n_vecs=None):
         def build_basis(p, _f=f, _m=m):
             cloud = pv.PolyData(P)
             cloud["f"] = _f
-            p.add_mesh(cloud, scalars="f", cmap="coolwarm", clim=[-_m, _m],
-                       render_points_as_spheres=True, point_size=12,
+            p.add_mesh(cloud, scalars="f", cmap="PuOr_r", clim=[-_m, _m],
+                       render_points_as_spheres=True, point_size=16,
                        show_scalar_bar=False,
                        ambient=0.30, diffuse=0.72)
 
@@ -308,19 +308,20 @@ for set_i in range(1, N_RANDOM_BASIS_SETS + 1):
     render_basis_set(set_i, Q)
 
 
-# Set 4 — symmetric normalized LBO eigenbasis on the point cloud.
-# robust_laplacian gives stiffness L and mass M; the symmetric normalization is
-#     L_sym = M^{-1/2} L M^{-1/2},
-# which has the SAME eigenvalues as the generalized LBO problem L phi = lam M phi
-# but standard-orthonormal eigenvectors psi (psi_i^T psi_j = delta_ij), related
-# to the LBO eigenfunctions by phi_i = M^{-1/2} psi_i.
-# We plot psi_i directly — including psi_0 (eigenvalue 0; proportional to
-# sqrt(m_i), so it looks ~constant up to small density variations).
+# Set 4 — RANDOM orthogonal smooth basis (replaces the LBO eigenbasis to
+# emulate what an early-training network might output). Constructed as a
+# random orthogonal rotation applied within the span of the first
+# N_LBO_SUBSPACE LBO eigenmodes:
+#   psi = Psi_LBO[:, :M] @ Q,     where Q is a random M-by-M orthogonal matrix.
+# Each column of psi is therefore a random orthogonal combination of low-
+# frequency LBO modes — smooth AND orthonormal, but not aligned with the
+# canonical eigenbasis.
 import robust_laplacian
 import scipy.sparse as sp
 import scipy.linalg as sla
 
 N_LSYM_VECS = 50
+N_LBO_SUBSPACE = 100   # rotate within this many smooth modes
 
 # Clear stale basis_4_* files from any previous indexing scheme.
 for _old in OUT_DIR.glob("manifold_pc_basis_4_*.png"):
@@ -334,7 +335,14 @@ Mi_sqrt = sp.diags(1.0 / np.sqrt(m_diag), format="csc")
 L_sym = (Mi_sqrt @ L @ Mi_sqrt).tocsc()
 L_sym = 0.5 * (L_sym + L_sym.T)
 vals_all, vecs_all = sla.eigh(L_sym.toarray())
-psi = vecs_all[:, :N_LSYM_VECS]   # eigenvectors of L_sym, as-is
+psi_lbo = vecs_all[:, :N_LBO_SUBSPACE]
+
+# Random orthogonal rotation inside the smooth LBO subspace.
+_rng_basis = np.random.default_rng(RNG_SEED + 999)
+_R = _rng_basis.standard_normal((N_LBO_SUBSPACE, N_LBO_SUBSPACE))
+_Q, _ = np.linalg.qr(_R)
+
+psi = (psi_lbo @ _Q)[:, :N_LSYM_VECS]   # 50 random orthogonal smooth vectors
 
 for k in range(N_LSYM_VECS):
     f = psi[:, k]
@@ -343,8 +351,8 @@ for k in range(N_LSYM_VECS):
     def build_basis(p, _f=f, _m=m):
         cloud = pv.PolyData(P)
         cloud["f"] = _f
-        p.add_mesh(cloud, scalars="f", cmap="coolwarm", clim=[-_m, _m],
-                   render_points_as_spheres=True, point_size=12,
+        p.add_mesh(cloud, scalars="f", cmap="PuOr_r", clim=[-_m, _m],
+                   render_points_as_spheres=True, point_size=16,
                    show_scalar_bar=False,
                    ambient=0.30, diffuse=0.72)
 
@@ -371,7 +379,7 @@ for _sig_i, (_f_orig, _m_orig) in _diff_signals.items():
             cloud = pv.PolyData(P)
             cloud["f"] = _f
             p.add_mesh(cloud, scalars="f", cmap="coolwarm", clim=[-_m, _m],
-                       render_points_as_spheres=True, point_size=12,
+                       render_points_as_spheres=True, point_size=16,
                        show_scalar_bar=False,
                        ambient=0.30, diffuse=0.72)
 
@@ -397,8 +405,8 @@ for _i in range(N_LSYM_VECS):
     def build_comp_global(p, _f=_comp, _m=_m0):
         cloud = pv.PolyData(P)
         cloud["f"] = _f
-        p.add_mesh(cloud, scalars="f", cmap="coolwarm", clim=[-_m, _m],
-                   render_points_as_spheres=True, point_size=12,
+        p.add_mesh(cloud, scalars="f", cmap="PiYG", clim=[-_m, _m],
+                   render_points_as_spheres=True, point_size=16,
                    show_scalar_bar=False,
                    ambient=0.30, diffuse=0.72)
 
@@ -413,11 +421,34 @@ for _i in range(N_LSYM_VECS):
     def build_comp_local(p, _f=_comp, _m=_m_local):
         cloud = pv.PolyData(P)
         cloud["f"] = _f
-        p.add_mesh(cloud, scalars="f", cmap="coolwarm", clim=[-_m, _m],
-                   render_points_as_spheres=True, point_size=12,
+        p.add_mesh(cloud, scalars="f", cmap="PiYG", clim=[-_m, _m],
+                   render_points_as_spheres=True, point_size=16,
                    show_scalar_bar=False,
                    ambient=0.30, diffuse=0.72)
 
     name = f"manifold_pc_signal_diff_01_proj_local_i{_i}"
     render(name, build_comp_local)
+    write_tight(name)
+
+
+# ----------------------------- 6b. Per-component projection of signal_diff_02
+# Only the 4 indices used by the pipeline slide (eigens 0, 1, 48, 49).
+# Per-image clim only (proj_local variant).
+_f2, _m2 = _diff_signals[2]
+_coeffs2 = psi.T @ _f2
+
+for _i in [0, 1, 48, 49]:
+    _comp2 = _coeffs2[_i] * psi[:, _i]
+    _m_local2 = max(float(np.abs(_comp2).max()), 1e-9)
+
+    def build_comp_local2(p, _f=_comp2, _m=_m_local2):
+        cloud = pv.PolyData(P)
+        cloud["f"] = _f
+        p.add_mesh(cloud, scalars="f", cmap="PiYG", clim=[-_m, _m],
+                   render_points_as_spheres=True, point_size=16,
+                   show_scalar_bar=False,
+                   ambient=0.30, diffuse=0.72)
+
+    name = f"manifold_pc_signal_diff_02_proj_local_i{_i}"
+    render(name, build_comp_local2)
     write_tight(name)

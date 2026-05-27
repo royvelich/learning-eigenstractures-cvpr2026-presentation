@@ -1267,8 +1267,86 @@ From a vector to a <span class="grad">smooth signal on a sampled manifold</span>
 ---
 layout: default
 class: text-left
-clicks: 9
+clicks: 23
 ---
+
+<script setup>
+import { onMounted, nextTick } from 'vue'
+
+// (kept for now; unused after the projection row was replaced by v-motion clones)
+async function alignProj() {
+  await nextTick()
+
+  // Wait for the slide images to actually have layout dimensions.
+  for (let attempt = 0; attempt < 30; attempt++) {
+    const eigen = document.querySelector('.ml-thumb-box img[alt="phi_0"]')
+    if (eigen && eigen.getBoundingClientRect().width > 0) break
+    await new Promise((r) => setTimeout(r, 50))
+  }
+  await new Promise((r) => requestAnimationFrame(() => requestAnimationFrame(r)))
+
+  let eigenBox = null
+  document.querySelectorAll('.ml-thumb-box').forEach((box) => {
+    if (box.querySelector('img[alt="phi_0"]')) eigenBox = box
+  })
+  if (!eigenBox) return
+
+  const eigenImgs = eigenBox.querySelectorAll('img.ml-thumb')
+  if (eigenImgs.length !== 4) return
+  const eigenRects = Array.from(eigenImgs).map((img) => img.getBoundingClientRect())
+
+  // -- Click 6 clones: 4 copies of signal_01 fly from scalar row down onto
+  //    each eigen. Set --tx on each clone = horizontal offset (in slide
+  //    pixels) from clone's natural position to its corresponding eigen.
+  const clones = document.querySelectorAll('.ml-clone')
+  if (clones.length === 4) {
+    clones.forEach((clone, idx) => {
+      const cloneRect = clone.getBoundingClientRect()
+      const eigenRect = eigenRects[idx]
+      const tx = eigenRect.left - cloneRect.left
+      clone.style.setProperty('--tx', `${tx}px`)
+    })
+  }
+
+  const projRow = document.querySelector('.ml-proj-row')
+  if (!projRow) return
+
+  const projImgs = projRow.querySelectorAll('.ml-proj-img')
+  if (projImgs.length !== 4) return
+
+  projImgs.forEach((projImg, idx) => {
+    const projRect = projImg.getBoundingClientRect()
+    const eigenRect = eigenRects[idx]
+    const sx = (eigenRect.left + eigenRect.width / 2) - (projRect.left + projRect.width / 2)
+    const sy = (eigenRect.top + eigenRect.height / 2) - (projRect.top + projRect.height / 2)
+    projImg.style.setProperty('--sx', `${sx}px`)
+    projImg.style.setProperty('--sy', `${sy}px`)
+  })
+
+  const projRowRect = projRow.getBoundingClientRect()
+  const rowCenterX = projRowRect.left + projRowRect.width / 2
+  projImgs.forEach((projImg) => {
+    const rect = projImg.getBoundingClientRect()
+    const cx = rowCenterX - (rect.left + rect.width / 2)
+    projImg.style.setProperty('--cx', `${cx}px`)
+  })
+
+  const dotsElem = projRow.querySelector('.ml-proj-dots-inline')
+  if (!dotsElem) return
+  const itemsForGaps = [projImgs[0], projImgs[1], dotsElem, projImgs[2], projImgs[3]]
+  const itemRects = itemsForGaps.map((el) => el.getBoundingClientRect())
+  const plusElems = projRow.querySelectorAll('.ml-proj-plus')
+  for (let i = 0; i < plusElems.length && i < itemRects.length - 1; i++) {
+    const midX = (itemRects[i].right + itemRects[i + 1].left) / 2
+    const leftInRow = midX - projRowRect.left
+    plusElems[i].style.setProperty('--left', `${leftInRow}px`)
+  }
+}
+
+onMounted(() => {
+  alignProj()
+})
+</script>
 
 <div class="h-full flex flex-col pt-4 pb-3 px-2">
 
@@ -1309,16 +1387,21 @@ Our <span class="grad">pipeline</span>.
 </div>
 <div class="ml-thumb-wrap" :style="{ opacity: $clicks >= 2 ? 1 : 0 }">
 <div class="ml-box ml-thumb-box">
-<span class="ml-thumb-cell"><img class="ml-thumb" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_signal_diff_01_tight.png`" alt="smooth function 1" /></span>
-<span class="ml-thumb-cell" :class="{ masked: $clicks >= 5 }"><img class="ml-thumb" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_signal_diff_02_tight.png`" alt="smooth function 2" /></span>
-<span class="ml-dots" :class="{ masked: $clicks >= 5 }">⋯</span>
-<span class="ml-thumb-cell" :class="{ masked: $clicks >= 5 }"><img class="ml-thumb" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_signal_diff_03_tight.png`" alt="smooth function 3" /></span>
-<span class="ml-thumb-cell" :class="{ masked: $clicks >= 5 }"><img class="ml-thumb" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_signal_diff_04_tight.png`" alt="smooth function 4" /></span>
-<!-- Projection clones (click 6): four copies of signal_01 fly DOWN from row 1 to each of the four visible eigenfunctions (psi_0, psi_1, psi_48, psi_49). -->
-<img class="ml-clone" :class="{ flying: $clicks === 6 }" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_signal_diff_01_tight.png`" style="left: 0px; --tx: 0px;" alt="" />
-<img class="ml-clone" :class="{ flying: $clicks === 6 }" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_signal_diff_01_tight.png`" style="left: 0px; --tx: 91px;" alt="" />
-<img class="ml-clone" :class="{ flying: $clicks === 6 }" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_signal_diff_01_tight.png`" style="left: 0px; --tx: 217px;" alt="" />
-<img class="ml-clone" :class="{ flying: $clicks === 6 }" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_signal_diff_01_tight.png`" style="left: 0px; --tx: 308px;" alt="" />
+<span class="ml-thumb-cell" :class="{ masked: $clicks >= 13 && $clicks < 21 }"><img class="ml-thumb" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_signal_diff_01_tight.png`" alt="smooth function 1" /></span>
+<span class="ml-thumb-cell" :class="{ masked: $clicks >= 5 && $clicks < 13 }"><img class="ml-thumb" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_signal_diff_02_tight.png`" alt="smooth function 2" /></span>
+<div class="ml-dots" :class="{ masked: $clicks >= 5 && $clicks < 21 }">
+
+$\cdots$
+
+</div>
+<span class="ml-thumb-cell" :class="{ masked: $clicks >= 5 && $clicks < 21 }"><img class="ml-thumb" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_signal_diff_03_tight.png`" alt="smooth function 3" /></span>
+<span class="ml-thumb-cell" :class="{ masked: $clicks >= 5 && $clicks < 21 }"><img class="ml-thumb" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_signal_diff_04_tight.png`" alt="smooth function 4" /></span>
+<!-- Underbrace labeling the smooth functions row as {f_i}. -->
+<div class="ml-underbrace">
+
+$\underbrace{\hspace{200px}}_{\text{smooth probe functions } \{f_i\}}$
+
+</div>
 </div>
 </div>
 
@@ -1331,33 +1414,244 @@ Our <span class="grad">pipeline</span>.
 </svg>
 </div>
 <div class="ml-thumb-wrap" :style="{ opacity: $clicks >= 3 ? 1 : 0 }">
-<div class="ml-box ml-thumb-box">
-<span class="ml-thumb-cell"><img class="ml-thumb" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_basis_4_0_tight.png`" alt="phi_0" /></span>
-<span class="ml-thumb-cell"><img class="ml-thumb" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_basis_4_1_tight.png`" alt="phi_1" /></span>
-<span class="ml-dots">⋯</span>
-<span class="ml-thumb-cell"><img class="ml-thumb" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_basis_4_48_tight.png`" alt="phi_48" /></span>
-<span class="ml-thumb-cell"><img class="ml-thumb" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_basis_4_49_tight.png`" alt="phi_49" /></span>
+<div class="ml-box ml-thumb-box" :class="{ 'loss-fade-out': $clicks >= 23 }">
+<!-- Each eigen cell hosts a click-6 clone of signal_01. v-motion :initial offset = source position relative to this cell. Source = signal_01 at scalar row col 1, i.e. one row up (y = -110) and offset LEFT by this cell's column-left within the thumb-box: 0, 91.4, 219.2, 310.6 for cols 1, 2, 4, 5. -->
+<span class="ml-thumb-cell">
+  <img class="ml-thumb" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_basis_4_0_tight.png`" alt="phi_0" />
+  <img class="ml-pl-clone" v-motion :initial="{ x: 0, y: -140, opacity: 0 }" :click-6="{ x: 0, y: 0, opacity: 1 }" :click-7="{ x: 0, y: 140, opacity: 1 }" :click-8="{ x: -30, y: 140, opacity: 1 }" :click-9="{ x: 155, y: 140, opacity: 0 }" :src="$clicks >= 7 ? `${$slidev.configs.base ?? '/'}applications/manifold_pc_signal_diff_01_proj_local_i0_tight.png` : `${$slidev.configs.base ?? '/'}applications/manifold_pc_signal_diff_01_tight.png`" alt="" />
+  <img class="ml-pl-clone" v-motion :initial="{ x: 91.4, y: -140, opacity: 0 }" :click-14="{ x: 0, y: 0, opacity: 1 }" :click-15="{ x: 0, y: 140, opacity: 1 }" :click-16="{ x: -30, y: 140, opacity: 1 }" :click-17="{ x: 155, y: 140, opacity: 0 }" :src="$clicks >= 15 ? `${$slidev.configs.base ?? '/'}applications/manifold_pc_signal_diff_02_proj_local_i0_tight.png` : `${$slidev.configs.base ?? '/'}applications/manifold_pc_signal_diff_02_tight.png`" alt="" />
+</span>
+<span class="ml-thumb-cell">
+  <img class="ml-thumb" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_basis_4_1_tight.png`" alt="phi_1" />
+  <img class="ml-pl-clone" v-motion :initial="{ x: -91.4, y: -140, opacity: 0 }" :click-6="{ x: 0, y: 0, opacity: 1 }" :click-7="{ x: 0, y: 140, opacity: 1 }" :click-8="{ x: -15, y: 140, opacity: 1 }" :click-9="{ x: 64, y: 140, opacity: 0 }" :src="$clicks >= 7 ? `${$slidev.configs.base ?? '/'}applications/manifold_pc_signal_diff_01_proj_local_i1_tight.png` : `${$slidev.configs.base ?? '/'}applications/manifold_pc_signal_diff_01_tight.png`" alt="" />
+  <img class="ml-pl-clone" v-motion :initial="{ x: 0, y: -140, opacity: 0 }" :click-14="{ x: 0, y: 0, opacity: 1 }" :click-15="{ x: 0, y: 140, opacity: 1 }" :click-16="{ x: -15, y: 140, opacity: 1 }" :click-17="{ x: 64, y: 140, opacity: 0 }" :src="$clicks >= 15 ? `${$slidev.configs.base ?? '/'}applications/manifold_pc_signal_diff_02_proj_local_i1_tight.png` : `${$slidev.configs.base ?? '/'}applications/manifold_pc_signal_diff_02_tight.png`" alt="" />
+</span>
+<div class="ml-dots">
+
+$\cdots$
+
+</div>
+<span class="ml-thumb-cell">
+  <img class="ml-thumb" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_basis_4_48_tight.png`" alt="phi_48" />
+  <img class="ml-pl-clone" v-motion :initial="{ x: -219.2, y: -140, opacity: 0 }" :click-6="{ x: 0, y: 0, opacity: 1 }" :click-7="{ x: 0, y: 140, opacity: 1 }" :click-8="{ x: 15, y: 140, opacity: 1 }" :click-9="{ x: -64, y: 140, opacity: 0 }" :src="$clicks >= 7 ? `${$slidev.configs.base ?? '/'}applications/manifold_pc_signal_diff_01_proj_local_i48_tight.png` : `${$slidev.configs.base ?? '/'}applications/manifold_pc_signal_diff_01_tight.png`" alt="" />
+  <img class="ml-pl-clone" v-motion :initial="{ x: -127.8, y: -140, opacity: 0 }" :click-14="{ x: 0, y: 0, opacity: 1 }" :click-15="{ x: 0, y: 140, opacity: 1 }" :click-16="{ x: 15, y: 140, opacity: 1 }" :click-17="{ x: -64, y: 140, opacity: 0 }" :src="$clicks >= 15 ? `${$slidev.configs.base ?? '/'}applications/manifold_pc_signal_diff_02_proj_local_i48_tight.png` : `${$slidev.configs.base ?? '/'}applications/manifold_pc_signal_diff_02_tight.png`" alt="" />
+</span>
+<span class="ml-thumb-cell">
+  <img class="ml-thumb" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_basis_4_49_tight.png`" alt="phi_49" />
+  <img class="ml-pl-clone" v-motion :initial="{ x: -310.6, y: -140, opacity: 0 }" :click-6="{ x: 0, y: 0, opacity: 1 }" :click-7="{ x: 0, y: 140, opacity: 1 }" :click-8="{ x: 30, y: 140, opacity: 1 }" :click-9="{ x: -155, y: 140, opacity: 0 }" :src="$clicks >= 7 ? `${$slidev.configs.base ?? '/'}applications/manifold_pc_signal_diff_01_proj_local_i49_tight.png` : `${$slidev.configs.base ?? '/'}applications/manifold_pc_signal_diff_01_tight.png`" alt="" />
+  <img class="ml-pl-clone" v-motion :initial="{ x: -219.2, y: -140, opacity: 0 }" :click-14="{ x: 0, y: 0, opacity: 1 }" :click-15="{ x: 0, y: 140, opacity: 1 }" :click-16="{ x: 30, y: 140, opacity: 1 }" :click-17="{ x: -155, y: 140, opacity: 0 }" :src="$clicks >= 15 ? `${$slidev.configs.base ?? '/'}applications/manifold_pc_signal_diff_02_proj_local_i49_tight.png` : `${$slidev.configs.base ?? '/'}applications/manifold_pc_signal_diff_02_tight.png`" alt="" />
+</span>
+<!-- Underbrace labeling the eigen row as the predicted eigenbasis {b_i}. -->
+<div class="ml-underbrace">
+
+$\underbrace{\hspace{200px}}_{\text{first } K \text{ predicted eigenfunctions } \{b_i\}_{i=1}^{K}}$
+
+</div>
+<!-- Row-3 dots (the projection row, below the eigens). Appears 50ms after click 7. Positioned at the dots-column x (left: 182.8) and row-3 y (top: 110) of the eigen thumb-box. On click 9 fades out in place. -->
+<div class="ml-pl-row3-dots" :class="{ shown: $clicks >= 7, collapsing: $clicks >= 9 }">
+
+$\cdots$
+
+</div>
+<!-- '+' signs between row-3 items (click 8), rendered by KaTeX. On click 9 they translate to row center (--dx-collapse) and fade out. -->
+<div class="ml-pl-row3-plus" :class="{ shown: $clicks >= 8, collapsing: $clicks >= 9 }" style="left: 66px; --dx-collapse: 132px;">
+
+$+$
+
+</div>
+<div class="ml-pl-row3-plus" :class="{ shown: $clicks >= 8, collapsing: $clicks >= 9 }" style="left: 172px; --dx-collapse: 26px;">
+
+$+$
+
+</div>
+<div class="ml-pl-row3-plus" :class="{ shown: $clicks >= 8, collapsing: $clicks >= 9 }" style="left: 224px; --dx-collapse: -26px;">
+
+$+$
+
+</div>
+<div class="ml-pl-row3-plus" :class="{ shown: $clicks >= 8, collapsing: $clicks >= 9 }" style="left: 330px; --dx-collapse: -132px;">
+
+$+$
+
+</div>
+<!-- Signal_01 loss-expression container. The 5 children stay at their original
+     CSS positions; on click 12 the container as a whole translateX+scales,
+     keeping the INTERNAL spacing tight (gaps shrink proportionally with scale). -->
+<div class="ml-pl-loss-group" :class="{ 'shifted-l': $clicks >= 12 }">
+<!-- Sum image: k=50 reconstruction of signal_01. Row 3 center (top:110, left:155.3 → centered on x=197.8). -->
+<img class="ml-pl-sum" :class="{ shown: $clicks >= 9 }" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_signal_diff_01_recon_k50_tight.png`" alt="" />
+<!-- Click 10: 'f' clone animates DOWN from signal_01 (row 1 col 1) to left:30, top:110. -->
+<img class="ml-pl-f-clone" v-motion :initial="{ x: -30, y: -280, scale: 1, opacity: 0 }" :click-10="{ x: 0, y: 0, scale: 1, opacity: 1 }" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_signal_diff_01_tight.png`" alt="" />
+<div class="ml-pl-minus" :class="{ shown: $clicks >= 10 }" style="left: 135px;">
+
+$-$
+
+</div>
+<!-- Click 11: ‖ ‖² brackets. -->
+<div class="ml-pl-norm-bracket" :class="{ shown: $clicks >= 11 }" style="left: 2px; top: 130px;">
+
+$\|$
+
+</div>
+<div class="ml-pl-norm-bracket" :class="{ shown: $clicks >= 11 }" style="left: 242px; top: 130px;">
+
+$\|^2$
+
+</div>
+</div>
+<!-- ============================================================
+     SIGNAL_02 FLOW (clicks 13–19). Mirrors the signal_01 flow at
+     clicks 5–11 with the same absolute positions inside the eigen
+     thumb-box — the signal_01 expression has already shifted-left
+     out of this region by click 12, so the positions are free. -->
+<!-- Row-3 dots and + signs for signal_02. Shown click 15/16; collapse at click 17. -->
+<div class="ml-pl-row3-dots" :class="{ shown: $clicks >= 15, collapsing: $clicks >= 17 }">
+
+$\cdots$
+
+</div>
+<div class="ml-pl-row3-plus" :class="{ shown: $clicks >= 16, collapsing: $clicks >= 17 }" style="left: 66px; --dx-collapse: 132px;">
+
+$+$
+
+</div>
+<div class="ml-pl-row3-plus" :class="{ shown: $clicks >= 16, collapsing: $clicks >= 17 }" style="left: 172px; --dx-collapse: 26px;">
+
+$+$
+
+</div>
+<div class="ml-pl-row3-plus" :class="{ shown: $clicks >= 16, collapsing: $clicks >= 17 }" style="left: 224px; --dx-collapse: -26px;">
+
+$+$
+
+</div>
+<div class="ml-pl-row3-plus" :class="{ shown: $clicks >= 16, collapsing: $clicks >= 17 }" style="left: 330px; --dx-collapse: -132px;">
+
+$+$
+
+</div>
+<!-- Signal_02 loss-expression container. Same idea: container-level transform
+     on click 20 shifts+scales the whole expression as a unit. -->
+<div class="ml-pl-loss-group" :class="{ 'shifted-m': $clicks >= 20 }">
+<!-- Sum image: k=50 reconstruction of signal_02. Click 17. -->
+<img class="ml-pl-sum" :class="{ shown: $clicks >= 17 }" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_signal_diff_02_recon_k50_tight.png`" alt="" />
+<!-- f2 clone animates DOWN from signal_02 (row 1 col 2). Source offset = (91.4 - 30, -110 - 110) = (61.4, -220). Click 18. -->
+<img class="ml-pl-f-clone" v-motion :initial="{ x: 61.4, y: -280, scale: 1, opacity: 0 }" :click-18="{ x: 0, y: 0, scale: 1, opacity: 1 }" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_signal_diff_02_tight.png`" alt="" />
+<div class="ml-pl-minus" :class="{ shown: $clicks >= 18 }" style="left: 135px;">
+
+$-$
+
+</div>
+<!-- Norm brackets for signal_02. Click 19. -->
+<div class="ml-pl-norm-bracket" :class="{ shown: $clicks >= 19 }" style="left: 2px; top: 130px;">
+
+$\|$
+
+</div>
+<div class="ml-pl-norm-bracket" :class="{ shown: $clicks >= 19 }" style="left: 242px; top: 130px;">
+
+$\|^2$
+
+</div>
+</div>
+<!-- "+" sign between the two shifted loss expressions, click 20. Sits in the gap between signal_01's right bracket (≈ thumb-box x -195) and signal_02's left bracket (≈ thumb-box x -156). -->
+<div class="ml-pl-plus-between" :class="{ shown: $clicks >= 20 }" style="left: -284px;">
+
+$+$
+
+</div>
+<!-- ============================================================
+     Click 21: two more loss expressions (signal_03, signal_04) appear
+     directly at their final positions (no flow). Static containers
+     pre-positioned with shifted-3 / shifted-4 transforms. -->
+<div class="ml-pl-loss-group shifted-3">
+<img class="ml-pl-sum" :class="{ shown: $clicks >= 21 }" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_signal_diff_03_recon_k50_tight.png`" alt="" />
+<img class="ml-pl-f-clone" :style="{ opacity: $clicks >= 21 ? 1 : 0, transition: 'opacity 500ms ease 250ms' }" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_signal_diff_03_tight.png`" alt="" />
+<div class="ml-pl-minus" :class="{ shown: $clicks >= 21 }" style="left: 135px;">
+
+$-$
+
+</div>
+<div class="ml-pl-norm-bracket" :class="{ shown: $clicks >= 21 }" style="left: 2px; top: 130px;">
+
+$\|$
+
+</div>
+<div class="ml-pl-norm-bracket" :class="{ shown: $clicks >= 21 }" style="left: 242px; top: 130px;">
+
+$\|^2$
+
+</div>
+</div>
+<div class="ml-pl-loss-group shifted-4">
+<img class="ml-pl-sum" :class="{ shown: $clicks >= 21 }" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_signal_diff_04_recon_k50_tight.png`" alt="" />
+<img class="ml-pl-f-clone" :style="{ opacity: $clicks >= 21 ? 1 : 0, transition: 'opacity 500ms ease 250ms' }" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_signal_diff_04_tight.png`" alt="" />
+<div class="ml-pl-minus" :class="{ shown: $clicks >= 21 }" style="left: 135px;">
+
+$-$
+
+</div>
+<div class="ml-pl-norm-bracket" :class="{ shown: $clicks >= 21 }" style="left: 2px; top: 130px;">
+
+$\|$
+
+</div>
+<div class="ml-pl-norm-bracket" :class="{ shown: $clicks >= 21 }" style="left: 242px; top: 130px;">
+
+$\|^2$
+
+</div>
+</div>
+<!-- Middle of the sum (click 21): + ⋯ + between sig2 and sig3.
+     Gap widened (sig1, sig2 shifted left by 30) for breathing room. -->
+<div class="ml-pl-plus-between" :class="{ shown: $clicks >= 21 }" style="left: -65px;">
+
+$+$
+
+</div>
+<div class="ml-pl-plus-between" :class="{ shown: $clicks >= 21 }" style="left: -36px;">
+
+$\cdots$
+
+</div>
+<div class="ml-pl-plus-between" :class="{ shown: $clicks >= 21 }" style="left: -7px;">
+
+$+$
+
+</div>
+<!-- + sign between sig3-sig4 (click 21). -->
+<div class="ml-pl-plus-between" :class="{ shown: $clicks >= 21 }" style="left: 216px;">
+
+$+$
+
+</div>
+<!-- Click 22: underbrace below the full sum labeling the loss. The sum spans
+     thumb-box x≈[-489, 417], center ≈ -36. Width ~905 visually. -->
+<div class="ml-loss-underbrace" :class="{ shown: $clicks >= 22 }" style="left: -30px; top: 200px;">
+
+$\underbrace{\hspace{420px}}_{\sum_i \bigl\| f_i - \sum_{j=1}^{K} \langle f_i, b_j\rangle b_j \bigr\|^2}$
+
+</div>
 </div>
 </div>
 
 </div>
+
+<!-- Click 23: final loss expression. Replaces the four squared-norm
+     expressions and their underbrace (which all fade out together) with
+     the FULL ordered-basis loss: outer sum over k=1..K of the previous
+     underbrace expression (now with inner sum j=1..k). Centered on the
+     slide horizontally and on the slot where the small expressions sat
+     vertically. -->
+<div class="ml-final-loss" :class="{ shown: $clicks >= 23 }">
+
+$\mathcal{L}\bigl(\{b_i\}_{i=1}^{K}\bigr) = \sum_{k=1}^{K} \left( \sum_i \bigl\| f_i - \sum_{j=1}^{k} \langle f_i, b_j\rangle b_j \bigr\|^2 \right)$
+
+</div>
 </div>
 
-<!-- Projection components (click 7): centered row, fixed at the bottom of .ml-stage; each img animates IN from its corresponding eigenfunction's position. -->
-<div class="ml-proj-row" :class="{ visible: $clicks >= 7, collapsing: $clicks >= 9 }">
-<img class="ml-proj-img" style="--sx: 240px; --sy: -180px;" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_signal_diff_01_proj_local_i0_tight.png`" alt="" />
-<span class="ml-plus" :class="{ visible: $clicks >= 8 }">+</span>
-<img class="ml-proj-img" style="--sx: 240px; --sy: -180px;" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_signal_diff_01_proj_local_i1_tight.png`" alt="" />
-<span class="ml-plus" :class="{ visible: $clicks >= 8 }">+</span>
-<span class="ml-proj-dots" style="--sx: 240px; --sy: -180px;">⋯</span>
-<span class="ml-plus" :class="{ visible: $clicks >= 8 }">+</span>
-<img class="ml-proj-img" style="--sx: 240px; --sy: -180px;" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_signal_diff_01_proj_local_i48_tight.png`" alt="" />
-<span class="ml-plus" :class="{ visible: $clicks >= 8 }">+</span>
-<img class="ml-proj-img" style="--sx: 240px; --sy: -180px;" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_signal_diff_01_proj_local_i49_tight.png`" alt="" />
-</div>
+<!-- Click 7: each .ml-pl-clone (currently sitting on its eigen at end of click 6) translates further DOWN by 110px into a virtual "row 3" below the eigens. Same image (signal_01) — the row 3 visualization is just the clones moving straight down. -->
 
-<!-- Sum image (click 9): the row of projection components + signs collapses into a single thumbnail of their sum — the Euclidean k=50 reconstruction. -->
-<img class="ml-sum-img" :class="{ visible: $clicks >= 9 }" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_signal_diff_01_recon_k5_tight.png`" alt="" />
 
 </div>
 
@@ -1365,6 +1659,11 @@ Our <span class="grad">pipeline</span>.
 .ml-stage {
   position: relative;
 }
+/* Projection row: identical FLEX layout to the eigen thumb-box (4 imgs +
+   1 .ml-dots span, gap 0.4rem). Centered horizontally on the slide. Each
+   img's --sx/--sy/--cx CSS variables are set at runtime by a script that
+   measures the eigen positions, so the imgs start their motion exactly at
+   the corresponding eigen centers. */
 .ml-proj-row {
   position: absolute;
   left: 50%;
@@ -1374,29 +1673,6 @@ Our <span class="grad">pipeline</span>.
   gap: 0.4rem;
   align-items: center;
   pointer-events: none;
-  transform-origin: center center;
-  transition: transform 600ms cubic-bezier(0.4, 0, 0.2, 1), opacity 500ms ease;
-}
-.ml-proj-row.collapsing {
-  transform: translateX(-50%) scale(0);
-  opacity: 0;
-}
-.ml-sum-img {
-  position: absolute;
-  left: 50%;
-  bottom: 5rem;
-  width: 85px;
-  height: 85px;
-  object-fit: contain;
-  opacity: 0;
-  transform: translateX(-50%) scale(0.4);
-  transform-origin: center center;
-  transition: opacity 500ms ease 200ms, transform 600ms cubic-bezier(0.4, 0, 0.2, 1) 200ms;
-  pointer-events: none;
-}
-.ml-sum-img.visible {
-  opacity: 1;
-  transform: translateX(-50%) scale(1);
 }
 .ml-proj-img {
   width: 85px;
@@ -1404,171 +1680,138 @@ Our <span class="grad">pipeline</span>.
   object-fit: contain;
   opacity: 0;
   transform-origin: center center;
-  transform: translate(var(--sx), var(--sy)) scale(0.45);
+  transform: translate(var(--sx, 0px), var(--sy, 0px)) scale(0.45);
+  flex-shrink: 0;
 }
 .ml-proj-row.visible .ml-proj-img {
-  animation: ml-proj-emerge 1.1s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  animation: ml-proj-img-emerge 1.1s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
-.ml-proj-dots {
-  font-size: 1.6rem;
-  line-height: 1;
-  color: var(--c-fg-subtle);
-  font-family: 'EB Garamond', serif;
-  letter-spacing: 0.05em;
+.ml-proj-row.collapsing .ml-proj-img {
+  animation: ml-proj-img-collapse 600ms cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+@keyframes ml-proj-img-emerge {
+  0%   { opacity: 0;    transform: translate(var(--sx, 0px), var(--sy, 0px)) scale(0.45); }
+  18%  { opacity: 0.95; transform: translate(var(--sx, 0px), var(--sy, 0px)) scale(0.55); }
+  100% { opacity: 1;    transform: translate(0, 0) scale(1); }
+}
+@keyframes ml-proj-img-collapse {
+  0%   { opacity: 1; transform: translate(0, 0) scale(1); }
+  100% { opacity: 0; transform: translate(var(--cx, 0px), 0) scale(1); }
+}
+.ml-proj-dots-inline {
   opacity: 0;
-  transform: translate(var(--sx), var(--sy));
+  transition: opacity 400ms ease 0.7s;
+  flex-shrink: 0;
 }
-.ml-proj-row.visible .ml-proj-dots {
-  animation: ml-proj-dots-emerge 1.1s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-}
-@keyframes ml-proj-emerge {
-  0%   { opacity: 0;    transform: translate(var(--sx), var(--sy)) scale(0.45); }
-  18%  { opacity: 0.95; transform: translate(var(--sx), var(--sy)) scale(0.55); }
-  100% { opacity: 1;    transform: translate(0, 0)                 scale(1);    }
-}
-@keyframes ml-proj-dots-emerge {
-  0%   { opacity: 0; transform: translate(var(--sx), var(--sy)); }
-  18%  { opacity: 1; transform: translate(var(--sx), var(--sy)); }
-  100% { opacity: 1; transform: translate(0, 0); }
-}
-.ml-plus {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
+.ml-proj-row.visible .ml-proj-dots-inline { opacity: 1; }
+.ml-proj-row.collapsing .ml-proj-dots-inline { opacity: 0; transition: opacity 400ms ease; }
+.ml-proj-plus {
+  position: absolute;
+  top: 50%;
+  left: var(--left, 0px);
+  transform: translate(-50%, -50%);
   font-size: 1.6rem;
   line-height: 1;
   color: var(--c-fg-subtle);
   font-family: 'EB Garamond', serif;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 400ms ease;
+}
+.ml-proj-plus.visible { opacity: 1; }
+.ml-proj-plus.collapsing { opacity: 0; }
+.ml-loss-expr {
+  position: absolute;
+  left: 50%;
+  bottom: 5rem;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  pointer-events: none;
+}
+.ml-loss-sum {
+  width: 85px;
+  height: 85px;
+  object-fit: contain;
+  opacity: 0;
+  transition: opacity 500ms ease 350ms;
+  flex-shrink: 0;
+}
+.ml-loss-expr.visible .ml-loss-sum { opacity: 1; }
+
+.ml-loss-f-cell {
+  position: relative;
+  width: 85px;
+  height: 85px;
+  max-width: 0;
+  flex-shrink: 0;
+  overflow: visible;
+  transition: max-width 600ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+.ml-loss-f-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 85px;
+  height: 85px;
+  object-fit: contain;
+  opacity: 0;
+  transform: translate(var(--fx, 0px), var(--fy, 0px));
+  transition: transform 700ms cubic-bezier(0.4, 0, 0.2, 1),
+              opacity 500ms ease;
+}
+.ml-loss-expr.expanded .ml-loss-f-cell { max-width: 85px; }
+.ml-loss-expr.expanded .ml-loss-f-img {
+  opacity: 1;
+  transform: translate(0, 0);
+}
+.ml-loss-minus {
+  font-size: 1.8rem;
+  color: var(--c-fg);
+  line-height: 1;
   max-width: 0;
   opacity: 0;
   overflow: hidden;
   white-space: nowrap;
-  transition: max-width 500ms ease, opacity 400ms ease;
-  pointer-events: none;
-}
-.ml-plus.visible {
-  max-width: 1.4rem;
-  opacity: 1;
-}
-.ml-loss-overlay {
-  position: absolute;
-  bottom: 1.5rem;
-  left: 470px;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  opacity: 0;
-  transform: translateX(12px);
-  transition: opacity 450ms ease, transform 450ms ease;
-  pointer-events: none;
-  color: var(--c-fg-subtle);
-}
-.ml-loss-overlay.visible {
-  opacity: 1;
-  transform: translateX(0);
-}
-.ml-loss-box {
-  border-radius: 10px;
-  background-image: linear-gradient(135deg, var(--c-brand-from), var(--c-brand-to));
-  color: white;
-  padding: 0.7rem 0.6rem;
-  font-size: 0.95rem;
-  font-weight: 700;
-  text-align: center;
-  line-height: 1.2;
-  letter-spacing: -0.005em;
-  box-shadow: 0 4px 12px rgba(43, 88, 118, 0.22);
   flex-shrink: 0;
-}
-.ml-loss-arrow { flex-shrink: 0; }
-.ml-brace { flex-shrink: 0; }
-.ml-recon-out {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 85px;
-  height: 85px;
-  object-fit: contain;
-  opacity: 0;
-  pointer-events: none;
-  transform-origin: center center;
-  transform: translate(0, 0) scale(0.45);
-}
-.ml-recon-out.flying {
-  animation: ml-recon-emerge 1.1s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-}
-@keyframes ml-recon-emerge {
-  0%   { opacity: 0;    transform: translate(0, 0)             scale(0.45); }
-  18%  { opacity: 0.95; transform: translate(0, 0)             scale(0.55); }
-  100% { opacity: 1;    transform: translate(var(--tx), var(--ty)) scale(1); }
-}
-.ml-recon-dots {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 85px;
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  font-size: 1.6rem;
+  transition: max-width 600ms cubic-bezier(0.4, 0, 0.2, 1), opacity 400ms ease;
+}
+.ml-norm-bracket {
+  font-size: 3.4rem;
+  color: var(--c-fg);
   line-height: 1;
-  color: var(--c-fg-subtle);
-  font-family: 'EB Garamond', serif;
-  letter-spacing: 0.05em;
+  max-width: 0;
   opacity: 0;
-  pointer-events: none;
-  transform: translate(0, 0);
-}
-.ml-recon-dots.flying {
-  animation: ml-recon-dots-emerge 1.1s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-}
-@keyframes ml-recon-dots-emerge {
-  0%   { opacity: 0; transform: translate(0, 0); }
-  18%  { opacity: 1; transform: translate(0, 0); }
-  100% { opacity: 1; transform: translate(var(--tx), var(--ty)); }
-}
-.ml-scalar-replica {
-  position: absolute;
-  top: 0;
-  width: 85px;
-  height: 85px;
-  object-fit: contain;
-  opacity: 0;
-  pointer-events: none;
-  transform: translate(0, 0);
-}
-.ml-scalar-replica.flying {
-  animation: ml-scalar-replicate 1.0s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-}
-.ml-scalar-replica-dots {
-  position: absolute;
-  top: 0;
-  height: 85px;
-  display: flex;
+  overflow: hidden;
+  white-space: nowrap;
+  flex-shrink: 0;
+  display: inline-flex;
   align-items: center;
-  font-size: 1.6rem;
+  transition: max-width 600ms cubic-bezier(0.4, 0, 0.2, 1), opacity 400ms ease;
+}
+.ml-norm-bracket p,
+.ml-loss-minus p {
+  margin: 0;
+  padding: 0;
   line-height: 1;
-  color: var(--c-fg-subtle);
-  font-family: 'EB Garamond', serif;
-  letter-spacing: 0.05em;
-  opacity: 0;
-  pointer-events: none;
-  transform: translate(0, 0);
 }
-.ml-scalar-replica-dots.flying {
-  animation: ml-scalar-replicate 1.0s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+.ml-norm-bracket .katex,
+.ml-loss-minus .katex {
+  font-size: inherit;
 }
-@keyframes ml-scalar-replicate {
-  0%   { opacity: 0; transform: translate(0, 0); }
-  10%  { opacity: 1; transform: translate(0, 0); }
-  100% { opacity: 1; transform: translate(var(--tx), var(--ty)); }
-}
+.ml-loss-expr.expanded .ml-loss-minus { max-width: 1.8rem; opacity: 1; }
+.ml-loss-expr.expanded .ml-norm-bracket { max-width: 3rem; opacity: 1; }
+/* (orphan rules from earlier iterations removed) */
 .ml-grid {
   display: grid;
   grid-template-columns: auto auto auto auto auto;
   grid-template-rows: 90px 90px;
   align-items: center;
   column-gap: 0.6rem;
-  row-gap: 20px;
+  row-gap: 50px;
   transition: transform 600ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 .ml-arrow-split {
@@ -1628,10 +1871,19 @@ Our <span class="grad">pipeline</span>.
   transition: opacity 350ms ease;
 }
 .ml-thumb-box {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
+  /* Explicit CSS Grid: deterministic column widths so the eigen / scalar
+     positions are exact constants regardless of font / dots rendering. With
+     gap: 0.4rem (6.4px), the column left edges are:
+       col 1: 0
+       col 2: 85 + 6.4 = 91.4px
+       col 3 (dots): 91.4 + 85 + 6.4 = 182.8px
+       col 4: 182.8 + 30 + 6.4 = 219.2px
+       col 5: 219.2 + 85 + 6.4 = 310.6px */
+  display: grid;
+  grid-template-columns: 85px 85px 30px 85px 85px;
   gap: 0.4rem;
+  align-items: center;
+  justify-items: center;
   position: relative;
 }
 .ml-clone {
@@ -1647,6 +1899,249 @@ Our <span class="grad">pipeline</span>.
 .ml-clone.flying {
   animation: ml-clone-fly 1.3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
+/* Click-6 clone of signal_01 placed inside each eigen .ml-thumb-cell. v-motion
+   animates it IN from a per-clone source offset (matching signal_01's
+   position in the scalar row, one row above). Final state: translate(0,0)
+   over the eigen img. */
+.ml-pl-clone {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 85px;
+  height: 85px;
+  object-fit: contain;
+  pointer-events: none;
+}
+/* Row-3 dots (between proj_i1 and proj_i48 after click 7). Positioned in the
+   eigen thumb-box coordinate frame at (left=182.8, top=110) — matching the
+   dots column x and one row-step below the eigen row. Fades in 50ms after
+   click 7, matching the test-slide pattern. */
+.ml-pl-row3-dots {
+  position: absolute;
+  left: 182.8px;
+  top: 140px;
+  width: 30px;
+  height: 85px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--c-fg-subtle);
+  font-family: 'EB Garamond', serif;
+  font-size: 1.2rem;
+  line-height: 1;
+  padding: 0 0.15rem;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 350ms ease;
+}
+.ml-pl-row3-dots.shown {
+  opacity: 1;
+  transition-delay: 50ms;
+}
+/* '+' signs in row 3 (click 8). Same vertical band as the row-3 dots (top: 110, height: 85, centered). Each instance positions itself at its 'left' via translateX(-50%) so the inline `style="left: ..."` value is the *centre* x of the '+' character. */
+.ml-pl-row3-plus {
+  position: absolute;
+  top: 140px;
+  height: 85px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--c-fg-subtle);
+  font-size: 1.2rem;
+  line-height: 1;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateX(-50%);
+  transition: opacity 350ms ease;
+}
+.ml-pl-row3-plus.shown { opacity: 1; }
+.ml-pl-row3-plus {
+  /* Re-declare so the transition includes transform too. */
+  transition: opacity 350ms ease, transform 500ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+.ml-pl-row3-plus.collapsing {
+  opacity: 0;
+  transform: translateX(-50%) translateX(var(--dx-collapse, 0px));
+}
+.ml-pl-row3-dots.collapsing {
+  opacity: 0;
+  transition-delay: 0ms;
+}
+.ml-pl-sum {
+  position: absolute;
+  top: 140px;
+  left: 155.3px;
+  width: 85px;
+  height: 85px;
+  object-fit: contain;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 500ms ease 250ms,
+              transform 1200ms cubic-bezier(0.65, 0, 0.35, 1);
+}
+.ml-pl-sum.shown { opacity: 1; }
+/* Loss-expression container: a transform-able wrapper for the 5 elements
+   (sum, f-clone, minus, ‖, ‖²). A single transform on this container
+   shifts and scales the WHOLE expression as a unit — internal spacing
+   shrinks proportionally with the scale instead of growing.
+   transform-origin: 0 0 means the container scales toward the eigen
+   thumb-box top-left corner. */
+.ml-pl-loss-group {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  /* Pivot the scale around y=110 (the row of sum/f/minus) so the
+     vertical position of the expression is preserved under scale. */
+  transform-origin: 0 140px;
+  transition: transform 1200ms cubic-bezier(0.65, 0, 0.35, 1);
+}
+.ml-pl-loss-group.shifted-l { transform: translateX(-490px) translateY(10px) scale(0.7); }
+.ml-pl-loss-group.shifted-m { transform: translateX(-270px) translateY(10px) scale(0.7); }
+/* Final slots for signal_03 and signal_04 loss expressions (click 21).
+   Same scale + same gap (~220 between adjacent expressions). */
+.ml-pl-loss-group.shifted-3 { transform: translateX(10px) translateY(10px) scale(0.7); }
+.ml-pl-loss-group.shifted-4 { transform: translateX(230px) translateY(10px) scale(0.7); }
+/* "+" sign that joins the two loss expressions. Same look/timing as
+   .ml-pl-minus but its own absolute slot between them. */
+.ml-pl-plus-between {
+  position: absolute;
+  top: 130px;
+  height: 85px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--c-fg);
+  font-size: 1.4rem;
+  line-height: 1;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateX(-50%);
+  transition: opacity 500ms ease 400ms;
+}
+.ml-pl-plus-between.shown { opacity: 1; }
+.ml-pl-plus-between p { margin: 0; padding: 0; line-height: 1; }
+.ml-pl-plus-between .katex { font-size: inherit; color: inherit; }
+/* f clone: lives in the eigen thumb-box at natural (left=30, top=110). v-motion animates it from signal_01 (eigen-thumb-box coord (0,-110), so :initial offset (-30, -220) relative to natural) to (0, 0) on click 10. */
+.ml-pl-f-clone {
+  position: absolute;
+  top: 140px;
+  left: 30px;
+  width: 85px;
+  height: 85px;
+  object-fit: contain;
+  pointer-events: none;
+}
+/* Minus sign between f and sum, KaTeX rendered. */
+.ml-pl-minus {
+  position: absolute;
+  top: 140px;
+  height: 85px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--c-fg);
+  font-size: 1.4rem;
+  line-height: 1;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateX(-50%);
+  transition: opacity 350ms ease, transform 1200ms cubic-bezier(0.65, 0, 0.35, 1);
+}
+.ml-pl-minus.shown { opacity: 1; }
+.ml-pl-minus p { margin: 0; padding: 0; line-height: 1; }
+.ml-pl-minus .katex { font-size: inherit; color: inherit; }
+/* Norm brackets ‖ and ‖² wrapping the f − sum expression (click 11). Tall enough to span the ~85px height. KaTeX renders them at math font; we just give them a slot. */
+.ml-pl-norm-bracket {
+  position: absolute;
+  top: 140px;
+  height: 85px;
+  display: flex;
+  align-items: center;
+  color: var(--c-fg);
+  font-size: 3.4rem;
+  line-height: 1;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 350ms ease, transform 1200ms cubic-bezier(0.65, 0, 0.35, 1);
+}
+.ml-pl-norm-bracket.shown { opacity: 1; }
+/* Underbrace labels below the smooth-functions row (row 1) and the
+   predicted-eigenbasis row (row 2). Absolute-positioned just below the
+   thumb cells (which span y=0..85), so the brace sits in the row-gap area. */
+.ml-underbrace {
+  position: absolute;
+  top: 70px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: var(--c-fg-subtle);
+  font-size: 1.3rem;
+  line-height: 1;
+  pointer-events: none;
+  white-space: nowrap;
+}
+.ml-underbrace p { margin: 0; padding: 0; line-height: 1; }
+.ml-underbrace .katex { font-size: inherit; color: inherit; }
+/* Underbrace labeling the FULL sum at click 22. Positioned absolutely
+   within the eigen thumb-box, centered on the sum's horizontal centre. */
+.ml-loss-underbrace {
+  position: absolute;
+  transform: translateX(-50%);
+  color: var(--c-fg);
+  font-size: 1.4rem;
+  line-height: 1;
+  pointer-events: none;
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity 500ms ease 400ms;
+}
+.ml-loss-underbrace.shown { opacity: 1; }
+.ml-loss-underbrace p { margin: 0; padding: 0; line-height: 1; }
+.ml-loss-underbrace .katex { font-size: inherit; color: inherit; }
+/* Click 23: fade out all four squared-norm expressions, the +/⋯ chain,
+   and the loss underbrace together by toggling a class on the row-2 thumb-box. */
+.ml-thumb-box.loss-fade-out .ml-pl-loss-group,
+.ml-thumb-box.loss-fade-out .ml-pl-plus-between,
+.ml-thumb-box.loss-fade-out .ml-loss-underbrace {
+  opacity: 0;
+  transition: opacity 500ms ease;
+}
+/* Click 23: the final ordered-basis loss expression, displayed large and
+   centered on the slide (sibling of the grid inside ml-stage). */
+.ml-final-loss {
+  position: absolute;
+  bottom: 12%;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 1.6rem;
+  color: var(--c-fg);
+  pointer-events: none;
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity 700ms ease 600ms;
+  z-index: 5;
+}
+.ml-final-loss.shown { opacity: 1; }
+.ml-final-loss p { margin: 0; padding: 0; line-height: 1; }
+.ml-final-loss .katex { font-size: inherit; color: inherit; }
+.ml-pl-norm-bracket p { margin: 0; padding: 0; line-height: 1; }
+.ml-pl-norm-bracket .katex { font-size: inherit; color: inherit; }
+/* Shrink the ² superscript via CSS transform so the exponent
+   POSITION is preserved (transform-origin at the baseline = bottom)
+   while only the glyph size shrinks. */
+.ml-pl-norm-bracket .msupsub {
+  display: inline-block;
+  transform: scale(0.7) translateY(-0.25em);
+  transform-origin: 0 0;
+}
+.ml-pl-row3-plus p,
+.ml-dots p,
+.ml-pl-row3-dots p { margin: 0; padding: 0; line-height: 1; }
+.ml-pl-row3-plus .katex,
+.ml-dots .katex,
+.ml-pl-row3-dots .katex { font-size: inherit; color: inherit; }
 @keyframes ml-clone-fly {
   0%   { opacity: 0;   transform: translate(0, 0); }
   8%   { opacity: 0.95; transform: translate(0, 0); }
@@ -2771,3 +3266,161 @@ Roy Velich &nbsp;·&nbsp; Arkadi Piven &nbsp;·&nbsp; David Bensa&iuml;d &nbsp;�
 <div class="abs-b w-full text-center pb-6 text-xs italic muted z-10">
 In memory of Ha&iuml;m Brezis (1944 &ndash; 2024)
 </div>
+
+---
+layout: default
+class: text-center
+clicks: 3
+---
+
+<!--
+ANIMATION TEST — Standard Slidev pattern for "element A flies to element B".
+
+Grid layout (5 columns, gap 10px):
+  col 1: img (100px),  left edge 0
+  col 2: img (100px),  left edge 110
+  col 3: dots (30px),  left edge 220
+  col 4: img (100px),  left edge 260
+  col 5: img (100px),  left edge 370
+
+Click 1: clones in row 2 col i animate IN from row 1 col 1 (x=0). Sources:
+  col 1: (   0, -110)
+  col 2: (-110, -110)
+  col 4: (-260, -110)
+  col 5: (-370, -110)
+Click 2: row 3 armadillos animate IN from row 2 (directly above) with opacity.
+  Row 3 dots: CSS transition with transition-delay: 800ms so they fade in
+  AFTER the armadillos land.
+Click 3: '+' signs appear between consecutive row-3 items. Positioned
+  absolutely at the gap midpoints (x = 105, 215, 255, 365).
+-->
+
+<h2 class="!text-2xl !leading-snug !mb-4 font-serif">
+Animation test &mdash; armadillo clones
+</h2>
+
+<div class="atest-grid">
+<!-- Row 1 -->
+<div class="atest-cell"><img class="atest-img" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_points_tight.png`" /></div>
+<div class="atest-cell"><img class="atest-img" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_points_tight.png`" /></div>
+<div class="atest-dots-cell">⋯</div>
+<div class="atest-cell"><img class="atest-img" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_points_tight.png`" /></div>
+<div class="atest-cell"><img class="atest-img" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_points_tight.png`" /></div>
+
+<!-- Row 2 — each cell hosts a clone overlay -->
+<div class="atest-cell">
+  <img class="atest-img" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_points_tight.png`" />
+  <img class="atest-clone" v-motion :initial="{ x: 0, y: -110 }" :click-1="{ x: 0, y: 0 }" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_signal_diff_01_tight.png`" />
+</div>
+<div class="atest-cell">
+  <img class="atest-img" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_points_tight.png`" />
+  <img class="atest-clone" v-motion :initial="{ x: -110, y: -110 }" :click-1="{ x: 0, y: 0 }" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_signal_diff_01_tight.png`" />
+</div>
+<div class="atest-dots-cell">⋯</div>
+<div class="atest-cell">
+  <img class="atest-img" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_points_tight.png`" />
+  <img class="atest-clone" v-motion :initial="{ x: -260, y: -110 }" :click-1="{ x: 0, y: 0 }" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_signal_diff_01_tight.png`" />
+</div>
+<div class="atest-cell">
+  <img class="atest-img" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_points_tight.png`" />
+  <img class="atest-clone" v-motion :initial="{ x: -370, y: -110 }" :click-1="{ x: 0, y: 0 }" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_signal_diff_01_tight.png`" />
+</div>
+
+<!-- Row 3 — armadillos animate IN from row 2 (directly above) on click 2.
+     On click 3 they translate outward (-30, -15, +15, +30) to widen the
+     gaps so the '+' signs can sit comfortably between them and the dots. -->
+<div class="atest-cell">
+  <img class="atest-clone" v-motion :initial="{ x: 0, y: -140, opacity: 0 }" :click-2="{ x: 0, y: 0, opacity: 1 }" :click-3="{ x: -30, y: 0, opacity: 1 }" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_points_tight.png`" />
+</div>
+<div class="atest-cell">
+  <img class="atest-clone" v-motion :initial="{ x: 0, y: -140, opacity: 0 }" :click-2="{ x: 0, y: 0, opacity: 1 }" :click-3="{ x: -15, y: 0, opacity: 1 }" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_points_tight.png`" />
+</div>
+<div class="atest-dots-cell atest-dots-row3" :class="{ shown: $clicks >= 2 }">⋯</div>
+<div class="atest-cell">
+  <img class="atest-clone" v-motion :initial="{ x: 0, y: -140, opacity: 0 }" :click-2="{ x: 0, y: 0, opacity: 1 }" :click-3="{ x: 15, y: 0, opacity: 1 }" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_points_tight.png`" />
+</div>
+<div class="atest-cell">
+  <img class="atest-clone" v-motion :initial="{ x: 0, y: -140, opacity: 0 }" :click-2="{ x: 0, y: 0, opacity: 1 }" :click-3="{ x: 30, y: 0, opacity: 1 }" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_points_tight.png`" />
+</div>
+
+<!-- '+' signs at the WIDENED midpoints (after the row-3 armadillos spread out on click 3). Original gap midpoints (105, 215, 255, 365) shift to (82.5, 207.5, 262.5, 387.5). -->
+<span class="atest-plus" :class="{ shown: $clicks >= 3 }" style="left: 82.5px;">+</span>
+<span class="atest-plus" :class="{ shown: $clicks >= 3 }" style="left: 207.5px;">+</span>
+<span class="atest-plus" :class="{ shown: $clicks >= 3 }" style="left: 262.5px;">+</span>
+<span class="atest-plus" :class="{ shown: $clicks >= 3 }" style="left: 387.5px;">+</span>
+</div>
+
+<div class="text-sm muted mt-6">Click 1: clones of row-1 col 1 fly to row 2. Click 2: row 3 armadillos appear; dots fade in at the end. Click 3: '+' signs appear between row-3 armadillos.</div>
+
+<style>
+.atest-grid {
+  position: relative;
+  display: grid;
+  grid-template-columns: 100px 100px 30px 100px 100px;
+  grid-template-rows: repeat(3, 100px);
+  gap: 10px;
+  /* Explicit width = 100*4 + 30 + 10*4 = 470. Without this, the grid container
+     stretches to fill its parent and absolute children get positioned relative
+     to the container edge (not the track edge). */
+  width: 470px;
+  margin: 0 auto;
+}
+.atest-cell {
+  position: relative;
+  width: 100px;
+  height: 100px;
+}
+.atest-img {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+  display: block;
+}
+.atest-clone {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+}
+.atest-dots-cell {
+  width: 30px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.6rem;
+  line-height: 1;
+  color: var(--c-fg-subtle);
+  font-family: 'EB Garamond', serif;
+  letter-spacing: 0.05em;
+}
+.atest-dots-row3 {
+  opacity: 0;
+  transition: opacity 350ms ease;
+  transition-delay: 0ms;
+}
+.atest-dots-row3.shown {
+  opacity: 1;
+  transition-delay: 50ms;
+}
+.atest-plus {
+  position: absolute;
+  /* Row 3 occupies y = 220..320 (rows 1-2 plus their gaps). Center the
+     character vertically with a 100px-tall flex box. */
+  top: 220px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  font-size: 1.4rem;
+  line-height: 1;
+  color: var(--c-fg-subtle);
+  font-family: 'EB Garamond', serif;
+  opacity: 0;
+  transform: translateX(-50%);
+  transition: opacity 350ms ease;
+  pointer-events: none;
+}
+.atest-plus.shown { opacity: 1; }
+</style>
