@@ -2568,7 +2568,7 @@ Our predicted basis matches the <span class="grad">cotangent Laplacian</span>.
 
 <div class="flex-1 min-h-0 flex items-center justify-center">
 
-<div class="grid gap-1 items-center justify-items-center" style="grid-template-columns: 50px repeat(12, 60px); grid-auto-rows: 60px;">
+<div class="grid gap-1 items-center justify-items-center" style="grid-template-columns: 50px repeat(12, 62px); grid-auto-rows: 62px;">
 
 <div></div>
 <div class="text-sm text-center transition-opacity duration-300 translate-y-6" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">
@@ -2608,7 +2608,7 @@ $\mathbf{v}_{10}$
 </div>
 <div class="text-sm text-center transition-opacity duration-300 translate-y-6" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">
 
-$\mathbf{v}_{25}$
+$\mathbf{v}_{20}$
 
 </div>
 <div class="text-sm text-center transition-opacity duration-300 translate-y-6" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">
@@ -2628,93 +2628,93 @@ $k=25$
 </div>
 <div class="text-sm text-center transition-opacity duration-300 translate-y-6" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">
 
-$k=45$
+$k=50$
 
 </div>
 
 <div class="text-xs text-right w-full pr-1 whitespace-nowrap transition-opacity duration-300 -translate-x-[10px]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">Cot.&nbsp;Lap.</div>
-<img class="w-[60px] h-[60px] object-contain block transition-opacity duration-300 delay-[0ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}applications/overfit_cells/overfit_lion_cot_lap_v_2.png`" />
-<img class="w-[60px] h-[60px] object-contain block transition-opacity duration-300 delay-[60ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}applications/overfit_cells/overfit_lion_cot_lap_v_3.png`" />
-<img class="w-[60px] h-[60px] object-contain block transition-opacity duration-300 delay-[120ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}applications/overfit_cells/overfit_lion_cot_lap_v_4.png`" />
-<img class="w-[60px] h-[60px] object-contain block transition-opacity duration-300 delay-[180ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}applications/overfit_cells/overfit_lion_cot_lap_v_5.png`" />
-<img class="w-[60px] h-[60px] object-contain block transition-opacity duration-300 delay-[240ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}applications/overfit_cells/overfit_lion_cot_lap_v_6.png`" />
-<img class="w-[60px] h-[60px] object-contain block transition-opacity duration-300 delay-[300ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}applications/overfit_cells/overfit_lion_cot_lap_v_7.png`" />
-<img class="w-[60px] h-[60px] object-contain block transition-opacity duration-300 delay-[360ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}applications/overfit_cells/overfit_lion_cot_lap_v_10.png`" />
-<img class="w-[60px] h-[60px] object-contain block transition-opacity duration-300 delay-[420ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}applications/overfit_cells/overfit_lion_cot_lap_v_25.png`" />
-<img class="w-[60px] h-[60px] object-contain block transition-opacity duration-300 delay-[480ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}applications/overfit_cells/overfit_lion_cot_lap_v_40.png`" />
-<img class="w-[60px] h-[60px] object-contain block transition-opacity duration-300 delay-[540ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}applications/overfit_cells/overfit_lion_cot_lap_k_5.png`" />
-<img class="w-[60px] h-[60px] object-contain block transition-opacity duration-300 delay-[600ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}applications/overfit_cells/overfit_lion_cot_lap_k_25.png`" />
-<img class="w-[60px] h-[60px] object-contain block transition-opacity duration-300 delay-[660ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}applications/overfit_cells/overfit_lion_cot_lap_k_45.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[0ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/lion/item_0000_gt_eigen001.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[60ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/lion/item_0000_gt_eigen002.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[120ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/lion/item_0000_gt_eigen003.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[180ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/lion/item_0000_gt_eigen004.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[240ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/lion/item_0000_gt_eigen005.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[300ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/lion/item_0000_gt_eigen006.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[360ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/lion/item_0000_gt_eigen009.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[420ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/lion/item_0000_gt_eigen019.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[480ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/lion/item_0000_gt_eigen039.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[540ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/lion/item_0000_gt_recon_k005.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[600ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/lion/item_0000_gt_recon_k025.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[660ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/lion/item_0000_gt_recon_k050.png`" />
 
 <div class="text-xs text-right w-full pr-1 whitespace-nowrap transition-opacity duration-300 -translate-x-[10px]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'">Ours</div>
-<img class="w-[60px] h-[60px] object-contain block transition-opacity duration-300 delay-[0ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}applications/overfit_cells/overfit_lion_ours_v_2.png`" />
-<img class="w-[60px] h-[60px] object-contain block transition-opacity duration-300 delay-[60ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}applications/overfit_cells/overfit_lion_ours_v_3.png`" />
-<img class="w-[60px] h-[60px] object-contain block transition-opacity duration-300 delay-[120ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}applications/overfit_cells/overfit_lion_ours_v_4.png`" />
-<img class="w-[60px] h-[60px] object-contain block transition-opacity duration-300 delay-[180ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}applications/overfit_cells/overfit_lion_ours_v_5.png`" />
-<img class="w-[60px] h-[60px] object-contain block transition-opacity duration-300 delay-[240ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}applications/overfit_cells/overfit_lion_ours_v_6.png`" />
-<img class="w-[60px] h-[60px] object-contain block transition-opacity duration-300 delay-[300ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}applications/overfit_cells/overfit_lion_ours_v_7.png`" />
-<img class="w-[60px] h-[60px] object-contain block transition-opacity duration-300 delay-[360ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}applications/overfit_cells/overfit_lion_ours_v_10.png`" />
-<img class="w-[60px] h-[60px] object-contain block transition-opacity duration-300 delay-[420ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}applications/overfit_cells/overfit_lion_ours_v_25.png`" />
-<img class="w-[60px] h-[60px] object-contain block transition-opacity duration-300 delay-[480ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}applications/overfit_cells/overfit_lion_ours_v_40.png`" />
-<img class="w-[60px] h-[60px] object-contain block transition-opacity duration-300 delay-[540ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}applications/overfit_cells/overfit_lion_ours_k_5.png`" />
-<img class="w-[60px] h-[60px] object-contain block transition-opacity duration-300 delay-[600ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}applications/overfit_cells/overfit_lion_ours_k_25.png`" />
-<img class="w-[60px] h-[60px] object-contain block transition-opacity duration-300 delay-[660ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}applications/overfit_cells/overfit_lion_ours_k_45.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[0ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/lion/item_0000_pred_eigen001.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[60ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/lion/item_0000_pred_eigen002.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[120ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/lion/item_0000_pred_eigen003.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[180ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/lion/item_0000_pred_eigen004.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[240ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/lion/item_0000_pred_eigen005.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[300ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/lion/item_0000_pred_eigen006.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[360ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/lion/item_0000_pred_eigen009.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[420ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/lion/item_0000_pred_eigen019.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[480ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/lion/item_0000_pred_eigen039.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[540ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/lion/item_0000_pred_recon_k005.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[600ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/lion/item_0000_pred_recon_k025.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[660ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/lion/item_0000_pred_recon_k050.png`" />
 
 <div class="text-xs text-right w-full pr-1 whitespace-nowrap transition-opacity duration-300 -translate-x-[10px]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">Cot.&nbsp;Lap.</div>
-<img class="w-[60px] h-[60px] object-contain block transition-opacity duration-300 delay-[0ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}applications/overfit_cells/overfit_botijo_cot_lap_v_2.png`" />
-<img class="w-[60px] h-[60px] object-contain block transition-opacity duration-300 delay-[60ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}applications/overfit_cells/overfit_botijo_cot_lap_v_3.png`" />
-<img class="w-[60px] h-[60px] object-contain block transition-opacity duration-300 delay-[120ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}applications/overfit_cells/overfit_botijo_cot_lap_v_4.png`" />
-<img class="w-[60px] h-[60px] object-contain block transition-opacity duration-300 delay-[180ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}applications/overfit_cells/overfit_botijo_cot_lap_v_5.png`" />
-<img class="w-[60px] h-[60px] object-contain block transition-opacity duration-300 delay-[240ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}applications/overfit_cells/overfit_botijo_cot_lap_v_6.png`" />
-<img class="w-[60px] h-[60px] object-contain block transition-opacity duration-300 delay-[300ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}applications/overfit_cells/overfit_botijo_cot_lap_v_7.png`" />
-<img class="w-[60px] h-[60px] object-contain block transition-opacity duration-300 delay-[360ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}applications/overfit_cells/overfit_botijo_cot_lap_v_10.png`" />
-<img class="w-[60px] h-[60px] object-contain block transition-opacity duration-300 delay-[420ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}applications/overfit_cells/overfit_botijo_cot_lap_v_25.png`" />
-<img class="w-[60px] h-[60px] object-contain block transition-opacity duration-300 delay-[480ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}applications/overfit_cells/overfit_botijo_cot_lap_v_40.png`" />
-<img class="w-[60px] h-[60px] object-contain block transition-opacity duration-300 delay-[540ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}applications/overfit_cells/overfit_botijo_cot_lap_k_5.png`" />
-<img class="w-[60px] h-[60px] object-contain block transition-opacity duration-300 delay-[600ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}applications/overfit_cells/overfit_botijo_cot_lap_k_25.png`" />
-<img class="w-[60px] h-[60px] object-contain block transition-opacity duration-300 delay-[660ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}applications/overfit_cells/overfit_botijo_cot_lap_k_45.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[0ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/botijo/item_0000_gt_eigen001.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[60ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/botijo/item_0000_gt_eigen002.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[120ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/botijo/item_0000_gt_eigen003.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[180ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/botijo/item_0000_gt_eigen004.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[240ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/botijo/item_0000_gt_eigen005.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[300ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/botijo/item_0000_gt_eigen006.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[360ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/botijo/item_0000_gt_eigen009.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[420ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/botijo/item_0000_gt_eigen019.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[480ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/botijo/item_0000_gt_eigen039.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[540ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/botijo/item_0000_gt_recon_k005.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[600ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/botijo/item_0000_gt_recon_k025.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[660ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/botijo/item_0000_gt_recon_k050.png`" />
 
 <div class="text-xs text-right w-full pr-1 whitespace-nowrap transition-opacity duration-300 -translate-x-[10px]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'">Ours</div>
-<img class="w-[60px] h-[60px] object-contain block transition-opacity duration-300 delay-[0ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}applications/overfit_cells/overfit_botijo_ours_v_2.png`" />
-<img class="w-[60px] h-[60px] object-contain block transition-opacity duration-300 delay-[60ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}applications/overfit_cells/overfit_botijo_ours_v_3.png`" />
-<img class="w-[60px] h-[60px] object-contain block transition-opacity duration-300 delay-[120ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}applications/overfit_cells/overfit_botijo_ours_v_4.png`" />
-<img class="w-[60px] h-[60px] object-contain block transition-opacity duration-300 delay-[180ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}applications/overfit_cells/overfit_botijo_ours_v_5.png`" />
-<img class="w-[60px] h-[60px] object-contain block transition-opacity duration-300 delay-[240ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}applications/overfit_cells/overfit_botijo_ours_v_6.png`" />
-<img class="w-[60px] h-[60px] object-contain block transition-opacity duration-300 delay-[300ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}applications/overfit_cells/overfit_botijo_ours_v_7.png`" />
-<img class="w-[60px] h-[60px] object-contain block transition-opacity duration-300 delay-[360ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}applications/overfit_cells/overfit_botijo_ours_v_10.png`" />
-<img class="w-[60px] h-[60px] object-contain block transition-opacity duration-300 delay-[420ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}applications/overfit_cells/overfit_botijo_ours_v_25.png`" />
-<img class="w-[60px] h-[60px] object-contain block transition-opacity duration-300 delay-[480ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}applications/overfit_cells/overfit_botijo_ours_v_40.png`" />
-<img class="w-[60px] h-[60px] object-contain block transition-opacity duration-300 delay-[540ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}applications/overfit_cells/overfit_botijo_ours_k_5.png`" />
-<img class="w-[60px] h-[60px] object-contain block transition-opacity duration-300 delay-[600ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}applications/overfit_cells/overfit_botijo_ours_k_25.png`" />
-<img class="w-[60px] h-[60px] object-contain block transition-opacity duration-300 delay-[660ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}applications/overfit_cells/overfit_botijo_ours_k_45.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[0ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/botijo/item_0000_pred_eigen001.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[60ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/botijo/item_0000_pred_eigen002.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[120ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/botijo/item_0000_pred_eigen003.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[180ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/botijo/item_0000_pred_eigen004.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[240ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/botijo/item_0000_pred_eigen005.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[300ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/botijo/item_0000_pred_eigen006.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[360ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/botijo/item_0000_pred_eigen009.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[420ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/botijo/item_0000_pred_eigen019.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[480ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/botijo/item_0000_pred_eigen039.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[540ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/botijo/item_0000_pred_recon_k005.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[600ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/botijo/item_0000_pred_recon_k025.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[660ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/botijo/item_0000_pred_recon_k050.png`" />
 
 <div class="text-xs text-right w-full pr-1 whitespace-nowrap transition-opacity duration-300 -translate-x-[10px]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">Cot.&nbsp;Lap.</div>
-<img class="w-[60px] h-[60px] object-contain block transition-opacity duration-300 delay-[0ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}applications/overfit_cells/overfit_armadillo_cot_lap_v_2.png`" />
-<img class="w-[60px] h-[60px] object-contain block transition-opacity duration-300 delay-[60ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}applications/overfit_cells/overfit_armadillo_cot_lap_v_3.png`" />
-<img class="w-[60px] h-[60px] object-contain block transition-opacity duration-300 delay-[120ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}applications/overfit_cells/overfit_armadillo_cot_lap_v_4.png`" />
-<img class="w-[60px] h-[60px] object-contain block transition-opacity duration-300 delay-[180ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}applications/overfit_cells/overfit_armadillo_cot_lap_v_5.png`" />
-<img class="w-[60px] h-[60px] object-contain block transition-opacity duration-300 delay-[240ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}applications/overfit_cells/overfit_armadillo_cot_lap_v_6.png`" />
-<img class="w-[60px] h-[60px] object-contain block transition-opacity duration-300 delay-[300ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}applications/overfit_cells/overfit_armadillo_cot_lap_v_7.png`" />
-<img class="w-[60px] h-[60px] object-contain block transition-opacity duration-300 delay-[360ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}applications/overfit_cells/overfit_armadillo_cot_lap_v_11.png`" />
-<img class="w-[60px] h-[60px] object-contain block transition-opacity duration-300 delay-[420ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}applications/overfit_cells/overfit_armadillo_cot_lap_v_26.png`" />
-<img class="w-[60px] h-[60px] object-contain block transition-opacity duration-300 delay-[480ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}applications/overfit_cells/overfit_armadillo_cot_lap_v_41.png`" />
-<img class="w-[60px] h-[60px] object-contain block transition-opacity duration-300 delay-[540ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}applications/overfit_cells/overfit_armadillo_cot_lap_k_5.png`" />
-<img class="w-[60px] h-[60px] object-contain block transition-opacity duration-300 delay-[600ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}applications/overfit_cells/overfit_armadillo_cot_lap_k_25.png`" />
-<img class="w-[60px] h-[60px] object-contain block transition-opacity duration-300 delay-[660ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}applications/overfit_cells/overfit_armadillo_cot_lap_k_45.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[0ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/armadillo/item_0000_gt_eigen001.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[60ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/armadillo/item_0000_gt_eigen002.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[120ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/armadillo/item_0000_gt_eigen003.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[180ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/armadillo/item_0000_gt_eigen004.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[240ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/armadillo/item_0000_gt_eigen005.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[300ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/armadillo/item_0000_gt_eigen006.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[360ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/armadillo/item_0000_gt_eigen009.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[420ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/armadillo/item_0000_gt_eigen019.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[480ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/armadillo/item_0000_gt_eigen039.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[540ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/armadillo/item_0000_gt_recon_k005.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[600ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/armadillo/item_0000_gt_recon_k025.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[660ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/armadillo/item_0000_gt_recon_k050.png`" />
 
 <div class="text-xs text-right w-full pr-1 whitespace-nowrap transition-opacity duration-300 -translate-x-[10px]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'">Ours</div>
-<img class="w-[60px] h-[60px] object-contain block transition-opacity duration-300 delay-[0ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}applications/overfit_cells/overfit_armadillo_ours_v_2.png`" />
-<img class="w-[60px] h-[60px] object-contain block transition-opacity duration-300 delay-[60ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}applications/overfit_cells/overfit_armadillo_ours_v_3.png`" />
-<img class="w-[60px] h-[60px] object-contain block transition-opacity duration-300 delay-[120ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}applications/overfit_cells/overfit_armadillo_ours_v_4.png`" />
-<img class="w-[60px] h-[60px] object-contain block transition-opacity duration-300 delay-[180ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}applications/overfit_cells/overfit_armadillo_ours_v_5.png`" />
-<img class="w-[60px] h-[60px] object-contain block transition-opacity duration-300 delay-[240ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}applications/overfit_cells/overfit_armadillo_ours_v_6.png`" />
-<img class="w-[60px] h-[60px] object-contain block transition-opacity duration-300 delay-[300ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}applications/overfit_cells/overfit_armadillo_ours_v_7.png`" />
-<img class="w-[60px] h-[60px] object-contain block transition-opacity duration-300 delay-[360ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}applications/overfit_cells/overfit_armadillo_ours_v_11.png`" />
-<img class="w-[60px] h-[60px] object-contain block transition-opacity duration-300 delay-[420ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}applications/overfit_cells/overfit_armadillo_ours_v_26.png`" />
-<img class="w-[60px] h-[60px] object-contain block transition-opacity duration-300 delay-[480ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}applications/overfit_cells/overfit_armadillo_ours_v_41.png`" />
-<img class="w-[60px] h-[60px] object-contain block transition-opacity duration-300 delay-[540ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}applications/overfit_cells/overfit_armadillo_ours_k_5.png`" />
-<img class="w-[60px] h-[60px] object-contain block transition-opacity duration-300 delay-[600ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}applications/overfit_cells/overfit_armadillo_ours_k_25.png`" />
-<img class="w-[60px] h-[60px] object-contain block transition-opacity duration-300 delay-[660ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}applications/overfit_cells/overfit_armadillo_ours_k_45.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[0ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/armadillo/item_0000_pred_eigen001.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[60ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/armadillo/item_0000_pred_eigen002.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[120ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/armadillo/item_0000_pred_eigen003.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[180ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/armadillo/item_0000_pred_eigen004.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[240ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/armadillo/item_0000_pred_eigen005.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[300ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/armadillo/item_0000_pred_eigen006.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[360ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/armadillo/item_0000_pred_eigen009.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[420ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/armadillo/item_0000_pred_eigen019.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[480ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/armadillo/item_0000_pred_eigen039.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[540ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/armadillo/item_0000_pred_recon_k005.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[600ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/armadillo/item_0000_pred_recon_k025.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[660ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/armadillo/item_0000_pred_recon_k050.png`" />
 
 </div>
 
@@ -2740,7 +2740,7 @@ Our predicted basis matches the <span class="grad">cotangent Laplacian</span>.
 
 <div class="flex-1 min-h-0 flex items-center justify-center">
 
-<div class="grid gap-1 items-center justify-items-center" style="grid-template-columns: 50px repeat(12, 60px); grid-auto-rows: 60px;">
+<div class="grid gap-1 items-center justify-items-center" style="grid-template-columns: 50px repeat(12, 62px); grid-auto-rows: 62px;">
 
 <div></div>
 <div class="text-sm text-center transition-opacity duration-300 translate-y-6" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">
@@ -2800,93 +2800,93 @@ $k=25$
 </div>
 <div class="text-sm text-center transition-opacity duration-300 translate-y-6" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">
 
-$k=45$
+$k=50$
 
 </div>
 
 <div class="text-xs text-right w-full pr-1 whitespace-nowrap transition-opacity duration-300 -translate-x-[10px]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">Cot.&nbsp;Lap.</div>
-<img class="w-[60px] h-[60px] object-contain block transition-opacity duration-300 delay-[0ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}applications/overfit_cells/overfit_heptotoroid_cot_lap_v_2.png`" />
-<img class="w-[60px] h-[60px] object-contain block transition-opacity duration-300 delay-[60ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}applications/overfit_cells/overfit_heptotoroid_cot_lap_v_3.png`" />
-<img class="w-[60px] h-[60px] object-contain block transition-opacity duration-300 delay-[120ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}applications/overfit_cells/overfit_heptotoroid_cot_lap_v_4.png`" />
-<img class="w-[60px] h-[60px] object-contain block transition-opacity duration-300 delay-[180ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}applications/overfit_cells/overfit_heptotoroid_cot_lap_v_5.png`" />
-<img class="w-[60px] h-[60px] object-contain block transition-opacity duration-300 delay-[240ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}applications/overfit_cells/overfit_heptotoroid_cot_lap_v_6.png`" />
-<img class="w-[60px] h-[60px] object-contain block transition-opacity duration-300 delay-[300ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}applications/overfit_cells/overfit_heptotoroid_cot_lap_v_7.png`" />
-<img class="w-[60px] h-[60px] object-contain block transition-opacity duration-300 delay-[360ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}applications/overfit_cells/overfit_heptotoroid_cot_lap_v_11.png`" />
-<img class="w-[60px] h-[60px] object-contain block transition-opacity duration-300 delay-[420ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}applications/overfit_cells/overfit_heptotoroid_cot_lap_v_26.png`" />
-<img class="w-[60px] h-[60px] object-contain block transition-opacity duration-300 delay-[480ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}applications/overfit_cells/overfit_heptotoroid_cot_lap_v_41.png`" />
-<img class="w-[60px] h-[60px] object-contain block transition-opacity duration-300 delay-[540ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}applications/overfit_cells/overfit_heptotoroid_cot_lap_k_5.png`" />
-<img class="w-[60px] h-[60px] object-contain block transition-opacity duration-300 delay-[600ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}applications/overfit_cells/overfit_heptotoroid_cot_lap_k_25.png`" />
-<img class="w-[60px] h-[60px] object-contain block transition-opacity duration-300 delay-[660ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}applications/overfit_cells/overfit_heptotoroid_cot_lap_k_45.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[0ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/heptoroid/item_0000_gt_eigen001.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[60ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/heptoroid/item_0000_gt_eigen002.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[120ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/heptoroid/item_0000_gt_eigen003.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[180ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/heptoroid/item_0000_gt_eigen004.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[240ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/heptoroid/item_0000_gt_eigen005.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[300ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/heptoroid/item_0000_gt_eigen006.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[360ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/heptoroid/item_0000_gt_eigen010.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[420ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/heptoroid/item_0000_gt_eigen025.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[480ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/heptoroid/item_0000_gt_eigen040.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[540ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/heptoroid/item_0000_gt_recon_k005.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[600ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/heptoroid/item_0000_gt_recon_k025.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[660ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/heptoroid/item_0000_gt_recon_k050.png`" />
 
 <div class="text-xs text-right w-full pr-1 whitespace-nowrap transition-opacity duration-300 -translate-x-[10px]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'">Ours</div>
-<img class="w-[60px] h-[60px] object-contain block transition-opacity duration-300 delay-[0ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}applications/overfit_cells/overfit_heptotoroid_ours_v_2.png`" />
-<img class="w-[60px] h-[60px] object-contain block transition-opacity duration-300 delay-[60ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}applications/overfit_cells/overfit_heptotoroid_ours_v_3.png`" />
-<img class="w-[60px] h-[60px] object-contain block transition-opacity duration-300 delay-[120ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}applications/overfit_cells/overfit_heptotoroid_ours_v_4.png`" />
-<img class="w-[60px] h-[60px] object-contain block transition-opacity duration-300 delay-[180ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}applications/overfit_cells/overfit_heptotoroid_ours_v_5.png`" />
-<img class="w-[60px] h-[60px] object-contain block transition-opacity duration-300 delay-[240ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}applications/overfit_cells/overfit_heptotoroid_ours_v_6.png`" />
-<img class="w-[60px] h-[60px] object-contain block transition-opacity duration-300 delay-[300ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}applications/overfit_cells/overfit_heptotoroid_ours_v_7.png`" />
-<img class="w-[60px] h-[60px] object-contain block transition-opacity duration-300 delay-[360ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}applications/overfit_cells/overfit_heptotoroid_ours_v_11.png`" />
-<img class="w-[60px] h-[60px] object-contain block transition-opacity duration-300 delay-[420ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}applications/overfit_cells/overfit_heptotoroid_ours_v_26.png`" />
-<img class="w-[60px] h-[60px] object-contain block transition-opacity duration-300 delay-[480ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}applications/overfit_cells/overfit_heptotoroid_ours_v_41.png`" />
-<img class="w-[60px] h-[60px] object-contain block transition-opacity duration-300 delay-[540ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}applications/overfit_cells/overfit_heptotoroid_ours_k_5.png`" />
-<img class="w-[60px] h-[60px] object-contain block transition-opacity duration-300 delay-[600ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}applications/overfit_cells/overfit_heptotoroid_ours_k_25.png`" />
-<img class="w-[60px] h-[60px] object-contain block transition-opacity duration-300 delay-[660ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}applications/overfit_cells/overfit_heptotoroid_ours_k_45.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[0ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/heptoroid/item_0000_pred_eigen001.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[60ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/heptoroid/item_0000_pred_eigen002.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[120ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/heptoroid/item_0000_pred_eigen003.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[180ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/heptoroid/item_0000_pred_eigen004.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[240ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/heptoroid/item_0000_pred_eigen005.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[300ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/heptoroid/item_0000_pred_eigen006.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[360ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/heptoroid/item_0000_pred_eigen010.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[420ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/heptoroid/item_0000_pred_eigen025.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[480ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/heptoroid/item_0000_pred_eigen040.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[540ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/heptoroid/item_0000_pred_recon_k005.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[600ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/heptoroid/item_0000_pred_recon_k025.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[660ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/heptoroid/item_0000_pred_recon_k050.png`" />
 
 <div class="text-xs text-right w-full pr-1 whitespace-nowrap transition-opacity duration-300 -translate-x-[10px]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">Cot.&nbsp;Lap.</div>
-<img class="w-[60px] h-[60px] object-contain block transition-opacity duration-300 delay-[0ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}applications/overfit_cells/overfit_wrench_cot_lap_v_2.png`" />
-<img class="w-[60px] h-[60px] object-contain block transition-opacity duration-300 delay-[60ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}applications/overfit_cells/overfit_wrench_cot_lap_v_3.png`" />
-<img class="w-[60px] h-[60px] object-contain block transition-opacity duration-300 delay-[120ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}applications/overfit_cells/overfit_wrench_cot_lap_v_4.png`" />
-<img class="w-[60px] h-[60px] object-contain block transition-opacity duration-300 delay-[180ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}applications/overfit_cells/overfit_wrench_cot_lap_v_5.png`" />
-<img class="w-[60px] h-[60px] object-contain block transition-opacity duration-300 delay-[240ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}applications/overfit_cells/overfit_wrench_cot_lap_v_6.png`" />
-<img class="w-[60px] h-[60px] object-contain block transition-opacity duration-300 delay-[300ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}applications/overfit_cells/overfit_wrench_cot_lap_v_7.png`" />
-<img class="w-[60px] h-[60px] object-contain block transition-opacity duration-300 delay-[360ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}applications/overfit_cells/overfit_wrench_cot_lap_v_11.png`" />
-<img class="w-[60px] h-[60px] object-contain block transition-opacity duration-300 delay-[420ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}applications/overfit_cells/overfit_wrench_cot_lap_v_26.png`" />
-<img class="w-[60px] h-[60px] object-contain block transition-opacity duration-300 delay-[480ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}applications/overfit_cells/overfit_wrench_cot_lap_v_41.png`" />
-<img class="w-[60px] h-[60px] object-contain block transition-opacity duration-300 delay-[540ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}applications/overfit_cells/overfit_wrench_cot_lap_k_5.png`" />
-<img class="w-[60px] h-[60px] object-contain block transition-opacity duration-300 delay-[600ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}applications/overfit_cells/overfit_wrench_cot_lap_k_25.png`" />
-<img class="w-[60px] h-[60px] object-contain block transition-opacity duration-300 delay-[660ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}applications/overfit_cells/overfit_wrench_cot_lap_k_45.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[0ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/wrench/item_0000_gt_eigen001.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[60ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/wrench/item_0000_gt_eigen002.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[120ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/wrench/item_0000_gt_eigen003.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[180ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/wrench/item_0000_gt_eigen004.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[240ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/wrench/item_0000_gt_eigen005.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[300ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/wrench/item_0000_gt_eigen006.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[360ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/wrench/item_0000_gt_eigen010.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[420ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/wrench/item_0000_gt_eigen025.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[480ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/wrench/item_0000_gt_eigen040.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[540ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/wrench/item_0000_gt_recon_k005.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[600ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/wrench/item_0000_gt_recon_k025.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[660ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/wrench/item_0000_gt_recon_k050.png`" />
 
 <div class="text-xs text-right w-full pr-1 whitespace-nowrap transition-opacity duration-300 -translate-x-[10px]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'">Ours</div>
-<img class="w-[60px] h-[60px] object-contain block transition-opacity duration-300 delay-[0ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}applications/overfit_cells/overfit_wrench_ours_v_2.png`" />
-<img class="w-[60px] h-[60px] object-contain block transition-opacity duration-300 delay-[60ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}applications/overfit_cells/overfit_wrench_ours_v_3.png`" />
-<img class="w-[60px] h-[60px] object-contain block transition-opacity duration-300 delay-[120ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}applications/overfit_cells/overfit_wrench_ours_v_4.png`" />
-<img class="w-[60px] h-[60px] object-contain block transition-opacity duration-300 delay-[180ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}applications/overfit_cells/overfit_wrench_ours_v_5.png`" />
-<img class="w-[60px] h-[60px] object-contain block transition-opacity duration-300 delay-[240ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}applications/overfit_cells/overfit_wrench_ours_v_6.png`" />
-<img class="w-[60px] h-[60px] object-contain block transition-opacity duration-300 delay-[300ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}applications/overfit_cells/overfit_wrench_ours_v_7.png`" />
-<img class="w-[60px] h-[60px] object-contain block transition-opacity duration-300 delay-[360ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}applications/overfit_cells/overfit_wrench_ours_v_11.png`" />
-<img class="w-[60px] h-[60px] object-contain block transition-opacity duration-300 delay-[420ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}applications/overfit_cells/overfit_wrench_ours_v_26.png`" />
-<img class="w-[60px] h-[60px] object-contain block transition-opacity duration-300 delay-[480ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}applications/overfit_cells/overfit_wrench_ours_v_41.png`" />
-<img class="w-[60px] h-[60px] object-contain block transition-opacity duration-300 delay-[540ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}applications/overfit_cells/overfit_wrench_ours_k_5.png`" />
-<img class="w-[60px] h-[60px] object-contain block transition-opacity duration-300 delay-[600ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}applications/overfit_cells/overfit_wrench_ours_k_25.png`" />
-<img class="w-[60px] h-[60px] object-contain block transition-opacity duration-300 delay-[660ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}applications/overfit_cells/overfit_wrench_ours_k_45.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[0ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/wrench/item_0000_pred_eigen001.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[60ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/wrench/item_0000_pred_eigen002.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[120ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/wrench/item_0000_pred_eigen003.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[180ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/wrench/item_0000_pred_eigen004.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[240ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/wrench/item_0000_pred_eigen005.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[300ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/wrench/item_0000_pred_eigen006.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[360ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/wrench/item_0000_pred_eigen010.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[420ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/wrench/item_0000_pred_eigen025.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[480ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/wrench/item_0000_pred_eigen040.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[540ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/wrench/item_0000_pred_recon_k005.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[600ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/wrench/item_0000_pred_recon_k025.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[660ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/wrench/item_0000_pred_recon_k050.png`" />
 
 <div class="text-xs text-right w-full pr-1 whitespace-nowrap transition-opacity duration-300 -translate-x-[10px]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">Cot.&nbsp;Lap.</div>
-<img class="w-[60px] h-[60px] object-contain block transition-opacity duration-300 delay-[0ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}applications/overfit_cells/overfit_pegaso_cot_lap_v_2.png`" />
-<img class="w-[60px] h-[60px] object-contain block transition-opacity duration-300 delay-[60ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}applications/overfit_cells/overfit_pegaso_cot_lap_v_3.png`" />
-<img class="w-[60px] h-[60px] object-contain block transition-opacity duration-300 delay-[120ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}applications/overfit_cells/overfit_pegaso_cot_lap_v_4.png`" />
-<img class="w-[60px] h-[60px] object-contain block transition-opacity duration-300 delay-[180ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}applications/overfit_cells/overfit_pegaso_cot_lap_v_5.png`" />
-<img class="w-[60px] h-[60px] object-contain block transition-opacity duration-300 delay-[240ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}applications/overfit_cells/overfit_pegaso_cot_lap_v_6.png`" />
-<img class="w-[60px] h-[60px] object-contain block transition-opacity duration-300 delay-[300ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}applications/overfit_cells/overfit_pegaso_cot_lap_v_7.png`" />
-<img class="w-[60px] h-[60px] object-contain block transition-opacity duration-300 delay-[360ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}applications/overfit_cells/overfit_pegaso_cot_lap_v_10.png`" />
-<img class="w-[60px] h-[60px] object-contain block transition-opacity duration-300 delay-[420ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}applications/overfit_cells/overfit_pegaso_cot_lap_v_25.png`" />
-<img class="w-[60px] h-[60px] object-contain block transition-opacity duration-300 delay-[480ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}applications/overfit_cells/overfit_pegaso_cot_lap_v_40.png`" />
-<img class="w-[60px] h-[60px] object-contain block transition-opacity duration-300 delay-[540ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}applications/overfit_cells/overfit_pegaso_cot_lap_k_5.png`" />
-<img class="w-[60px] h-[60px] object-contain block transition-opacity duration-300 delay-[600ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}applications/overfit_cells/overfit_pegaso_cot_lap_k_25.png`" />
-<img class="w-[60px] h-[60px] object-contain block transition-opacity duration-300 delay-[660ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}applications/overfit_cells/overfit_pegaso_cot_lap_k_45.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[0ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/pegaso/item_0000_gt_eigen001.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[60ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/pegaso/item_0000_gt_eigen002.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[120ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/pegaso/item_0000_gt_eigen003.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[180ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/pegaso/item_0000_gt_eigen004.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[240ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/pegaso/item_0000_gt_eigen005.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[300ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/pegaso/item_0000_gt_eigen006.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[360ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/pegaso/item_0000_gt_eigen009.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[420ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/pegaso/item_0000_gt_eigen024.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[480ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/pegaso/item_0000_gt_eigen039.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[540ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/pegaso/item_0000_gt_recon_k005.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[600ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/pegaso/item_0000_gt_recon_k025.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[660ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/pegaso/item_0000_gt_recon_k050.png`" />
 
 <div class="text-xs text-right w-full pr-1 whitespace-nowrap transition-opacity duration-300 -translate-x-[10px]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'">Ours</div>
-<img class="w-[60px] h-[60px] object-contain block transition-opacity duration-300 delay-[0ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}applications/overfit_cells/overfit_pegaso_ours_v_2.png`" />
-<img class="w-[60px] h-[60px] object-contain block transition-opacity duration-300 delay-[60ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}applications/overfit_cells/overfit_pegaso_ours_v_3.png`" />
-<img class="w-[60px] h-[60px] object-contain block transition-opacity duration-300 delay-[120ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}applications/overfit_cells/overfit_pegaso_ours_v_4.png`" />
-<img class="w-[60px] h-[60px] object-contain block transition-opacity duration-300 delay-[180ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}applications/overfit_cells/overfit_pegaso_ours_v_5.png`" />
-<img class="w-[60px] h-[60px] object-contain block transition-opacity duration-300 delay-[240ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}applications/overfit_cells/overfit_pegaso_ours_v_6.png`" />
-<img class="w-[60px] h-[60px] object-contain block transition-opacity duration-300 delay-[300ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}applications/overfit_cells/overfit_pegaso_ours_v_7.png`" />
-<img class="w-[60px] h-[60px] object-contain block transition-opacity duration-300 delay-[360ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}applications/overfit_cells/overfit_pegaso_ours_v_10.png`" />
-<img class="w-[60px] h-[60px] object-contain block transition-opacity duration-300 delay-[420ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}applications/overfit_cells/overfit_pegaso_ours_v_25.png`" />
-<img class="w-[60px] h-[60px] object-contain block transition-opacity duration-300 delay-[480ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}applications/overfit_cells/overfit_pegaso_ours_v_40.png`" />
-<img class="w-[60px] h-[60px] object-contain block transition-opacity duration-300 delay-[540ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}applications/overfit_cells/overfit_pegaso_ours_k_5.png`" />
-<img class="w-[60px] h-[60px] object-contain block transition-opacity duration-300 delay-[600ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}applications/overfit_cells/overfit_pegaso_ours_k_25.png`" />
-<img class="w-[60px] h-[60px] object-contain block transition-opacity duration-300 delay-[660ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}applications/overfit_cells/overfit_pegaso_ours_k_45.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[0ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/pegaso/item_0000_pred_eigen001.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[60ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/pegaso/item_0000_pred_eigen002.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[120ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/pegaso/item_0000_pred_eigen003.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[180ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/pegaso/item_0000_pred_eigen004.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[240ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/pegaso/item_0000_pred_eigen005.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[300ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/pegaso/item_0000_pred_eigen006.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[360ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/pegaso/item_0000_pred_eigen009.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[420ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/pegaso/item_0000_pred_eigen024.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[480ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/pegaso/item_0000_pred_eigen039.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[540ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/pegaso/item_0000_pred_recon_k005.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[600ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/pegaso/item_0000_pred_recon_k025.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[660ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/pegaso/item_0000_pred_recon_k050.png`" />
 
 </div>
 
@@ -2912,7 +2912,7 @@ Our predicted basis matches the <span class="grad">cotangent Laplacian</span> on
 
 <div class="flex-1 min-h-0 flex items-center justify-center">
 
-<div class="grid gap-1 items-center justify-items-center" style="grid-template-columns: 50px repeat(6, 60px); grid-auto-rows: 60px;">
+<div class="grid gap-1 items-center justify-items-center" style="grid-template-columns: 50px repeat(12, 62px); grid-auto-rows: 62px;">
 
 <div></div>
 <div class="text-sm text-center transition-opacity duration-300 translate-y-6" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">
@@ -2927,17 +2927,47 @@ $\mathbf{v}_{3}$
 </div>
 <div class="text-sm text-center transition-opacity duration-300 translate-y-6" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">
 
-$\mathbf{v}_{11}$
+$\mathbf{v}_{4}$
 
 </div>
 <div class="text-sm text-center transition-opacity duration-300 translate-y-6" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">
 
-$\mathbf{v}_{31}$
+$\mathbf{v}_{5}$
 
 </div>
 <div class="text-sm text-center transition-opacity duration-300 translate-y-6" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">
 
-$k=10$
+$\mathbf{v}_{6}$
+
+</div>
+<div class="text-sm text-center transition-opacity duration-300 translate-y-6" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">
+
+$\mathbf{v}_{7}$
+
+</div>
+<div class="text-sm text-center transition-opacity duration-300 translate-y-6" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">
+
+$\mathbf{v}_{8}$
+
+</div>
+<div class="text-sm text-center transition-opacity duration-300 translate-y-6" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">
+
+$\mathbf{v}_{10}$
+
+</div>
+<div class="text-sm text-center transition-opacity duration-300 translate-y-6" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">
+
+$\mathbf{v}_{20}$
+
+</div>
+<div class="text-sm text-center transition-opacity duration-300 translate-y-6" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">
+
+$k=5$
+
+</div>
+<div class="text-sm text-center transition-opacity duration-300 translate-y-6" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">
+
+$k=25$
 
 </div>
 <div class="text-sm text-center transition-opacity duration-300 translate-y-6" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">
@@ -2947,54 +2977,849 @@ $k=50$
 </div>
 
 <div class="text-xs text-right w-full pr-1 whitespace-nowrap transition-opacity duration-300 -translate-x-[10px]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">Cot.&nbsp;Lap.</div>
-<img class="w-[60px] h-[60px] object-contain block transition-opacity duration-300 delay-[0ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}applications/generalization_cells/gen_g1_s1_cot_lap_v_2.png`" />
-<img class="w-[60px] h-[60px] object-contain block transition-opacity duration-300 delay-[60ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}applications/generalization_cells/gen_g1_s1_cot_lap_v_3.png`" />
-<img class="w-[60px] h-[60px] object-contain block transition-opacity duration-300 delay-[120ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}applications/generalization_cells/gen_g1_s1_cot_lap_v_11.png`" />
-<img class="w-[60px] h-[60px] object-contain block transition-opacity duration-300 delay-[180ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}applications/generalization_cells/gen_g1_s1_cot_lap_v_31.png`" />
-<img class="w-[60px] h-[60px] object-contain block transition-opacity duration-300 delay-[240ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}applications/generalization_cells/gen_g1_s1_cot_lap_k_10.png`" />
-<img class="w-[60px] h-[60px] object-contain block transition-opacity duration-300 delay-[300ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}applications/generalization_cells/gen_g1_s1_cot_lap_k_50.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[0ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec15_shape2/item_0009_gt_eigen001.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[60ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec15_shape2/item_0009_gt_eigen002.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[120ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec15_shape2/item_0009_gt_eigen003.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[180ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec15_shape2/item_0009_gt_eigen004.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[240ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec15_shape2/item_0009_gt_eigen005.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[300ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec15_shape2/item_0009_gt_eigen006.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[360ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec15_shape2/item_0009_gt_eigen007.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[420ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec15_shape2/item_0009_gt_eigen009.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[480ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec15_shape2/item_0009_gt_eigen019.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[540ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec15_shape2/item_0009_gt_recon_k005.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[600ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec15_shape2/item_0009_gt_recon_k025.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[660ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec15_shape2/item_0009_gt_recon_k050.png`" />
 
 <div class="text-xs text-right w-full pr-1 whitespace-nowrap transition-opacity duration-300 -translate-x-[10px]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'">Ours</div>
-<img class="w-[60px] h-[60px] object-contain block transition-opacity duration-300 delay-[0ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}applications/generalization_cells/gen_g1_s1_ours_v_2.png`" />
-<img class="w-[60px] h-[60px] object-contain block transition-opacity duration-300 delay-[60ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}applications/generalization_cells/gen_g1_s1_ours_v_3.png`" />
-<img class="w-[60px] h-[60px] object-contain block transition-opacity duration-300 delay-[120ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}applications/generalization_cells/gen_g1_s1_ours_v_11.png`" />
-<img class="w-[60px] h-[60px] object-contain block transition-opacity duration-300 delay-[180ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}applications/generalization_cells/gen_g1_s1_ours_v_31.png`" />
-<img class="w-[60px] h-[60px] object-contain block transition-opacity duration-300 delay-[240ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}applications/generalization_cells/gen_g1_s1_ours_k_10.png`" />
-<img class="w-[60px] h-[60px] object-contain block transition-opacity duration-300 delay-[300ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}applications/generalization_cells/gen_g1_s1_ours_k_50.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[0ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec15_shape2/item_0009_pred_eigen001.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[60ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec15_shape2/item_0009_pred_eigen002.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[120ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec15_shape2/item_0009_pred_eigen003.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[180ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec15_shape2/item_0009_pred_eigen004.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[240ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec15_shape2/item_0009_pred_eigen005.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[300ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec15_shape2/item_0009_pred_eigen006.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[360ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec15_shape2/item_0009_pred_eigen007.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[420ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec15_shape2/item_0009_pred_eigen009.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[480ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec15_shape2/item_0009_pred_eigen019.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[540ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec15_shape2/item_0009_pred_recon_k005.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[600ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec15_shape2/item_0009_pred_recon_k025.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[660ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec15_shape2/item_0009_pred_recon_k050.png`" />
 
 <div class="text-xs text-right w-full pr-1 whitespace-nowrap transition-opacity duration-300 -translate-x-[10px]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">Cot.&nbsp;Lap.</div>
-<img class="w-[60px] h-[60px] object-contain block transition-opacity duration-300 delay-[0ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}applications/generalization_cells/gen_g1_s2_cot_lap_v_2.png`" />
-<img class="w-[60px] h-[60px] object-contain block transition-opacity duration-300 delay-[60ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}applications/generalization_cells/gen_g1_s2_cot_lap_v_3.png`" />
-<img class="w-[60px] h-[60px] object-contain block transition-opacity duration-300 delay-[120ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}applications/generalization_cells/gen_g1_s2_cot_lap_v_11.png`" />
-<img class="w-[60px] h-[60px] object-contain block transition-opacity duration-300 delay-[180ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}applications/generalization_cells/gen_g1_s2_cot_lap_v_31.png`" />
-<img class="w-[60px] h-[60px] object-contain block transition-opacity duration-300 delay-[240ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}applications/generalization_cells/gen_g1_s2_cot_lap_k_10.png`" />
-<img class="w-[60px] h-[60px] object-contain block transition-opacity duration-300 delay-[300ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}applications/generalization_cells/gen_g1_s2_cot_lap_k_50.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[0ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec15_shape1/item_0006_gt_eigen001.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[60ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec15_shape1/item_0006_gt_eigen002.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[120ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec15_shape1/item_0006_gt_eigen003.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[180ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec15_shape1/item_0006_gt_eigen004.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[240ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec15_shape1/item_0006_gt_eigen005.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[300ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec15_shape1/item_0006_gt_eigen006.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[360ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec15_shape1/item_0006_gt_eigen007.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[420ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec15_shape1/item_0006_gt_eigen009.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[480ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec15_shape1/item_0006_gt_eigen019.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[540ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec15_shape1/item_0006_gt_recon_k005.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[600ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec15_shape1/item_0006_gt_recon_k025.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[660ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec15_shape1/item_0006_gt_recon_k050.png`" />
 
 <div class="text-xs text-right w-full pr-1 whitespace-nowrap transition-opacity duration-300 -translate-x-[10px]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'">Ours</div>
-<img class="w-[60px] h-[60px] object-contain block transition-opacity duration-300 delay-[0ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}applications/generalization_cells/gen_g1_s2_ours_v_2.png`" />
-<img class="w-[60px] h-[60px] object-contain block transition-opacity duration-300 delay-[60ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}applications/generalization_cells/gen_g1_s2_ours_v_3.png`" />
-<img class="w-[60px] h-[60px] object-contain block transition-opacity duration-300 delay-[120ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}applications/generalization_cells/gen_g1_s2_ours_v_11.png`" />
-<img class="w-[60px] h-[60px] object-contain block transition-opacity duration-300 delay-[180ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}applications/generalization_cells/gen_g1_s2_ours_v_31.png`" />
-<img class="w-[60px] h-[60px] object-contain block transition-opacity duration-300 delay-[240ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}applications/generalization_cells/gen_g1_s2_ours_k_10.png`" />
-<img class="w-[60px] h-[60px] object-contain block transition-opacity duration-300 delay-[300ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}applications/generalization_cells/gen_g1_s2_ours_k_50.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[0ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec15_shape1/item_0006_pred_eigen001.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[60ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec15_shape1/item_0006_pred_eigen002.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[120ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec15_shape1/item_0006_pred_eigen003.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[180ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec15_shape1/item_0006_pred_eigen004.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[240ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec15_shape1/item_0006_pred_eigen005.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[300ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec15_shape1/item_0006_pred_eigen006.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[360ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec15_shape1/item_0006_pred_eigen007.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[420ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec15_shape1/item_0006_pred_eigen009.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[480ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec15_shape1/item_0006_pred_eigen019.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[540ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec15_shape1/item_0006_pred_recon_k005.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[600ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec15_shape1/item_0006_pred_recon_k025.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[660ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec15_shape1/item_0006_pred_recon_k050.png`" />
 
 <div class="text-xs text-right w-full pr-1 whitespace-nowrap transition-opacity duration-300 -translate-x-[10px]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">Cot.&nbsp;Lap.</div>
-<img class="w-[60px] h-[60px] object-contain block transition-opacity duration-300 delay-[0ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}applications/generalization_cells/gen_g1_s3_cot_lap_v_2.png`" />
-<img class="w-[60px] h-[60px] object-contain block transition-opacity duration-300 delay-[60ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}applications/generalization_cells/gen_g1_s3_cot_lap_v_3.png`" />
-<img class="w-[60px] h-[60px] object-contain block transition-opacity duration-300 delay-[120ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}applications/generalization_cells/gen_g1_s3_cot_lap_v_11.png`" />
-<img class="w-[60px] h-[60px] object-contain block transition-opacity duration-300 delay-[180ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}applications/generalization_cells/gen_g1_s3_cot_lap_v_31.png`" />
-<img class="w-[60px] h-[60px] object-contain block transition-opacity duration-300 delay-[240ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}applications/generalization_cells/gen_g1_s3_cot_lap_k_10.png`" />
-<img class="w-[60px] h-[60px] object-contain block transition-opacity duration-300 delay-[300ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}applications/generalization_cells/gen_g1_s3_cot_lap_k_50.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[0ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec15_shape3/item_0018_gt_eigen001.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[60ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec15_shape3/item_0018_gt_eigen002.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[120ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec15_shape3/item_0018_gt_eigen003.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[180ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec15_shape3/item_0018_gt_eigen004.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[240ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec15_shape3/item_0018_gt_eigen005.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[300ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec15_shape3/item_0018_gt_eigen006.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[360ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec15_shape3/item_0018_gt_eigen007.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[420ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec15_shape3/item_0018_gt_eigen009.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[480ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec15_shape3/item_0018_gt_eigen019.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[540ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec15_shape3/item_0018_gt_recon_k005.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[600ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec15_shape3/item_0018_gt_recon_k025.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[660ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec15_shape3/item_0018_gt_recon_k050.png`" />
 
 <div class="text-xs text-right w-full pr-1 whitespace-nowrap transition-opacity duration-300 -translate-x-[10px]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'">Ours</div>
-<img class="w-[60px] h-[60px] object-contain block transition-opacity duration-300 delay-[0ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}applications/generalization_cells/gen_g1_s3_ours_v_2.png`" />
-<img class="w-[60px] h-[60px] object-contain block transition-opacity duration-300 delay-[60ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}applications/generalization_cells/gen_g1_s3_ours_v_3.png`" />
-<img class="w-[60px] h-[60px] object-contain block transition-opacity duration-300 delay-[120ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}applications/generalization_cells/gen_g1_s3_ours_v_11.png`" />
-<img class="w-[60px] h-[60px] object-contain block transition-opacity duration-300 delay-[180ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}applications/generalization_cells/gen_g1_s3_ours_v_31.png`" />
-<img class="w-[60px] h-[60px] object-contain block transition-opacity duration-300 delay-[240ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}applications/generalization_cells/gen_g1_s3_ours_k_10.png`" />
-<img class="w-[60px] h-[60px] object-contain block transition-opacity duration-300 delay-[300ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}applications/generalization_cells/gen_g1_s3_ours_k_50.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[0ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec15_shape3/item_0018_pred_eigen001.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[60ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec15_shape3/item_0018_pred_eigen002.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[120ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec15_shape3/item_0018_pred_eigen003.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[180ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec15_shape3/item_0018_pred_eigen004.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[240ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec15_shape3/item_0018_pred_eigen005.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[300ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec15_shape3/item_0018_pred_eigen006.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[360ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec15_shape3/item_0018_pred_eigen007.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[420ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec15_shape3/item_0018_pred_eigen009.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[480ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec15_shape3/item_0018_pred_eigen019.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[540ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec15_shape3/item_0018_pred_recon_k005.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[600ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec15_shape3/item_0018_pred_recon_k025.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[660ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec15_shape3/item_0018_pred_recon_k050.png`" />
 
 </div>
+
+</div>
+
+</div>
+
+---
+layout: default
+class: text-left
+clicks: 2
+---
+
+<div class="h-full flex flex-col pt-4 pb-3 px-2">
+
+<div class="eyebrow mb-1 text-center">
+Results &nbsp;·&nbsp; generalization across shapes
+</div>
+
+<h2 class="!text-2xl !leading-snug !mb-4 font-serif text-center" style="color: var(--c-fg)">
+Our predicted basis matches the <span class="grad">cotangent Laplacian</span> on <em>unseen</em> shapes.
+</h2>
+
+<div class="flex-1 min-h-0 flex items-center justify-center">
+
+<div class="grid gap-1 items-center justify-items-center" style="grid-template-columns: 50px repeat(12, 62px); grid-auto-rows: 62px;">
+
+<div></div>
+<div class="text-sm text-center transition-opacity duration-300 translate-y-6" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">
+
+$\mathbf{v}_{2}$
+
+</div>
+<div class="text-sm text-center transition-opacity duration-300 translate-y-6" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">
+
+$\mathbf{v}_{3}$
+
+</div>
+<div class="text-sm text-center transition-opacity duration-300 translate-y-6" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">
+
+$\mathbf{v}_{4}$
+
+</div>
+<div class="text-sm text-center transition-opacity duration-300 translate-y-6" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">
+
+$\mathbf{v}_{5}$
+
+</div>
+<div class="text-sm text-center transition-opacity duration-300 translate-y-6" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">
+
+$\mathbf{v}_{6}$
+
+</div>
+<div class="text-sm text-center transition-opacity duration-300 translate-y-6" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">
+
+$\mathbf{v}_{7}$
+
+</div>
+<div class="text-sm text-center transition-opacity duration-300 translate-y-6" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">
+
+$\mathbf{v}_{8}$
+
+</div>
+<div class="text-sm text-center transition-opacity duration-300 translate-y-6" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">
+
+$\mathbf{v}_{10}$
+
+</div>
+<div class="text-sm text-center transition-opacity duration-300 translate-y-6" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">
+
+$\mathbf{v}_{20}$
+
+</div>
+<div class="text-sm text-center transition-opacity duration-300 translate-y-6" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">
+
+$k=5$
+
+</div>
+<div class="text-sm text-center transition-opacity duration-300 translate-y-6" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">
+
+$k=25$
+
+</div>
+<div class="text-sm text-center transition-opacity duration-300 translate-y-6" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">
+
+$k=50$
+
+</div>
+
+<div class="text-xs text-right w-full pr-1 whitespace-nowrap transition-opacity duration-300 -translate-x-[10px]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">Cot.&nbsp;Lap.</div>
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[0ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec15_shape4/item_0014_gt_eigen001.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[60ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec15_shape4/item_0014_gt_eigen002.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[120ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec15_shape4/item_0014_gt_eigen003.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[180ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec15_shape4/item_0014_gt_eigen004.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[240ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec15_shape4/item_0014_gt_eigen005.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[300ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec15_shape4/item_0014_gt_eigen006.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[360ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec15_shape4/item_0014_gt_eigen007.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[420ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec15_shape4/item_0014_gt_eigen009.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[480ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec15_shape4/item_0014_gt_eigen019.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[540ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec15_shape4/item_0014_gt_recon_k005.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[600ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec15_shape4/item_0014_gt_recon_k025.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[660ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec15_shape4/item_0014_gt_recon_k050.png`" />
+
+<div class="text-xs text-right w-full pr-1 whitespace-nowrap transition-opacity duration-300 -translate-x-[10px]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'">Ours</div>
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[0ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec15_shape4/item_0014_pred_eigen001.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[60ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec15_shape4/item_0014_pred_eigen002.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[120ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec15_shape4/item_0014_pred_eigen003.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[180ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec15_shape4/item_0014_pred_eigen004.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[240ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec15_shape4/item_0014_pred_eigen005.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[300ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec15_shape4/item_0014_pred_eigen006.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[360ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec15_shape4/item_0014_pred_eigen007.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[420ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec15_shape4/item_0014_pred_eigen009.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[480ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec15_shape4/item_0014_pred_eigen019.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[540ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec15_shape4/item_0014_pred_recon_k005.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[600ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec15_shape4/item_0014_pred_recon_k025.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[660ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec15_shape4/item_0014_pred_recon_k050.png`" />
+
+<div class="text-xs text-right w-full pr-1 whitespace-nowrap transition-opacity duration-300 -translate-x-[10px]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">Cot.&nbsp;Lap.</div>
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[0ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/thingi10k_shape4/item_0005_gt_eigen001.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[60ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/thingi10k_shape4/item_0005_gt_eigen002.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[120ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/thingi10k_shape4/item_0005_gt_eigen003.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[180ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/thingi10k_shape4/item_0005_gt_eigen004.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[240ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/thingi10k_shape4/item_0005_gt_eigen005.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[300ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/thingi10k_shape4/item_0005_gt_eigen006.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[360ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/thingi10k_shape4/item_0005_gt_eigen007.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[420ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/thingi10k_shape4/item_0005_gt_eigen009.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[480ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/thingi10k_shape4/item_0005_gt_eigen019.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[540ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/thingi10k_shape4/item_0005_gt_recon_k005.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[600ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/thingi10k_shape4/item_0005_gt_recon_k025.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[660ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/thingi10k_shape4/item_0005_gt_recon_k050.png`" />
+
+<div class="text-xs text-right w-full pr-1 whitespace-nowrap transition-opacity duration-300 -translate-x-[10px]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'">Ours</div>
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[0ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/thingi10k_shape4/item_0005_pred_eigen001.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[60ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/thingi10k_shape4/item_0005_pred_eigen002.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[120ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/thingi10k_shape4/item_0005_pred_eigen003.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[180ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/thingi10k_shape4/item_0005_pred_eigen004.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[240ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/thingi10k_shape4/item_0005_pred_eigen005.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[300ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/thingi10k_shape4/item_0005_pred_eigen006.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[360ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/thingi10k_shape4/item_0005_pred_eigen007.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[420ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/thingi10k_shape4/item_0005_pred_eigen009.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[480ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/thingi10k_shape4/item_0005_pred_eigen019.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[540ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/thingi10k_shape4/item_0005_pred_recon_k005.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[600ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/thingi10k_shape4/item_0005_pred_recon_k025.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[660ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/thingi10k_shape4/item_0005_pred_recon_k050.png`" />
+
+<div class="text-xs text-right w-full pr-1 whitespace-nowrap transition-opacity duration-300 -translate-x-[10px]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">Cot.&nbsp;Lap.</div>
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[0ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/thingi10k_shape7/item_0012_gt_eigen001.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[60ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/thingi10k_shape7/item_0012_gt_eigen002.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[120ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/thingi10k_shape7/item_0012_gt_eigen003.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[180ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/thingi10k_shape7/item_0012_gt_eigen004.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[240ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/thingi10k_shape7/item_0012_gt_eigen005.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[300ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/thingi10k_shape7/item_0012_gt_eigen006.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[360ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/thingi10k_shape7/item_0012_gt_eigen007.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[420ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/thingi10k_shape7/item_0012_gt_eigen009.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[480ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/thingi10k_shape7/item_0012_gt_eigen019.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[540ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/thingi10k_shape7/item_0012_gt_recon_k005.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[600ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/thingi10k_shape7/item_0012_gt_recon_k025.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[660ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/thingi10k_shape7/item_0012_gt_recon_k050.png`" />
+
+<div class="text-xs text-right w-full pr-1 whitespace-nowrap transition-opacity duration-300 -translate-x-[10px]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'">Ours</div>
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[0ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/thingi10k_shape7/item_0012_pred_eigen001.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[60ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/thingi10k_shape7/item_0012_pred_eigen002.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[120ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/thingi10k_shape7/item_0012_pred_eigen003.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[180ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/thingi10k_shape7/item_0012_pred_eigen004.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[240ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/thingi10k_shape7/item_0012_pred_eigen005.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[300ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/thingi10k_shape7/item_0012_pred_eigen006.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[360ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/thingi10k_shape7/item_0012_pred_eigen007.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[420ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/thingi10k_shape7/item_0012_pred_eigen009.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[480ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/thingi10k_shape7/item_0012_pred_eigen019.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[540ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/thingi10k_shape7/item_0012_pred_recon_k005.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[600ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/thingi10k_shape7/item_0012_pred_recon_k025.png`" />
+<img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[660ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/thingi10k_shape7/item_0012_pred_recon_k050.png`" />
+
+</div>
+
+</div>
+
+</div>
+
+---
+layout: default
+class: text-left
+clicks: 1
+---
+
+<div class="h-full flex flex-col pt-4 pb-3 px-2">
+
+<div class="eyebrow mb-1 text-center">
+Results &nbsp;·&nbsp; generalization to volumetric shapes
+</div>
+
+<h2 class="!text-2xl !leading-snug !mb-4 font-serif text-center" style="color: var(--c-fg)">
+Our predicted eigenbasis on <em>volumetric</em> shapes.
+</h2>
+
+<div class="flex-1 min-h-0 flex items-center justify-center">
+
+<div class="grid gap-1 items-center justify-items-center" style="grid-template-columns: repeat(12, 70px); grid-auto-rows: 70px;">
+
+<div class="text-sm text-center transition-opacity duration-300 translate-y-6" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">
+
+$\mathbf{v}_{2}$
+
+</div>
+<div class="text-sm text-center transition-opacity duration-300 translate-y-6" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">
+
+$\mathbf{v}_{3}$
+
+</div>
+<div class="text-sm text-center transition-opacity duration-300 translate-y-6" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">
+
+$\mathbf{v}_{4}$
+
+</div>
+<div class="text-sm text-center transition-opacity duration-300 translate-y-6" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">
+
+$\mathbf{v}_{5}$
+
+</div>
+<div class="text-sm text-center transition-opacity duration-300 translate-y-6" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">
+
+$\mathbf{v}_{6}$
+
+</div>
+<div class="text-sm text-center transition-opacity duration-300 translate-y-6" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">
+
+$\mathbf{v}_{7}$
+
+</div>
+<div class="text-sm text-center transition-opacity duration-300 translate-y-6" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">
+
+$\mathbf{v}_{8}$
+
+</div>
+<div class="text-sm text-center transition-opacity duration-300 translate-y-6" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">
+
+$\mathbf{v}_{10}$
+
+</div>
+<div class="text-sm text-center transition-opacity duration-300 translate-y-6" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">
+
+$\mathbf{v}_{20}$
+
+</div>
+<div class="text-sm text-center transition-opacity duration-300 translate-y-6" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">
+
+$k=5$
+
+</div>
+<div class="text-sm text-center transition-opacity duration-300 translate-y-6" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">
+
+$k=25$
+
+</div>
+<div class="text-sm text-center transition-opacity duration-300 translate-y-6" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">
+
+$k=50$
+
+</div>
+
+<img class="w-[70px] h-[70px] object-contain block transition-opacity duration-300 delay-[0ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec20b_volumetric_shape1/item_0002_pred_eigen001.png`" />
+<img class="w-[70px] h-[70px] object-contain block transition-opacity duration-300 delay-[60ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec20b_volumetric_shape1/item_0002_pred_eigen002.png`" />
+<img class="w-[70px] h-[70px] object-contain block transition-opacity duration-300 delay-[120ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec20b_volumetric_shape1/item_0002_pred_eigen003.png`" />
+<img class="w-[70px] h-[70px] object-contain block transition-opacity duration-300 delay-[180ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec20b_volumetric_shape1/item_0002_pred_eigen004.png`" />
+<img class="w-[70px] h-[70px] object-contain block transition-opacity duration-300 delay-[240ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec20b_volumetric_shape1/item_0002_pred_eigen005.png`" />
+<img class="w-[70px] h-[70px] object-contain block transition-opacity duration-300 delay-[300ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec20b_volumetric_shape1/item_0002_pred_eigen006.png`" />
+<img class="w-[70px] h-[70px] object-contain block transition-opacity duration-300 delay-[360ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec20b_volumetric_shape1/item_0002_pred_eigen007.png`" />
+<img class="w-[70px] h-[70px] object-contain block transition-opacity duration-300 delay-[420ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec20b_volumetric_shape1/item_0002_pred_eigen009.png`" />
+<img class="w-[70px] h-[70px] object-contain block transition-opacity duration-300 delay-[480ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec20b_volumetric_shape1/item_0002_pred_eigen019.png`" />
+<img class="w-[70px] h-[70px] object-contain block transition-opacity duration-300 delay-[540ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec20b_volumetric_shape1/item_0002_pred_recon_k005.png`" />
+<img class="w-[70px] h-[70px] object-contain block transition-opacity duration-300 delay-[600ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec20b_volumetric_shape1/item_0002_pred_recon_k025.png`" />
+<img class="w-[70px] h-[70px] object-contain block transition-opacity duration-300 delay-[660ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec20b_volumetric_shape1/item_0002_pred_recon_k050.png`" />
+
+<img class="w-[70px] h-[70px] object-contain block transition-opacity duration-300 delay-[0ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec20b_volumetric_shape2/item_0005_pred_eigen001.png`" />
+<img class="w-[70px] h-[70px] object-contain block transition-opacity duration-300 delay-[60ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec20b_volumetric_shape2/item_0005_pred_eigen002.png`" />
+<img class="w-[70px] h-[70px] object-contain block transition-opacity duration-300 delay-[120ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec20b_volumetric_shape2/item_0005_pred_eigen003.png`" />
+<img class="w-[70px] h-[70px] object-contain block transition-opacity duration-300 delay-[180ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec20b_volumetric_shape2/item_0005_pred_eigen004.png`" />
+<img class="w-[70px] h-[70px] object-contain block transition-opacity duration-300 delay-[240ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec20b_volumetric_shape2/item_0005_pred_eigen005.png`" />
+<img class="w-[70px] h-[70px] object-contain block transition-opacity duration-300 delay-[300ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec20b_volumetric_shape2/item_0005_pred_eigen006.png`" />
+<img class="w-[70px] h-[70px] object-contain block transition-opacity duration-300 delay-[360ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec20b_volumetric_shape2/item_0005_pred_eigen007.png`" />
+<img class="w-[70px] h-[70px] object-contain block transition-opacity duration-300 delay-[420ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec20b_volumetric_shape2/item_0005_pred_eigen009.png`" />
+<img class="w-[70px] h-[70px] object-contain block transition-opacity duration-300 delay-[480ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec20b_volumetric_shape2/item_0005_pred_eigen019.png`" />
+<img class="w-[70px] h-[70px] object-contain block transition-opacity duration-300 delay-[540ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec20b_volumetric_shape2/item_0005_pred_recon_k005.png`" />
+<img class="w-[70px] h-[70px] object-contain block transition-opacity duration-300 delay-[600ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec20b_volumetric_shape2/item_0005_pred_recon_k025.png`" />
+<img class="w-[70px] h-[70px] object-contain block transition-opacity duration-300 delay-[660ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec20b_volumetric_shape2/item_0005_pred_recon_k050.png`" />
+
+<img class="w-[70px] h-[70px] object-contain block transition-opacity duration-300 delay-[0ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec20b_volumetric_shape3/item_0006_pred_eigen001.png`" />
+<img class="w-[70px] h-[70px] object-contain block transition-opacity duration-300 delay-[60ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec20b_volumetric_shape3/item_0006_pred_eigen002.png`" />
+<img class="w-[70px] h-[70px] object-contain block transition-opacity duration-300 delay-[120ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec20b_volumetric_shape3/item_0006_pred_eigen003.png`" />
+<img class="w-[70px] h-[70px] object-contain block transition-opacity duration-300 delay-[180ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec20b_volumetric_shape3/item_0006_pred_eigen004.png`" />
+<img class="w-[70px] h-[70px] object-contain block transition-opacity duration-300 delay-[240ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec20b_volumetric_shape3/item_0006_pred_eigen005.png`" />
+<img class="w-[70px] h-[70px] object-contain block transition-opacity duration-300 delay-[300ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec20b_volumetric_shape3/item_0006_pred_eigen006.png`" />
+<img class="w-[70px] h-[70px] object-contain block transition-opacity duration-300 delay-[360ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec20b_volumetric_shape3/item_0006_pred_eigen007.png`" />
+<img class="w-[70px] h-[70px] object-contain block transition-opacity duration-300 delay-[420ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec20b_volumetric_shape3/item_0006_pred_eigen009.png`" />
+<img class="w-[70px] h-[70px] object-contain block transition-opacity duration-300 delay-[480ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec20b_volumetric_shape3/item_0006_pred_eigen019.png`" />
+<img class="w-[70px] h-[70px] object-contain block transition-opacity duration-300 delay-[540ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec20b_volumetric_shape3/item_0006_pred_recon_k005.png`" />
+<img class="w-[70px] h-[70px] object-contain block transition-opacity duration-300 delay-[600ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec20b_volumetric_shape3/item_0006_pred_recon_k025.png`" />
+<img class="w-[70px] h-[70px] object-contain block transition-opacity duration-300 delay-[660ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec20b_volumetric_shape3/item_0006_pred_recon_k050.png`" />
+
+<img class="w-[70px] h-[70px] object-contain block transition-opacity duration-300 delay-[0ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec20b_volumetric_shape4/item_0009_pred_eigen001.png`" />
+<img class="w-[70px] h-[70px] object-contain block transition-opacity duration-300 delay-[60ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec20b_volumetric_shape4/item_0009_pred_eigen002.png`" />
+<img class="w-[70px] h-[70px] object-contain block transition-opacity duration-300 delay-[120ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec20b_volumetric_shape4/item_0009_pred_eigen003.png`" />
+<img class="w-[70px] h-[70px] object-contain block transition-opacity duration-300 delay-[180ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec20b_volumetric_shape4/item_0009_pred_eigen004.png`" />
+<img class="w-[70px] h-[70px] object-contain block transition-opacity duration-300 delay-[240ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec20b_volumetric_shape4/item_0009_pred_eigen005.png`" />
+<img class="w-[70px] h-[70px] object-contain block transition-opacity duration-300 delay-[300ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec20b_volumetric_shape4/item_0009_pred_eigen006.png`" />
+<img class="w-[70px] h-[70px] object-contain block transition-opacity duration-300 delay-[360ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec20b_volumetric_shape4/item_0009_pred_eigen007.png`" />
+<img class="w-[70px] h-[70px] object-contain block transition-opacity duration-300 delay-[420ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec20b_volumetric_shape4/item_0009_pred_eigen009.png`" />
+<img class="w-[70px] h-[70px] object-contain block transition-opacity duration-300 delay-[480ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec20b_volumetric_shape4/item_0009_pred_eigen019.png`" />
+<img class="w-[70px] h-[70px] object-contain block transition-opacity duration-300 delay-[540ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec20b_volumetric_shape4/item_0009_pred_recon_k005.png`" />
+<img class="w-[70px] h-[70px] object-contain block transition-opacity duration-300 delay-[600ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec20b_volumetric_shape4/item_0009_pred_recon_k025.png`" />
+<img class="w-[70px] h-[70px] object-contain block transition-opacity duration-300 delay-[660ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec20b_volumetric_shape4/item_0009_pred_recon_k050.png`" />
+
+</div>
+
+</div>
+
+</div>
+
+---
+layout: default
+class: text-left
+clicks: 2
+---
+
+<div class="h-full flex flex-col pt-4 pb-3 px-2">
+
+<div class="eyebrow mb-1 text-center">
+Rebuttal &nbsp;·&nbsp; Hadamard probes &nbsp;·&nbsp; 100-eigen variant
+</div>
+
+<h2 class="!text-2xl !leading-snug !mb-6 font-serif text-center" style="color: var(--c-fg)">
+Generalisation to <span class="grad">Hadamard</span> probe distributions.
+</h2>
+
+<div class="flex-1 min-h-0 flex items-center justify-center gap-12">
+
+<div class="flex flex-col items-center">
+<div class="text-sm mb-2 transition-opacity duration-300" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">Piecewise constant probes</div>
+<div class="grid gap-2" style="grid-template-columns: repeat(2, 140px); grid-auto-rows: 140px;">
+<img class="w-[140px] h-[140px] object-contain block transition-opacity duration-300 delay-[0ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}rebuttal_screenshots/hadamard2/item_0000_scalar_field_smoothed_000.png`" />
+<img class="w-[140px] h-[140px] object-contain block transition-opacity duration-300 delay-[100ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}rebuttal_screenshots/hadamard2/item_0000_scalar_field_smoothed_001.png`" />
+<img class="w-[140px] h-[140px] object-contain block transition-opacity duration-300 delay-[200ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}rebuttal_screenshots/hadamard2/item_0000_scalar_field_smoothed_002.png`" />
+<img class="w-[140px] h-[140px] object-contain block transition-opacity duration-300 delay-[300ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}rebuttal_screenshots/hadamard2/item_0000_scalar_field_smoothed_003.png`" />
+</div>
+</div>
+
+<div class="flex flex-col items-center">
+<div class="text-sm mb-2 transition-opacity duration-300" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'">Learned eigenbasis</div>
+<div class="grid gap-2" style="grid-template-columns: repeat(4, 140px); grid-auto-rows: 140px;">
+<img class="w-[140px] h-[140px] object-contain block transition-opacity duration-300 delay-[0ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}rebuttal_screenshots/hadamard2/item_0000_pred_eigen013.png`" />
+<img class="w-[140px] h-[140px] object-contain block transition-opacity duration-300 delay-[80ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}rebuttal_screenshots/hadamard2/item_0000_pred_eigen014.png`" />
+<img class="w-[140px] h-[140px] object-contain block transition-opacity duration-300 delay-[160ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}rebuttal_screenshots/hadamard2/item_0000_pred_eigen021.png`" />
+<img class="w-[140px] h-[140px] object-contain block transition-opacity duration-300 delay-[240ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}rebuttal_screenshots/hadamard2/item_0000_pred_eigen022.png`" />
+<img class="w-[140px] h-[140px] object-contain block transition-opacity duration-300 delay-[320ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}rebuttal_screenshots/hadamard2/item_0000_pred_eigen035.png`" />
+<img class="w-[140px] h-[140px] object-contain block transition-opacity duration-300 delay-[400ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}rebuttal_screenshots/hadamard2/item_0000_pred_eigen036.png`" />
+<img class="w-[140px] h-[140px] object-contain block transition-opacity duration-300 delay-[480ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}rebuttal_screenshots/hadamard2/item_0000_pred_eigen061.png`" />
+<img class="w-[140px] h-[140px] object-contain block transition-opacity duration-300 delay-[560ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}rebuttal_screenshots/hadamard2/item_0000_pred_eigen062.png`" />
+</div>
+</div>
+
+</div>
+
+</div>
+
+---
+layout: default
+class: text-left
+clicks: 4
+---
+
+<div class="h-full flex flex-col pt-4 pb-3 px-2">
+
+<div class="eyebrow mb-1 text-center">
+Rebuttal &nbsp;·&nbsp; Schrödinger operator
+</div>
+
+<h2 class="!text-2xl !leading-snug !mb-6 font-serif text-center" style="color: var(--c-fg)">
+Generalisation to the <span class="grad">Schrödinger</span> operator.
+</h2>
+
+<div class="flex-1 min-h-0 flex items-center justify-center gap-10">
+
+<div class="flex flex-col items-center gap-8 flex-none">
+
+<div class="flex flex-col items-center">
+<div class="text-sm mb-2 transition-opacity duration-300" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">Potentials</div>
+<div class="grid gap-2" style="grid-template-columns: repeat(2, 95px); grid-auto-rows: 95px;">
+<img class="w-[95px] h-[95px] object-contain block transition-opacity duration-300 delay-[0ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}rebuttal_screenshots/schrodinger-botijo/item_0000_potential.png`" />
+<img class="w-[95px] h-[95px] object-contain block transition-opacity duration-300 delay-[80ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}rebuttal_screenshots/schrodinger-dente/item_0000_potential.png`" />
+</div>
+</div>
+
+<div class="flex flex-col items-center">
+<div class="text-sm mb-2 transition-opacity duration-300" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'">Probes functions</div>
+<div class="grid gap-2" style="grid-template-columns: repeat(2, 95px); grid-auto-rows: 95px;">
+<img class="w-[95px] h-[95px] object-contain block transition-opacity duration-300 delay-[0ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}rebuttal_screenshots/schrodinger-botijo/item_0000_scalar_field_smoothed_000.png`" />
+<img class="w-[95px] h-[95px] object-contain block transition-opacity duration-300 delay-[80ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}rebuttal_screenshots/schrodinger-dente/item_0000_scalar_field_smoothed_000.png`" />
+</div>
+</div>
+
+</div>
+
+<div class="grid gap-2 items-center justify-items-center flex-none -translate-x-[30px]" style="grid-template-columns: 70px repeat(7, 85px); grid-template-rows: auto repeat(4, 85px);">
+
+<div></div>
+<div class="text-sm text-center transition-opacity duration-300 translate-y-4" :class="$clicks >= 3 ? 'opacity-100' : 'opacity-0'">
+
+$\mathbf{v}_{2}$
+
+</div>
+<div class="text-sm text-center transition-opacity duration-300 translate-y-4" :class="$clicks >= 3 ? 'opacity-100' : 'opacity-0'">
+
+$\mathbf{v}_{3}$
+
+</div>
+<div class="text-sm text-center transition-opacity duration-300 translate-y-4" :class="$clicks >= 3 ? 'opacity-100' : 'opacity-0'">
+
+$\mathbf{v}_{4}$
+
+</div>
+<div class="text-sm text-center transition-opacity duration-300 translate-y-4" :class="$clicks >= 3 ? 'opacity-100' : 'opacity-0'">
+
+$\mathbf{v}_{5}$
+
+</div>
+<div class="text-sm text-center transition-opacity duration-300 translate-y-4" :class="$clicks >= 3 ? 'opacity-100' : 'opacity-0'">
+
+$\mathbf{v}_{6}$
+
+</div>
+<div class="text-sm text-center transition-opacity duration-300 translate-y-4" :class="$clicks >= 3 ? 'opacity-100' : 'opacity-0'">
+
+$\mathbf{v}_{7}$
+
+</div>
+<div class="text-sm text-center transition-opacity duration-300 translate-y-4" :class="$clicks >= 3 ? 'opacity-100' : 'opacity-0'">
+
+$\mathbf{v}_{8}$
+
+</div>
+
+<div class="text-xs text-right w-full pr-1 whitespace-nowrap transition-opacity duration-300" :class="$clicks >= 3 ? 'opacity-100' : 'opacity-0'">GT</div>
+<img class="w-[85px] h-[85px] object-contain block transition-opacity duration-300 delay-[0ms]" :class="$clicks >= 3 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}rebuttal_screenshots/schrodinger-botijo/item_0000_gt_eigen001.png`" />
+<img class="w-[85px] h-[85px] object-contain block transition-opacity duration-300 delay-[80ms]" :class="$clicks >= 3 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}rebuttal_screenshots/schrodinger-botijo/item_0000_gt_eigen002.png`" />
+<img class="w-[85px] h-[85px] object-contain block transition-opacity duration-300 delay-[160ms]" :class="$clicks >= 3 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}rebuttal_screenshots/schrodinger-botijo/item_0000_gt_eigen003.png`" />
+<img class="w-[85px] h-[85px] object-contain block transition-opacity duration-300 delay-[240ms]" :class="$clicks >= 3 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}rebuttal_screenshots/schrodinger-botijo/item_0000_gt_eigen004.png`" />
+<img class="w-[85px] h-[85px] object-contain block transition-opacity duration-300 delay-[320ms]" :class="$clicks >= 3 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}rebuttal_screenshots/schrodinger-botijo/item_0000_gt_eigen005.png`" />
+<img class="w-[85px] h-[85px] object-contain block transition-opacity duration-300 delay-[400ms]" :class="$clicks >= 3 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}rebuttal_screenshots/schrodinger-botijo/item_0000_gt_eigen006.png`" />
+<img class="w-[85px] h-[85px] object-contain block transition-opacity duration-300 delay-[480ms]" :class="$clicks >= 3 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}rebuttal_screenshots/schrodinger-botijo/item_0000_gt_eigen007.png`" />
+
+<div class="text-xs text-right w-full pr-1 whitespace-nowrap transition-opacity duration-300" :class="$clicks >= 4 ? 'opacity-100' : 'opacity-0'">Ours</div>
+<img class="w-[85px] h-[85px] object-contain block transition-opacity duration-300 delay-[0ms]" :class="$clicks >= 4 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}rebuttal_screenshots/schrodinger-botijo/item_0000_pred_eigen001.png`" />
+<img class="w-[85px] h-[85px] object-contain block transition-opacity duration-300 delay-[80ms]" :class="$clicks >= 4 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}rebuttal_screenshots/schrodinger-botijo/item_0000_pred_eigen002.png`" />
+<img class="w-[85px] h-[85px] object-contain block transition-opacity duration-300 delay-[160ms]" :class="$clicks >= 4 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}rebuttal_screenshots/schrodinger-botijo/item_0000_pred_eigen003.png`" />
+<img class="w-[85px] h-[85px] object-contain block transition-opacity duration-300 delay-[240ms]" :class="$clicks >= 4 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}rebuttal_screenshots/schrodinger-botijo/item_0000_pred_eigen004.png`" />
+<img class="w-[85px] h-[85px] object-contain block transition-opacity duration-300 delay-[320ms]" :class="$clicks >= 4 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}rebuttal_screenshots/schrodinger-botijo/item_0000_pred_eigen005.png`" />
+<img class="w-[85px] h-[85px] object-contain block transition-opacity duration-300 delay-[400ms]" :class="$clicks >= 4 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}rebuttal_screenshots/schrodinger-botijo/item_0000_pred_eigen006.png`" />
+<img class="w-[85px] h-[85px] object-contain block transition-opacity duration-300 delay-[480ms]" :class="$clicks >= 4 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}rebuttal_screenshots/schrodinger-botijo/item_0000_pred_eigen007.png`" />
+
+<div class="text-xs text-right w-full pr-1 whitespace-nowrap transition-opacity duration-300" :class="$clicks >= 3 ? 'opacity-100' : 'opacity-0'">GT</div>
+<img class="w-[85px] h-[85px] object-contain block transition-opacity duration-300 delay-[0ms]" :class="$clicks >= 3 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}rebuttal_screenshots/schrodinger-dente/item_0000_gt_eigen001.png`" />
+<img class="w-[85px] h-[85px] object-contain block transition-opacity duration-300 delay-[80ms]" :class="$clicks >= 3 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}rebuttal_screenshots/schrodinger-dente/item_0000_gt_eigen002.png`" />
+<img class="w-[85px] h-[85px] object-contain block transition-opacity duration-300 delay-[160ms]" :class="$clicks >= 3 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}rebuttal_screenshots/schrodinger-dente/item_0000_gt_eigen003.png`" />
+<img class="w-[85px] h-[85px] object-contain block transition-opacity duration-300 delay-[240ms]" :class="$clicks >= 3 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}rebuttal_screenshots/schrodinger-dente/item_0000_gt_eigen004.png`" />
+<img class="w-[85px] h-[85px] object-contain block transition-opacity duration-300 delay-[320ms]" :class="$clicks >= 3 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}rebuttal_screenshots/schrodinger-dente/item_0000_gt_eigen005.png`" />
+<img class="w-[85px] h-[85px] object-contain block transition-opacity duration-300 delay-[400ms]" :class="$clicks >= 3 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}rebuttal_screenshots/schrodinger-dente/item_0000_gt_eigen006.png`" />
+<img class="w-[85px] h-[85px] object-contain block transition-opacity duration-300 delay-[480ms]" :class="$clicks >= 3 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}rebuttal_screenshots/schrodinger-dente/item_0000_gt_eigen007.png`" />
+
+<div class="text-xs text-right w-full pr-1 whitespace-nowrap transition-opacity duration-300" :class="$clicks >= 4 ? 'opacity-100' : 'opacity-0'">Ours</div>
+<img class="w-[85px] h-[85px] object-contain block transition-opacity duration-300 delay-[0ms]" :class="$clicks >= 4 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}rebuttal_screenshots/schrodinger-dente/item_0000_pred_eigen001.png`" />
+<img class="w-[85px] h-[85px] object-contain block transition-opacity duration-300 delay-[80ms]" :class="$clicks >= 4 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}rebuttal_screenshots/schrodinger-dente/item_0000_pred_eigen002.png`" />
+<img class="w-[85px] h-[85px] object-contain block transition-opacity duration-300 delay-[160ms]" :class="$clicks >= 4 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}rebuttal_screenshots/schrodinger-dente/item_0000_pred_eigen003.png`" />
+<img class="w-[85px] h-[85px] object-contain block transition-opacity duration-300 delay-[240ms]" :class="$clicks >= 4 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}rebuttal_screenshots/schrodinger-dente/item_0000_pred_eigen004.png`" />
+<img class="w-[85px] h-[85px] object-contain block transition-opacity duration-300 delay-[320ms]" :class="$clicks >= 4 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}rebuttal_screenshots/schrodinger-dente/item_0000_pred_eigen005.png`" />
+<img class="w-[85px] h-[85px] object-contain block transition-opacity duration-300 delay-[400ms]" :class="$clicks >= 4 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}rebuttal_screenshots/schrodinger-dente/item_0000_pred_eigen006.png`" />
+<img class="w-[85px] h-[85px] object-contain block transition-opacity duration-300 delay-[480ms]" :class="$clicks >= 4 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}rebuttal_screenshots/schrodinger-dente/item_0000_pred_eigen007.png`" />
+
+</div>
+
+</div>
+
+</div>
+
+
+---
+layout: default
+class: text-left
+clicks: 2
+---
+
+<div class="h-full flex flex-col pt-4 pb-3 px-2">
+
+<div class="eyebrow mb-1 text-center">
+Rebuttal &nbsp;·&nbsp; Resolution generalisation
+</div>
+
+<h2 class="!text-2xl !leading-snug !mb-6 font-serif text-center" style="color: var(--c-fg)">
+Train at low resolution, infer at <span class="grad">higher resolution</span>.
+</h2>
+
+<div class="flex-1 min-h-0 flex items-center justify-center">
+
+<div class="grid gap-2 items-center justify-items-center flex-none -translate-x-[30px]" style="grid-template-columns: 90px repeat(6, 135px); grid-template-rows: auto repeat(2, 135px);">
+
+<div></div>
+<div class="text-sm text-center transition-opacity duration-300 translate-y-4" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">
+
+$\mathbf{v}_{2}$
+
+</div>
+<div class="text-sm text-center transition-opacity duration-300 translate-y-4" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">
+
+$\mathbf{v}_{8}$
+
+</div>
+<div class="text-sm text-center transition-opacity duration-300 translate-y-4" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">
+
+$\mathbf{v}_{14}$
+
+</div>
+<div class="text-sm text-center transition-opacity duration-300 translate-y-4" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">
+
+$\mathbf{v}_{22}$
+
+</div>
+<div class="text-sm text-center transition-opacity duration-300 translate-y-4" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">
+
+$\mathbf{v}_{30}$
+
+</div>
+<div class="text-sm text-center transition-opacity duration-300 translate-y-4" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">
+
+$\mathbf{v}_{47}$
+
+</div>
+
+<div class="text-xs text-right w-full pr-1 whitespace-nowrap transition-opacity duration-300" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">3K pts</div>
+<img class="w-[135px] h-[135px] object-contain block transition-opacity duration-300 delay-[0ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}rebuttal_screenshots/pegaso1/item_0000_pred_eigen001.png`" />
+<img class="w-[135px] h-[135px] object-contain block transition-opacity duration-300 delay-[80ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}rebuttal_screenshots/pegaso1/item_0000_pred_eigen007.png`" />
+<img class="w-[135px] h-[135px] object-contain block transition-opacity duration-300 delay-[160ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}rebuttal_screenshots/pegaso1/item_0000_pred_eigen013.png`" />
+<img class="w-[135px] h-[135px] object-contain block transition-opacity duration-300 delay-[240ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}rebuttal_screenshots/pegaso1/item_0000_pred_eigen021.png`" />
+<img class="w-[135px] h-[135px] object-contain block transition-opacity duration-300 delay-[320ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}rebuttal_screenshots/pegaso1/item_0000_pred_eigen029.png`" />
+<img class="w-[135px] h-[135px] object-contain block transition-opacity duration-300 delay-[400ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}rebuttal_screenshots/pegaso1/item_0000_pred_eigen046.png`" />
+
+<div class="text-xs text-right w-full pr-1 whitespace-nowrap transition-opacity duration-300" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'">12K pts</div>
+<img class="w-[135px] h-[135px] object-contain block transition-opacity duration-300 delay-[0ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}rebuttal_screenshots/pegaso2/item_0000_pred_eigen001.png`" />
+<img class="w-[135px] h-[135px] object-contain block transition-opacity duration-300 delay-[80ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}rebuttal_screenshots/pegaso2/item_0000_pred_eigen007.png`" />
+<img class="w-[135px] h-[135px] object-contain block transition-opacity duration-300 delay-[160ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}rebuttal_screenshots/pegaso2/item_0000_pred_eigen013.png`" />
+<img class="w-[135px] h-[135px] object-contain block transition-opacity duration-300 delay-[240ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}rebuttal_screenshots/pegaso2/item_0000_pred_eigen021.png`" />
+<img class="w-[135px] h-[135px] object-contain block transition-opacity duration-300 delay-[320ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}rebuttal_screenshots/pegaso2/item_0000_pred_eigen029.png`" />
+<img class="w-[135px] h-[135px] object-contain block transition-opacity duration-300 delay-[400ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}rebuttal_screenshots/pegaso2/item_0000_pred_eigen046.png`" />
+
+</div>
+
+</div>
+
+</div>
+
+---
+layout: default
+class: text-left
+clicks: 1
+---
+
+<div class="h-full flex flex-col pt-4 pb-3 px-2">
+
+<div class="eyebrow mb-1 text-center">
+Results &nbsp;·&nbsp; Learned metric
+</div>
+
+<h2 class="!text-2xl !leading-snug !mb-6 font-serif text-center" style="color: var(--c-fg)">
+Predicted <span class="grad">vertex areas</span> &nbsp;/&nbsp; sampling density.
+</h2>
+
+<div class="flex-1 min-h-0 flex items-center justify-center">
+
+<div class="grid gap-4 items-center justify-items-center flex-none" style="grid-template-columns: repeat(3, 200px); grid-auto-rows: 200px;">
+
+<img class="w-[200px] h-[200px] object-contain block transition-opacity duration-300 delay-[0ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/lion/item_0000_areas_pred.png`" />
+<img class="w-[200px] h-[200px] object-contain block transition-opacity duration-300 delay-[60ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/bimba/item_0000_areas_pred.png`" />
+<img class="w-[200px] h-[200px] object-contain block transition-opacity duration-300 delay-[120ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/elephant/item_0000_areas_pred.png`" />
+<img class="w-[200px] h-[200px] object-contain block transition-opacity duration-300 delay-[180ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/botijo/item_0000_areas_pred.png`" />
+<img class="w-[200px] h-[200px] object-contain block transition-opacity duration-300 delay-[240ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/david/item_0000_areas_pred.png`" />
+<img class="w-[200px] h-[200px] object-contain block transition-opacity duration-300 delay-[300ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/laurent_hand/item_0000_areas_pred.png`" />
+
+</div>
+
+</div>
+
+</div>
+---
+layout: default
+class: text-left
+---
+
+<div class="h-full flex flex-col pt-4 pb-3 px-2">
+
+<div class="eyebrow mb-1 text-center">
+Method &nbsp;·&nbsp; Image manifold
+</div>
+
+<h2 class="!text-2xl !leading-snug !mb-3 font-serif text-center" style="color: var(--c-fg)">
+Setup.
+</h2>
+
+<div class="dataset-strip mb-3">
+  <img :src="`${$slidev.configs.base ?? '/'}datasets/imagenette_1.jpg`" class="ds-thumb" />
+  <img :src="`${$slidev.configs.base ?? '/'}datasets/imagenette_2.jpg`" class="ds-thumb" />
+  <img :src="`${$slidev.configs.base ?? '/'}datasets/imagenette_3.jpg`" class="ds-thumb" />
+  <img :src="`${$slidev.configs.base ?? '/'}datasets/imagenette_4.jpg`" class="ds-thumb" />
+  <span class="ds-divider"></span>
+  <img :src="`${$slidev.configs.base ?? '/'}datasets/stl10_1.png`" class="ds-thumb" />
+  <img :src="`${$slidev.configs.base ?? '/'}datasets/stl10_2.png`" class="ds-thumb" />
+  <img :src="`${$slidev.configs.base ?? '/'}datasets/stl10_3.png`" class="ds-thumb" />
+  <img :src="`${$slidev.configs.base ?? '/'}datasets/stl10_4.png`" class="ds-thumb" />
+</div>
+
+<div class="flow-step" v-click="1">
+
+**Datasets** &mdash; Imagenette and STL10.
+
+</div>
+
+<div class="flow-step" v-click="2">
+
+**Embed each image** &mdash; CLIP (512-d) and DINOv2 (768-d) features.
+
+</div>
+
+<div class="flow-step" v-click="3">
+
+**Train** &mdash; run the same eigenbasis pipeline on sampled subsets of the embeddings.
+
+</div>
+
+<div class="flow-step finale" v-click="4">
+
+**Test** &mdash; compare on dimensionality reduction against UMAP, t-SNE, PCA, and Laplacian eigenmaps.
+
+</div>
+
+</div>
+
+<style>
+.dataset-strip {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.45rem;
+  margin-bottom: 0.55rem;
+}
+.dataset-strip .ds-thumb {
+  height: 66px;
+  width: 66px;
+  object-fit: cover;
+  border-radius: 5px;
+  border: 1px solid var(--c-border);
+}
+.dataset-strip .ds-divider {
+  display: inline-block;
+  width: 1px;
+  height: 46px;
+  background: var(--c-border);
+  margin: 0 0.45rem;
+}
+.flow-step {
+  border: 1px solid var(--c-border);
+  border-left: 3px solid var(--c-brand-from);
+  background: var(--c-bg-soft);
+  padding: 0.55rem 1.05rem;
+  border-radius: 8px;
+  margin-bottom: 0.35rem;
+  font-size: 0.92rem;
+  line-height: 1.4;
+  color: var(--c-fg-body);
+}
+.flow-step.finale {
+  border-left-color: var(--c-success);
+  background: rgba(4, 120, 87, 0.06);
+}
+</style>
+
+---
+layout: default
+class: text-left
+clicks: 1
+---
+
+<div class="h-full flex flex-col pt-4 pb-3 px-2">
+
+<div class="eyebrow mb-1 text-center">
+Results &nbsp;·&nbsp; Image manifold &nbsp;·&nbsp; STL10 / CLIP
+</div>
+
+<h2 class="!text-2xl !leading-snug !mb-3 font-serif text-center" style="color: var(--c-fg)">
+<span class="grad">STL10</span> clusters &mdash; CLIP embeddings.
+</h2>
+
+<div class="flex-1 min-h-0 flex items-center justify-center">
+
+<img
+  :src="`${$slidev.configs.base ?? '/'}supp_stl10_clip_cluster1@3x.png`"
+  class="max-h-[410px] max-w-[880px] object-contain block translate-y-[20px] transition-opacity duration-300"
+  :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'"
+/>
+
+</div>
+
+</div>
+
+---
+layout: default
+class: text-left
+clicks: 1
+---
+
+<div class="h-full flex flex-col pt-4 pb-3 px-2">
+
+<div class="eyebrow mb-1 text-center">
+Results &nbsp;·&nbsp; Image manifold &nbsp;·&nbsp; STL10 / DINOv2
+</div>
+
+<h2 class="!text-2xl !leading-snug !mb-3 font-serif text-center" style="color: var(--c-fg)">
+<span class="grad">STL10</span> clusters &mdash; DINOv2 embeddings.
+</h2>
+
+<div class="flex-1 min-h-0 flex items-center justify-center">
+
+<img
+  :src="`${$slidev.configs.base ?? '/'}supp_stl10_dino_cluster1@3x.png`"
+  class="max-h-[410px] max-w-[880px] object-contain block translate-y-[20px] transition-opacity duration-300"
+  :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'"
+/>
+
+</div>
+
+</div>
+
+---
+layout: default
+class: text-left
+clicks: 1
+---
+
+<div class="h-full flex flex-col pt-4 pb-3 px-2">
+
+<div class="eyebrow mb-1 text-center">
+Results &nbsp;·&nbsp; Image manifold &nbsp;·&nbsp; Quantitative
+</div>
+
+<h2 class="!text-2xl !leading-snug !mb-3 font-serif text-center" style="color: var(--c-fg)">
+Quantitative comparison &mdash; <span class="grad">NMI &amp; ARI</span>.
+</h2>
+
+<div class="flex-1 min-h-0 flex items-center justify-center">
+
+<img
+  :src="`${$slidev.configs.base ?? '/'}comparison_barchart_nmi_ari.png`"
+  class="max-h-[410px] max-w-[880px] object-contain block translate-y-[20px] transition-opacity duration-300"
+  :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'"
+/>
 
 </div>
 
@@ -3697,98 +4522,6 @@ Learning the <span class="grad">eigenbasis of the image manifold</span>.
   opacity: 0.25;
   z-index: 0;
   pointer-events: none;
-}
-</style>
-
----
-layout: default
-class: text-left
-hide: true
----
-
-<div class="h-full flex flex-col pt-4 pb-3 px-2">
-
-<div class="eyebrow mb-1 text-center">
-Method &nbsp;·&nbsp; Image manifold
-</div>
-
-<h2 class="!text-2xl !leading-snug !mb-3 font-serif text-center" style="color: var(--c-fg)">
-Setup.
-</h2>
-
-<div class="dataset-strip mb-3">
-  <img :src="`${$slidev.configs.base ?? '/'}datasets/imagenette_1.jpg`" class="ds-thumb" />
-  <img :src="`${$slidev.configs.base ?? '/'}datasets/imagenette_2.jpg`" class="ds-thumb" />
-  <img :src="`${$slidev.configs.base ?? '/'}datasets/imagenette_3.jpg`" class="ds-thumb" />
-  <img :src="`${$slidev.configs.base ?? '/'}datasets/imagenette_4.jpg`" class="ds-thumb" />
-  <span class="ds-divider"></span>
-  <img :src="`${$slidev.configs.base ?? '/'}datasets/stl10_1.png`" class="ds-thumb" />
-  <img :src="`${$slidev.configs.base ?? '/'}datasets/stl10_2.png`" class="ds-thumb" />
-  <img :src="`${$slidev.configs.base ?? '/'}datasets/stl10_3.png`" class="ds-thumb" />
-  <img :src="`${$slidev.configs.base ?? '/'}datasets/stl10_4.png`" class="ds-thumb" />
-</div>
-
-<div class="flow-step" v-click="1">
-
-**Datasets** &mdash; Imagenette and STL10.
-
-</div>
-
-<div class="flow-step" v-click="2">
-
-**Embed each image** &mdash; CLIP (512-d) and DINOv2 (768-d) features.
-
-</div>
-
-<div class="flow-step" v-click="3">
-
-**Train** &mdash; run the same eigenbasis pipeline on sampled subsets of the embeddings.
-
-</div>
-
-<div class="flow-step finale" v-click="4">
-
-**Test** &mdash; compare on dimensionality reduction against UMAP, t-SNE, PCA, and Laplacian eigenmaps.
-
-</div>
-
-</div>
-
-<style>
-.dataset-strip {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 0.4rem;
-}
-.dataset-strip .ds-thumb {
-  height: 52px;
-  width: 52px;
-  object-fit: cover;
-  border-radius: 4px;
-  border: 1px solid var(--c-border);
-}
-.dataset-strip .ds-divider {
-  display: inline-block;
-  width: 1px;
-  height: 36px;
-  background: var(--c-border);
-  margin: 0 0.4rem;
-}
-.flow-step {
-  border: 1px solid var(--c-border);
-  border-left: 3px solid var(--c-brand-from);
-  background: var(--c-bg-soft);
-  padding: 0.55rem 1.0rem;
-  border-radius: 8px;
-  margin-bottom: 0.4rem;
-  font-size: 0.88rem;
-  line-height: 1.45;
-  color: var(--c-fg-body);
-}
-.flow-step.finale {
-  border-left-color: var(--c-success);
-  background: rgba(4, 120, 87, 0.06);
 }
 </style>
 

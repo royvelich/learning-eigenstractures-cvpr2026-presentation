@@ -18,3 +18,9 @@ gen/.venv/
 
 # Build artifacts (regenerable from slides.md)
 *.pptx
+
+# Large screenshot folders (kept locally, not committed)
+public/overfit_screenshots/
+public/generalization_screenshots/
+public/rebuttal_screenshots/
+supp_metric@0.5x.png
