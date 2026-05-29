@@ -15,8 +15,8 @@ faces_pv = np.hstack([np.full((F.shape[0], 1), 3, dtype=np.int64), F.astype(np.i
 mesh_n = pv.PolyData(V, faces_pv)
 mesh_s = pv.PolyData(coords_lp, faces_pv)
 
-mesh_n.translate([-0.6, 0.0, 0.0], inplace=True)
-mesh_s.translate([0.6, 0.0, 0.0], inplace=True)
+mesh_n.translate([-0.35, 0.0, 0.0], inplace=True)
+mesh_s.translate([0.35, 0.0, 0.0], inplace=True)
 
 p = setup_plotter((1000, 500))
 common = dict(

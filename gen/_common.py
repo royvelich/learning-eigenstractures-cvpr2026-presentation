@@ -135,10 +135,18 @@ def setup_plotter(window_size=(800, 800)):
     return p
 
 
-def save_screenshot(plotter, name):
-    """Save plotter screenshot to public/applications/<name>.png (transparent)."""
+def save_screenshot(plotter, name, tight=True):
+    """Save plotter screenshot to public/applications/<name>.png (transparent).
+    With tight=True (default), the saved PNG is cropped to its alpha bbox so
+    the slide doesn't waste space on transparent margins."""
     out = OUT_DIR / f"{name}.png"
     plotter.screenshot(str(out), transparent_background=True, return_img=False)
     plotter.close()
+    if tight:
+        from PIL import Image
+        im = Image.open(out)
+        bbox = im.getchannel("A").getbbox()
+        if bbox:
+            im.crop(bbox).save(out)
     print(f"[ok] {out.relative_to(REPO_ROOT)}")
     return out

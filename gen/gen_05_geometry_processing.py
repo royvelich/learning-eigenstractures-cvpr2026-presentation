@@ -1,20 +1,18 @@
-"""Card 05 — Geometry Processing. Geodesic distance from a source vertex via the heat method."""
+"""Card 05 — Geometry Processing. Geodesic distance from a source vertex
+via the heat method (potpourri3d's `MeshHeatMethodDistanceSolver`)."""
 from _common import load_mesh, setup_plotter, save_screenshot, MPZ14
 import numpy as np
 import pyvista as pv
-import igl
+import potpourri3d as pp3d
 
 V, F = load_mesh(MPZ14 / "bimba100K.obj")
 
 # Pick a source point (apex / top of the head) so the distance bands are visually clean.
 source = int(np.argmax(V[:, 1]))
-gamma = np.array([source], dtype=np.int32)
 
-# libigl heat geodesics (Crane et al.)
-t = (igl.avg_edge_length(V, F) ** 2)
-data = igl.HeatGeodesicsData()
-igl.heat_geodesics_precompute(V.astype(np.float64), F.astype(np.int64), float(t), data)
-dist = igl.heat_geodesics_solve(data, gamma.astype(np.int64))
+# Heat-method geodesics (Crane et al.) via potpourri3d.
+solver = pp3d.MeshHeatMethodDistanceSolver(V.astype(np.float64), F.astype(np.int64))
+dist = solver.compute_distance(source)
 
 # Banded colormap by modulating
 period = 0.06

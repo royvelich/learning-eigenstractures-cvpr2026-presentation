@@ -46,9 +46,9 @@ Roy Velich<sup>1</sup> &nbsp;·&nbsp; Arkadi Piven<sup>1</sup> &nbsp;·&nbsp; Da
 Daniel Cremers<sup>2,3</sup> &nbsp;·&nbsp; Thomas Dagès<sup>1,2,3</sup> &nbsp;·&nbsp; Ron Kimmel<sup>1</sup>
 </div>
 
-<div class="text-sm muted max-w-3xl">
-<sup>1</sup>Technion — Israel Institute of Technology &nbsp;&nbsp;·&nbsp;&nbsp;
-<sup>2</sup>Technical University of Munich &nbsp;&nbsp;·&nbsp;&nbsp;
+<div class="text-sm muted max-w-5xl whitespace-nowrap">
+<sup>1</sup>Technion — Israel Institute of Technology &nbsp;·&nbsp;
+<sup>2</sup>Technical University of Munich &nbsp;·&nbsp;
 <sup>3</sup>Munich Center for Machine Learning
 </div>
 
@@ -94,12 +94,8 @@ Primer · the Laplacian, intuitively
 
 <div v-click="3" class="mt-4">
 
-<h2 class="!text-xl !leading-snug !mb-2 max-w-4xl font-serif" style="color: var(--c-fg-muted)">
-At every point, the <span class="lbo">Laplacian</span> asks
-</h2>
-
 <h1 class="!text-3xl !leading-tight max-w-5xl font-serif grad italic">
-"how different am I from my neighbours?"
+deviation from local average
 </h1>
 
 </div>
@@ -117,11 +113,19 @@ class: text-center
   <div class="eyebrow">Primer · the Laplacian as an operator</div>
 </div>
 
-<!-- f-cloud: starts large/centred, scales down & slides left on click 1 -->
+<!-- Click 1: header line appears -->
+<div v-click="1" class="absolute left-0 right-0 text-center text-2xl !leading-snug" style="top: 60px;">
+
+it's a linear, positive semi-definite (PSD) operator
+
+</div>
+
+<!-- Click 2: f-cloud appears at centre. Click 3: f-cloud scales down & slides left. -->
 <div
+  v-click="2"
   v-motion
   :initial="{ x: 0, scale: 1 }"
-  :click-1="{ x: -150, scale: 0.50 }"
+  :click-3="{ x: -150, scale: 0.50 }"
   class="absolute"
   style="top: 137px; left: 260px;"
 >
@@ -132,8 +136,8 @@ class: text-center
   />
 </div>
 
-<!-- Δ on the left -->
-<div v-click="1" class="absolute math-grad"
+<!-- Δ on the left (click 3) -->
+<div v-click="3" class="absolute math-grad"
      style="top: 50%; left: 130px; font-size: 60px; transform: translateY(calc(-50% + 8px));">
 
 $\Delta$
@@ -141,42 +145,35 @@ $\Delta$
 </div>
 
 <!-- ( opening paren -->
-<div v-click="1" class="absolute"
+<div v-click="3" class="absolute"
      style="top: 50%; left: 205px; font-size: 60px; color: var(--c-fg-muted); font-family: 'EB Garamond', serif; transform: translateY(-50%);">
   (
 </div>
 
 <!-- ) closing paren -->
-<div v-click="1" class="absolute"
+<div v-click="3" class="absolute"
      style="top: 50%; left: 450px; font-size: 60px; color: var(--c-fg-muted); font-family: 'EB Garamond', serif; transform: translateY(-50%);">
   )
 </div>
 
-<!-- = sign -->
-<div v-click="2" class="absolute"
+<!-- = sign (click 4) -->
+<div v-click="4" class="absolute"
      style="top: 50%; left: 510px; font-size: 48px; color: var(--c-fg); font-family: 'EB Garamond', serif; transform: translateY(-50%);">
   =
 </div>
 
-<!-- Δf-cloud, the output -->
-<img v-click="3"
+<!-- Δf-cloud, the output (click 5) -->
+<img v-click="5"
   :src="`${$slidev.configs.base ?? '/'}applications/data_manifold_laplacian_full.png`"
   class="absolute"
   style="top: 50%; left: 560px; transform: translateY(-50%); width: 230px;"
   alt="Δf, the Laplacian output"
 />
 
-<!-- Bottom caption -->
-<div v-click="3" class="absolute left-0 right-0 text-center" style="bottom: 80px;">
+<!-- Eigendecomposition motivator: appears AFTER the illustration is built (click 6). -->
+<div v-click="6" class="absolute left-0 right-0 text-center text-2xl !leading-snug" style="bottom: 40px;">
 
-the Laplacian <em>eats</em> a function and returns another
-
-</div>
-
-<!-- Eigendecomposition motivator -->
-<div v-click="4" class="absolute left-0 right-0 text-center" style="bottom: 32px;">
-
-it's an operator — so we can ask for its <span class="lbo">spectrum</span>: eigenfunctions and eigenvalues.
+its <span class="lbo">spectral decomposition</span> consists of <em>eigenfunctions</em> and <em>eigenvalues</em>
 
 </div>
 
@@ -185,23 +182,31 @@ it's an operator — so we can ask for its <span class="lbo">spectrum</span>: ei
 ---
 layout: default
 class: text-center
+clicks: 23
 ---
 
-<div class="h-full flex flex-col pt-4 pb-4 px-6 text-center">
+<div class="h-full flex flex-col pt-2 pb-1 px-6 text-center">
 
-<div class="eyebrow mb-1">
+<div class="eyebrow mb-0">
 Primer · in Euclidean space
 </div>
 
-<h2 class="!text-xl !leading-snug !mb-3 font-serif" style="color: var(--c-fg)">
+<h2 class="!text-xl !leading-snug !mb-1 font-serif" style="color: var(--c-fg)">
 Same question — the neighbourhood is a <span class="lbo">unit ball</span>.
 </h2>
 
-<div class="flex-1 min-h-0 grid grid-cols-2 gap-x-8 gap-y-3" style="grid-template-rows: 1fr auto;">
+<div class="flex-1 min-h-0 grid grid-cols-2 gap-x-8 gap-y-0" style="grid-template-rows: 1fr auto auto;">
 
+<!-- Reveal 1D first (clicks 1–10), then 2D (clicks 12–21).
+     Per-side progression: function → red point → red ball → Δf > 0
+     → blue point → blue ball → Δf < 0 → grey point → grey ball → Δf ≈ 0.
+     The Laplacian formula for each side appears only AFTER that side's
+     diagram is fully revealed (1D math: click 11, 2D math: click 22).
+     The unifying div-of-grad statement comes last, click 23. -->
 <div class="min-h-0 flex items-center justify-center">
   <img
-    :src="`${$slidev.configs.base ?? '/'}applications/lap_euclidean_1d.png`"
+    :src="`${$slidev.configs.base ?? '/'}applications/lap_euclidean_1d_stage_${Math.min(Math.max($clicks - 1, 0), 9)}.png`"
+    :style="{ opacity: $clicks >= 1 ? 1 : 0 }"
     class="max-h-full max-w-full object-contain"
     alt="Laplacian setup on R — focal x0 with interval neighbourhood"
   />
@@ -209,21 +214,28 @@ Same question — the neighbourhood is a <span class="lbo">unit ball</span>.
 
 <div class="min-h-0 flex items-center justify-center">
   <img
-    :src="`${$slidev.configs.base ?? '/'}applications/lap_euclidean_2d.png`"
+    :src="`${$slidev.configs.base ?? '/'}applications/lap_euclidean_2d_stage_${Math.min(Math.max($clicks - 12, 0), 9)}.png`"
+    :style="{ opacity: $clicks >= 12 ? 1 : 0 }"
     class="max-h-full max-w-full object-contain"
     alt="Laplacian setup on R^2 — focal x0 with disk neighbourhood"
   />
 </div>
 
-<div class="text-center flex items-center justify-center" style="font-size: 20px;">
+<div class="text-center flex items-center justify-center" :style="{ opacity: $clicks >= 11 ? 1 : 0, fontSize: '14px' }">
 
 $\Delta f = \dfrac{d^2 f}{dx^2}$
 
 </div>
 
-<div class="text-center flex items-center justify-center" style="font-size: 20px;">
+<div class="text-center flex items-center justify-center" :style="{ opacity: $clicks >= 22 ? 1 : 0, fontSize: '14px' }">
 
 $\Delta f = \dfrac{\partial^2 f}{\partial u^2} + \dfrac{\partial^2 f}{\partial v^2}$
+
+</div>
+
+<div class="text-center flex items-center justify-center" :style="{ opacity: $clicks >= 23 ? 1 : 0, fontSize: '22px', gridColumn: '1 / -1' }">
+
+in general, $\Delta f \;=\; \operatorname{div}\bigl(\operatorname{grad} f\bigr)$ &nbsp;—&nbsp; the <span class="lbo">divergence of the gradient</span>.
 
 </div>
 
@@ -234,6 +246,7 @@ $\Delta f = \dfrac{\partial^2 f}{\partial u^2} + \dfrac{\partial^2 f}{\partial v
 ---
 layout: default
 class: text-center
+clicks: 11
 ---
 
 <div class="h-full flex flex-col pt-2 pb-2 px-2 text-center">
@@ -246,16 +259,20 @@ Primer · on a curved domain
 Same question — the domain itself is now a <span class="lbo">curved manifold</span>.
 </h2>
 
+<!-- Click-driven reveal (clicks 1–10) of the same staged scene used in
+     gen_16: domain + f-sheet, then red / blue / grey focal points with
+     their geodesic disks and Δf labels. The LBO formula appears only
+     after the diagram is fully revealed (click 11). -->
 <div class="flex-1 min-h-0 flex items-center justify-center">
   <img
-    :src="`${$slidev.configs.base ?? '/'}applications/lap_curved_2d.png`"
+    :src="`${$slidev.configs.base ?? '/'}applications/lap_curved_2d_stage_${Math.min(Math.max($clicks - 1, 0), 9)}.png`"
+    :style="{ opacity: $clicks >= 1 ? 1 : 0, height: '100%' }"
     class="max-h-full max-w-full object-contain"
-    style="height: 100%;"
     alt="curved domain M with the function f as a sheet floating above it"
   />
 </div>
 
-<div class="text-center mt-1" style="font-size: 18px;">
+<div class="text-center mt-1" :style="{ opacity: $clicks >= 11 ? 1 : 0, fontSize: '18px' }">
 
 $\Delta_M f \;=\; \operatorname{div}_M\!\big(\nabla_M f\big)$ &nbsp;·&nbsp; the <span class="lbo">Laplace–Beltrami operator</span> (LBO)
 
@@ -311,7 +328,7 @@ A single spectral basis &mdash; <span class="grad">many families of tools</span>
 </div>
 
 <div class="app-tile" v-click="2">
-  <img :src="`${$slidev.configs.base ?? '/'}applications/app_02_corr_cat.png`" alt="Shape correspondence" />
+  <img :src="`${$slidev.configs.base ?? '/'}applications/app_02_corr_lion.png`" alt="Shape correspondence" />
   <div class="app-cap">Shape correspondence</div>
 </div>
 
@@ -373,72 +390,106 @@ layout: default
 class: text-left
 ---
 
-<div class="h-full flex flex-col pt-6 pb-4 px-2">
+<div class="h-full flex flex-col pt-2 pb-2 px-2">
 
-<div class="eyebrow mb-2 text-center">
-Background &nbsp;·&nbsp; The traditional pipeline
+<div class="eyebrow mb-0 text-center">
+Background &nbsp;·&nbsp; Two pipelines for the same eigenstructure
 </div>
 
-<h2 class="!text-2xl !leading-snug !mb-8 font-serif text-center" style="color: var(--c-fg)">
-Computing the Laplacian eigenstructure, <span class="grad">step by step</span>
+<h2 class="!text-2xl !leading-snug !mb-1 font-serif text-center" style="color: var(--c-fg)">
+Computing the Laplacian eigenstructure, <span class="grad">two ways</span>
 </h2>
 
-<div class="flex-1 min-h-0 pipe-grid">
+<div class="flex-1 min-h-0 pipe-grid-2">
 
-<!-- Titles (row 1) -->
-<div class="pipe-title" style="grid-column: 1; grid-row: 1;" v-click="1">Triangulation</div>
-<div class="pipe-title" style="grid-column: 3; grid-row: 1;" v-click="3">Stiffness &amp; Mass</div>
-<div class="pipe-title" style="grid-column: 5; grid-row: 1;" v-click="4">Eigensolve</div>
-<div class="pipe-title" style="grid-column: 7; grid-row: 1;" v-click="5">Eigenbasis</div>
+<!-- Stage titles (row 1) -->
+<div class="pipe-title" style="grid-column: 2; grid-row: 1;" v-click="1">Neighborhood extraction</div>
+<div class="pipe-title" style="grid-column: 4; grid-row: 1;" v-click="3">Operator extraction</div>
+<div class="pipe-title" style="grid-column: 6; grid-row: 1;" v-click="4">Eigensolve</div>
+<div class="pipe-title" style="grid-column: 8; grid-row: 1;" v-click="5">Eigenbasis</div>
 
-<!-- Arrows span the content row -->
-<div class="pipe-arrow" style="grid-column: 2; grid-row: 2;" v-click="3">›</div>
-<div class="pipe-arrow" style="grid-column: 4; grid-row: 2;" v-click="4">›</div>
-<div class="pipe-arrow" style="grid-column: 6; grid-row: 2;" v-click="5">›</div>
+<!-- Vertical branch labels (column 1) -->
+<div class="pipe-branch-label" style="grid-column: 1; grid-row: 2;">
 
-<!-- Content (row 2) -->
-<div class="pipe-img-wrap relative" style="grid-column: 1; grid-row: 2;">
+2-manifold in $\mathbb{R}^3$
+
+</div>
+<div class="pipe-branch-label" style="grid-column: 1; grid-row: 3;">
+
+$k$-manifold embedded in $\mathbb{R}^n$
+
+</div>
+
+<!-- Vertical separators between stages (span both content rows). -->
+<div class="pipe-sep" style="grid-column: 3; grid-row: 2 / span 2;"></div>
+<div class="pipe-sep" style="grid-column: 5; grid-row: 2 / span 2;"></div>
+<div class="pipe-sep" style="grid-column: 7; grid-row: 2 / span 2;"></div>
+
+<!-- ──────── UPPER ROW : mesh / cotangent (row 2) ──────── -->
+<div class="pipe-img-wrap relative" style="grid-column: 2; grid-row: 2;">
   <img
     v-click="1"
     :src="`${$slidev.configs.base ?? '/'}applications/pipeline_vertices.png`"
-    class="absolute inset-0 m-auto"
-    style="max-height: 100%; max-width: 100%; object-fit: contain;"
+    class="absolute inset-0 m-auto pipe-img"
     alt="Vertices"
   />
   <img
     v-click="2"
     :src="`${$slidev.configs.base ?? '/'}applications/pipeline_triangulation.png`"
-    class="absolute inset-0 m-auto"
-    style="max-height: 100%; max-width: 100%; object-fit: contain;"
+    class="absolute inset-0 m-auto pipe-img"
     alt="Triangle mesh"
   />
 </div>
 
-<div class="pipe-img-wrap" style="grid-column: 3; grid-row: 2;" v-click="3">
-  <img :src="`${$slidev.configs.base ?? '/'}applications/pipeline_voronoi_cot.png`" alt="Voronoi cell and cotangent angles" />
+<div class="pipe-img-wrap" style="grid-column: 4; grid-row: 2;" v-click="3">
+  <img :src="`${$slidev.configs.base ?? '/'}applications/pipeline_voronoi_cot.png`" class="pipe-img" alt="Voronoi cell and cotangent angles" />
 </div>
 
-<div class="pipe-eq-only" style="grid-column: 5; grid-row: 2;" v-click="4">
+<div class="pipe-eq-only" style="grid-column: 6; grid-row: 2;" v-click="4">
 
-$$S\boldsymbol{\phi} = \lambda\, M\boldsymbol{\phi}$$
-
-</div>
-
-<div class="pipe-eq-only" style="grid-column: 7; grid-row: 2;" v-click="5">
-
-$\{\boldsymbol{\phi}_i\}$ &nbsp;,&nbsp; $\{\lambda_i\}$
+$S\boldsymbol{\phi} = \lambda\, M\boldsymbol{\phi}$
 
 </div>
 
-<!-- Captions (row 3) -->
-<div class="pipe-caption" style="grid-column: 1; grid-row: 3;">&nbsp;</div>
-<div class="pipe-caption" style="grid-column: 3; grid-row: 3;" v-click="3">
+<div class="pipe-eq-only" style="grid-column: 8; grid-row: 2;" v-click="5">
 
-$M$ &nbsp;,&nbsp; $S$
+$\{\boldsymbol{\phi}_i\},\; \{\lambda_i\}$
 
 </div>
-<div class="pipe-caption" style="grid-column: 5; grid-row: 3;">&nbsp;</div>
-<div class="pipe-caption" style="grid-column: 7; grid-row: 3;">&nbsp;</div>
+
+<!-- ──────── LOWER ROW : graph / Belkin–Niyogi (row 3) ──────── -->
+<!-- Same vertices as upper row; just connect k-NN edges (spokes only —
+     NO triangulation). -->
+<div class="pipe-img-wrap relative" style="grid-column: 2; grid-row: 3;">
+  <img
+    v-click="6"
+    :src="`${$slidev.configs.base ?? '/'}applications/pipeline_vertices.png`"
+    class="absolute inset-0 m-auto pipe-img"
+    alt="Point cloud"
+  />
+  <img
+    v-click="7"
+    :src="`${$slidev.configs.base ?? '/'}applications/pipeline_knn_graph.png`"
+    class="absolute inset-0 m-auto pipe-img"
+    alt="k-NN graph (spokes only — not a triangulation)"
+  />
+</div>
+
+<div class="pipe-img-wrap" style="grid-column: 4; grid-row: 3;" v-click="8">
+  <img :src="`${$slidev.configs.base ?? '/'}applications/pipeline_heat_weights.png`" class="pipe-img" alt="Heat-kernel edge weights and degree" />
+</div>
+
+<div class="pipe-eq-only" style="grid-column: 6; grid-row: 3;" v-click="9">
+
+$L\mathbf{y} = \lambda\, D\mathbf{y}$
+
+</div>
+
+<div class="pipe-eq-only" style="grid-column: 8; grid-row: 3;" v-click="10">
+
+$\{\mathbf{y}_i\},\; \{\lambda_i\}$
+
+</div>
 
 </div>
 
@@ -453,6 +504,44 @@ $M$ &nbsp;,&nbsp; $S$
   row-gap: 0.4rem;
   width: 100%;
   align-items: stretch;
+}
+.pipe-grid-2 {
+  /* Column 1: branch labels (2-manifold / k-manifold), vertical text.
+     Columns 2, 4, 6, 8: stage content. Columns 3, 5, 7: thin separators. */
+  display: grid;
+  grid-template-columns: auto 1fr auto 1fr auto 1fr auto 1fr;
+  grid-template-rows: auto 1fr 1fr;
+  column-gap: 0.6rem;
+  row-gap: 0.2rem;
+  width: 100%;
+  height: 100%;
+  align-items: stretch;
+}
+.pipe-branch-label {
+  align-self: center;
+  justify-self: start;
+  text-align: left;
+  font-style: italic;
+  font-size: 0.95rem;
+  color: var(--c-fg-muted);
+  letter-spacing: -0.005em;
+  padding-right: 0.5rem;
+  max-width: 9.5rem;
+  line-height: 1.15;
+}
+.pipe-branch-label p { margin: 0; padding: 0; }
+.pipe-branch-label .katex { font-size: inherit; color: inherit; }
+.pipe-sep {
+  width: 1px;
+  background: var(--c-fg-subtle);
+  opacity: 0.45;
+  justify-self: center;
+  align-self: stretch;
+}
+.pipe-img {
+  max-height: 100%;
+  max-width: 100%;
+  object-fit: contain;
 }
 .pipe-title {
   font-weight: 700;
@@ -526,58 +615,52 @@ $M$ &nbsp;,&nbsp; $S$
 ---
 layout: default
 class: text-left
+clicks: 6
 ---
 
 <div class="h-full flex flex-col pt-6 pb-4 px-2">
 
 <div class="eyebrow mb-2 text-center">
-Background &nbsp;·&nbsp; Where the pipeline breaks down
+Background &nbsp;·&nbsp; What the traditional pipeline really is
 </div>
 
 <h2 class="!text-2xl !leading-snug !mb-8 font-serif text-center" style="color: var(--c-fg)">
-Three <span class="grad">unavoidable bottlenecks</span>.
+Explicit, discrete, and <span class="grad">not differentiable</span>.
 </h2>
 
 <div class="grid grid-cols-3 gap-8 flex-1 min-h-0 bottleneck-grid">
 
-<div class="bottleneck-tile">
+<div class="bottleneck-tile" v-click="1">
+  <div class="bottleneck-img-wrap bottleneck-delta">
+
+$\Delta$
+
+  </div>
+  <div class="bottleneck-cap">
+    <div class="cap-line" :class="{ 'crossed': $clicks >= 4 }">explicit</div>
+    <div class="cap-line cap-new" v-if="$clicks >= 4">implicit</div>
+  </div>
+</div>
+
+<div class="bottleneck-tile" v-click="2">
   <div class="bottleneck-img-wrap">
     <img :src="`${$slidev.configs.base ?? '/'}applications/pipeline_triangulation.png`" alt="Triangulation of a 2-manifold" />
   </div>
   <div class="bottleneck-cap">
-
-Hard-coded $d_\text{int} = 2$
-
-</div>
-</div>
-
-<div class="bottleneck-tile">
-  <div class="bottleneck-img-wrap">
-    <img :src="`${$slidev.configs.base ?? '/'}applications/bottleneck_high_d_graph.png`" alt="High-dimensional graph" />
+    <div class="cap-line" :class="{ 'crossed': $clicks >= 5 }">discrete</div>
+    <div class="cap-line cap-new" v-if="$clicks >= 5">continuous</div>
   </div>
-  <div class="bottleneck-cap">
-
-Doesn't scale to $\mathbb{R}^n$
-
-</div>
 </div>
 
-<div class="bottleneck-tile">
+<div class="bottleneck-tile" v-click="3">
   <div class="bottleneck-img-wrap">
     <img :src="`${$slidev.configs.base ?? '/'}applications/bottleneck_no_grad.png`" alt="No backpropagation" />
   </div>
   <div class="bottleneck-cap">
-
-Not differentiable
-
+    <div class="cap-line" :class="{ 'crossed': $clicks >= 6 }">not differentiable</div>
+    <div class="cap-line cap-new" v-if="$clicks >= 6">differentiable</div>
+  </div>
 </div>
-</div>
-
-</div>
-
-<div class="text-center mt-6 text-sm muted italic">
-
-We need a pipeline that is <span style="color: var(--c-fg-body); font-style: normal; font-weight: 600;">dimension-agnostic</span>, <span style="color: var(--c-fg-body); font-style: normal; font-weight: 600;">mesh-free</span>, and <span style="color: var(--c-fg-body); font-style: normal; font-weight: 600;">end-to-end differentiable</span>.
 
 </div>
 
@@ -604,21 +687,55 @@ We need a pipeline that is <span style="color: var(--c-fg-body); font-style: nor
   max-width: 100%;
   object-fit: contain;
 }
+.bottleneck-img-wrap img {
+  /* Slightly smaller images so the captions can breathe. */
+  max-height: 78%;
+  max-width: 78%;
+  object-fit: contain;
+}
 .bottleneck-cap {
-  margin-top: 0.6rem;
+  margin-top: 0.8rem;
   font-weight: 700;
-  font-size: 1.05rem;
+  font-size: 1.7rem;
   color: var(--c-fg);
   text-align: center;
   letter-spacing: -0.005em;
-  min-height: 2.6em;
+  min-height: 3.4em;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
+  gap: 0.2rem;
+  line-height: 1.15;
 }
 .bottleneck-cap p {
   margin: 0;
 }
+.cap-line {
+  transition: text-decoration 200ms ease, color 200ms ease;
+}
+.cap-line.crossed {
+  text-decoration: line-through;
+  text-decoration-thickness: 3px;
+  color: var(--c-fg-subtle);
+}
+.cap-new {
+  background-image: linear-gradient(135deg, var(--c-brand-from), var(--c-brand-to));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.bottleneck-delta {
+  /* Render the big Δ symbol at the same vertical size as the other column
+     images. Slightly smaller now so the larger captions have more room. */
+  font-size: 11rem;
+  font-weight: 200;
+  line-height: 0.9;
+  color: var(--c-fg);
+  letter-spacing: 0;
+}
+.bottleneck-delta .katex { font-size: inherit; color: inherit; }
+.bottleneck-delta p { margin: 0; padding: 0; line-height: 1; }
 </style>
 
 ---
@@ -636,59 +753,33 @@ Our approach
 Skip the operator. <span class="grad">Learn the eigenbasis directly.</span>
 </h2>
 
-<div class="pipeline-block mb-4" v-click="1">
+<!-- Both rows share one CSS grid so the chips align column-by-column.
+     Row 1: Traditional label (centered above its chips, spans all chip cols).
+     Row 2: Traditional chips.
+     Row 3: Ours label.
+     Row 4: Ours chips. -->
+<div class="pipeline-shared-grid mb-8">
 
-<div class="pipeline-row-label">Traditional</div>
+<!-- Traditional label + chips (clicks 1 / 2) -->
+<div class="pipeline-row-label" style="grid-column: 1 / -1; grid-row: 1;" v-click="1">Traditional</div>
+<div class="chip chip-hero" style="grid-column: 1; grid-row: 2;" v-click="1">Point cloud</div>
+<div class="chip-arrow chip-arrow-hero" style="grid-column: 2; grid-row: 2;" v-click="1">›</div>
+<div class="chip chip-hero" :class="{ 'chip-bypassed': $clicks >= 2 }" style="grid-column: 3; grid-row: 2;" v-click="1">Neighborhood extraction</div>
+<div class="chip-arrow chip-arrow-hero" style="grid-column: 4; grid-row: 2;" v-click="1">›</div>
+<div class="chip chip-hero" :class="{ 'chip-bypassed': $clicks >= 2 }" style="grid-column: 5; grid-row: 2;" v-click="1">Operator extraction</div>
+<div class="chip-arrow chip-arrow-hero" style="grid-column: 6; grid-row: 2;" v-click="1">›</div>
+<div class="chip chip-hero" :class="{ 'chip-bypassed': $clicks >= 2 }" style="grid-column: 7; grid-row: 2;" v-click="1">Eigensolve</div>
+<div class="chip-arrow chip-arrow-hero" style="grid-column: 8; grid-row: 2;" v-click="1">›</div>
+<div class="chip chip-hero" style="grid-column: 9; grid-row: 2;" v-click="1">Eigenbasis</div>
 
-<div class="pipeline-row-static">
-  <div class="chip chip-hero">Point cloud</div>
-  <div class="chip-arrow chip-arrow-hero">›</div>
-  <div class="chip chip-hero" :class="{ 'chip-bypassed': $clicks >= 2 }">Triangulation</div>
-  <div class="chip-arrow chip-arrow-hero">›</div>
-  <div class="chip chip-hero" :class="{ 'chip-bypassed': $clicks >= 2 }">Stiffness &amp; Mass</div>
-  <div class="chip-arrow chip-arrow-hero">›</div>
-  <div class="chip chip-hero" :class="{ 'chip-bypassed': $clicks >= 2 }">Eigensolve</div>
-  <div class="chip-arrow chip-arrow-hero">›</div>
-  <div class="chip chip-hero">Eigenbasis</div>
-</div>
-
-</div>
-
-<div class="pipeline-block mb-8" v-click="3">
-
-<div class="pipeline-row-label ours-label">Ours</div>
-
-<div class="pipeline-row-static">
-  <div class="chip chip-hero">Point cloud</div>
-  <div class="chip-arrow chip-arrow-hero">›</div>
-  <div class="chip chip-hero chip-net">Neural network</div>
-  <div class="chip-arrow chip-arrow-hero">›</div>
-  <div class="chip chip-hero">Eigenbasis</div>
-</div>
-
-</div>
-
-<div class="grid grid-cols-2 gap-6 max-w-4xl mx-auto w-full" v-click="4">
-
-<div class="benefit-card">
-
-<div class="benefit-label bypass-label">Bypassed</div>
-
-- No mesh or triangulation
-- No operator assembly ($S,\, M$)
-- No numerical eigensolver
-
-</div>
-
-<div class="benefit-card">
-
-<div class="benefit-label gain-label">Gained</div>
-
-- Works on raw point clouds
-- Dimension-agnostic
-- End-to-end differentiable
-
-</div>
+<!-- Ours label + chips (click 3). Neural network spans grid columns 3..7,
+     left edge = "Neighborhood extraction" left, right edge = "Eigensolve" right. -->
+<div class="pipeline-row-label ours-label" style="grid-column: 1 / -1; grid-row: 3;" v-click="3">Ours</div>
+<div class="chip chip-hero" style="grid-column: 1; grid-row: 4;" v-click="3">Point cloud</div>
+<div class="chip-arrow chip-arrow-hero" style="grid-column: 2; grid-row: 4;" v-click="3">›</div>
+<div class="chip chip-hero chip-net" style="grid-column: 3 / span 5; grid-row: 4;" v-click="3">Neural network</div>
+<div class="chip-arrow chip-arrow-hero" style="grid-column: 8; grid-row: 4;" v-click="3">›</div>
+<div class="chip chip-hero" style="grid-column: 9; grid-row: 4;" v-click="3">Eigenbasis</div>
 
 </div>
 
@@ -718,6 +809,77 @@ Skip the operator. <span class="grad">Learn the eigenbasis directly.</span>
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
+}
+.pipeline-row-grid {
+  /* 5 stage columns (1, 3, 5, 7, 9) interleaved with 4 arrow columns
+     (2, 4, 6, 8) — same template for both rows so the Ours' wide
+     "Neural network" chip (spans 3 / span 5) lines up exactly with the
+     three middle Traditional stages plus the two arrows between them. */
+  display: grid;
+  grid-template-columns: 1fr auto 1fr auto 1fr auto 1fr auto 1fr;
+  align-items: center;
+  justify-items: stretch;
+  column-gap: 0.5rem;
+}
+.pipeline-row-grid .chip {
+  justify-self: stretch;
+  text-align: center;
+}
+.pipeline-row-grid .chip-arrow {
+  justify-self: center;
+}
+.pipeline-shared-grid {
+  /* Single grid for BOTH pipeline rows so the 5 stage columns share
+     widths between rows. All chip + arrow columns are content-sized
+     (auto) so each chip is only as wide as its text + padding — the
+     two middle chips (Neighborhood / Operator extraction) shrink to
+     fit their text instead of stretching to a 1fr share. The whole
+     row is then centred via justify-content. The Ours-row "Neural
+     network" chip spans grid columns 3..7, so its left edge sits at
+     "Neighborhood extraction"'s left edge and its right edge at
+     "Eigensolve"'s right edge. */
+  display: grid;
+  grid-template-columns: auto auto auto auto auto auto auto auto auto;
+  grid-template-rows: auto auto auto auto;
+  column-gap: 0.5rem;
+  row-gap: 0.45rem;
+  align-items: center;
+  justify-items: stretch;
+  justify-content: center;
+}
+.pipeline-shared-grid .chip {
+  justify-self: stretch;
+  text-align: center;
+  padding: 0.5rem 0.6rem;
+  font-size: 0.92rem;
+  /* Allow long labels ("Neighborhood extraction", "Operator extraction")
+     to wrap onto two lines so the chip stays NARROWER. All chips share a
+     min-height so single-line and two-line chips line up nicely. */
+  white-space: normal;
+  word-break: normal;
+  overflow-wrap: break-word;
+  max-width: 110px;
+  min-height: 3.4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1.15;
+}
+.pipeline-shared-grid .chip-net {
+  /* Neural network spans 5 columns — let it stretch across the full
+     spanned width instead of being clamped by the per-chip max-width. */
+  max-width: none;
+  padding: 0.5rem 0.8rem;
+}
+.pipeline-shared-grid .chip-arrow { justify-self: center; }
+.pipeline-shared-grid .pipeline-row-label {
+  justify-self: center;
+  text-align: center;
+  margin-bottom: 0;
+}
+/* Vertical breathing room between the Traditional row and the Ours row */
+.pipeline-shared-grid .ours-label {
+  margin-top: 2.8rem;
 }
 .chip-bypassed {
   opacity: 0.55;
@@ -944,7 +1106,7 @@ Reconstruction / least-squares loss.
 ---
 layout: default
 class: text-left
-clicks: 13
+clicks: 10
 ---
 
 <div class="h-full flex flex-col pt-4 pb-3 px-2">
@@ -957,98 +1119,33 @@ Optimal approximation theory &nbsp;·&nbsp; Aflalo, Brezis et&nbsp;al. (2016)
 Recover the <span class="grad">eigenbasis</span> <em>and</em> the <span class="grad">eigenvalues</span> of <i>L</i>.
 </h2>
 
-<div class="flex-1 min-h-0 relative px-4 optimal-pair-host">
-
-  <!-- LEFT figure (first basis): starts centered, slides LEFT once the
-       second figure appears on click 7. -->
+<!-- Click-by-click reveal — two sequential build-ups on the same canvas.
+     Each PNG shares the same alpha-tight crop, so swapping the visible
+     image by $clicks just adds (or resets) content without nudging
+     anything else on screen.
+       Sequence A (flat basis):
+         click 0 → blank
+         click 1 → xyz axes + v
+         click 2 → flat basis + grid + v   (axes removed)
+         click 3 → + projections c1 b1, c2 b2
+         click 4 → + reconstructed v_proj
+         click 5 → + residual v - v_proj
+       Sequence B (slightly tilted basis):
+         click 6 → axes + v                (clean reset)
+         click 7 → tilted basis + tilted grid + v
+         click 8 → + tilted projections
+         click 9 → + tilted v_proj
+         click 10 → + tilted (smaller) residual -->
+<div class="flex-1 min-h-0 relative px-4 optimal-stage-host">
   <div class="absolute inset-0 flex items-center justify-center">
-    <div
-      v-motion
-      :initial="{ x: 0 }"
-      :enter="{ x: 0 }"
-      :click-7="{ x: -240, scale: 0.9 }"
-      class="optimal-stage-wrap"
-    >
-      <img class="optimal-stage" :style="{ opacity: $clicks === 0 ? 1 : 0 }"
-           :src="`${$slidev.configs.base ?? '/'}applications/optimal_basis_stage1.png`"
-           alt="3D coordinate axes" />
-      <img class="optimal-stage" :style="{ opacity: $clicks === 1 ? 1 : 0 }"
-           :src="`${$slidev.configs.base ?? '/'}applications/optimal_basis_stage2.png`"
-           alt="the 3D vector v" />
-      <img class="optimal-stage" :style="{ opacity: $clicks === 2 ? 1 : 0 }"
-           :src="`${$slidev.configs.base ?? '/'}applications/optimal_basis_stage3.png`"
-           alt="basis b1, b2 and the plane they span" />
-      <img class="optimal-stage" :style="{ opacity: $clicks === 3 ? 1 : 0 }"
-           :src="`${$slidev.configs.base ?? '/'}applications/optimal_basis_stage4.png`"
-           alt="projection of v onto b1" />
-      <img class="optimal-stage" :style="{ opacity: $clicks === 4 ? 1 : 0 }"
-           :src="`${$slidev.configs.base ?? '/'}applications/optimal_basis_stage5.png`"
-           alt="projection of v onto b2" />
-      <img class="optimal-stage" :style="{ opacity: $clicks === 5 ? 1 : 0 }"
-           :src="`${$slidev.configs.base ?? '/'}applications/optimal_basis_stage6.png`"
-           alt="sum: v_proj = c1 b1 + c2 b2" />
-      <!-- Final state of first basis — stays visible from click 6 onwards
-           (i.e. once revealed, it stays put while the right figure builds). -->
-      <img class="optimal-stage" :style="{ opacity: $clicks >= 6 ? 1 : 0 }"
-           :src="`${$slidev.configs.base ?? '/'}applications/optimal_basis_stage7.png`"
-           alt="residual error v - v_proj" />
+    <div class="optimal-stage-wrap">
+      <img v-for="n in 10" :key="n"
+           v-click="[n, n + 1]"
+           class="optimal-stage"
+           :src="`${$slidev.configs.base ?? '/'}applications/optimal_basis_step${n}.png`"
+           :alt="`stage ${n}`" />
     </div>
   </div>
-
-  <!-- RIGHT figure (better basis): hidden initially, slides in from
-       center to the RIGHT on click 7, then builds up. -->
-  <div class="absolute inset-0 flex items-center justify-center">
-    <div
-      v-motion
-      :initial="{ x: 0, opacity: 0, scale: 0.9 }"
-      :enter="{ x: 0, opacity: 0, scale: 0.9 }"
-      :click-7="{ x: 240, opacity: 1, scale: 0.9 }"
-      class="optimal-stage-wrap"
-    >
-      <img class="optimal-stage" :style="{ opacity: $clicks === 7 ? 1 : 0 }"
-           :src="`${$slidev.configs.base ?? '/'}applications/optimal_basis_better_stage1.png`"
-           alt="3D coordinate axes" />
-      <img class="optimal-stage" :style="{ opacity: $clicks === 8 ? 1 : 0 }"
-           :src="`${$slidev.configs.base ?? '/'}applications/optimal_basis_better_stage2.png`"
-           alt="the 3D vector v (better basis)" />
-      <img class="optimal-stage" :style="{ opacity: $clicks === 9 ? 1 : 0 }"
-           :src="`${$slidev.configs.base ?? '/'}applications/optimal_basis_better_stage3.png`"
-           alt="better basis b1, b2 and the tilted plane they span" />
-      <img class="optimal-stage" :style="{ opacity: $clicks === 10 ? 1 : 0 }"
-           :src="`${$slidev.configs.base ?? '/'}applications/optimal_basis_better_stage4.png`"
-           alt="projection of v onto b1 (better)" />
-      <img class="optimal-stage" :style="{ opacity: $clicks === 11 ? 1 : 0 }"
-           :src="`${$slidev.configs.base ?? '/'}applications/optimal_basis_better_stage5.png`"
-           alt="projection of v onto b2 (better)" />
-      <img class="optimal-stage" :style="{ opacity: $clicks === 12 ? 1 : 0 }"
-           :src="`${$slidev.configs.base ?? '/'}applications/optimal_basis_better_stage6.png`"
-           alt="sum: v_proj (better)" />
-      <img class="optimal-stage" :style="{ opacity: $clicks >= 13 ? 1 : 0 }"
-           :src="`${$slidev.configs.base ?? '/'}applications/optimal_basis_better_stage7.png`"
-           alt="residual error (better basis) — smaller" />
-    </div>
-  </div>
-
-</div>
-
-<!-- Caption row — reserves its vertical space from the start so the
-     figure above doesn't shrink when a caption appears. -->
-<div class="caption-row mt-3 mb-1">
-
-  <div :style="{ opacity: ($clicks >= 6 && $clicks < 13) ? 1 : 0 }"
-       class="caption-line">
-
-  A 2D basis $\{b_1, b_2\}$ reconstructs a 3D vector $v$ — error $= v - v_{\text{proj}}$.
-
-  </div>
-
-  <div :style="{ opacity: $clicks >= 13 ? 1 : 0 }"
-       class="caption-line">
-
-  A <span class="grad">better basis</span> — the same projection scheme, but a much smaller residual.
-
-  </div>
-
 </div>
 
 </div>
@@ -1081,6 +1178,286 @@ Recover the <span class="grad">eigenbasis</span> <em>and</em> the <span class="g
   object-fit: contain;
   transition: opacity 250ms ease;
 }
+</style>
+
+---
+layout: default
+class: text-left
+clicks: 6
+---
+
+<div class="h-full flex flex-col pt-4 pb-3 px-2 relative">
+
+<div class="eyebrow mb-1 text-center">
+Constructive special case &nbsp;·&nbsp; Euclidean domains with boundary
+</div>
+
+<h2 class="!text-2xl !leading-snug !mb-4 font-serif text-center" style="color: var(--c-fg)">
+On a curve or an image, this eigenbasis is the <span class="grad">DCT</span>.
+</h2>
+
+<!-- Click flow:
+       click 1 → 1D sample signal fades in
+       click 2 → 1D cosine modes fade in (smooth reveal)
+       click 3 → 2D sample image fades in
+       click 4 → 2D cosine product modes fade in
+       click 5 → 1D signal + 2D image fade out AND modes glide up to the
+                 top of their column (modes don't change size)
+       click 6 → "Neumann eigenbasis" caption fades in below the modes -->
+<div class="flex-1 min-h-0 grid grid-cols-[1.15fr_1fr] gap-10 px-6 items-stretch"
+     :class="{ 'modes-up': $clicks >= 5 }">
+
+<!-- 1D — the curve [0, L] -->
+<div class="dct-col">
+  <img class="dct-sample dct-reveal" :class="{ 'is-on': $clicks >= 1 && $clicks < 5 }"
+       :src="`${$slidev.configs.base ?? '/'}applications/dct_1d_sample.png`"
+       alt="A smooth 1D signal on [0, L]" />
+  <img class="dct-basis dct-reveal" :class="{ 'is-on': $clicks >= 2 }"
+       :src="`${$slidev.configs.base ?? '/'}applications/dct_1d_basis.png`"
+       alt="1D DCT cosine modes on [0, L]" />
+
+  <div class="dct-formula dct-reveal" :class="{ 'is-on': $clicks >= 2 }">
+
+  $\varphi_n(x) = \cos\!\left(\dfrac{n\pi x}{L}\right)$
+
+  </div>
+</div>
+
+<!-- 2D — the image rectangle -->
+<div class="dct-col">
+  <img class="dct-sample dct-reveal" :class="{ 'is-on': $clicks >= 3 && $clicks < 5 }"
+       :src="`${$slidev.configs.base ?? '/'}applications/dct_2d_sample.png`"
+       alt="A natural image (imagenette)" />
+  <img class="dct-basis dct-reveal" :class="{ 'is-on': $clicks >= 4 }"
+       :src="`${$slidev.configs.base ?? '/'}applications/dct_2d_basis.png`"
+       alt="2D DCT product modes on a rectangle" />
+
+  <div class="dct-formula dct-reveal" :class="{ 'is-on': $clicks >= 4 }">
+
+  $\varphi_{n,m}(x, y) = \cos\!\left(\dfrac{n\pi x}{L_x}\right)\cos\!\left(\dfrac{m\pi y}{L_y}\right)$
+
+  </div>
+</div>
+
+</div>
+
+<!-- Click 6 — the modes' identity, revealed below them. Absolutely
+     positioned so the slot doesn't shrink the grid above. -->
+<div class="dct-takeaway dct-reveal text-center"
+     :class="{ 'is-on': $clicks >= 6 }">
+
+Euclidean Laplacian eigenbasis &nbsp;·&nbsp; <span class="grad">Neumann</span> BC
+
+</div>
+
+</div>
+
+<style>
+.dct-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.9rem;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+}
+/* Sample row: identical fixed display height in both columns so the
+   1D signal panel and the 2D image panel line up at the same height
+   on the slide. */
+.dct-sample {
+  flex: 0 0 auto;
+  height: 8vh;
+  max-width: 100%;
+  object-fit: contain;
+}
+/* Basis grid: fills the remaining vertical space below the sample.
+   On click 5 (.modes-up on the wrapper grid), translate the basis AND
+   formula up by exactly (sample height + column gap) so the modes
+   slide to the top of the column without changing size. */
+.dct-basis {
+  flex: 1 1 0;
+  min-height: 0;
+  max-width: 100%;
+  object-fit: contain;
+  transition: transform 520ms ease;
+}
+.modes-up .dct-basis {
+  transform: translateY(calc(-8vh - 0.9rem));
+}
+/* Math expression of the modes, just below their grid. */
+.dct-formula {
+  flex: 0 0 auto;
+  text-align: center;
+  font-size: 0.85rem;
+  color: var(--c-fg);
+  margin-top: 0.15rem;
+  transition: transform 520ms ease;
+}
+.modes-up .dct-formula {
+  transform: translateY(calc(-8vh - 0.9rem));
+}
+.dct-formula p { margin: 0; }
+.dct-formula .katex { font-size: 0.95em; }
+/* Takeaway caption (click 6) — out of flow so it doesn't steal vertical
+   space from the basis grid above. Anchored to the bottom of the slide
+   wrapper (which is position: relative). */
+.dct-takeaway {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 1rem;
+  font-size: 1.45rem;
+  font-weight: 500;
+  line-height: 1.3;
+  color: var(--c-fg);
+}
+.dct-takeaway .grad { font-weight: 600; }
+/* Smooth click-driven fade for each piece. The vertical slots are
+   reserved from frame 0 (CSS keeps the elements in the flex flow)
+   so the basis grid doesn't jump in once it appears.
+   Both opacity AND transform are listed here so the .modes-up
+   translateY on .dct-basis / .dct-formula is animated (single
+   `transition` declaration wins the cascade). */
+.dct-reveal {
+  opacity: 0;
+  transition: opacity 420ms ease, transform 520ms ease;
+}
+.dct-reveal.is-on {
+  opacity: 1;
+}
+/* webkit-background-clip: text clips the gradient flush with the glyph
+   bbox — serif horizontals on letters like the T in "DCT" extend a sliver
+   past that, so a small right padding keeps them from being sliced. */
+h2 .grad {
+  padding-right: 0.08em;
+}
+</style>
+
+---
+layout: default
+class: text-left
+clicks: 4
+---
+
+<div class="h-full flex flex-col pt-4 pb-3 px-2">
+
+<div class="eyebrow mb-1 text-center">
+Theorem &nbsp;·&nbsp; Aflalo, Brezis et&nbsp;al. (2016)
+</div>
+
+<h2 class="!text-2xl !leading-snug !mb-5 font-serif text-center" style="color: var(--c-fg)">
+The optimal <i>k</i>-term basis is the <span class="grad">eigenbasis of <i>L</i></span>.
+</h2>
+
+<!-- Click 1 — the smooth-signal class C_L. -->
+<div class="thm-row" v-click="1">
+
+<div class="thm-label">Smooth-signal class</div>
+
+$$\mathcal{C}_L \;=\; \bigl\{\, f \;:\; \langle f,\, L f\rangle \le 1 \,\bigr\}$$
+
+</div>
+
+<!-- Click 2 — p_L as the uniform distribution over C_L. -->
+<div class="thm-row" v-click="2">
+
+<div class="thm-label">Uniform distribution over the class</div>
+
+$$p_L \;=\; \mathrm{Uniform}(\mathcal{C}_L)$$
+
+</div>
+
+<!-- Clicks 3 & 4 — the two theorems shown side-by-side. -->
+<div class="grid grid-cols-2 gap-4 mt-3">
+
+<!-- Click 3 — the theorem itself: optimal k-truncated basis = first k
+     eigenvectors of L. -->
+<div class="thm-card" v-click="3">
+
+<div class="thm-tag">Theorem &nbsp;·&nbsp; optimal <i>k</i>-term basis</div>
+
+$$
+\arg\!\min_{\{b_i\}_{i=1}^k}\; \mathbb{E}_{f \sim p_L}\, \bigl\|f - \Pi_k f\bigr\|^2
+\;=\; \{\varphi_1, \dots, \varphi_k\}
+$$
+
+the first $k$ eigenvectors of $L$.
+
+</div>
+
+<!-- Click 4 — the matching error bound on the same basis. -->
+<div class="thm-card thm-card-bound" v-click="4">
+
+<div class="thm-tag">Theorem &nbsp;·&nbsp; worst-case error</div>
+
+$$
+\max_{f \in \mathcal{C}_L}\; \bigl\|f - \Pi_k f\bigr\|^2 \;=\; \tfrac{1}{\lambda_{k+1}}
+$$
+
+under the optimal basis.
+
+</div>
+
+</div>
+
+</div>
+
+<style>
+.thm-row {
+  text-align: center;
+  font-size: 1.0rem;
+  color: var(--c-fg);
+  padding: 0.4rem 0;
+}
+.thm-row .katex-display { margin: 0.25rem 0; }
+.thm-label {
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 0.62rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--c-brand-from);
+  font-weight: 600;
+  margin-bottom: 0.2rem;
+}
+.thm-card {
+  border: 1px solid var(--c-border);
+  border-left: 3px solid var(--c-brand-from);
+  background: var(--c-bg-soft);
+  padding: 0.85rem 1.0rem;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: var(--c-fg-body);
+  text-align: center;
+}
+.thm-card-bound {
+  border-left-color: var(--c-success);
+  background: rgba(4, 120, 87, 0.06);
+}
+.thm-card-bound .thm-tag { color: var(--c-success); }
+.thm-card .katex-display { margin: 0.35rem 0; }
+.thm-tag {
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 0.62rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--c-brand-from);
+  font-weight: 600;
+  margin-bottom: 0.4rem;
+}
+.thm-foot {
+  text-align: center;
+  font-size: 1.05rem;
+  color: var(--c-fg-body);
+  border-left: 3px solid var(--c-success);
+  background: rgba(4, 120, 87, 0.06);
+  padding: 0.6rem 1.2rem;
+  border-radius: 4px;
+}
+.thm-foot strong { color: var(--c-success); font-weight: 600; }
+h2 .grad { padding-right: 0.08em; }
 </style>
 
 ---
@@ -1128,39 +1505,39 @@ From a vector to a <span class="grad">smooth signal on a sampled manifold</span>
 <div class="pc-basis-row">
 <div class="pc-basis-set" :style="{ opacity: $clicks === 4 ? 1 : 0 }">
 <div class="pc-signals-row">
+<img class="pc-img" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_basis_1_0.png`" alt="basis 1 · 0" />
 <img class="pc-img" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_basis_1_1.png`" alt="basis 1 · 1" />
 <img class="pc-img" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_basis_1_2.png`" alt="basis 1 · 2" />
-<img class="pc-img" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_basis_1_3.png`" alt="basis 1 · 3" />
-<img class="pc-img" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_basis_1_4.png`" alt="basis 1 · 4" />
-<img class="pc-img" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_basis_1_5.png`" alt="basis 1 · 5" />
-<img class="pc-img" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_basis_1_6.png`" alt="basis 1 · 6" />
 <span class="pc-dots">⋯</span>
+<img class="pc-img" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_basis_1_47.png`" alt="basis 1 · 47" />
+<img class="pc-img" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_basis_1_48.png`" alt="basis 1 · 48" />
+<img class="pc-img" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_basis_1_49.png`" alt="basis 1 · 49" />
 </div>
 <svg class="pc-brace" viewBox="0 0 100 6" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg"><path d="M 0.5 0.5 Q 0.5 4.5 3 4.5 L 48 4.5 Q 50 4.5 50 6 Q 50 4.5 52 4.5 L 97 4.5 Q 99.5 4.5 99.5 0.5" stroke="currentColor" stroke-width="1.4" fill="none" vector-effect="non-scaling-stroke" stroke-linecap="round" /></svg>
 <div class="pc-cap">orthogonal basis #1</div>
 </div>
 <div class="pc-basis-set" :style="{ opacity: $clicks === 5 ? 1 : 0 }">
 <div class="pc-signals-row">
+<img class="pc-img" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_basis_2_0.png`" alt="basis 2 · 0" />
 <img class="pc-img" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_basis_2_1.png`" alt="basis 2 · 1" />
 <img class="pc-img" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_basis_2_2.png`" alt="basis 2 · 2" />
-<img class="pc-img" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_basis_2_3.png`" alt="basis 2 · 3" />
-<img class="pc-img" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_basis_2_4.png`" alt="basis 2 · 4" />
-<img class="pc-img" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_basis_2_5.png`" alt="basis 2 · 5" />
-<img class="pc-img" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_basis_2_6.png`" alt="basis 2 · 6" />
 <span class="pc-dots">⋯</span>
+<img class="pc-img" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_basis_2_47.png`" alt="basis 2 · 47" />
+<img class="pc-img" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_basis_2_48.png`" alt="basis 2 · 48" />
+<img class="pc-img" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_basis_2_49.png`" alt="basis 2 · 49" />
 </div>
 <svg class="pc-brace" viewBox="0 0 100 6" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg"><path d="M 0.5 0.5 Q 0.5 4.5 3 4.5 L 48 4.5 Q 50 4.5 50 6 Q 50 4.5 52 4.5 L 97 4.5 Q 99.5 4.5 99.5 0.5" stroke="currentColor" stroke-width="1.4" fill="none" vector-effect="non-scaling-stroke" stroke-linecap="round" /></svg>
 <div class="pc-cap">orthogonal basis #2</div>
 </div>
 <div class="pc-basis-set" :style="{ opacity: $clicks === 6 ? 1 : 0 }">
 <div class="pc-signals-row">
+<img class="pc-img" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_basis_3_0.png`" alt="basis 3 · 0" />
 <img class="pc-img" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_basis_3_1.png`" alt="basis 3 · 1" />
 <img class="pc-img" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_basis_3_2.png`" alt="basis 3 · 2" />
-<img class="pc-img" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_basis_3_3.png`" alt="basis 3 · 3" />
-<img class="pc-img" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_basis_3_4.png`" alt="basis 3 · 4" />
-<img class="pc-img" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_basis_3_5.png`" alt="basis 3 · 5" />
-<img class="pc-img" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_basis_3_6.png`" alt="basis 3 · 6" />
 <span class="pc-dots">⋯</span>
+<img class="pc-img" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_basis_3_47.png`" alt="basis 3 · 47" />
+<img class="pc-img" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_basis_3_48.png`" alt="basis 3 · 48" />
+<img class="pc-img" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_basis_3_49.png`" alt="basis 3 · 49" />
 </div>
 <svg class="pc-brace" viewBox="0 0 100 6" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg"><path d="M 0.5 0.5 Q 0.5 4.5 3 4.5 L 48 4.5 Q 50 4.5 50 6 Q 50 4.5 52 4.5 L 97 4.5 Q 99.5 4.5 99.5 0.5" stroke="currentColor" stroke-width="1.4" fill="none" vector-effect="non-scaling-stroke" stroke-linecap="round" /></svg>
 <div class="pc-cap">orthogonal basis #3</div>
@@ -1170,10 +1547,10 @@ From a vector to a <span class="grad">smooth signal on a sampled manifold</span>
 <img class="pc-img" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_basis_4_0.png`" alt="LBO basis · 0" />
 <img class="pc-img" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_basis_4_1.png`" alt="LBO basis · 1" />
 <img class="pc-img" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_basis_4_2.png`" alt="LBO basis · 2" />
-<img class="pc-img" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_basis_4_3.png`" alt="LBO basis · 3" />
-<img class="pc-img" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_basis_4_4.png`" alt="LBO basis · 4" />
-<img class="pc-img" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_basis_4_5.png`" alt="LBO basis · 5" />
 <span class="pc-dots">⋯</span>
+<img class="pc-img" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_basis_4_47.png`" alt="LBO basis · 47" />
+<img class="pc-img" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_basis_4_48.png`" alt="LBO basis · 48" />
+<img class="pc-img" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_basis_4_49.png`" alt="LBO basis · 49" />
 </div>
 <svg class="pc-brace" viewBox="0 0 100 6" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg"><path d="M 0.5 0.5 Q 0.5 4.5 3 4.5 L 48 4.5 Q 50 4.5 50 6 Q 50 4.5 52 4.5 L 97 4.5 Q 99.5 4.5 99.5 0.5" stroke="currentColor" stroke-width="1.4" fill="none" vector-effect="non-scaling-stroke" stroke-linecap="round" /></svg>
 <div class="pc-cap pc-cap-hero"><span class="grad">LBO eigenbasis</span></div>
@@ -1378,7 +1755,7 @@ Our <span class="grad">pipeline</span>.
 </svg>
 </div>
 <!-- Row 1: upper branch -->
-<div class="ml-box ml-card" :style="{ opacity: $clicks >= 2 ? 1 : 0 }">smooth function<br/>sampler</div>
+<div class="ml-box ml-card" :style="{ opacity: $clicks >= 2 ? 1 : 0 }">Smooth function<br/>sampler</div>
 <div class="ml-arrow-h" :style="{ opacity: $clicks >= 2 ? 1 : 0 }">
 <svg viewBox="0 0 40 16" width="40" height="16" xmlns="http://www.w3.org/2000/svg">
 <path d="M 2 8 L 28 8" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="butt" />
@@ -1406,7 +1783,7 @@ $\underbrace{\hspace{200px}}_{\text{smooth probe functions } \{f_i\}}$
 </div>
 
 <!-- Row 2: lower branch -->
-<div class="ml-box ml-card" :style="{ opacity: $clicks >= 3 ? 1 : 0 }">neural<br/>network</div>
+<div class="ml-box ml-card" :style="{ opacity: $clicks >= 3 ? 1 : 0 }">Neural<br/>network</div>
 <div class="ml-arrow-h" :style="{ opacity: $clicks >= 3 ? 1 : 0 }">
 <svg viewBox="0 0 40 16" width="40" height="16" xmlns="http://www.w3.org/2000/svg">
 <path d="M 2 8 L 28 8" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="butt" />
@@ -1417,14 +1794,14 @@ $\underbrace{\hspace{200px}}_{\text{smooth probe functions } \{f_i\}}$
 <div class="ml-box ml-thumb-box" :class="{ 'loss-fade-out': $clicks >= 23 }">
 <!-- Each eigen cell hosts a click-6 clone of signal_01. v-motion :initial offset = source position relative to this cell. Source = signal_01 at scalar row col 1, i.e. one row up (y = -110) and offset LEFT by this cell's column-left within the thumb-box: 0, 91.4, 219.2, 310.6 for cols 1, 2, 4, 5. -->
 <span class="ml-thumb-cell">
-  <img class="ml-thumb" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_basis_4_0_tight.png`" alt="phi_0" />
-  <img class="ml-pl-clone" v-motion :initial="{ x: 0, y: -140, opacity: 0 }" :click-6="{ x: 0, y: 0, opacity: 1 }" :click-7="{ x: 0, y: 140, opacity: 1 }" :click-8="{ x: -30, y: 140, opacity: 1 }" :click-9="{ x: 155, y: 140, opacity: 0 }" :src="$clicks >= 7 ? `${$slidev.configs.base ?? '/'}applications/manifold_pc_signal_diff_01_proj_local_i0_tight.png` : `${$slidev.configs.base ?? '/'}applications/manifold_pc_signal_diff_01_tight.png`" alt="" />
-  <img class="ml-pl-clone" v-motion :initial="{ x: 91.4, y: -140, opacity: 0 }" :click-14="{ x: 0, y: 0, opacity: 1 }" :click-15="{ x: 0, y: 140, opacity: 1 }" :click-16="{ x: -30, y: 140, opacity: 1 }" :click-17="{ x: 155, y: 140, opacity: 0 }" :src="$clicks >= 15 ? `${$slidev.configs.base ?? '/'}applications/manifold_pc_signal_diff_02_proj_local_i0_tight.png` : `${$slidev.configs.base ?? '/'}applications/manifold_pc_signal_diff_02_tight.png`" alt="" />
+  <img class="ml-thumb" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_basis_2_0_tight.png`" alt="phi_0" />
+  <img class="ml-pl-clone" v-motion :initial="{ x: 0, y: -140, opacity: 0 }" :click-6="{ x: 0, y: 0, opacity: 1 }" :click-7="{ x: 0, y: 140, opacity: 1 }" :click-8="{ x: -30, y: 140, opacity: 1 }" :click-9="{ x: 155, y: 140, opacity: 0 }" :src="$clicks >= 7 ? `${$slidev.configs.base ?? '/'}applications/manifold_pc_signal_diff_01_proj_i0_tight.png` : `${$slidev.configs.base ?? '/'}applications/manifold_pc_signal_diff_01_tight.png`" alt="" />
+  <img class="ml-pl-clone" v-motion :initial="{ x: 91.4, y: -140, opacity: 0 }" :click-14="{ x: 0, y: 0, opacity: 1 }" :click-15="{ x: 0, y: 140, opacity: 1 }" :click-16="{ x: -30, y: 140, opacity: 1 }" :click-17="{ x: 155, y: 140, opacity: 0 }" :src="$clicks >= 15 ? `${$slidev.configs.base ?? '/'}applications/manifold_pc_signal_diff_02_proj_i0_tight.png` : `${$slidev.configs.base ?? '/'}applications/manifold_pc_signal_diff_02_tight.png`" alt="" />
 </span>
 <span class="ml-thumb-cell">
-  <img class="ml-thumb" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_basis_4_1_tight.png`" alt="phi_1" />
-  <img class="ml-pl-clone" v-motion :initial="{ x: -91.4, y: -140, opacity: 0 }" :click-6="{ x: 0, y: 0, opacity: 1 }" :click-7="{ x: 0, y: 140, opacity: 1 }" :click-8="{ x: -15, y: 140, opacity: 1 }" :click-9="{ x: 64, y: 140, opacity: 0 }" :src="$clicks >= 7 ? `${$slidev.configs.base ?? '/'}applications/manifold_pc_signal_diff_01_proj_local_i1_tight.png` : `${$slidev.configs.base ?? '/'}applications/manifold_pc_signal_diff_01_tight.png`" alt="" />
-  <img class="ml-pl-clone" v-motion :initial="{ x: 0, y: -140, opacity: 0 }" :click-14="{ x: 0, y: 0, opacity: 1 }" :click-15="{ x: 0, y: 140, opacity: 1 }" :click-16="{ x: -15, y: 140, opacity: 1 }" :click-17="{ x: 64, y: 140, opacity: 0 }" :src="$clicks >= 15 ? `${$slidev.configs.base ?? '/'}applications/manifold_pc_signal_diff_02_proj_local_i1_tight.png` : `${$slidev.configs.base ?? '/'}applications/manifold_pc_signal_diff_02_tight.png`" alt="" />
+  <img class="ml-thumb" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_basis_2_1_tight.png`" alt="phi_1" />
+  <img class="ml-pl-clone" v-motion :initial="{ x: -91.4, y: -140, opacity: 0 }" :click-6="{ x: 0, y: 0, opacity: 1 }" :click-7="{ x: 0, y: 140, opacity: 1 }" :click-8="{ x: -15, y: 140, opacity: 1 }" :click-9="{ x: 64, y: 140, opacity: 0 }" :src="$clicks >= 7 ? `${$slidev.configs.base ?? '/'}applications/manifold_pc_signal_diff_01_proj_i1_tight.png` : `${$slidev.configs.base ?? '/'}applications/manifold_pc_signal_diff_01_tight.png`" alt="" />
+  <img class="ml-pl-clone" v-motion :initial="{ x: 0, y: -140, opacity: 0 }" :click-14="{ x: 0, y: 0, opacity: 1 }" :click-15="{ x: 0, y: 140, opacity: 1 }" :click-16="{ x: -15, y: 140, opacity: 1 }" :click-17="{ x: 64, y: 140, opacity: 0 }" :src="$clicks >= 15 ? `${$slidev.configs.base ?? '/'}applications/manifold_pc_signal_diff_02_proj_i1_tight.png` : `${$slidev.configs.base ?? '/'}applications/manifold_pc_signal_diff_02_tight.png`" alt="" />
 </span>
 <div class="ml-dots">
 
@@ -1432,19 +1809,19 @@ $\cdots$
 
 </div>
 <span class="ml-thumb-cell">
-  <img class="ml-thumb" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_basis_4_48_tight.png`" alt="phi_48" />
-  <img class="ml-pl-clone" v-motion :initial="{ x: -219.2, y: -140, opacity: 0 }" :click-6="{ x: 0, y: 0, opacity: 1 }" :click-7="{ x: 0, y: 140, opacity: 1 }" :click-8="{ x: 15, y: 140, opacity: 1 }" :click-9="{ x: -64, y: 140, opacity: 0 }" :src="$clicks >= 7 ? `${$slidev.configs.base ?? '/'}applications/manifold_pc_signal_diff_01_proj_local_i48_tight.png` : `${$slidev.configs.base ?? '/'}applications/manifold_pc_signal_diff_01_tight.png`" alt="" />
-  <img class="ml-pl-clone" v-motion :initial="{ x: -127.8, y: -140, opacity: 0 }" :click-14="{ x: 0, y: 0, opacity: 1 }" :click-15="{ x: 0, y: 140, opacity: 1 }" :click-16="{ x: 15, y: 140, opacity: 1 }" :click-17="{ x: -64, y: 140, opacity: 0 }" :src="$clicks >= 15 ? `${$slidev.configs.base ?? '/'}applications/manifold_pc_signal_diff_02_proj_local_i48_tight.png` : `${$slidev.configs.base ?? '/'}applications/manifold_pc_signal_diff_02_tight.png`" alt="" />
+  <img class="ml-thumb" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_basis_2_48_tight.png`" alt="phi_48" />
+  <img class="ml-pl-clone" v-motion :initial="{ x: -219.2, y: -140, opacity: 0 }" :click-6="{ x: 0, y: 0, opacity: 1 }" :click-7="{ x: 0, y: 140, opacity: 1 }" :click-8="{ x: 15, y: 140, opacity: 1 }" :click-9="{ x: -64, y: 140, opacity: 0 }" :src="$clicks >= 7 ? `${$slidev.configs.base ?? '/'}applications/manifold_pc_signal_diff_01_proj_i48_tight.png` : `${$slidev.configs.base ?? '/'}applications/manifold_pc_signal_diff_01_tight.png`" alt="" />
+  <img class="ml-pl-clone" v-motion :initial="{ x: -127.8, y: -140, opacity: 0 }" :click-14="{ x: 0, y: 0, opacity: 1 }" :click-15="{ x: 0, y: 140, opacity: 1 }" :click-16="{ x: 15, y: 140, opacity: 1 }" :click-17="{ x: -64, y: 140, opacity: 0 }" :src="$clicks >= 15 ? `${$slidev.configs.base ?? '/'}applications/manifold_pc_signal_diff_02_proj_i48_tight.png` : `${$slidev.configs.base ?? '/'}applications/manifold_pc_signal_diff_02_tight.png`" alt="" />
 </span>
 <span class="ml-thumb-cell">
-  <img class="ml-thumb" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_basis_4_49_tight.png`" alt="phi_49" />
-  <img class="ml-pl-clone" v-motion :initial="{ x: -310.6, y: -140, opacity: 0 }" :click-6="{ x: 0, y: 0, opacity: 1 }" :click-7="{ x: 0, y: 140, opacity: 1 }" :click-8="{ x: 30, y: 140, opacity: 1 }" :click-9="{ x: -155, y: 140, opacity: 0 }" :src="$clicks >= 7 ? `${$slidev.configs.base ?? '/'}applications/manifold_pc_signal_diff_01_proj_local_i49_tight.png` : `${$slidev.configs.base ?? '/'}applications/manifold_pc_signal_diff_01_tight.png`" alt="" />
-  <img class="ml-pl-clone" v-motion :initial="{ x: -219.2, y: -140, opacity: 0 }" :click-14="{ x: 0, y: 0, opacity: 1 }" :click-15="{ x: 0, y: 140, opacity: 1 }" :click-16="{ x: 30, y: 140, opacity: 1 }" :click-17="{ x: -155, y: 140, opacity: 0 }" :src="$clicks >= 15 ? `${$slidev.configs.base ?? '/'}applications/manifold_pc_signal_diff_02_proj_local_i49_tight.png` : `${$slidev.configs.base ?? '/'}applications/manifold_pc_signal_diff_02_tight.png`" alt="" />
+  <img class="ml-thumb" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_basis_2_49_tight.png`" alt="phi_49" />
+  <img class="ml-pl-clone" v-motion :initial="{ x: -310.6, y: -140, opacity: 0 }" :click-6="{ x: 0, y: 0, opacity: 1 }" :click-7="{ x: 0, y: 140, opacity: 1 }" :click-8="{ x: 30, y: 140, opacity: 1 }" :click-9="{ x: -155, y: 140, opacity: 0 }" :src="$clicks >= 7 ? `${$slidev.configs.base ?? '/'}applications/manifold_pc_signal_diff_01_proj_i49_tight.png` : `${$slidev.configs.base ?? '/'}applications/manifold_pc_signal_diff_01_tight.png`" alt="" />
+  <img class="ml-pl-clone" v-motion :initial="{ x: -219.2, y: -140, opacity: 0 }" :click-14="{ x: 0, y: 0, opacity: 1 }" :click-15="{ x: 0, y: 140, opacity: 1 }" :click-16="{ x: 30, y: 140, opacity: 1 }" :click-17="{ x: -155, y: 140, opacity: 0 }" :src="$clicks >= 15 ? `${$slidev.configs.base ?? '/'}applications/manifold_pc_signal_diff_02_proj_i49_tight.png` : `${$slidev.configs.base ?? '/'}applications/manifold_pc_signal_diff_02_tight.png`" alt="" />
 </span>
 <!-- Underbrace labeling the eigen row as the predicted eigenbasis {b_i}. -->
 <div class="ml-underbrace">
 
-$\underbrace{\hspace{200px}}_{\text{first } K \text{ predicted eigenfunctions } \{b_i\}_{i=1}^{K}}$
+$\underbrace{\hspace{200px}}_{\text{predicted } K\text{-truncated eigenbasis } \{b_i\}_{i=1}^{K}}$
 
 </div>
 <!-- Row-3 dots (the projection row, below the eigens). Appears 50ms after click 7. Positioned at the dots-column x (left: 182.8) and row-3 y (top: 110) of the eigen thumb-box. On click 9 fades out in place. -->
@@ -1479,7 +1856,7 @@ $+$
      keeping the INTERNAL spacing tight (gaps shrink proportionally with scale). -->
 <div class="ml-pl-loss-group" :class="{ 'shifted-l': $clicks >= 12 }">
 <!-- Sum image: k=50 reconstruction of signal_01. Row 3 center (top:110, left:155.3 → centered on x=197.8). -->
-<img class="ml-pl-sum" :class="{ shown: $clicks >= 9 }" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_signal_diff_01_recon_k50_tight.png`" alt="" />
+<img class="ml-pl-sum" :class="{ shown: $clicks >= 9 }" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_signal_diff_01_recon_k5_tight.png`" alt="" />
 <!-- Click 10: 'f' clone animates DOWN from signal_01 (row 1 col 1) to left:30, top:110. -->
 <img class="ml-pl-f-clone" v-motion :initial="{ x: -30, y: -280, scale: 1, opacity: 0 }" :click-10="{ x: 0, y: 0, scale: 1, opacity: 1 }" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_signal_diff_01_tight.png`" alt="" />
 <div class="ml-pl-minus" :class="{ shown: $clicks >= 10 }" style="left: 135px;">
@@ -1534,7 +1911,7 @@ $+$
      on click 20 shifts+scales the whole expression as a unit. -->
 <div class="ml-pl-loss-group" :class="{ 'shifted-m': $clicks >= 20 }">
 <!-- Sum image: k=50 reconstruction of signal_02. Click 17. -->
-<img class="ml-pl-sum" :class="{ shown: $clicks >= 17 }" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_signal_diff_02_recon_k50_tight.png`" alt="" />
+<img class="ml-pl-sum" :class="{ shown: $clicks >= 17 }" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_signal_diff_02_recon_k5_tight.png`" alt="" />
 <!-- f2 clone animates DOWN from signal_02 (row 1 col 2). Source offset = (91.4 - 30, -110 - 110) = (61.4, -220). Click 18. -->
 <img class="ml-pl-f-clone" v-motion :initial="{ x: 61.4, y: -280, scale: 1, opacity: 0 }" :click-18="{ x: 0, y: 0, scale: 1, opacity: 1 }" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_signal_diff_02_tight.png`" alt="" />
 <div class="ml-pl-minus" :class="{ shown: $clicks >= 18 }" style="left: 135px;">
@@ -1565,7 +1942,7 @@ $+$
      directly at their final positions (no flow). Static containers
      pre-positioned with shifted-3 / shifted-4 transforms. -->
 <div class="ml-pl-loss-group shifted-3">
-<img class="ml-pl-sum" :class="{ shown: $clicks >= 21 }" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_signal_diff_03_recon_k50_tight.png`" alt="" />
+<img class="ml-pl-sum" :class="{ shown: $clicks >= 21 }" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_signal_diff_03_recon_k5_tight.png`" alt="" />
 <img class="ml-pl-f-clone" :style="{ opacity: $clicks >= 21 ? 1 : 0, transition: 'opacity 500ms ease 250ms' }" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_signal_diff_03_tight.png`" alt="" />
 <div class="ml-pl-minus" :class="{ shown: $clicks >= 21 }" style="left: 135px;">
 
@@ -1584,7 +1961,7 @@ $\|^2$
 </div>
 </div>
 <div class="ml-pl-loss-group shifted-4">
-<img class="ml-pl-sum" :class="{ shown: $clicks >= 21 }" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_signal_diff_04_recon_k50_tight.png`" alt="" />
+<img class="ml-pl-sum" :class="{ shown: $clicks >= 21 }" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_signal_diff_04_recon_k5_tight.png`" alt="" />
 <img class="ml-pl-f-clone" :style="{ opacity: $clicks >= 21 ? 1 : 0, transition: 'opacity 500ms ease 250ms' }" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_signal_diff_04_tight.png`" alt="" />
 <div class="ml-pl-minus" :class="{ shown: $clicks >= 21 }" style="left: 135px;">
 
@@ -2175,7 +2552,248 @@ $\mathcal{L}\bigl(\{b_i\}_{i=1}^{K}\bigr) = \sum_{k=1}^{K} \left( \sum_i \bigl\|
 
 ---
 layout: default
+class: text-left
+clicks: 2
+---
+
+<div class="h-full flex flex-col pt-4 pb-3 px-2">
+
+<div class="eyebrow mb-1 text-center">
+Results &nbsp;·&nbsp; single-shape training
+</div>
+
+<h2 class="!text-2xl !leading-snug !mb-4 font-serif text-center" style="color: var(--c-fg)">
+Our predicted basis matches the <span class="grad">cotangent Laplacian</span>.
+</h2>
+
+<!-- Click flow:
+       click 0 → blank
+       click 1 → column header + shape names + cotangent-Laplacian rows
+       click 2 → "Ours" flavor labels + predicted rows fade in -->
+<div class="flex-1 min-h-0 overfit-table">
+
+  <!-- Column header — each label is its own Markdown paragraph (note
+       the blank lines around `$v_n$`) so Slidev/KaTeX renders the math
+       even though we're inside a <div>. The 12 paragraphs land as
+       grid items in `.overfit-col-labels`. -->
+  <div class="overfit-corner"></div>
+  <div class="overfit-col-labels" :class="{ 'is-on': $clicks >= 1 }">
+
+  $\mathbf{v}_2$
+
+  $\mathbf{v}_3$
+
+  $\mathbf{v}_4$
+
+  $\mathbf{v}_5$
+
+  $\mathbf{v}_6$
+
+  $\mathbf{v}_7$
+
+  $\mathbf{v}_{10}$
+
+  $\mathbf{v}_{25}$
+
+  $\mathbf{v}_{40}$
+
+  $k=5$
+
+  $k=25$
+
+  $k=45$
+
+  </div>
+
+  <!-- Shape pair rows — no shape-name label, just Cot.Lap. / Ours
+       flavor tags on the left of each image row. -->
+  <template v-for="shape in ['lion', 'botijo', 'armadillo']" :key="shape">
+    <div class="overfit-flavor" :class="{ 'is-on': $clicks >= 1 }">Cot.&nbsp;Lap.</div>
+    <img class="overfit-row overfit-gt"
+         :class="{ 'is-on': $clicks >= 1 }"
+         :src="`${$slidev.configs.base ?? '/'}applications/overfit/overfit_${shape}_gt.png`"
+         :alt="`Cotangent Laplacian eigenvectors of ${shape}`" />
+    <div class="overfit-flavor" :class="{ 'is-on': $clicks >= 2 }">Ours</div>
+    <img class="overfit-row overfit-pred"
+         :class="{ 'is-on': $clicks >= 2 }"
+         :src="`${$slidev.configs.base ?? '/'}applications/overfit/overfit_${shape}_pred.png`"
+         :alt="`Our predicted eigenvectors of ${shape}`" />
+  </template>
+
+</div>
+
+</div>
+
+<style>
+/* CSS grid: [flavor column] [image column].
+   The image column is the wide row PNG; all 12 cells inside each PNG
+   are equally spaced, so the column header uses a matching 12-column
+   sub-grid to line labels up with cells. */
+.overfit-table {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  column-gap: 0.6rem;
+  row-gap: 0.4rem;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+}
+.overfit-corner { grid-column: 1; }
+.overfit-col-labels {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  align-items: center;
+  justify-items: center;
+  font-size: 0.78rem;
+  color: var(--c-fg);
+  text-align: center;
+  opacity: 0;
+  transition: opacity 440ms ease;
+}
+.overfit-col-labels.is-on { opacity: 1; }
+.overfit-col-labels p { margin: 0; padding: 0 0.1rem; }
+.overfit-col-labels .katex { font-size: 1.05em; }
+
+.overfit-flavor {
+  font-size: 0.7rem;
+  color: var(--c-fg);
+  text-align: right;
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity 440ms ease;
+}
+.overfit-flavor.is-on { opacity: 1; }
+
+.overfit-row {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: contain;
+  opacity: 0;
+  transition: opacity 440ms ease;
+}
+.overfit-row.is-on { opacity: 1; }
+</style>
+
+---
+layout: default
+class: text-left
+clicks: 2
+---
+
+<div class="h-full flex flex-col pt-4 pb-3 px-2">
+
+<div class="eyebrow mb-1 text-center">
+Results &nbsp;·&nbsp; single-shape training
+</div>
+
+<h2 class="!text-2xl !leading-snug !mb-4 font-serif text-center" style="color: var(--c-fg)">
+Our predicted basis matches the <span class="grad">cotangent Laplacian</span>.
+</h2>
+
+<!-- Click flow:
+       click 0 → blank
+       click 1 → column header + cotangent-Laplacian rows fade in
+       click 2 → predicted rows + "Ours" labels fade in -->
+<div class="flex-1 min-h-0 overfit-table">
+
+  <div class="overfit-corner"></div>
+  <div class="overfit-col-labels" :class="{ 'is-on': $clicks >= 1 }">
+
+  $\mathbf{v}_2$
+
+  $\mathbf{v}_3$
+
+  $\mathbf{v}_4$
+
+  $\mathbf{v}_5$
+
+  $\mathbf{v}_6$
+
+  $\mathbf{v}_7$
+
+  $\mathbf{v}_{10}$
+
+  $\mathbf{v}_{25}$
+
+  $\mathbf{v}_{40}$
+
+  $k=5$
+
+  $k=25$
+
+  $k=45$
+
+  </div>
+
+  <template v-for="shape in ['heptotoroid', 'wrench', 'pegaso']" :key="shape">
+    <div class="overfit-flavor" :class="{ 'is-on': $clicks >= 1 }">Cot.&nbsp;Lap.</div>
+    <img class="overfit-row overfit-gt"
+         :class="{ 'is-on': $clicks >= 1 }"
+         :src="`${$slidev.configs.base ?? '/'}applications/overfit/overfit_${shape}_gt.png`"
+         :alt="`Cotangent Laplacian eigenvectors of ${shape}`" />
+    <div class="overfit-flavor" :class="{ 'is-on': $clicks >= 2 }">Ours</div>
+    <img class="overfit-row overfit-pred"
+         :class="{ 'is-on': $clicks >= 2 }"
+         :src="`${$slidev.configs.base ?? '/'}applications/overfit/overfit_${shape}_pred.png`"
+         :alt="`Our predicted eigenvectors of ${shape}`" />
+  </template>
+
+</div>
+
+</div>
+
+<style>
+.overfit-table {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  column-gap: 0.6rem;
+  row-gap: 0.4rem;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+}
+.overfit-corner { grid-column: 1; }
+.overfit-col-labels {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  align-items: center;
+  justify-items: center;
+  font-size: 0.78rem;
+  color: var(--c-fg);
+  text-align: center;
+  opacity: 0;
+  transition: opacity 440ms ease;
+}
+.overfit-col-labels.is-on { opacity: 1; }
+.overfit-col-labels p { margin: 0; padding: 0 0.1rem; }
+.overfit-col-labels .katex { font-size: 1.05em; }
+.overfit-flavor {
+  font-size: 0.7rem;
+  color: var(--c-fg);
+  text-align: right;
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity 440ms ease;
+}
+.overfit-flavor.is-on { opacity: 1; }
+.overfit-row {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: contain;
+  opacity: 0;
+  transition: opacity 440ms ease;
+}
+.overfit-row.is-on { opacity: 1; }
+</style>
+
+---
+layout: default
 class: text-center
+hide: true
 ---
 
 <div class="h-full flex flex-col items-center justify-center px-12">
@@ -2195,6 +2813,7 @@ in practice?
 ---
 layout: default
 class: text-left
+hide: true
 ---
 
 <div class="h-full flex flex-col pt-4 pb-3 px-2">
@@ -2286,6 +2905,7 @@ The training algorithm.
 ---
 layout: default
 class: text-center
+hide: true
 ---
 
 <div class="h-full flex flex-col items-center justify-center px-12">
@@ -2304,6 +2924,7 @@ So how do we adapt this for the<br/>
 ---
 layout: default
 class: text-left
+hide: true
 ---
 
 <div class="h-full flex flex-col pt-4 pb-3 px-2">
@@ -2402,6 +3023,7 @@ We aim for $\Delta_{\text{sym}}$: **Euclidean orthogonal eigenvectors** + **firs
 ---
 layout: default
 class: text-left
+hide: true
 ---
 
 <div class="h-full flex flex-col pt-4 pb-3 px-2">
@@ -2536,6 +3158,7 @@ The full <span class="grad">pipeline</span>.
 ---
 layout: default
 class: text-center
+hide: true
 ---
 
 <div class="h-full relative flex flex-col items-center justify-center px-12">
@@ -2559,6 +3182,7 @@ Learning the <span class="grad">eigenbasis of a single 3D shape</span>.
 ---
 layout: default
 class: text-left
+hide: true
 ---
 
 <div class="h-full flex flex-col pt-4 pb-3 px-2">
@@ -2630,6 +3254,7 @@ Avg. cosine similarity between predicted and oracle eigenfunctions, and mean rel
 ---
 layout: default
 class: text-left
+hide: true
 ---
 
 <div class="h-full flex flex-row gap-3">
@@ -2669,6 +3294,7 @@ class: text-left
 ---
 layout: default
 class: text-left
+hide: true
 ---
 
 <div class="h-full flex flex-row gap-3">
@@ -2708,6 +3334,7 @@ class: text-left
 ---
 layout: default
 class: text-left
+hide: true
 ---
 
 <div class="h-full flex flex-row gap-3">
@@ -2747,6 +3374,7 @@ class: text-left
 ---
 layout: default
 class: text-center
+hide: true
 ---
 
 <div class="h-full relative flex flex-col items-center justify-center px-12">
@@ -2785,6 +3413,7 @@ Attempting to <span class="grad">generalize</span>&hellip;
 ---
 layout: default
 class: text-left
+hide: true
 ---
 
 <div class="h-full flex flex-row gap-3">
@@ -2824,6 +3453,7 @@ class: text-left
 ---
 layout: default
 class: text-center
+hide: true
 ---
 
 <div class="h-full relative flex flex-col items-center justify-center px-12">
@@ -2863,6 +3493,7 @@ Learning the <span class="grad">eigenbasis of the image manifold</span>.
 ---
 layout: default
 class: text-left
+hide: true
 ---
 
 <div class="h-full flex flex-col pt-4 pb-3 px-2">
@@ -2954,6 +3585,7 @@ Setup.
 ---
 layout: default
 class: text-left
+hide: true
 ---
 
 <div class="h-full flex flex-col pt-3 pb-3 px-2">
@@ -3025,6 +3657,7 @@ Results &nbsp;·&nbsp; Image manifold
 ---
 layout: default
 class: text-left
+hide: true
 ---
 
 <div class="h-full flex flex-col pt-3 pb-3 px-2">
@@ -3096,6 +3729,7 @@ Results &nbsp;·&nbsp; Image manifold
 ---
 layout: default
 class: text-left
+hide: true
 ---
 
 <div class="h-full flex flex-col pt-3 pb-3 px-2">
@@ -3121,6 +3755,7 @@ Quantitative comparison &mdash; <span class="grad">NMI &amp; ARI</span>.
 ---
 layout: default
 class: text-left
+hide: true
 ---
 
 <div class="h-full flex flex-col pt-4 pb-3 px-2">
@@ -3236,6 +3871,7 @@ We swap **operator construction** for **probe design** &mdash; a favorable trade
 ---
 layout: default
 class: text-center
+hide: true
 ---
 
 <div class="absolute inset-0 flex items-start justify-center pointer-events-none z-0 pt-8">
@@ -3271,6 +3907,7 @@ In memory of Ha&iuml;m Brezis (1944 &ndash; 2024)
 layout: default
 class: text-center
 clicks: 3
+hide: true
 ---
 
 <!--

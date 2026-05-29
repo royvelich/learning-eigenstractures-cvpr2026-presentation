@@ -1,14 +1,24 @@
-"""Card 02 — Correspondence. Pairs of deformed poses, coloured by a shared LBO
-eigenfunction: matching anatomical regions get matching colours.
+"""Card 02 — Correspondence via functional maps (geomfum).
 
-One image per shape category → app_02_corr_<name>.png
+For each (pose A, pose B) pair we:
+  1. Decimate the two poses jointly so they share topology.
+  2. Compute the LBO eigenbasis on EACH mesh independently with geomfum.
+  3. Build the functional map A → B from the (identity) point-to-point map.
+  4. Take a low-frequency function on A, transfer it through the functional
+     map onto B, and colour the two meshes accordingly. Matching anatomical
+     regions get matching colours — even though the LBO eigenvectors are
+     independently computed (and may differ in sign / order).
+
+One image per pair → app_02_corr_<name>.png
 """
-from _common import decimate_pair, cotangent_laplacian, lbo_eigs, setup_plotter, save_screenshot, DEFTRANSFER
+from _common import decimate_pair, setup_plotter, save_screenshot, DEFTRANSFER
 import numpy as np
 import pyvista as pv
 import trimesh
+from geomfum.shape import TriangleMesh
+from geomfum.laplacian import LaplacianFinder, LaplacianSpectrumFinder
+from geomfum.refine import FmFromP2pConverter
 
-# (name, pose-A file, pose-B file)
 PAIRS = [
     ("horse", "horse-poses/horse-01.obj", "horse-poses/horse-08.obj"),
     ("camel", "camel-poses/camel-01.obj", "camel-poses/camel-08.obj"),
@@ -18,6 +28,7 @@ PAIRS = [
     ("flamingo", "flamingo-poses/flam-01.obj", "flamingo-poses/flam-06.obj"),
 ]
 TARGET_FACES = 8000
+SPECTRUM_SIZE = 30
 
 
 def load_raw(path):
@@ -37,6 +48,16 @@ def rot_y(P, deg):
     return P @ np.array([[c, 0, s], [0, 1, 0], [-s, 0, c]]).T
 
 
+# geomfum LBO machinery — robust mesh Laplacian + Lanczos eigensolver.
+laplacian_finder = LaplacianFinder.from_registry(which="robust")
+spectrum_finder = LaplacianSpectrumFinder(
+    spectrum_size=SPECTRUM_SIZE,
+    nonzero=True,
+    laplacian_finder=laplacian_finder,
+)
+fm_converter = FmFromP2pConverter()
+
+
 for name, fa, fb in PAIRS:
     Va, Fa = load_raw(DEFTRANSFER / fa)
     Vb, Fb = load_raw(DEFTRANSFER / fb)
@@ -47,13 +68,28 @@ for name, fa, fb in PAIRS:
     Va, Vb, F = decimate_pair(Va, Vb, Fa, TARGET_FACES)
     Va, Vb = normalize(Va), normalize(Vb)
 
-    # Shared low-frequency LBO signal, computed on pose A
-    L, M = cotangent_laplacian(Va, F)
-    vals, vecs = lbo_eigs(L, M, k=20)
-    keep = vals > 1e-6
-    vecs = vecs[:, keep]
-    signal = vecs[:, 1] + 0.6 * vecs[:, 2]
+    # Independent LBO bases on each pose (geomfum).
+    mesh_a_gm = TriangleMesh(Va, F)
+    mesh_b_gm = TriangleMesh(Vb, F)
+    basis_a = spectrum_finder(mesh_a_gm)
+    basis_b = spectrum_finder(mesh_b_gm)
 
+    # Ground-truth p2p map: identity (joint decimation preserves topology).
+    p2p = np.arange(mesh_b_gm.n_vertices)
+
+    # Functional map A → B (built from p2p via least squares).
+    fmap = fm_converter(p2p, basis_a, basis_b)
+
+    # Low-frequency signal on A: combination of the first two non-trivial
+    # eigenvectors of basis A.
+    signal_a = basis_a.vecs[:, 1] + 0.6 * basis_a.vecs[:, 2]
+
+    # Project onto basis_a, push through fmap, reconstruct on B.
+    signal_a_coeffs = basis_a.pinv @ signal_a
+    signal_b_coeffs = fmap @ signal_a_coeffs
+    signal_b = basis_b.vecs @ signal_b_coeffs
+
+    # Render.
     faces_pv = np.hstack([np.full((F.shape[0], 1), 3, dtype=np.int64), F.astype(np.int64)]).ravel()
     Va_r = rot_y(Va, 35)
     Vb_r = rot_y(Vb, 35)
@@ -62,13 +98,18 @@ for name, fa, fb in PAIRS:
 
     mesh_a = pv.PolyData(Va_r, faces_pv)
     mesh_b = pv.PolyData(Vb_r, faces_pv)
-    mesh_a["sig"] = signal
-    mesh_b["sig"] = signal
+    mesh_a["sig"] = signal_a
+    mesh_b["sig"] = signal_b
+
+    # Shared color range across both meshes so equal anatomical regions
+    # actually map to equal colours visually.
+    clim_lo = float(min(signal_a.min(), signal_b.min()))
+    clim_hi = float(max(signal_a.max(), signal_b.max()))
 
     p = setup_plotter((1000, 500))
     common = dict(
         scalars="sig", cmap="Spectral", smooth_shading=True, show_scalar_bar=False,
-        clim=(signal.min(), signal.max()),
+        clim=(clim_lo, clim_hi),
         ambient=0.25, diffuse=0.75, specular=0.2, specular_power=15,
     )
     p.add_mesh(mesh_a, **common)
