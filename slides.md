@@ -14,9 +14,10 @@ drawings:
 transition: slide-left
 mdc: true
 fonts:
-  sans: 'Inter'
-  serif: 'EB Garamond'
+  sans: 'Libertinus Serif'
+  serif: 'Libertinus Serif'
   mono: 'JetBrains Mono'
+  local: 'Libertinus Serif'
 ---
 
 <!-- CVPR 2026 logo as a large background watermark, anchored to the top -->
@@ -30,10 +31,6 @@ fonts:
 </div>
 
 <div class="relative z-10 flex flex-col items-center justify-center h-full">
-
-<div class="eyebrow mb-6">
-CVPR 2026 &nbsp;·&nbsp; Oral Presentation
-</div>
 
 <h1 class="!text-5xl !leading-tight !mb-8 max-w-4xl grad">
 Learning Eigenstructures of<br/>Unstructured Data Manifolds
@@ -65,9 +62,9 @@ class: text-center
 
 <div class="flex flex-col items-center h-full pt-5 pb-4 text-center">
 
-<div class="eyebrow mb-3">
-Primer · the Laplacian, intuitively
-</div>
+<h2 class="!text-xl !leading-snug !mb-2 font-serif" style="color: var(--c-fg)">
+The Laplacian
+</h2>
 
 <div class="relative w-[78%] max-w-[560px]" style="aspect-ratio: 5.6 / 3.4;">
   <img
@@ -109,9 +106,9 @@ class: text-center
 
 <div class="h-full relative">
 
-<div class="absolute top-6 left-0 right-0 text-center">
-  <div class="eyebrow">Primer · the Laplacian as an operator</div>
-</div>
+<h2 class="absolute left-0 right-0 text-center !text-xl !leading-snug !m-0 font-serif" style="color: var(--c-fg); top: 12px;">
+The Laplacian
+</h2>
 
 <!-- Click 1: header line appears -->
 <div v-click="1" class="absolute left-0 right-0 text-center text-2xl !leading-snug" style="top: 60px;">
@@ -187,12 +184,8 @@ clicks: 23
 
 <div class="h-full flex flex-col pt-2 pb-1 px-6 text-center">
 
-<div class="eyebrow mb-0">
-Primer · in Euclidean space
-</div>
-
 <h2 class="!text-xl !leading-snug !mb-1 font-serif" style="color: var(--c-fg)">
-Same question — the neighbourhood is a <span class="lbo">unit ball</span>.
+The Laplacian on Euclidean domains
 </h2>
 
 <div class="flex-1 min-h-0 grid grid-cols-2 gap-x-8 gap-y-0" style="grid-template-rows: 1fr auto auto;">
@@ -235,7 +228,7 @@ $\Delta f = \dfrac{\partial^2 f}{\partial u^2} + \dfrac{\partial^2 f}{\partial v
 
 <div class="text-center flex items-center justify-center" :style="{ opacity: $clicks >= 23 ? 1 : 0, fontSize: '22px', gridColumn: '1 / -1' }">
 
-in general, $\Delta f \;=\; \operatorname{div}\bigl(\operatorname{grad} f\bigr)$ &nbsp;—&nbsp; the <span class="lbo">divergence of the gradient</span>.
+in general, $\Delta f \;=\; \operatorname{div}\bigl(\operatorname{grad} f\bigr)$ &nbsp;·&nbsp; the divergence of the gradient.
 
 </div>
 
@@ -251,12 +244,8 @@ clicks: 11
 
 <div class="h-full flex flex-col pt-2 pb-2 px-2 text-center">
 
-<div class="eyebrow mb-0">
-Primer · on a curved domain
-</div>
-
-<h2 class="!text-lg !leading-snug !mb-1 font-serif" style="color: var(--c-fg)">
-Same question — the domain itself is now a <span class="lbo">curved manifold</span>.
+<h2 class="!text-xl !leading-snug !mb-1 font-serif" style="color: var(--c-fg)">
+The Laplacian on curved domains
 </h2>
 
 <!-- Click-driven reveal (clicks 1–10) of the same staged scene used in
@@ -272,9 +261,9 @@ Same question — the domain itself is now a <span class="lbo">curved manifold</
   />
 </div>
 
-<div class="text-center mt-1" :style="{ opacity: $clicks >= 11 ? 1 : 0, fontSize: '18px' }">
+<div class="text-center mt-1" :style="{ opacity: $clicks >= 11 ? 1 : 0, fontSize: '22px' }">
 
-$\Delta_M f \;=\; \operatorname{div}_M\!\big(\nabla_M f\big)$ &nbsp;·&nbsp; the <span class="lbo">Laplace–Beltrami operator</span> (LBO)
+$\Delta_M f \;=\; \operatorname{div}_M\!\big(\nabla_M f\big)$ &nbsp;·&nbsp; the Laplace–Beltrami operator (LBO)
 
 </div>
 
@@ -287,12 +276,8 @@ class: text-center
 
 <div class="flex flex-col items-center h-full pt-6 pb-4 text-center">
 
-<div class="eyebrow mb-3">
-Motivation
-</div>
-
-<h2 class="!text-3xl !leading-snug !mb-4 max-w-5xl font-serif">
-The <span class="lbo">LBO</span> is the <em>swiss knife</em> of geometry processing.
+<h2 class="!text-xl !leading-snug !mb-4 max-w-5xl font-serif" style="color: var(--c-fg)">
+The LBO is the <span style="color: var(--c-danger)">swiss knife</span> of geometry processing.
 </h2>
 
 <div class="flex-1 min-h-0 w-full flex items-center justify-center">
@@ -312,12 +297,8 @@ class: text-left
 
 <div class="h-full flex flex-col pt-6 pb-4 px-2">
 
-<div class="eyebrow mb-2 text-center">
-Motivation &nbsp;·&nbsp; What its eigendecomposition unlocks
-</div>
-
-<h2 class="!text-2xl !leading-snug !mb-6 font-serif text-center" style="color: var(--c-fg)">
-A single spectral basis &mdash; <span class="grad">many families of tools</span>.
+<h2 class="!text-xl !leading-snug !mb-6 font-serif text-center" style="color: var(--c-fg)">
+A single spectral basis &mdash; many families of tools.
 </h2>
 
 <div class="grid grid-cols-3 gap-x-6 gap-y-2 flex-1 min-h-0">
@@ -354,7 +335,7 @@ A single spectral basis &mdash; <span class="grad">many families of tools</span>
 
 </div>
 
-<div v-click="7" class="text-center mt-3 muted italic" style="font-size: 0.95rem;">
+<div v-click="7" class="text-center mt-3" style="font-size: 1.5rem; color: #000;">
 …and more.
 </div>
 
@@ -392,15 +373,11 @@ class: text-left
 
 <div class="h-full flex flex-col pt-2 pb-2 px-2">
 
-<div class="eyebrow mb-0 text-center">
-Background &nbsp;·&nbsp; Two pipelines for the same eigenstructure
-</div>
-
-<h2 class="!text-2xl !leading-snug !mb-1 font-serif text-center" style="color: var(--c-fg)">
-Computing the Laplacian eigenstructure, <span class="grad">two ways</span>
+<h2 class="!text-xl !leading-snug !mb-1 font-serif text-center" style="color: var(--c-fg)">
+Computing the Laplacian eigenstructure, the traditional way
 </h2>
 
-<div class="flex-1 min-h-0 pipe-grid-2">
+<div class="flex-1 min-h-0 pipe-grid-2 translate-y-[20px]">
 
 <!-- Stage titles (row 1) -->
 <div class="pipe-title" style="grid-column: 2; grid-row: 1;" v-click="1">Neighborhood extraction</div>
@@ -408,25 +385,13 @@ Computing the Laplacian eigenstructure, <span class="grad">two ways</span>
 <div class="pipe-title" style="grid-column: 6; grid-row: 1;" v-click="4">Eigensolve</div>
 <div class="pipe-title" style="grid-column: 8; grid-row: 1;" v-click="5">Eigenbasis</div>
 
-<!-- Vertical branch labels (column 1) -->
-<div class="pipe-branch-label" style="grid-column: 1; grid-row: 2;">
-
-2-manifold in $\mathbb{R}^3$
-
-</div>
-<div class="pipe-branch-label" style="grid-column: 1; grid-row: 3;">
-
-$k$-manifold embedded in $\mathbb{R}^n$
-
-</div>
-
-<!-- Vertical separators between stages (span both content rows). -->
-<div class="pipe-sep" style="grid-column: 3; grid-row: 2 / span 2;"></div>
-<div class="pipe-sep" style="grid-column: 5; grid-row: 2 / span 2;"></div>
-<div class="pipe-sep" style="grid-column: 7; grid-row: 2 / span 2;"></div>
+<!-- Vertical separators between stages — revealed with each successive stage. -->
+<div class="pipe-sep" style="grid-column: 3; grid-row: 2 / span 2;" v-click="3"></div>
+<div class="pipe-sep" style="grid-column: 5; grid-row: 2 / span 2;" v-click="4"></div>
+<div class="pipe-sep" style="grid-column: 7; grid-row: 2 / span 2;" v-click="5"></div>
 
 <!-- ──────── UPPER ROW : mesh / cotangent (row 2) ──────── -->
-<div class="pipe-img-wrap relative" style="grid-column: 2; grid-row: 2;">
+<div class="pipe-img-wrap pipe-img-shrink relative" style="grid-column: 2; grid-row: 2;">
   <img
     v-click="1"
     :src="`${$slidev.configs.base ?? '/'}applications/pipeline_vertices.png`"
@@ -441,7 +406,7 @@ $k$-manifold embedded in $\mathbb{R}^n$
   />
 </div>
 
-<div class="pipe-img-wrap" style="grid-column: 4; grid-row: 2;" v-click="3">
+<div class="pipe-img-wrap pipe-img-shrink" style="grid-column: 4; grid-row: 2;" v-click="3">
   <img :src="`${$slidev.configs.base ?? '/'}applications/pipeline_voronoi_cot.png`" class="pipe-img" alt="Voronoi cell and cotangent angles" />
 </div>
 
@@ -460,32 +425,32 @@ $\{\boldsymbol{\phi}_i\},\; \{\lambda_i\}$
 <!-- ──────── LOWER ROW : graph / Belkin–Niyogi (row 3) ──────── -->
 <!-- Same vertices as upper row; just connect k-NN edges (spokes only —
      NO triangulation). -->
-<div class="pipe-img-wrap relative" style="grid-column: 2; grid-row: 3;">
+<div class="pipe-img-wrap pipe-img-shrink relative" style="grid-column: 2; grid-row: 3;">
   <img
-    v-click="6"
+    v-click="1"
     :src="`${$slidev.configs.base ?? '/'}applications/pipeline_vertices.png`"
     class="absolute inset-0 m-auto pipe-img"
     alt="Point cloud"
   />
   <img
-    v-click="7"
+    v-click="2"
     :src="`${$slidev.configs.base ?? '/'}applications/pipeline_knn_graph.png`"
     class="absolute inset-0 m-auto pipe-img"
     alt="k-NN graph (spokes only — not a triangulation)"
   />
 </div>
 
-<div class="pipe-img-wrap" style="grid-column: 4; grid-row: 3;" v-click="8">
+<div class="pipe-img-wrap pipe-img-shrink" style="grid-column: 4; grid-row: 3;" v-click="3">
   <img :src="`${$slidev.configs.base ?? '/'}applications/pipeline_heat_weights.png`" class="pipe-img" alt="Heat-kernel edge weights and degree" />
 </div>
 
-<div class="pipe-eq-only" style="grid-column: 6; grid-row: 3;" v-click="9">
+<div class="pipe-eq-only" style="grid-column: 6; grid-row: 3;" v-click="4">
 
 $L\mathbf{y} = \lambda\, D\mathbf{y}$
 
 </div>
 
-<div class="pipe-eq-only" style="grid-column: 8; grid-row: 3;" v-click="10">
+<div class="pipe-eq-only" style="grid-column: 8; grid-row: 3;" v-click="5">
 
 $\{\mathbf{y}_i\},\; \{\lambda_i\}$
 
@@ -542,6 +507,12 @@ $\{\mathbf{y}_i\},\; \{\lambda_i\}$
   max-height: 100%;
   max-width: 100%;
   object-fit: contain;
+}
+/* Shrink only Neighborhood-extraction (col 2) and Operator-extraction (col 4) images. */
+.pipe-img-shrink .pipe-img,
+.pipe-img-shrink img {
+  max-height: 82% !important;
+  max-width: 82% !important;
 }
 .pipe-title {
   font-weight: 700;
@@ -620,12 +591,8 @@ clicks: 6
 
 <div class="h-full flex flex-col pt-6 pb-4 px-2">
 
-<div class="eyebrow mb-2 text-center">
-Background &nbsp;·&nbsp; What the traditional pipeline really is
-</div>
-
-<h2 class="!text-2xl !leading-snug !mb-8 font-serif text-center" style="color: var(--c-fg)">
-Explicit, discrete, and <span class="grad">not differentiable</span>.
+<h2 class="!text-xl !leading-snug !mb-8 font-serif text-center" style="color: var(--c-fg)">
+Explicit, discrete, and not differentiable.
 </h2>
 
 <div class="grid grid-cols-3 gap-8 flex-1 min-h-0 bottleneck-grid">
@@ -745,12 +712,8 @@ class: text-left
 
 <div class="h-full flex flex-col pt-6 pb-4 px-2">
 
-<div class="eyebrow mb-2 text-center">
-Our approach
-</div>
-
-<h2 class="!text-2xl !leading-snug !mb-8 font-serif text-center" style="color: var(--c-fg)">
-Skip the operator. <span class="grad">Learn the eigenbasis directly.</span>
+<h2 class="!text-xl !leading-snug !mb-8 font-serif text-center" style="color: var(--c-fg)">
+Skip the operator. Learn the eigenbasis directly.
 </h2>
 
 <!-- Both rows share one CSS grid so the chips align column-by-column.
@@ -792,16 +755,16 @@ Skip the operator. <span class="grad">Learn the eigenbasis directly.</span>
   align-items: center;
 }
 .pipeline-row-label {
-  font-family: 'JetBrains Mono', ui-monospace, monospace;
-  font-size: 0.65rem;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--c-fg-subtle);
+  font-family: 'Libertinus Serif', Cambria, Georgia, 'Times New Roman', serif;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #000;
   text-align: center;
   margin-bottom: 0.4rem;
 }
 .ours-label {
-  color: var(--c-brand-from);
+  color: #000;
+  font-weight: 400;
   font-weight: 600;
 }
 .pipeline-row-static {
@@ -985,10 +948,6 @@ hide: true
 
 <div class="h-full flex flex-col pt-4 pb-3 px-2">
 
-<div class="eyebrow mb-1 text-center">
-Foundation &nbsp;·&nbsp; PCA's defining identity
-</div>
-
 <h2 class="!text-2xl !leading-snug !mb-3 font-serif text-center" style="color: var(--c-fg)">
 Maximizing variance <span class="grad">&hArr;</span> minimizing reconstruction error.
 </h2>
@@ -1106,44 +1065,41 @@ Reconstruction / least-squares loss.
 ---
 layout: default
 class: text-left
-clicks: 10
+clicks: 9
 ---
 
 <div class="h-full flex flex-col pt-4 pb-3 px-2">
 
-<div class="eyebrow mb-1 text-center">
-Optimal approximation theory &nbsp;·&nbsp; Aflalo, Brezis et&nbsp;al. (2016)
-</div>
-
-<h2 class="!text-2xl !leading-snug !mb-4 font-serif text-center" style="color: var(--c-fg)">
-Recover the <span class="grad">eigenbasis</span> <em>and</em> the <span class="grad">eigenvalues</span> of <i>L</i>.
+<h2 class="!text-xl !leading-snug !mb-4 font-serif text-center" style="color: var(--c-fg)">
+Best <i>k</i>-truncated basis — a 3D toy example.
 </h2>
 
-<!-- Click-by-click reveal — two sequential build-ups on the same canvas.
-     Each PNG shares the same alpha-tight crop, so swapping the visible
-     image by $clicks just adds (or resets) content without nudging
-     anything else on screen.
-       Sequence A (flat basis):
-         click 0 → blank
+<!-- Click-by-click reveal — progressive build-up on a single canvas.
+     Each PNG shares the same alpha-tight crop so swapping the visible
+     image just adds (or resets) content without nudging anything else.
          click 1 → xyz axes + v
-         click 2 → flat basis + grid + v   (axes removed)
-         click 3 → + projections c1 b1, c2 b2
+         click 2 → flat basis + grid + v          (axes removed)
+         click 3 → + v projections c1 b1, c2 b2
          click 4 → + reconstructed v_proj
          click 5 → + residual v - v_proj
-       Sequence B (slightly tilted basis):
-         click 6 → axes + v                (clean reset)
-         click 7 → tilted basis + tilted grid + v
-         click 8 → + tilted projections
-         click 9 → + tilted v_proj
-         click 10 → + tilted (smaller) residual -->
+         click 6 → + u, its projection on the flat plane, residual
+         click 7 → + w, its projection on the flat plane, residual
+         click 8 → clean reset to the MSE-optimal plane + basis b1*, b2*
+                   for {v, u, w} (PCA top-2 left singular vectors)
+         click 9 → + projections + residual lines on the optimal plane -->
 <div class="flex-1 min-h-0 relative px-4 optimal-stage-host">
   <div class="absolute inset-0 flex items-center justify-center">
     <div class="optimal-stage-wrap">
-      <img v-for="n in 10" :key="n"
+      <img v-for="n in 8" :key="n"
            v-click="[n, n + 1]"
            class="optimal-stage"
            :src="`${$slidev.configs.base ?? '/'}applications/optimal_basis_step${n}.png`"
            :alt="`stage ${n}`" />
+      <!-- Click 9: swap to an APNG that gently wobbles the camera around. -->
+      <img v-click="9"
+           class="optimal-stage"
+           :src="`${$slidev.configs.base ?? '/'}applications/optimal_basis_step9_anim.png`"
+           alt="stage 9 — camera oscillation" />
     </div>
   </div>
 </div>
@@ -1188,12 +1144,8 @@ clicks: 6
 
 <div class="h-full flex flex-col pt-4 pb-3 px-2 relative">
 
-<div class="eyebrow mb-1 text-center">
-Constructive special case &nbsp;·&nbsp; Euclidean domains with boundary
-</div>
-
-<h2 class="!text-2xl !leading-snug !mb-4 font-serif text-center" style="color: var(--c-fg)">
-On a curve or an image, this eigenbasis is the <span class="grad">DCT</span>.
+<h2 class="!text-xl !leading-snug !mb-4 font-serif text-center" style="color: var(--c-fg)">
+Best <i>k</i>-truncated basis for 1D signals &amp; 2D images — it's the Laplacian eigenbasis in disguise.
 </h2>
 
 <!-- Click flow:
@@ -1344,11 +1296,11 @@ clicks: 4
 <div class="h-full flex flex-col pt-4 pb-3 px-2">
 
 <div class="eyebrow mb-1 text-center">
-Theorem &nbsp;·&nbsp; Aflalo, Brezis et&nbsp;al. (2016)
+Aflalo, Brezis, Bruckstein, Kimmel &amp; Sochen &nbsp;·&nbsp; C.&nbsp;R.&nbsp;Math.&nbsp;2016
 </div>
 
-<h2 class="!text-2xl !leading-snug !mb-5 font-serif text-center" style="color: var(--c-fg)">
-The optimal <i>k</i>-term basis is the <span class="grad">eigenbasis of <i>L</i></span>.
+<h2 class="!text-xl !leading-snug !mb-5 font-serif text-center" style="color: var(--c-fg)">
+The optimal <i>k</i>-term basis is the eigenbasis of <i>L</i>.
 </h2>
 
 <!-- Click 1 — the smooth-signal class C_L. -->
@@ -1413,12 +1365,10 @@ under the optimal basis.
 }
 .thm-row .katex-display { margin: 0.25rem 0; }
 .thm-label {
-  font-family: 'JetBrains Mono', ui-monospace, monospace;
-  font-size: 0.62rem;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--c-brand-from);
-  font-weight: 600;
+  font-family: 'Libertinus Serif', Cambria, Georgia, 'Times New Roman', serif;
+  font-size: 0.95rem;
+  color: var(--c-fg);
+  font-weight: 400;
   margin-bottom: 0.2rem;
 }
 .thm-card {
@@ -1439,12 +1389,10 @@ under the optimal basis.
 .thm-card-bound .thm-tag { color: var(--c-success); }
 .thm-card .katex-display { margin: 0.35rem 0; }
 .thm-tag {
-  font-family: 'JetBrains Mono', ui-monospace, monospace;
-  font-size: 0.62rem;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--c-brand-from);
-  font-weight: 600;
+  font-family: 'Libertinus Serif', Cambria, Georgia, 'Times New Roman', serif;
+  font-size: 0.95rem;
+  color: var(--c-fg);
+  font-weight: 400;
   margin-bottom: 0.4rem;
 }
 .thm-foot {
@@ -1468,12 +1416,8 @@ clicks: 7
 
 <div class="h-full flex flex-col pt-4 pb-3 px-2">
 
-<div class="eyebrow mb-1 text-center">
-Optimal approximation theory &nbsp;·&nbsp; signals on a manifold
-</div>
-
-<h2 class="!text-2xl !leading-snug !mb-3 font-serif text-center" style="color: var(--c-fg)">
-From a vector to a <span class="grad">smooth signal on a sampled manifold</span>.
+<h2 class="!text-xl !leading-snug !mb-3 font-serif text-center" style="color: var(--c-fg)">
+Best <i>k</i>-truncated basis on curved domains — the Laplace–Beltrami eigenbasis.
 </h2>
 
 <div class="flex-1 min-h-0 flex flex-col items-center justify-center gap-4 px-4">
@@ -1553,7 +1497,7 @@ From a vector to a <span class="grad">smooth signal on a sampled manifold</span>
 <img class="pc-img" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_basis_4_49.png`" alt="LBO basis · 49" />
 </div>
 <svg class="pc-brace" viewBox="0 0 100 6" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg"><path d="M 0.5 0.5 Q 0.5 4.5 3 4.5 L 48 4.5 Q 50 4.5 50 6 Q 50 4.5 52 4.5 L 97 4.5 Q 99.5 4.5 99.5 0.5" stroke="currentColor" stroke-width="1.4" fill="none" vector-effect="non-scaling-stroke" stroke-linecap="round" /></svg>
-<div class="pc-cap pc-cap-hero"><span class="grad">LBO eigenbasis</span></div>
+<div class="pc-cap pc-cap-hero">LBO eigenbasis</div>
 </div>
 </div>
 </div>
@@ -1635,8 +1579,7 @@ From a vector to a <span class="grad">smooth signal on a sampled manifold</span>
 .pc-cap {
   margin-top: 0.5rem;
   font-size: 0.9rem;
-  font-style: italic;
-  color: var(--c-fg-muted);
+  color: var(--c-fg);
   text-align: center;
 }
 </style>
@@ -1727,12 +1670,8 @@ onMounted(() => {
 
 <div class="h-full flex flex-col pt-4 pb-3 px-2">
 
-<div class="eyebrow mb-1 text-center">
-Method &nbsp;·&nbsp; pipeline overview
-</div>
-
-<h2 class="!text-2xl !leading-snug !mb-4 font-serif text-center" style="color: var(--c-fg)">
-Our <span class="grad">pipeline</span>.
+<h2 class="!text-xl !leading-snug !mb-4 font-serif text-center" style="color: var(--c-fg)">
+Our pipeline.
 </h2>
 
 <div class="flex-1 min-h-0 flex items-center justify-center px-2 ml-stage">
@@ -2558,10 +2497,6 @@ clicks: 2
 
 <div class="h-full flex flex-col pt-4 pb-3 px-2">
 
-<div class="eyebrow mb-1 text-center">
-Results &nbsp;·&nbsp; single-shape training
-</div>
-
 <h2 class="!text-2xl !leading-snug !mb-4 font-serif text-center" style="color: var(--c-fg)">
 Our predicted basis matches the <span class="grad">cotangent Laplacian</span>.
 </h2>
@@ -2729,10 +2664,6 @@ clicks: 2
 ---
 
 <div class="h-full flex flex-col pt-4 pb-3 px-2">
-
-<div class="eyebrow mb-1 text-center">
-Results &nbsp;·&nbsp; single-shape training
-</div>
 
 <h2 class="!text-2xl !leading-snug !mb-4 font-serif text-center" style="color: var(--c-fg)">
 Our predicted basis matches the <span class="grad">cotangent Laplacian</span>.
@@ -2902,10 +2833,6 @@ clicks: 2
 
 <div class="h-full flex flex-col pt-4 pb-3 px-2">
 
-<div class="eyebrow mb-1 text-center">
-Results &nbsp;·&nbsp; generalization across shapes
-</div>
-
 <h2 class="!text-2xl !leading-snug !mb-4 font-serif text-center" style="color: var(--c-fg)">
 Our predicted basis matches the <span class="grad">cotangent Laplacian</span> on <em>unseen</em> shapes.
 </h2>
@@ -3073,10 +3000,6 @@ clicks: 2
 ---
 
 <div class="h-full flex flex-col pt-4 pb-3 px-2">
-
-<div class="eyebrow mb-1 text-center">
-Results &nbsp;·&nbsp; generalization across shapes
-</div>
 
 <h2 class="!text-2xl !leading-snug !mb-4 font-serif text-center" style="color: var(--c-fg)">
 Our predicted basis matches the <span class="grad">cotangent Laplacian</span> on <em>unseen</em> shapes.
@@ -3246,10 +3169,6 @@ clicks: 1
 
 <div class="h-full flex flex-col pt-4 pb-3 px-2">
 
-<div class="eyebrow mb-1 text-center">
-Results &nbsp;·&nbsp; generalization to volumetric shapes
-</div>
-
 <h2 class="!text-2xl !leading-snug !mb-4 font-serif text-center" style="color: var(--c-fg)">
 Our predicted eigenbasis on <em>volumetric</em> shapes.
 </h2>
@@ -3385,10 +3304,6 @@ clicks: 2
 
 <div class="h-full flex flex-col pt-4 pb-3 px-2">
 
-<div class="eyebrow mb-1 text-center">
-Rebuttal &nbsp;·&nbsp; Hadamard probes &nbsp;·&nbsp; 100-eigen variant
-</div>
-
 <h2 class="!text-2xl !leading-snug !mb-6 font-serif text-center" style="color: var(--c-fg)">
 Generalisation to <span class="grad">Hadamard</span> probe distributions.
 </h2>
@@ -3430,10 +3345,6 @@ clicks: 4
 ---
 
 <div class="h-full flex flex-col pt-4 pb-3 px-2">
-
-<div class="eyebrow mb-1 text-center">
-Rebuttal &nbsp;·&nbsp; Schrödinger operator
-</div>
 
 <h2 class="!text-2xl !leading-snug !mb-6 font-serif text-center" style="color: var(--c-fg)">
 Generalisation to the <span class="grad">Schrödinger</span> operator.
@@ -3551,10 +3462,6 @@ clicks: 2
 
 <div class="h-full flex flex-col pt-4 pb-3 px-2">
 
-<div class="eyebrow mb-1 text-center">
-Rebuttal &nbsp;·&nbsp; Resolution generalisation
-</div>
-
 <h2 class="!text-2xl !leading-snug !mb-6 font-serif text-center" style="color: var(--c-fg)">
 Train at low resolution, infer at <span class="grad">higher resolution</span>.
 </h2>
@@ -3625,10 +3532,6 @@ clicks: 1
 
 <div class="h-full flex flex-col pt-4 pb-3 px-2">
 
-<div class="eyebrow mb-1 text-center">
-Results &nbsp;·&nbsp; Learned metric
-</div>
-
 <h2 class="!text-2xl !leading-snug !mb-6 font-serif text-center" style="color: var(--c-fg)">
 Predicted <span class="grad">vertex areas</span> &nbsp;/&nbsp; sampling density.
 </h2>
@@ -3655,10 +3558,6 @@ class: text-left
 ---
 
 <div class="h-full flex flex-col pt-4 pb-3 px-2">
-
-<div class="eyebrow mb-1 text-center">
-Method &nbsp;·&nbsp; Image manifold
-</div>
 
 <h2 class="!text-2xl !leading-snug !mb-3 font-serif text-center" style="color: var(--c-fg)">
 Setup.
@@ -3749,10 +3648,6 @@ clicks: 1
 
 <div class="h-full flex flex-col pt-4 pb-3 px-2">
 
-<div class="eyebrow mb-1 text-center">
-Results &nbsp;·&nbsp; Image manifold &nbsp;·&nbsp; STL10 / CLIP
-</div>
-
 <h2 class="!text-2xl !leading-snug !mb-3 font-serif text-center" style="color: var(--c-fg)">
 <span class="grad">STL10</span> clusters &mdash; CLIP embeddings.
 </h2>
@@ -3776,10 +3671,6 @@ clicks: 1
 ---
 
 <div class="h-full flex flex-col pt-4 pb-3 px-2">
-
-<div class="eyebrow mb-1 text-center">
-Results &nbsp;·&nbsp; Image manifold &nbsp;·&nbsp; STL10 / DINOv2
-</div>
 
 <h2 class="!text-2xl !leading-snug !mb-3 font-serif text-center" style="color: var(--c-fg)">
 <span class="grad">STL10</span> clusters &mdash; DINOv2 embeddings.
@@ -3805,10 +3696,6 @@ clicks: 1
 
 <div class="h-full flex flex-col pt-4 pb-3 px-2">
 
-<div class="eyebrow mb-1 text-center">
-Results &nbsp;·&nbsp; Image manifold &nbsp;·&nbsp; Quantitative
-</div>
-
 <h2 class="!text-2xl !leading-snug !mb-3 font-serif text-center" style="color: var(--c-fg)">
 Quantitative comparison &mdash; <span class="grad">NMI &amp; ARI</span>.
 </h2>
@@ -3833,10 +3720,6 @@ hide: true
 
 <div class="h-full flex flex-col items-center justify-center px-12">
 
-<div class="eyebrow mb-10">
-The question
-</div>
-
 <h1 class="!text-4xl !leading-[1.6] font-serif max-w-5xl" style="color: var(--c-fg)">
 So how do we <span class="grad">learn</span> an<br/>
 ordered eigenbasis of <i>L</i><br/>
@@ -3852,10 +3735,6 @@ hide: true
 ---
 
 <div class="h-full flex flex-col pt-4 pb-3 px-2">
-
-<div class="eyebrow mb-1 text-center">
-Method &nbsp;·&nbsp; Training recipe
-</div>
 
 <h2 class="!text-2xl !leading-snug !mb-4 font-serif text-center" style="color: var(--c-fg)">
 The training algorithm.
@@ -3945,10 +3824,6 @@ hide: true
 
 <div class="h-full flex flex-col items-center justify-center px-12">
 
-<div class="eyebrow mb-10">
-The question
-</div>
-
 <h1 class="!text-4xl !leading-[1.6] font-serif max-w-5xl" style="color: var(--c-fg)">
 So how do we adapt this for the<br/>
 <span class="grad">LBO eigendecomposition</span>?
@@ -3963,10 +3838,6 @@ hide: true
 ---
 
 <div class="h-full flex flex-col pt-4 pb-3 px-2">
-
-<div class="eyebrow mb-1 text-center">
-Method &nbsp;·&nbsp; LBO specialization
-</div>
 
 <h2 class="!text-2xl !leading-snug !mb-4 font-serif text-center" style="color: var(--c-fg)">
 Plug in <span class="grad">&Delta;</span>.
@@ -4062,10 +3933,6 @@ hide: true
 ---
 
 <div class="h-full flex flex-col pt-4 pb-3 px-2">
-
-<div class="eyebrow mb-2 text-center">
-Method &nbsp;·&nbsp; Pipeline
-</div>
 
 <h2 class="!text-2xl !leading-snug !mb-3 font-serif text-center" style="color: var(--c-fg)">
 The full <span class="grad">pipeline</span>.
@@ -4198,10 +4065,6 @@ hide: true
 
 <div class="h-full relative flex flex-col items-center justify-center px-12">
 
-<div class="eyebrow mb-6 relative z-10">
-Results &nbsp;·&nbsp; 3D overfitting
-</div>
-
 <h1 class="!text-4xl !leading-[1.4] font-serif max-w-5xl !mb-8 relative z-10" style="color: var(--c-fg)">
 Learning the <span class="grad">eigenbasis of a single 3D shape</span>.
 </h1>
@@ -4221,10 +4084,6 @@ hide: true
 ---
 
 <div class="h-full flex flex-col pt-4 pb-3 px-2">
-
-<div class="eyebrow mb-1 text-center">
-Results &nbsp;·&nbsp; 3D overfitting
-</div>
 
 <h2 class="!text-2xl !leading-snug !mb-3 font-serif text-center" style="color: var(--c-fg)">
 Cosine similarity &amp; <span class="grad">eigenvalue discrepancy</span>.
@@ -4295,7 +4154,6 @@ hide: true
 <div class="h-full flex flex-row gap-3">
 
 <div class="title-col">
-  <div class="eyebrow mb-2">Results &nbsp;·&nbsp; 3D overfitting</div>
   <h2 class="!text-lg !leading-snug !mb-0 font-serif" style="color: var(--c-fg)">
     Predicted vs. <span class="grad">oracle eigenfunctions</span> (I).
   </h2>
@@ -4335,7 +4193,6 @@ hide: true
 <div class="h-full flex flex-row gap-3">
 
 <div class="title-col">
-  <div class="eyebrow mb-2">Results &nbsp;·&nbsp; 3D overfitting</div>
   <h2 class="!text-lg !leading-snug !mb-0 font-serif" style="color: var(--c-fg)">
     Predicted vs. <span class="grad">oracle eigenfunctions</span> (II).
   </h2>
@@ -4375,7 +4232,6 @@ hide: true
 <div class="h-full flex flex-row gap-3">
 
 <div class="title-col">
-  <div class="eyebrow mb-2">Results &nbsp;·&nbsp; 3D overfitting</div>
   <h2 class="!text-lg !leading-snug !mb-0 font-serif" style="color: var(--c-fg)">
     <span class="grad">Predicted metric</span>.
   </h2>
@@ -4423,10 +4279,6 @@ hide: true
 <img :src="`${$slidev.configs.base ?? '/'}thumbs/woodenfish.png`"     class="thumb-deco" style="top: 5%;   left: 38%;" />
 <img :src="`${$slidev.configs.base ?? '/'}thumbs/wrench.png`"         class="thumb-deco" style="bottom: 5%; left: 44%;" />
 
-<div class="eyebrow mb-6 relative z-10">
-Results &nbsp;·&nbsp; 3D generalization
-</div>
-
 <h1 class="!text-4xl !leading-[1.4] font-serif max-w-5xl !mb-0 relative z-10" style="color: var(--c-fg)">
 Attempting to <span class="grad">generalize</span>&hellip;
 </h1>
@@ -4454,7 +4306,6 @@ hide: true
 <div class="h-full flex flex-row gap-3">
 
 <div class="title-col">
-  <div class="eyebrow mb-2">Results &nbsp;·&nbsp; 3D generalization</div>
   <h2 class="!text-lg !leading-snug !mb-0 font-serif" style="color: var(--c-fg)">
     Predicted vs. <span class="grad">oracle eigenfunctions</span>.
   </h2>
@@ -4499,10 +4350,6 @@ hide: true
   alt="Image manifold backdrop"
 />
 
-<div class="eyebrow mb-6 relative z-10">
-Results &nbsp;·&nbsp; Image manifold
-</div>
-
 <h1 class="!text-4xl !leading-[1.4] font-serif max-w-5xl !mb-0 relative z-10" style="color: var(--c-fg)">
 Learning the <span class="grad">eigenbasis of the image manifold</span>.
 </h1>
@@ -4532,10 +4379,6 @@ hide: true
 ---
 
 <div class="h-full flex flex-col pt-3 pb-3 px-2">
-
-<div class="eyebrow mb-1 text-center">
-Results &nbsp;·&nbsp; Image manifold
-</div>
 
 <h2 class="!text-2xl !leading-snug !mb-3 font-serif text-center" style="color: var(--c-fg)">
 <span class="grad">Imagenette</span> clusters.
@@ -4605,10 +4448,6 @@ hide: true
 
 <div class="h-full flex flex-col pt-3 pb-3 px-2">
 
-<div class="eyebrow mb-1 text-center">
-Results &nbsp;·&nbsp; Image manifold
-</div>
-
 <h2 class="!text-2xl !leading-snug !mb-3 font-serif text-center" style="color: var(--c-fg)">
 <span class="grad">STL10</span> clusters.
 </h2>
@@ -4677,10 +4516,6 @@ hide: true
 
 <div class="h-full flex flex-col pt-3 pb-3 px-2">
 
-<div class="eyebrow mb-1 text-center">
-Results &nbsp;·&nbsp; Image manifold
-</div>
-
 <h2 class="!text-2xl !leading-snug !mb-3 font-serif text-center" style="color: var(--c-fg)">
 Quantitative comparison &mdash; <span class="grad">NMI &amp; ARI</span>.
 </h2>
@@ -4702,10 +4537,6 @@ hide: true
 ---
 
 <div class="h-full flex flex-col pt-4 pb-3 px-2">
-
-<div class="eyebrow mb-1 text-center">
-Conclusion &nbsp;·&nbsp; Trade-offs
-</div>
 
 <h2 class="!text-2xl !leading-snug !mb-4 font-serif text-center" style="color: var(--c-fg)">
 Trade-offs vs. the <span class="grad">traditional pipeline</span>.

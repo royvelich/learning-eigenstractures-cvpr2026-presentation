@@ -85,7 +85,7 @@ def _unit_ball_1d(ax, x0, col, r=None):
 
 def build_1d_stage(stage):
     fig, ax = plt.subplots(figsize=(5.8, 3.6))
-    ax.plot(xs, ys, color=GREY, lw=3.0, zorder=3)
+    ax.plot(xs, ys, color="#94a3b8", lw=3.0, zorder=3)
 
     if stage >= 1:
         _focal_dot_1d(ax, foci_1d_red[0], foci_1d_red[1])
@@ -113,11 +113,15 @@ def build_1d_stage(stage):
                 ha="center", fontweight="bold")
 
     ax.annotate("", xy=(3.85, 0), xytext=(-3.6, 0),
-                arrowprops=dict(arrowstyle="-|>", color=DARK, lw=1.5), zorder=2)
-    ax.text(3.93, 0, "$x$", fontsize=14, va="center")
+                arrowprops=dict(arrowstyle="-|>", color=DARK,
+                                lw=2.8, mutation_scale=28),
+                zorder=2)
+    ax.text(4.05, 0, "$x$", fontsize=24, va="center")
     ax.annotate("", xy=(-3.5, ys.max() + 0.20), xytext=(-3.5, ys.min() - 0.36),
-                arrowprops=dict(arrowstyle="-|>", color=DARK, lw=1.5), zorder=2)
-    ax.text(-3.5, ys.max() + 0.36, "$f(x)$", fontsize=14, ha="center")
+                arrowprops=dict(arrowstyle="-|>", color=DARK,
+                                lw=2.8, mutation_scale=28),
+                zorder=2)
+    ax.text(-3.5, ys.max() + 0.42, "$f(x)$", fontsize=24, ha="center")
 
     ax.set_xlim(-4.0, 4.3)
     ax.set_ylim(ys.min() - 0.55, ys.max() + 0.62)
@@ -241,11 +245,28 @@ def _unit_disk_2d(ax, uc, vc, col, r=None):
     ax.add_collection3d(poly)
 
 
-def _delta_label_2d(ax, uc, vc, text, col):
-    """Δf-sign label always above the f-sheet bump along ẑ."""
-    pL_z = NORMAL_LIFT + NORMAL_SCALE * abs(f2(uc, vc)) + 0.55
-    ax.text(uc, vc, pL_z, text, color=col, fontsize=20,
-            ha="center", va="bottom", fontweight="bold")
+def _delta_label_2d(ax, uc, vc, text, col, side="above", offset=0.55,
+                    du=0.0, dv=0.0, dz=0.0, ha="center", va=None):
+    """Δf-sign label, placed above or below the f-sheet bump along ẑ.
+    `offset` = vertical gap (world units) bump↔label.  `du/dv/dz` = extra
+    nudge in world units (camera projects them to a small image-pixel shift)."""
+    z_bump = NORMAL_LIFT + NORMAL_SCALE * f2(uc, vc)
+    if side == "below":
+        # Sit just under the f-sheet dip — next to the (u,v)-plane unit ball.
+        pL_z = z_bump - offset + dz
+        default_va = "top"
+    elif side == "at":
+        # Sit at the bump level (use du/dv to nudge horizontally).
+        pL_z = z_bump + dz
+        default_va = "center"
+    else:
+        # Sit above the f-sheet peak.
+        pL_z = NORMAL_LIFT + NORMAL_SCALE * abs(f2(uc, vc)) + offset + dz
+        default_va = "bottom"
+    if va is None:
+        va = default_va
+    ax.text(uc + du, vc + dv, pL_z, text, color=col, fontsize=20,
+            ha=ha, va=va, fontweight="bold")
 
 
 def _unit_patch_on_sheet_2d(ax, uc, vc, col, zorder, r=None):
@@ -336,18 +357,40 @@ def build_2d_stage(stage):
         _focal_top_2d(ax, GREEN_UV_2D[0], GREEN_UV_2D[1])
     if stage >= 3:
         _delta_label_2d(ax, foci_2d_red[0], foci_2d_red[1],
-                        r"$\Delta f > 0$", RED)
+                        r"$\Delta f > 0$", RED, offset=0.15)
     if stage >= 6:
         _delta_label_2d(ax, foci_2d_blue[0], foci_2d_blue[1],
-                        r"$\Delta f < 0$", BLUE)
+                        r"$\Delta f < 0$", BLUE, side="below")
     if stage >= 9:
+        # Sit at the bump level, just to the right of the green unit-ball patch.
         _delta_label_2d(ax, GREEN_UV_2D[0], GREEN_UV_2D[1],
-                        r"$\Delta f \approx 0$", GREEN)
+                        r"$\Delta f \approx 0$", GREEN,
+                        side="at", du=r2 + 0.15, ha="left")
 
     ax.set_axis_off()
     ax.view_init(elev=18, azim=-30)
     ax.set_proj_type("persp", focal_length=0.3)
     ax.set_box_aspect((1, 1, 0.85))
+
+    # "uv plane" label running along the front edge of the (u,v) grid —
+    # rotated to follow the projected edge in figure coordinates.
+    fig.canvas.draw()
+
+    def _to_fig(x, y, z):
+        xs, ys, _ = proj3d.proj_transform(x, y, z, ax.get_proj())
+        px, py = ax.transData.transform((xs, ys))
+        return fig.transFigure.inverted().transform((px, py))
+
+    fl = _to_fig(-edge, -edge, 0.0)
+    fr = _to_fig( edge, -edge, 0.0)
+    dl = fig.transFigure.transform(fl)
+    dr = fig.transFigure.transform(fr)
+    edge_angle = math.degrees(math.atan2(dr[1] - dl[1], dr[0] - dl[0]))
+    mid = ((fl[0] + fr[0]) / 2, (fl[1] + fr[1]) / 2)
+    nx_, ny_ = -math.sin(math.radians(edge_angle)), math.cos(math.radians(edge_angle))
+    label_pos = (mid[0] - 0.03 * nx_, mid[1] - 0.03 * ny_)
+    fig.text(label_pos[0], label_pos[1], r"$uv$ plane", fontsize=18,
+             color=DARK, ha="center", va="center", rotation=edge_angle)
     return fig
 
 

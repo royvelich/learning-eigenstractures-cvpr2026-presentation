@@ -8,11 +8,13 @@
     "export": "slidev export"
   },
   "dependencies": {
+    "@fontsource/libertinus-serif": "^5.2.1",
     "@slidev/cli": "latest",
     "@slidev/theme-default": "latest",
     "@slidev/theme-seriph": "latest",
     "leader-line-new": "^1.1.9",
     "playwright-chromium": "latest",
+    "slidev-theme-academic": "^2.1.0",
     "vue": "^3.5.0"
   }
 }

@@ -186,13 +186,34 @@ def _unit_patch_on_sheet_curved(ax, uc, vc, col, zorder, r=None):
                     zorder=zorder)
 
 
-def _delta_label_curved(ax, uc, vc, text, col):
-    """Label sitting above the f-sheet bump along the focal normal."""
+def _delta_label_curved(ax, uc, vc, text, col, side="above", offset=0.55,
+                        du=0.0, dv=0.0, ha="center", va=None):
+    """Label placed relative to the f-sheet bump above (uc,vc).
+
+    side="above"     → above the bump along the focal normal (default).
+    side="at"        → at the bump level; nudge tangentially with du/dv.
+    side="on_domain" → on the manifold next to the unit ball;
+                       nudge with du/dv (no normal lift)."""
     nrm = np.array(normal(uc, vc)).reshape(3)
-    p0 = np.array([uc, vc, h(uc, vc)])
-    pL = p0 + (NORMAL_LIFT + NORMAL_SCALE * abs(f(uc, vc)) + 0.55) * nrm
+    if side == "at":
+        uu, vv = uc + du, vc + dv
+        nrm_at = np.array(normal(uu, vv)).reshape(3)
+        p0 = np.array([uu, vv, h(uu, vv)])
+        pL = p0 + (NORMAL_LIFT + NORMAL_SCALE * f(uu, vv)) * nrm_at
+        default_va = "center"
+    elif side == "on_domain":
+        uu, vv = uc + du, vc + dv
+        # Sit on the manifold surface (z = h), tiny lift to avoid z-fighting.
+        pL = np.array([uu, vv, h(uu, vv) + 0.02])
+        default_va = "center"
+    else:
+        p0 = np.array([uc, vc, h(uc, vc)])
+        pL = p0 + (NORMAL_LIFT + NORMAL_SCALE * abs(f(uc, vc)) + offset) * nrm
+        default_va = "bottom"
+    if va is None:
+        va = default_va
     ax.text(pL[0], pL[1], pL[2], text, color=col, fontsize=20,
-            ha="center", va="bottom", fontweight="bold", zorder=25)
+            ha=ha, va=va, fontweight="bold", zorder=25)
 
 
 def build_stage(stage):
@@ -263,13 +284,15 @@ def build_stage(stage):
         _focal_top_curved(ax, GREY_UV[0], GREY_UV[1])
     if stage >= 3:
         _delta_label_curved(ax, foci_red[0], foci_red[1],
-                            r"$\Delta f > 0$", RED)
+                            r"$\Delta f > 0$", RED, offset=0.15)
     if stage >= 6:
+        # Sit ON the manifold, just to the right of the blue unit-ball disk.
         _delta_label_curved(ax, foci_blue[0], foci_blue[1],
-                            r"$\Delta f < 0$", BLUE)
+                            r"$\Delta f < 0$", BLUE,
+                            side="on_domain", du=r_disk + 0.35, ha="left")
     if stage >= 9:
         _delta_label_curved(ax, GREY_UV[0], GREY_UV[1],
-                            r"$\Delta f \approx 0$", GREEN)
+                            r"$\Delta f \approx 0$", GREEN, offset=0.40)
 
     ax.set_axis_off()
     ax.view_init(elev=28, azim=-30)

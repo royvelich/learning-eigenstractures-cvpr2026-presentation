@@ -260,11 +260,36 @@ for i in range(N_DSIGNALS):
     write_tight(name)
 
 
+# Mass matrix M from the point-cloud Laplacian — needed both for the LBO
+# eigenbasis (Set 4) and for M-orthogonalising the random bases (Sets 1..3),
+# so they all live in the same Hilbert structure ⟨f, g⟩_M = fᵀ M g.
+import robust_laplacian
+import scipy.sparse as sp
+import scipy.linalg as sla
+L_lbo, M_lbo = robust_laplacian.point_cloud_laplacian(P)
+L_lbo = sp.csc_matrix(L_lbo)
+M_lbo = sp.csc_matrix(M_lbo)
+# M is diagonal (lumped Voronoi) — keep the sqrt around for cheap
+# M-orthogonalisation via the Cholesky trick.
+_m_diag = np.asarray(M_lbo.diagonal()).ravel()
+_m_sqrt = np.sqrt(np.clip(_m_diag, 1e-12, None))
+
+
+def m_orthogonalize(A):
+    """Return Q with M-orthonormal columns (Qᵀ M Q = I) spanning span(A).
+    Trick: with M = sqrt(M)·sqrt(M)ᵀ (diagonal here), set B = sqrt(M) A,
+    take Euclidean QR(B) = Q_b R, then Q = sqrt(M)⁻¹ Q_b is M-orthonormal."""
+    B = _m_sqrt[:, None] * A
+    Qb, _ = np.linalg.qr(B)
+    return Qb / _m_sqrt[:, None]
+
+
 # ----------------------------- 4. random orthogonal bases
 # 3 sets, each of K basis functions on the point cloud. Functions are
-# orthonormalised (QR) so each row in the slide really shows an orthogonal
-# basis — the basis vectors look smooth (built from Gaussian mixtures) but
-# differ between sets thanks to different random seeds.
+# M-orthonormalised so each row in the slide really shows an orthogonal
+# basis in the SAME inner product the LBO eigenbasis uses — they look
+# smooth (built from Gaussian mixtures) and differ between sets thanks
+# to different random seeds.
 N_RANDOM_BASIS_SETS = 3
 # Match set 4 (the LBO eigenbasis): each random basis is a full 50-dim
 # orthonormal basis. The slide only shows the first 3 + last 3 thumbnails
@@ -308,7 +333,7 @@ def render_basis_set(set_i, basis_vecs):
         def build_basis(p, _f=f, _m=m):
             cloud = pv.PolyData(P)
             cloud["f"] = _f
-            p.add_mesh(cloud, scalars="f", cmap="PuOr_r", clim=[-_m, _m],
+            p.add_mesh(cloud, scalars="f", cmap="PiYG", clim=[-_m, _m],
                        render_points_as_spheres=True, point_size=16,
                        show_scalar_bar=False,
                        ambient=0.30, diffuse=0.72)
@@ -318,40 +343,30 @@ def render_basis_set(set_i, basis_vecs):
         write_tight(name)
 
 
-# Sets 1..3 — random orthonormal bases of smooth atoms (50-dim each)
+# Sets 1..3 — random M-orthonormal bases of smooth atoms (50-dim each)
 for set_i in range(1, N_RANDOM_BASIS_SETS + 1):
     # Clear stale per-set thumbnails (we used to write 1-indexed names).
     for _old in OUT_DIR.glob(f"manifold_pc_basis_{set_i}_*.png"):
         _old.unlink()
     A = build_smooth_atoms(RNG_SEED + 500 + (set_i - 1) * 17, N_BASIS_VECS)
-    Q, _R = np.linalg.qr(A)
+    Q = m_orthogonalize(A)
     render_basis_set(set_i, Q)
 
 
 # Set 4 — the canonical LBO eigenbasis on the point cloud, solved as
-# the GENERALIZED eigenproblem  L phi = lambda M phi  (no symmetric
-# normalization). The eigenvectors are M-orthonormal (NOT Euclidean
-# orthonormal) and the first one is a constant — the genuine smoothest
-# function on the manifold, not the density-weighted DC mode that
-# L_sym would give.
-import robust_laplacian
-import scipy.sparse as sp
-import scipy.linalg as sla
-
+# the GENERALIZED eigenproblem  L phi = lambda M phi.  The eigenvectors
+# are M-orthonormal (matching Sets 1..3) and the first one is a constant
+# — the genuine smoothest function on the manifold.
 N_LSYM_VECS = 50
 
 # Clear stale basis_4_* files from any previous indexing scheme.
 for _old in OUT_DIR.glob("manifold_pc_basis_4_*.png"):
     _old.unlink()
 
-L, M = robust_laplacian.point_cloud_laplacian(P)
-L = sp.csc_matrix(L)
-M = sp.csc_matrix(M)
-
-# Generalized eigendecomposition L phi = lambda M phi (non-symmetric LBO).
-# scipy.linalg.eigh handles the symmetric-definite generalized problem and
-# returns vectors that are M-orthonormal (vecs.T @ M @ vecs = I).
-vals_all, vecs_all = sla.eigh(L.toarray(), M.toarray())
+# Generalized eigendecomposition L phi = lambda M phi.  scipy.linalg.eigh
+# handles the symmetric-definite generalized problem and returns vectors
+# that are M-orthonormal (vecs.T @ M @ vecs = I).
+vals_all, vecs_all = sla.eigh(L_lbo.toarray(), M_lbo.toarray())
 
 # First N_LSYM_VECS eigenvectors of the generalized eigenproblem,
 # ordered by increasing eigenvalue (smoothest first). This IS the LBO
@@ -365,7 +380,7 @@ for k in range(N_LSYM_VECS):
     def build_basis(p, _f=f, _m=m):
         cloud = pv.PolyData(P)
         cloud["f"] = _f
-        p.add_mesh(cloud, scalars="f", cmap="PuOr_r", clim=[-_m, _m],
+        p.add_mesh(cloud, scalars="f", cmap="PiYG", clim=[-_m, _m],
                    render_points_as_spheres=True, point_size=16,
                    show_scalar_bar=False,
                    ambient=0.30, diffuse=0.72)
@@ -386,22 +401,25 @@ for k in range(N_LSYM_VECS):
 # rebind `psi` to it; the projection/reconstruction sections below now
 # operate in this random orthonormal smooth basis instead of L_sym's.
 _Q2_atoms = build_smooth_atoms(RNG_SEED + 500 + (2 - 1) * 17, N_BASIS_VECS)
-_Q2, _ = np.linalg.qr(_Q2_atoms)
+_Q2 = m_orthogonalize(_Q2_atoms)
 psi = _Q2[:, :N_LSYM_VECS]
 
 
 # ----------------------------- 5. reconstruction of the diffusion signals on
-# the first k vectors of the slide-15 predicted eigenbasis (random
-# orthonormal smooth basis #2). The vectors {psi_i} are Euclidean
-# orthonormal, so the truncated reconstruction is
-#     f_k = sum_{i<k} (psi_i^T f) psi_i.
-# We render reconstructions at k = 1, 2, 49, 50 for each diffusion signal,
-# using the SAME colour limits as the original signal so visual comparison
-# across k is meaningful.
+# the first k vectors of the slide-15 predicted eigenbasis (random M-
+# orthonormal smooth basis #2). The vectors {psi_i} satisfy Ψᵀ M Ψ = I, so
+# the truncated reconstruction uses the M-INNER-PRODUCT coefficients
+#     coeffs_i = ψ_iᵀ M f,    f_k = Σ_{i<k} coeffs_i · ψ_i.
+# Using the Euclidean dot ψᵀ f would scale the coefficients by ~Σ m_j and
+# blow up every component thumbnail.
 RECON_KS = (1, 2, 5, 10, 20, 49, 50)
 
+# Dense M reused for projection / reconstruction.
+_M_dense = M_lbo.toarray()
+_psi_M = psi.T @ _M_dense        # shape (N_LSYM_VECS, N_pts) — Mᵀψ for each row.
+
 for _sig_i, (_f_orig, _m_orig) in _diff_signals.items():
-    _coeffs = psi.T @ _f_orig    # shape (N_LSYM_VECS,)
+    _coeffs = _psi_M @ _f_orig    # M-weighted projection coefficients.
     for _k in RECON_KS:
         _f_recon = psi[:, :_k] @ _coeffs[:_k]
 
@@ -425,7 +443,7 @@ for _sig_i, (_f_orig, _m_orig) in _diff_signals.items():
 # basis. Rendered with the SAME colour limit as the original signal so the
 # magnitude (sign + amplitude) of each spectral component is comparable.
 _f0, _m0 = _diff_signals[1]
-_coeffs0 = psi.T @ _f0
+_coeffs0 = _psi_M @ _f0   # M-weighted: ψᵀ M f, matches Ψ being M-orthonormal.
 
 # Shared-clim compression factor — the high-i projection components carry
 # tiny amplitudes, so plotting them at the FULL signal range washes them
@@ -473,7 +491,7 @@ for _i in range(N_LSYM_VECS):
 # Only the 4 indices used by the pipeline slide (eigens 0, 1, 48, 49).
 # Both variants: shared clim (proj_iN) and per-image clim (proj_local_iN).
 _f2, _m2 = _diff_signals[2]
-_coeffs2 = psi.T @ _f2
+_coeffs2 = _psi_M @ _f2   # M-weighted projection.
 
 for _i in [0, 1, 48, 49]:
     _comp2 = _coeffs2[_i] * psi[:, _i]

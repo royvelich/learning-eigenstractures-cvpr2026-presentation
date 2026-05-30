@@ -24,3 +24,13 @@ public/overfit_screenshots/
 public/generalization_screenshots/
 public/rebuttal_screenshots/
 supp_metric@0.5x.png
+
+# Auto-regenerated cell PNGs (large; only the source screenshot dirs matter)
+public/applications/overfit_cells/
+
+# Poster build artifacts (the canonical output is poster.pdf)
+poster/preview-*.png
+poster/*.aux
+poster/*.log
+poster/*.out
+poster/*.synctex.gz
