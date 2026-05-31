@@ -101,7 +101,7 @@
   \end{beamercolorbox}
   \end{minipage}%
   \end{lrbox}%
-  \tikz[baseline]{\node[draw=black, line width=1.2pt, inner sep=8pt, outer sep=0pt, line cap=rect, line join=miter](){\usebox{\posterBlockBox}};}%
+  \tikz[baseline]{\node[draw=none, inner sep=8pt, outer sep=0pt](){\usebox{\posterBlockBox}};}%
   \vspace{0.9ex}
 }
 
@@ -109,10 +109,11 @@
 \title{\textbf{Learning Eigenstructures of Unstructured Data Manifolds}}
 \author{%
   Roy Velich$^{1}$ \quad Arkadi Piven$^{1}$ \quad David Bensa\"id$^{1}$ \quad
-  Daniel Cremers$^{2}$ \quad Thomas Dag\`es$^{1}$ \quad Ron Kimmel$^{1}$%
+  Daniel Cremers$^{2,3}$ \quad Thomas Dag\`es$^{1,2,3}$ \quad Ron Kimmel$^{1}$%
 }
 \institute{$^{1}$\,Technion --- Israel Institute of Technology \quad
-           $^{2}$\,Technical University of Munich}
+           $^{2}$\,Technical University of Munich \quad
+           $^{3}$\,Munich Center for Machine Learning}
 
 % ─── Header band ────────────────────────────────────────────────────────
 \setbeamertemplate{headline}{%
@@ -130,12 +131,13 @@
     \begin{minipage}[c]{0.46\paperwidth}\centering
       {\color{cFg}\fontsize{80pt}{92pt}\selectfont\bfseries \inserttitle\par}
       \vspace{0.4cm}
-      {\color{cFgMuted}\fontsize{44pt}{54pt}\selectfont \insertauthor\par}
+      {\color{cFgMuted}\fontsize{52pt}{62pt}\selectfont \insertauthor\par}
       \vspace{0.2cm}
-      {\color{cFgSubtle}\fontsize{34pt}{42pt}\selectfont \insertinstitute\par}
+      {\color{cFgSubtle}\fontsize{40pt}{48pt}\selectfont \insertinstitute\par}
     \end{minipage}\hfill
-    % Right: CVPR logo
+    % Right: QR (paper link) + CVPR logo
     \begin{minipage}[c]{0.18\paperwidth}\raggedleft
+      \includegraphics[height=8cm, keepaspectratio]{figures/qr.png}\hspace{0.4cm}%
       \includegraphics[height=10cm, keepaspectratio]{figures/logo_cvpr.png}%
     \end{minipage}%
   \end{beamercolorbox}
@@ -176,7 +178,7 @@
   \end{beamercolorbox}
   \end{minipage}%
   \end{lrbox}%
-  \tikz[baseline]{\node[draw=black, line width=1.2pt, inner sep=8pt, outer sep=0pt, line cap=rect, line join=miter](){\usebox{\posterBlockBox}};}%
+  \tikz[baseline]{\node[draw=none, inner sep=8pt, outer sep=0pt](){\usebox{\posterBlockBox}};}%
   \vspace{0.9ex}
 }
 \setbeamercolor{block title}{fg=white, bg=cTitleTeal}%
@@ -208,7 +210,7 @@
   \end{beamercolorbox}
   \end{minipage}%
   \end{lrbox}%
-  \tikz[baseline]{\node[draw=black, line width=1.2pt, inner sep=8pt, outer sep=0pt, line cap=rect, line join=miter](){\usebox{\posterBlockBox}};}%
+  \tikz[baseline]{\node[draw=none, inner sep=8pt, outer sep=0pt](){\usebox{\posterBlockBox}};}%
   \vspace{0.9ex}
 }
 \setbeamercolor{block title}{fg=white, bg=cTitleWine}%
@@ -296,13 +298,13 @@
       >{\centering\arraybackslash}m{\btColW}
       >{\centering\arraybackslash}m{\btColW}
       >{\centering\arraybackslash}m{\btColW}@{}}
-    % Row 1: visuals — big Δ, triangulation, no-grad network.
-    {\fontsize{180}{200}\selectfont $\Delta$} &
+    % Row 1: visuals — triangulation (discrete), big Δ (explicit), no-grad network.
     \includegraphics[width=0.82\btColW, height=11cm, keepaspectratio]{figures/pipeline_triangulation.png} &
+    {\fontsize{180}{200}\selectfont $\Delta$} &
     \includegraphics[width=0.95\btColW, height=11cm, keepaspectratio]{figures/bottleneck_no_grad.png} \\[1.0ex]
     % Row 2: descriptive word per visual (no strikethrough, bigger).
-    {\huge\textbf{explicit}} &
     {\huge\textbf{discrete}} &
+    {\huge\textbf{explicit}} &
     {\huge\textbf{not differentiable}} \\
   \end{tabular}%
 \end{block}
@@ -329,7 +331,7 @@
   \end{beamercolorbox}
   \end{minipage}%
   \end{lrbox}%
-  \tikz[baseline]{\node[draw=black, line width=1.2pt, inner sep=8pt, outer sep=0pt, line cap=rect, line join=miter](){\usebox{\posterBlockBox}};}%
+  \tikz[baseline]{\node[draw=none, inner sep=8pt, outer sep=0pt](){\usebox{\posterBlockBox}};}%
   \vspace{0.9ex}
 }
 \setbeamercolor{block title}{fg=white, bg=cTitleOlive}%
@@ -372,7 +374,7 @@
   \vspace{1.8ex}
   \begin{minipage}[c]{0.36\linewidth}\Large
     Instead of constructing an operator, we optimize for a
-    \textbf{\textcolor{cBrandFrom}{$k$-term basis}} that minimizes a
+    \textbf{\textcolor{cTitleEmerald}{$k$-term basis}} that minimizes a
     probe-function reconstruction loss.
   \end{minipage}\hfill
   \begin{minipage}[c]{0.60\linewidth}\Large
@@ -381,12 +383,12 @@
         leftmargin=1.5em, labelsep=0.4em, itemsep=0.4ex, topsep=0pt
       ]
       \item the eigenbasis emerges
-            \textbf{\textcolor{cBrandFrom}{implicitly}}.
+            \textbf{\textcolor{cTitleEmerald}{implicitly}}.
       \item the neural network encodes a
-            \textbf{\textcolor{cBrandFrom}{continuous}}
+            \textbf{\textcolor{cTitleEmerald}{continuous}}
             representation of the manifold.
       \item the entire map is
-            \textbf{\textcolor{cBrandFrom}{differentiable}} end-to-end.
+            \textbf{\textcolor{cTitleEmerald}{differentiable}} end-to-end.
     \end{enumerate}
   \end{minipage}\par
 \end{block}
@@ -408,7 +410,7 @@
   \end{beamercolorbox}
   \end{minipage}%
   \end{lrbox}%
-  \tikz[baseline]{\node[draw=black, line width=1.2pt, inner sep=8pt, outer sep=0pt, line cap=rect, line join=miter](){\usebox{\posterBlockBox}};}%
+  \tikz[baseline]{\node[draw=none, inner sep=8pt, outer sep=0pt](){\usebox{\posterBlockBox}};}%
   \vspace{0.9ex}
 }
 \setbeamercolor{block title}{fg=white, bg=cTitlePlum}%
@@ -603,7 +605,7 @@
   \end{beamercolorbox}
   \end{minipage}%
   \end{lrbox}%
-  \tikz[baseline]{\node[draw=black, line width=1.2pt, inner sep=8pt, outer sep=0pt, line cap=rect, line join=miter](){\usebox{\posterBlockBox}};}%
+  \tikz[baseline]{\node[draw=none, inner sep=8pt, outer sep=0pt](){\usebox{\posterBlockBox}};}%
   \vspace{0.9ex}
 }
 \setbeamercolor{block title}{fg=white, bg=cTitleNavy}%
@@ -658,7 +660,7 @@
     \end{beamercolorbox}
     \end{minipage}%
     \end{lrbox}%
-    \tikz[baseline]{\node[draw=black, line width=1.2pt, inner sep=8pt, outer sep=0pt, line cap=rect, line join=miter](){\usebox{\posterBlockBox}};}%
+    \tikz[baseline]{\node[draw=none, inner sep=8pt, outer sep=0pt](){\usebox{\posterBlockBox}};}%
     \vspace{0.9ex}
   }%
   \setbeamercolor{block title}{fg=white, bg=#1}%
@@ -728,8 +730,13 @@
 
 \vspace{0.3cm}
 \noindent
+% ─── LEFT half: cells 3 + 4 side-by-side, cell 6 (volumetric) below ───
+% Wrapped in an outer 0.495 minipage so the volumetric cell sits flush
+% under Schrödinger / Resolution & sampling, regardless of cell 5's height.
+\begin{minipage}[t]{0.495\linewidth}
+\noindent
 % ─── Cell 3: Schrödinger generalisation (slide 22) ───
-\begin{minipage}[t]{0.2425\linewidth}
+\begin{minipage}[t]{0.49\linewidth}
   {\bigTitleSetup{cTitleOrange}%
   \begin{block}{\LARGE Schr\"odinger operator}
     \centering
@@ -757,9 +764,9 @@
     \end{minipage}
   \end{block}
   }% close bigTitle group
-\end{minipage}\hspace{0.01\linewidth}% explicit gap between cells 3 & 4
+\end{minipage}\hspace{0.02\linewidth}% explicit gap between cells 3 & 4 (inside left wrapper)
 % ─── Cell 4: low/high resolution (slide 23) + vertex areas (slide 24) ───
-\begin{minipage}[t]{0.2425\linewidth}
+\begin{minipage}[t]{0.49\linewidth}
   {\bigTitleSetup{cTitleMagenta}%
   \begin{block}{\LARGE Resolution \& sampling}
     \centering
@@ -783,11 +790,36 @@
     \end{tabular}
   \end{block}
   }% close bigTitle group
-\end{minipage}\hfill
+\end{minipage}
+% ─── Cell 6: generalisation to volumetric (interior) shapes (slide 20) ───
+% Lives inside the left wrapper so it sits flush under cells 3 + 4
+% regardless of how tall cell 5 (right wrapper) becomes.  Gap below
+% matches the inter-block spacing between cells in column 2 (Our
+% Approach → The best k-term basis), set by the block-end template.
+\par\noindent
+\begin{minipage}[t]{\linewidth}
+  {\bigTitleSetup{cTitlePlum}%
+  \begin{block}{\LARGE Generalisation to volumetric (interior) shapes}
+    \centering
+    \newcommand{\vlImg}[2]{\parbox[c][3.5cm][c]{3.5cm}{\centering\includegraphics[width=3.5cm, height=3.5cm, keepaspectratio]{figures/vol/#1/#2.png}}}%
+    \setlength{\tabcolsep}{1pt}\renewcommand{\arraystretch}{0.85}%
+    \begin{tabular}{*{12}{>{\centering\arraybackslash}m{3.6cm}}}
+      $\strut\mathbf{v}_2$ & $\strut\mathbf{v}_3$ & $\strut\mathbf{v}_4$ & $\strut\mathbf{v}_5$ & $\strut\mathbf{v}_6$ & $\strut\mathbf{v}_7$
+        & $\strut\mathbf{v}_8$ & $\strut\mathbf{v}_{10}$ & $\strut\mathbf{v}_{20}$
+        & $\strut k\!=\!5$ & $\strut k\!=\!25$ & $\strut k\!=\!50$ \\[0.2ex]
+      \vlImg{shape1}{eigen001} & \vlImg{shape1}{eigen002} & \vlImg{shape1}{eigen003} & \vlImg{shape1}{eigen004} & \vlImg{shape1}{eigen005} & \vlImg{shape1}{eigen006} & \vlImg{shape1}{eigen007} & \vlImg{shape1}{eigen009} & \vlImg{shape1}{eigen019} & \vlImg{shape1}{recon_k005} & \vlImg{shape1}{recon_k025} & \vlImg{shape1}{recon_k050} \\
+      \vlImg{shape2}{eigen001} & \vlImg{shape2}{eigen002} & \vlImg{shape2}{eigen003} & \vlImg{shape2}{eigen004} & \vlImg{shape2}{eigen005} & \vlImg{shape2}{eigen006} & \vlImg{shape2}{eigen007} & \vlImg{shape2}{eigen009} & \vlImg{shape2}{eigen019} & \vlImg{shape2}{recon_k005} & \vlImg{shape2}{recon_k025} & \vlImg{shape2}{recon_k050} \\
+      \vlImg{shape3}{eigen001} & \vlImg{shape3}{eigen002} & \vlImg{shape3}{eigen003} & \vlImg{shape3}{eigen004} & \vlImg{shape3}{eigen005} & \vlImg{shape3}{eigen006} & \vlImg{shape3}{eigen007} & \vlImg{shape3}{eigen009} & \vlImg{shape3}{eigen019} & \vlImg{shape3}{recon_k005} & \vlImg{shape3}{recon_k025} & \vlImg{shape3}{recon_k050} \\
+    \end{tabular}
+  \end{block}
+  }% close bigTitle group
+\end{minipage}
+\end{minipage}%
+\hfill
 % ─── Cell 5: image manifold — STL10 clusters + NMI/ARI chart (slides 27+28) ───
 \begin{minipage}[t]{0.495\linewidth}
   {\bigTitleSetup{cTitleSteel}%
-  \begin{block}{\LARGE Image manifold \;---\; STL10 clusters \& metrics}
+  \begin{block}{\LARGE Image manifold \;---\; Imagenette \& STL10 clusters \& metrics}
     \centering
     % Side-by-side: STL10 cluster image on the LEFT, NMI/ARI chart on the
     % RIGHT. Each takes ~48 % of the cell width.
@@ -800,6 +832,25 @@
       \textbf{\small NMI \& ARI}\par
       \vspace{0.4ex}
       \includegraphics[width=\linewidth, height=18cm, keepaspectratio]{figures/nmi_ari_chart.png}
+    \end{minipage}
+    \par\vspace{0.8ex}
+    % ── Setup: continuous prose on the left, 4 Imagenette thumbs on the right ──
+    \noindent
+    \begin{minipage}[c]{0.53\linewidth}\raggedright\LARGE
+      We embed Imagenette and STL10 images with CLIP (512-d) and
+      DINOv2 (768-d) features, run the same eigenbasis pipeline on
+      sampled subsets of these embeddings, and evaluate the learned
+      representation on dimensionality reduction against UMAP, t-SNE,
+      PCA, and Laplacian eigenmaps.
+    \end{minipage}\hfill
+    \begin{minipage}[c]{0.45\linewidth}\centering
+      \setlength{\tabcolsep}{3pt}\renewcommand{\arraystretch}{1.0}%
+      \newcommand{\inImg}[1]{\includegraphics[width=6.6cm, height=6.6cm, keepaspectratio]{figures/imagenette/imagenette_#1.jpg}}%
+      \begin{tabular}{cc}
+        \inImg{5} & \inImg{6} \\[2pt]
+        \inImg{7} & \inImg{8} \\
+      \end{tabular}\par
+      \vspace{0.4ex}{\small\itshape Imagenette samples}
     \end{minipage}
   \end{block}
   }% close bigTitle group

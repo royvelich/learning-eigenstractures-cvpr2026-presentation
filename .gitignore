@@ -33,6 +33,7 @@ public/applications/overfit_cells/
 poster/poster.pdf
 poster/poster_preview-*.png
 poster/poster_export-*.png
+poster/poster_full-*.png
 poster/preview-*.png
 poster/*.aux
 poster/*.log
