@@ -34,8 +34,8 @@ RED = "#ef4444"          # focal reference point + highlighted edge
 AMBER = "#b45309"
 CELL_FILL = "#fecaca"   # red-200 (light red for the Voronoi cell)
 
-POINT_SIZE = 110
-FOCAL_SIZE = 170
+POINT_SIZE = 220
+FOCAL_SIZE = 320
 
 # --- 1-ring: 6 neighbours around the centre, evenly spaced (regular vertex)
 centre = np.array([0.0, 0.0])
@@ -46,7 +46,7 @@ verts = np.vstack([centre[None, :], ring])   # index 0 = focal vertex i
 focal = 0
 
 
-def draw_edges(ax, edge_lw=2.6, edge_col=EDGE_GREY):
+def draw_edges(ax, edge_lw=4.8, edge_col=EDGE_GREY):
     # outer ring (hexagon perimeter)
     for k in range(6):
         a, b = 1 + k, 1 + (k + 1) % 6
@@ -70,7 +70,7 @@ def draw_vertices(ax, pt_size=POINT_SIZE):
                color=RED, linewidths=0, zorder=7)
 
 
-def draw_one_ring(ax, edge_lw=2.6, edge_col=EDGE_GREY, pt_size=120):
+def draw_one_ring(ax, edge_lw=4.8, edge_col=EDGE_GREY, pt_size=170):
     draw_edges(ax, edge_lw=edge_lw, edge_col=edge_col)
     draw_vertices(ax, pt_size=pt_size)
 
@@ -149,7 +149,7 @@ def draw_arc_label(ax, k, sym, col, r=0.24, label_off=0.12):
     ax.add_patch(arc)
     mid = np.radians((min(a1, a2) + max(a1, a2)) / 2)
     pl = verts[k] + (r + label_off) * np.array([np.cos(mid), np.sin(mid)])
-    ax.text(pl[0], pl[1], sym, fontsize=30, color=col,
+    ax.text(pl[0], pl[1], sym, fontsize=36, color=col,
             ha="center", va="center", zorder=12, fontweight="bold")
 
 
@@ -162,7 +162,7 @@ def build_voronoi_cot(ax):
     # Highlight edge (i, j) in red.
     ax.plot([verts[focal, 0], verts[j, 0]],
             [verts[focal, 1], verts[j, 1]],
-            color=RED, lw=3.6, zorder=5)
+            color=RED, lw=6.2, zorder=5)
     # Re-draw focal & j on top — focal red (bigger), j plain black.
     ax.scatter([verts[focal, 0]], [verts[focal, 1]], s=FOCAL_SIZE,
                color=RED, linewidths=0, zorder=10)
@@ -173,13 +173,13 @@ def build_voronoi_cot(ax):
     ij = verts[j] - verts[focal]
     ij_unit = ij / np.linalg.norm(ij)
     perp = np.array([-ij_unit[1], ij_unit[0]])   # 90° ccw
-    i_label_pos = verts[focal] + 0.22 * perp
+    i_label_pos = verts[focal] + 0.22 * perp + np.array([-0.02, -0.02])
     j_label_pos = verts[j] + 0.24 * ij_unit
     ax.text(i_label_pos[0], i_label_pos[1], r"$i$",
-            fontsize=30, fontweight="bold", color=RED,
+            fontsize=36, fontweight="bold", color=RED,
             ha="center", va="center", zorder=12)
     ax.text(j_label_pos[0], j_label_pos[1], r"$j$",
-            fontsize=30, fontweight="bold", color=DARK,
+            fontsize=36, fontweight="bold", color=DARK,
             ha="center", va="center", zorder=12)
     # α / β arc labels on the two opposite vertices — drawn in black.
     draw_arc_label(ax, k_alpha, r"$\alpha$", DARK)
@@ -188,8 +188,8 @@ def build_voronoi_cot(ax):
     # spokes (not on a spoke). Sector at 240° (lower-left), well away from
     # the i label which sits in the 120° sector (upper-left).
     sector_dir = np.array([np.cos(np.radians(240)), np.sin(np.radians(240))])
-    m_pos = verts[focal] + 0.32 * sector_dir
-    ax.text(m_pos[0], m_pos[1], r"$M_{ii}$", fontsize=30, color=AMBER,
+    m_pos = verts[focal] + 0.32 * sector_dir + np.array([-0.06, 0.0])
+    ax.text(m_pos[0], m_pos[1], r"$M_{ii}$", fontsize=36, color=AMBER,
             ha="center", va="center", fontweight="bold", zorder=12)
 
 
@@ -212,7 +212,7 @@ render_share("pipeline_voronoi_cot", build_voronoi_cot)
 pc_edges = [(focal, 1 + k) for k in range(6)]   # 6 spokes only
 
 
-def draw_knn_edges(ax, edge_lw=2.6, edge_col=EDGE_GREY):
+def draw_knn_edges(ax, edge_lw=4.8, edge_col=EDGE_GREY):
     for a, b in pc_edges:
         ax.plot([verts[a, 0], verts[b, 0]], [verts[a, 1], verts[b, 1]],
                 color=edge_col, lw=edge_lw, zorder=3)
@@ -228,7 +228,7 @@ def build_heat_weights(ax):
     # Highlight focal–j edge in red.
     ax.plot([verts[focal, 0], verts[j, 0]],
             [verts[focal, 1], verts[j, 1]],
-            color=RED, lw=3.6, zorder=5)
+            color=RED, lw=6.2, zorder=5)
     # Ring vertices in black (no stroke), focal in red (bigger, no stroke).
     ax.scatter(verts[1:, 0], verts[1:, 1], s=POINT_SIZE, color=DARK,
                linewidths=0, zorder=6)
@@ -239,19 +239,19 @@ def build_heat_weights(ax):
     ij = verts[j] - verts[focal]
     ij_unit = ij / np.linalg.norm(ij)
     perp = np.array([-ij_unit[1], ij_unit[0]])
-    ax.text(*(verts[focal] + 0.22 * perp), r"$i$",
-            fontsize=30, fontweight="bold", color=RED,
+    ax.text(*(verts[focal] + 0.22 * perp + np.array([-0.02, -0.02])), r"$i$",
+            fontsize=36, fontweight="bold", color=RED,
             ha="center", va="center", zorder=12)
     ax.text(*(verts[j] + 0.24 * ij_unit), r"$j$",
-            fontsize=30, fontweight="bold", color=DARK,
+            fontsize=36, fontweight="bold", color=DARK,
             ha="center", va="center", zorder=12)
     mid_ij = 0.5 * (verts[focal] + verts[j])
     # W_ij below the red edge — far enough that it doesn't touch the edge.
     ax.text(*(mid_ij - 0.24 * perp), r"$W_{ij}$",
-            fontsize=30, color=RED,
+            fontsize=36, color=RED,
             ha="center", va="center", fontweight="bold", zorder=12)
-    ax.text(*(verts[focal] - 0.32 * perp), r"$D_{ii}$",
-            fontsize=30, color=AMBER,
+    ax.text(*(verts[focal] - 0.32 * perp + np.array([-0.06, 0.0])), r"$D_{ii}$",
+            fontsize=36, color=AMBER,
             ha="center", va="center", fontweight="bold", zorder=12)
 
 

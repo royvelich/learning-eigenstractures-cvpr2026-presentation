@@ -19,7 +19,7 @@
 \setsansfont{Libertinus Sans}
 \setmonofont{Libertinus Mono}
 \usepackage{unicode-math}
-\setmathfont{Libertinus Math}
+\setmathfont{Latin Modern Math}
 
 % ─── Math, graphics, layout ─────────────────────────────────────────────
 \usepackage{amsmath, amssymb}
@@ -31,6 +31,7 @@
 \usepackage{ragged2e}
 \usepackage{array}
 \usepackage{booktabs}
+\usepackage{multirow}
 \usepackage{enumitem}
 \setlist{nosep, leftmargin=*, topsep=4pt, partopsep=0pt}
 \usepackage[normalem]{ulem}
@@ -44,6 +45,29 @@
 \definecolor{cBorder}    {HTML}{E2E8F0} % slate-200
 \definecolor{cBrandFrom} {HTML}{4E4376} % deep indigo
 \definecolor{cBrandTo}   {HTML}{2B5876} % deep teal-blue
+% Exotic title-bar colors (each saturated enough that white text reads cleanly)
+\definecolor{cTitleTeal}    {HTML}{0F766E} % deep teal
+\definecolor{cTitleWine}    {HTML}{831843} % wine / fuchsia-900
+\definecolor{cTitleOlive}   {HTML}{4D7C0F} % olive / lime-700
+\definecolor{cTitlePlum}    {HTML}{6B21A8} % plum / purple-800
+\definecolor{cTitleNavy}    {HTML}{1E40AF} % sapphire / blue-800
+% Additional title colors for the new (placeholder-area) cells
+\definecolor{cTitleCrimson} {HTML}{991B1B} % crimson / red-800
+\definecolor{cTitleEmerald} {HTML}{047857} % emerald-700
+\definecolor{cTitleOrange}  {HTML}{C2410C} % burnt orange / orange-700
+\definecolor{cTitleMagenta} {HTML}{A21CAF} % fuchsia-700
+\definecolor{cTitleSteel}   {HTML}{475569} % slate-600
+
+% Section-title bar inside a cell — fills the cell's text width with a
+% light tint of the cell's title-bar colour. Usage: \secTitle{base color}{text}
+\newcommand{\secTitle}[2]{%
+  \par\noindent
+  {\setlength{\fboxsep}{0.5ex}%
+   \colorbox{#1!15!white}{%
+     \makebox[\dimexpr\linewidth-2\fboxsep\relax][c]{\textbf{\LARGE #2}}%
+   }}%
+  \par
+}
 \definecolor{cAccent}    {HTML}{B45309} % amber-700
 \definecolor{cDanger}    {HTML}{B91C1C} % red-700
 
@@ -60,17 +84,24 @@
 \setbeamercolor{block title}{fg=white, bg=cBrandFrom}
 \setbeamercolor{block body} {fg=cFgBody, bg=cBgSoft}
 \setbeamerfont{block title}{family=\sffamily, series=\bfseries, size=\large}
+% Savebox + fbox trick: wrap each block's title+body in a thin black stroke.
+\newsavebox{\posterBlockBox}
 \setbeamertemplate{block begin}{
-  \begin{beamercolorbox}[wd=\textwidth, ht=2.4ex, dp=1.2ex, leftskip=1ex, rightskip=1ex]{block title}
+  \begin{lrbox}{\posterBlockBox}%
+  \begin{minipage}{\dimexpr\textwidth-1.2pt-16pt\relax}%
+  \begin{beamercolorbox}[wd=\linewidth, ht=2.4ex, dp=1.2ex, leftskip=1ex, rightskip=1ex]{block title}
     \insertblocktitle
   \end{beamercolorbox}
-  \begin{beamercolorbox}[wd=\textwidth, leftskip=1ex, rightskip=1ex, vmode]{block body}
+  \begin{beamercolorbox}[wd=\linewidth, leftskip=1ex, rightskip=1ex, vmode]{block body}
     \vspace{0.25ex}
     \justifying
 }
 \setbeamertemplate{block end}{
     \vspace{0.5ex}
   \end{beamercolorbox}
+  \end{minipage}%
+  \end{lrbox}%
+  \tikz[baseline]{\node[draw=black, line width=1.2pt, inner sep=8pt, outer sep=0pt, line cap=rect, line join=miter](){\usebox{\posterBlockBox}};}%
   \vspace{0.9ex}
 }
 
@@ -85,18 +116,28 @@
 
 % ─── Header band ────────────────────────────────────────────────────────
 \setbeamertemplate{headline}{%
-  \begin{beamercolorbox}[wd=\paperwidth, ht=12cm, dp=0pt, leftskip=2cm, rightskip=2cm]{background canvas}
-    \vspace{1.4cm}
-    \centering
-    {\color{cFg}\fontsize{96pt}{110pt}\selectfont\bfseries \inserttitle\par}
-    \vspace{0.6cm}
-    {\color{cFgMuted}\fontsize{40pt}{52pt}\selectfont \insertauthor\par}
-    \vspace{0.35cm}
-    {\color{cFgSubtle}\fontsize{32pt}{42pt}\selectfont \insertinstitute\par}
+  \begin{beamercolorbox}[wd=\paperwidth, ht=10cm, dp=0pt, leftskip=2cm, rightskip=2cm]{background canvas}
     \vspace{0.3cm}
-    \rule{0.6\paperwidth}{1.5pt}\par
-    \vspace{0.2cm}
-    {\color{cBrandFrom}\fontsize{34pt}{42pt}\selectfont\bfseries CVPR 2026 \;·\; Oral Presentation\par}
+    \noindent
+    % Left: institution logos (single row, vertically centered with title block)
+    \begin{minipage}[c]{0.32\paperwidth}\raggedright
+      \includegraphics[height=6cm, keepaspectratio]{figures/logo_technion.png}\hspace{0.4cm}%
+      \includegraphics[height=6cm, keepaspectratio]{figures/logo_gip.png}\hspace{0.4cm}%
+      \includegraphics[height=6cm, keepaspectratio]{figures/logo_tum.png}\hspace{0.4cm}%
+      \includegraphics[height=6cm, keepaspectratio]{figures/logo_mcml.jpg}%
+    \end{minipage}\hfill
+    % Center: title + authors + institutions (centered)
+    \begin{minipage}[c]{0.46\paperwidth}\centering
+      {\color{cFg}\fontsize{80pt}{92pt}\selectfont\bfseries \inserttitle\par}
+      \vspace{0.4cm}
+      {\color{cFgMuted}\fontsize{44pt}{54pt}\selectfont \insertauthor\par}
+      \vspace{0.2cm}
+      {\color{cFgSubtle}\fontsize{34pt}{42pt}\selectfont \insertinstitute\par}
+    \end{minipage}\hfill
+    % Right: CVPR logo
+    \begin{minipage}[c]{0.18\paperwidth}\raggedleft
+      \includegraphics[height=10cm, keepaspectratio]{figures/logo_cvpr.png}%
+    \end{minipage}%
   \end{beamercolorbox}
 }
 \setbeamertemplate{footline}{}
@@ -108,81 +149,102 @@
 \newlength{\colwidthA}\setlength{\colwidthA}{51.4cm}
 
 \begin{document}
-\begin{frame}[t]
+\begin{frame}[t,fragile]
 
 % ─────────────────────────────────────────────────────────────────────────
 %  COLUMN BAND  (sits below the header band rendered by \setbeamertemplate)
 % ─────────────────────────────────────────────────────────────────────────
-\vspace{0.4cm}
+\vspace{-0.2cm}
 \begin{columns}[t, onlytextwidth]
 
 % ───────────── Column 1 ─────────────
 \begin{column}{\colwidthA}
 
-\begin{block}{Motivation}
-  Spectral methods on manifolds underpin shape correspondence, descriptors,
-  manifold learning, ARAP, and many more downstream tools.
-  But computing the Laplacian eigenstructure on raw, unstructured point
-  clouds is delicate: it requires explicit mesh/graph construction,
-  cotangent or heat-kernel weights, then a numerical eigensolve --- and
-  none of it is differentiable.
-  \vspace{0.4ex}
-
-  \textbf{Goal.}\; Learn an ordered eigenbasis of the manifold's
-  Laplace--Beltrami operator (LBO) \emph{directly} from a point sample,
-  bypassing the discretization pipeline.
+{%
+\setbeamertemplate{block begin}{%
+  \begin{lrbox}{\posterBlockBox}%
+  \begin{minipage}{\dimexpr\textwidth-1.2pt-16pt\relax}%
+  \begin{beamercolorbox}[wd=\linewidth, ht=3.4ex, dp=1.8ex, leftskip=1ex, rightskip=1ex]{block title}
+    \insertblocktitle
+  \end{beamercolorbox}
+  \begin{beamercolorbox}[wd=\linewidth, leftskip=1ex, rightskip=1ex, vmode]{block body}
+    \vspace{0.25ex}
+    \justifying
+}
+\setbeamertemplate{block end}{%
+    \vspace{0.5ex}
+  \end{beamercolorbox}
+  \end{minipage}%
+  \end{lrbox}%
+  \tikz[baseline]{\node[draw=black, line width=1.2pt, inner sep=8pt, outer sep=0pt, line cap=rect, line join=miter](){\usebox{\posterBlockBox}};}%
+  \vspace{0.9ex}
+}
+\setbeamercolor{block title}{fg=white, bg=cTitleTeal}%
+\begin{block}{\LARGE TL;DR}
+  \LARGE
+  A neural network learns the Laplacian eigenbasis straight from a point
+  cloud --- no mesh, no operator, no eigensolve. The whole pipeline is
+  end-to-end differentiable, mesh-free, and plugs into any learning
+  setup. The same recipe extends to other operators (Schr\"odinger,
+  Hadamard) and to image-feature manifolds.
 \end{block}
+}% end of custom-template group for "TL;DR"
 
-\begin{block}{The Laplacian, in one slide}
-  % Row 1 — same minipage height so both titles sit on the same top line;
-  % the shorter data-manifold composite is centred vertically inside its cell.
-  \newlength{\toprowH}\setlength{\toprowH}{14.5cm}
-  \begin{minipage}[t][\toprowH][t]{0.48\linewidth}
-    \centering
-    {\small\textbf{On a data manifold}}\par
-    \vspace{0.4ex}
-    \vspace*{\fill}
-    \includegraphics[width=0.98\linewidth]{figures/data_manifold_action.png}
-    \vspace*{\fill}
-  \end{minipage}\hfill
-  \begin{minipage}[t][\toprowH][t]{0.48\linewidth}
-    \centering
-    {\small\textbf{Euclidean, 1D}\;\;
-      $\Delta f = \dfrac{d^{2} f}{dx^{2}}$}\par
-    \vspace{0.4ex}
-    \includegraphics[width=0.95\linewidth]{figures/lap_euclidean_1d_stage_9.png}
-  \end{minipage}
-  \vspace{1.0ex}\par
-  % Row 2
+% Custom block template: taller title bar; the title itself is sized via
+% \Huge inside the title argument so we don't fight Beamer's font system.
+{%
+\setbeamertemplate{block begin}{%
+  \begin{lrbox}{\posterBlockBox}%
+  \begin{minipage}{\dimexpr\textwidth-1.2pt-16pt\relax}%
+  \begin{beamercolorbox}[wd=\linewidth, ht=3.4ex, dp=1.8ex, leftskip=1ex, rightskip=1ex]{block title}
+    \insertblocktitle
+  \end{beamercolorbox}
+  \begin{beamercolorbox}[wd=\linewidth, leftskip=1ex, rightskip=1ex, vmode]{block body}
+    \vspace{0.25ex}
+    \justifying
+}
+\setbeamertemplate{block end}{%
+    \vspace{0.5ex}
+  \end{beamercolorbox}
+  \end{minipage}%
+  \end{lrbox}%
+  \tikz[baseline]{\node[draw=black, line width=1.2pt, inner sep=8pt, outer sep=0pt, line cap=rect, line join=miter](){\usebox{\posterBlockBox}};}%
+  \vspace{0.9ex}
+}
+\setbeamercolor{block title}{fg=white, bg=cTitleWine}%
+\begin{block}{\LARGE The Laplacian Operator}
+  % ── Sub-section 1: deviation from the local average ───────────────────
+  \secTitle{cTitleWine}{Measures deviation from the local average}
+  \vspace{0.6ex}
   \begin{minipage}[t]{0.48\linewidth}
     \centering
-    {\small\textbf{Euclidean, 2D}\;\;
-      $\Delta f = \partial_{u}^{2} f + \partial_{v}^{2} f$}\par
-    \vspace{0.4ex}
-    \includegraphics[width=0.95\linewidth]{figures/lap_euclidean_2d_stage_9.png}
+    \includegraphics[width=0.95\linewidth, height=13cm, keepaspectratio]{figures/lap_euclidean_2d_stage_9.png}\par
+    \vspace{0.5ex}
+    {\large\textbf{Euclidean Laplacian}}\par
+    \vspace{0.3ex}
+    {\LARGE $\Delta f = \partial_{u}^{2} f + \partial_{v}^{2} f
+            = \operatorname{div}\bigl(\operatorname{grad} f\bigr)$}
   \end{minipage}\hfill
   \begin{minipage}[t]{0.48\linewidth}
     \centering
-    {\small\textbf{Curved domain (LBO)}\;\;
-      $\Delta_{\!\mathcal{M}} f = \operatorname{div}_{\!\mathcal{M}}\bigl(\nabla_{\!\mathcal{M}} f\bigr)$}\par
-    \vspace{0.4ex}
-    \includegraphics[width=0.95\linewidth]{figures/lap_curved_2d_stage_9.png}
-  \end{minipage}
-\end{block}
+    \includegraphics[width=0.95\linewidth, height=13cm, keepaspectratio]{figures/lap_curved_2d_stage_9.png}\par
+    \vspace{0.5ex}
+    {\large\textbf{Laplace--Beltrami operator (LBO)}}\par
+    \vspace{0.3ex}
+    {\LARGE $\Delta_{M} f = \operatorname{div}_{M}\bigl(\nabla_{M} f\bigr)$}
+  \end{minipage}\par
+  \vspace{1.0ex}
 
-\begin{block}{A single spectral basis --- many families of tools}
-  \centering\small
-  % Freeze the cell width in absolute units NOW so it does NOT shrink to
-  % a fraction of the inner minipage \linewidth when used inside the cell.
+  % ── Sub-section 2: a single spectral basis — many families of tools ──
+  \secTitle{cTitleWine}{A single spectral basis --- many families of tools}
+  \vspace{0.6ex}
+  {\large
   \newlength{\appW}\setlength{\appW}{0.327\linewidth}%
-  % 3 cells × 0.327 ≈ 0.98 of linewidth → ~2% left for two \hfill gaps.
-  % Hard cap on image height — keeps tall-aspect tiles (Geodesics) from
-  % dominating the row while leaving wide-aspect tiles unaffected.
   \def\appMaxH{8.5cm}%
-  \def\appcell##1##2{%
+  \def\appcell#1#2{%
     \begin{minipage}[b]{\appW}\centering
-      \includegraphics[width=\appW, height=\appMaxH, keepaspectratio]{figures/##1}\par
-      \vspace{0.25ex}\textbf{##2}
+      \includegraphics[width=\appW, height=\appMaxH, keepaspectratio]{figures/#1}\par
+      \vspace{0.25ex}\textbf{#2}
     \end{minipage}%
   }%
   \appcell{app_01_descriptors.png}{Shape descriptors}\hfill
@@ -192,29 +254,28 @@
   \appcell{app_05_geometry_processing.png}{Geodesics}\hfill
   \appcell{app_07_mesh_smoothing.png}{Mesh smoothing}\hfill
   \appcell{app_09_arap_horse.png}{Shape deformation}\par
-\end{block}
+  }\par
+  \vspace{1.0ex}
 
-\begin{block}{Computing the Laplacian eigenstructure, the traditional way}
-  \centering
-  % Freeze the cell width in absolute units so it does not collapse to a
-  % fraction of the inner cell linewidth.
+  % ── Sub-section 3: traditional eigenstructure pipeline ───────────────
+  \secTitle{cTitleWine}{Computing the eigenstructure, the traditional way}
+  \vspace{0.6ex}
   \newlength{\pipeColW}\setlength{\pipeColW}{0.245\linewidth}%
   \newlength{\pipeImgW}\setlength{\pipeImgW}{0.85\pipeColW}%
-  \def\pipeImg##1{%
-    \includegraphics[width=\pipeImgW, height=8.5cm, keepaspectratio]{figures/##1}%
+  \def\pipeImg#1{%
+    \includegraphics[width=\pipeImgW, height=8.5cm, keepaspectratio]{figures/#1}%
   }%
-  % Big math for the right two columns.
-  \def\pipeEq##1{{\huge $##1$}}%
+  \def\pipeEq#1{{\huge $#1$}}%
   \setlength{\tabcolsep}{4pt}\renewcommand{\arraystretch}{1.1}%
   \begin{tabular}{@{}
       >{\centering\arraybackslash}m{\pipeColW}|%
       >{\centering\arraybackslash}m{\pipeColW}|%
       >{\centering\arraybackslash}m{\pipeColW}|%
       >{\centering\arraybackslash}m{\pipeColW}@{}}
-    \textbf{Neighborhood extraction} &
-    \textbf{Operator extraction} &
-    \textbf{Eigensolve} &
-    \textbf{Eigenbasis} \\[0.6ex]
+    {\large\textbf{Neighborhood extraction}} &
+    {\large\textbf{Operator extraction}} &
+    {\large\textbf{Eigensolve}} &
+    {\large\textbf{Eigenbasis}} \\[0.6ex]
     \pipeImg{pipeline_triangulation.png} &
     \pipeImg{pipeline_voronoi_cot.png} &
     \pipeEq{S\,\boldsymbol{\phi} = \lambda\, M\,\boldsymbol{\phi}} &
@@ -223,16 +284,12 @@
     \pipeImg{pipeline_heat_weights.png} &
     \pipeEq{L\,\mathbf{y} = \lambda\, D\,\mathbf{y}} &
     \pipeEq{\{\mathbf{y}_i\},\; \{\lambda_i\}} \\
-  \end{tabular}%
-\end{block}
+  \end{tabular}\par
+  \vspace{1.0ex}
 
-\end{column}
-
-% ───────────── Column 2 ─────────────
-\begin{column}{\colwidthA}
-
-\begin{block}{Explicit, discrete, and not differentiable.}
-  \centering
+  % ── Sub-section 4: explicit, discrete, not differentiable ────────────
+  \secTitle{cTitleWine}{Why this breaks inside a learning pipeline}
+  \vspace{0.6ex}
   \newlength{\btColW}\setlength{\btColW}{0.31\linewidth}%
   \setlength{\tabcolsep}{4pt}\renewcommand{\arraystretch}{1.0}%
   \begin{tabular}{@{}
@@ -243,223 +300,510 @@
     {\fontsize{180}{200}\selectfont $\Delta$} &
     \includegraphics[width=0.82\btColW, height=11cm, keepaspectratio]{figures/pipeline_triangulation.png} &
     \includegraphics[width=0.95\btColW, height=11cm, keepaspectratio]{figures/bottleneck_no_grad.png} \\[1.0ex]
-    % Row 2: original word struck out, replacement word in indigo.
-    {\Large\textbf{\sout{explicit}}} &
-    {\Large\textbf{\sout{discrete}}} &
-    {\Large\textbf{\sout{not differentiable}}} \\[0.4ex]
-    {\LARGE\textbf{\textcolor{cBrandFrom}{implicit}}} &
-    {\LARGE\textbf{\textcolor{cBrandFrom}{continuous}}} &
-    {\LARGE\textbf{\textcolor{cBrandFrom}{differentiable}}} \\
-  \end{tabular}
+    % Row 2: descriptive word per visual (no strikethrough, bigger).
+    {\huge\textbf{explicit}} &
+    {\huge\textbf{discrete}} &
+    {\huge\textbf{not differentiable}} \\
+  \end{tabular}%
 \end{block}
+}% end of custom-template group for "The Laplacian Operator"
 
-\begin{block}{Skip the operator. Learn the eigenbasis directly.}
+\end{column}
+
+% ───────────── Column 2 ─────────────
+\begin{column}{\colwidthA}
+
+{%
+\setbeamertemplate{block begin}{%
+  \begin{lrbox}{\posterBlockBox}%
+  \begin{minipage}{\dimexpr\textwidth-1.2pt-16pt\relax}%
+  \begin{beamercolorbox}[wd=\linewidth, ht=3.4ex, dp=1.8ex, leftskip=1ex, rightskip=1ex]{block title}
+    \insertblocktitle
+  \end{beamercolorbox}
+  \begin{beamercolorbox}[wd=\linewidth, leftskip=1ex, rightskip=1ex, vmode]{block body}
+    \vspace{0.25ex}
+    \justifying
+}
+\setbeamertemplate{block end}{%
+    \vspace{0.5ex}
+  \end{beamercolorbox}
+  \end{minipage}%
+  \end{lrbox}%
+  \tikz[baseline]{\node[draw=black, line width=1.2pt, inner sep=8pt, outer sep=0pt, line cap=rect, line join=miter](){\usebox{\posterBlockBox}};}%
+  \vspace{0.9ex}
+}
+\setbeamercolor{block title}{fg=white, bg=cTitleOlive}%
+\begin{block}{\LARGE Our Approach}
   \centering
   % Pill-shaped chips: an indigo background, white bold sans-ish text.
-  \setlength{\fboxsep}{8pt}%
-  \def\chip##1{\colorbox{cBrandFrom}{\color{white}\bfseries\large\strut\,##1\,}}%
-  % Bypassed chip: dimmer fill + amber strikethrough through the text.
-  \def\chipBy##1{\colorbox{cBrandFrom!45!white}{\color{white!85!black}\bfseries\large\strut\,{\color{cAccent}\sout{\textcolor{white!85!black}{##1}}}\,}}%
-  \def\arr{\;\textcolor{cBrandTo}{\LARGE\,$\boldsymbol{\rangle}$\,}\;}%
+  \setlength{\fboxsep}{7pt}%
+  % Phantom that forces every chip to the height of a two-line tabular,
+  % so single-line and multi-line chips have identical box heights.
+  \def\chipPhantom{\vphantom{\begin{tabular}{@{}c@{}}M\\ M\end{tabular}}}%
+  % Chip palette: light olive bg (matching this cell's section-title tint),
+  % dark text, thin black stroke. Bypassed chip uses a lighter fill so the
+  % strikethrough still reads as "skipped".
+  \setlength{\fboxrule}{0.6pt}%
+  \def\chip#1{\fcolorbox{black}{cTitleOlive!15!white}{\color{cFg}\bfseries\Large\,\chipPhantom#1\,}}%
+  \def\chipBy#1{\fcolorbox{black}{cTitleOlive!7!white}{\color{cFgMuted}\bfseries\Large\,\chipPhantom{\color{cAccent}\sout{\textcolor{cFgMuted}{#1}}}\,}}%
+  \def\chipMulti#1#2{\fcolorbox{black}{cTitleOlive!15!white}{\color{cFg}\bfseries\Large\,\begin{tabular}{@{}c@{}}\strut#1\\ #2\strut\end{tabular}\,}}%
+  \def\chipByMulti#1#2{\fcolorbox{black}{cTitleOlive!7!white}{\color{cFgMuted}\bfseries\Large\,\begin{tabular}{@{}c@{}}\strut{\color{cAccent}\sout{\textcolor{cFgMuted}{#1}}}\\ {\color{cAccent}\sout{\textcolor{cFgMuted}{#2}}}\strut\end{tabular}\,}}%
+  \def\arr{\;\textcolor{cTitleOlive}{\LARGE\,$\boldsymbol{\rangle}$\,}\;}%
 
-  {\large\textbf{Traditional}}\par\vspace{1.0ex}
-  \chip{Point cloud}\arr\chipBy{Neighborhood extraction}\arr\chipBy{Operator extraction}\arr\chipBy{Eigensolve}\arr\chip{Eigenbasis}\par
-  \vspace{4ex}
-  {\large\textbf{Ours}}\par\vspace{1.0ex}
-  \chip{Point cloud}\arr\chip{\hspace{3em}Neural network\hspace{3em}}\arr\chip{Eigenbasis}\par
+  % Measure the middle trio of the Traditional row (Neighborhood ext > Operator
+  % ext > Eigensolve) so the Ours-row "Neural network" box can be stretched to
+  % exactly that span.
+  \newsavebox{\midTrioBox}%
+  \sbox{\midTrioBox}{\chipByMulti{Neighborhood}{extraction}\arr\chipByMulti{Operator}{extraction}\arr\chipBy{Eigensolve}}%
+  \newlength{\midTrioW}\setlength{\midTrioW}{\wd\midTrioBox}%
+  % Wide chip used only for "Neural network" — same look as \chipMulti but
+  % with a fixed width equal to the Traditional middle trio.
+  \def\chipWideMulti#1#2{%
+    \fcolorbox{black}{cTitleOlive!15!white}{%
+      \makebox[\dimexpr\midTrioW-2\fboxsep-2\fboxrule\relax][c]{\color{cFg}\bfseries\Large\,\begin{tabular}{@{}c@{}}\strut#1\\ #2\strut\end{tabular}\,}%
+    }%
+  }%
+
+  {\Large\textbf{Traditional}}\par\vspace{1.0ex}
+  \chip{Point cloud}\arr\chipByMulti{Neighborhood}{extraction}\arr\chipByMulti{Operator}{extraction}\arr\chipBy{Eigensolve}\arr\chip{Eigenbasis}\par
+  \vspace{3.6ex}
+  {\Large\textbf{Ours}}\par\vspace{1.0ex}
+  \chip{Point cloud}\arr\chipWideMulti{Neural}{network}\arr\chip{Eigenbasis}\par
+  \vspace{1.8ex}
+  \begin{minipage}[c]{0.36\linewidth}\Large
+    Instead of constructing an operator, we optimize for a
+    \textbf{\textcolor{cBrandFrom}{$k$-term basis}} that minimizes a
+    probe-function reconstruction loss.
+  \end{minipage}\hfill
+  \begin{minipage}[c]{0.60\linewidth}\Large
+    \begin{enumerate}[
+        label={\textcolor{cBrandFrom}{\bfseries\arabic*.}},
+        leftmargin=1.5em, labelsep=0.4em, itemsep=0.4ex, topsep=0pt
+      ]
+      \item the eigenbasis emerges
+            \textbf{\textcolor{cBrandFrom}{implicitly}}.
+      \item the neural network encodes a
+            \textbf{\textcolor{cBrandFrom}{continuous}}
+            representation of the manifold.
+      \item the entire map is
+            \textbf{\textcolor{cBrandFrom}{differentiable}} end-to-end.
+    \end{enumerate}
+  \end{minipage}\par
 \end{block}
+}% end of custom-template group for "Our Approach"
 
-\begin{block}{The optimal $k$-term basis is the eigenbasis}
-  \centering
+{%
+\setbeamertemplate{block begin}{%
+  \begin{lrbox}{\posterBlockBox}%
+  \begin{minipage}{\dimexpr\textwidth-1.2pt-16pt\relax}%
+  \begin{beamercolorbox}[wd=\linewidth, ht=3.4ex, dp=1.8ex, leftskip=1ex, rightskip=1ex]{block title}
+    \insertblocktitle
+  \end{beamercolorbox}
+  \begin{beamercolorbox}[wd=\linewidth, leftskip=1ex, rightskip=1ex, vmode]{block body}
+    \vspace{0.25ex}
+    \justifying
+}
+\setbeamertemplate{block end}{%
+    \vspace{0.5ex}
+  \end{beamercolorbox}
+  \end{minipage}%
+  \end{lrbox}%
+  \tikz[baseline]{\node[draw=black, line width=1.2pt, inner sep=8pt, outer sep=0pt, line cap=rect, line join=miter](){\usebox{\posterBlockBox}};}%
+  \vspace{0.9ex}
+}
+\setbeamercolor{block title}{fg=white, bg=cTitlePlum}%
+\begin{block}{\LARGE The best $k$-term basis}
+  % ── Sub-section 1: geometric / PCA intuition ────────────────────────
+  \secTitle{cTitlePlum}{A geometric intuition \;{\normalsize\normalfont\itshape(Best $k$-term basis in $\mathbb{R}^{3}$)}}
+  \vspace{0.8ex}
+  % Each image lives inside a fixed-height vbox of 12cm; the image itself
+  % is rendered at 16cm height, overflowing 2cm above and 2cm below into
+  % the surrounding transparent corners. Layout above/below is unchanged.
   \begin{minipage}[t]{0.48\linewidth}
     \centering
     \textbf{Arbitrary basis}\par\vspace{0.4ex}
-    \includegraphics[width=0.95\linewidth]{figures/optimal_basis_step7.png}\par
-    \vspace{0.3ex}
-    {\footnotesize\itshape Large residual on every vector --- the basis ignores the data.}
+    \vbox to 16cm{\vss\centerline{\includegraphics[height=20cm, keepaspectratio]{figures/optimal_basis_step7.png}}\vss}%
   \end{minipage}\hfill
   \begin{minipage}[t]{0.48\linewidth}
     \centering
     \textbf{Optimal $k$-term basis}\par\vspace{0.4ex}
-    \includegraphics[width=0.95\linewidth]{figures/optimal_basis_step9.png}\par
-    \vspace{0.3ex}
-    {\footnotesize\itshape Residuals collapse --- $\{b_i^*\}$ are the top-$k$ eigenvectors of $\sum_j v_j v_j^\top$.}
-  \end{minipage}
-\end{block}
-
-\begin{block}{On a curve or an image, this eigenbasis is the DCT}
-  \centering
-  \begin{minipage}[t]{0.48\linewidth}
-    \centering
-    \textbf{1D --- the curve $[0, L]$}\par\vspace{0.5ex}
-    \includegraphics[width=0.92\linewidth, height=2.6cm, keepaspectratio]{figures/dct_1d_sample.png}\par
-    \vspace{0.6ex}
-    \includegraphics[width=0.92\linewidth, height=9cm, keepaspectratio]{figures/dct_1d_basis.png}\par
-    \vspace{0.5ex}
-    $\varphi_n(x) = \cos\!\left(\dfrac{n\pi x}{L}\right)$
-  \end{minipage}\hfill
-  \begin{minipage}[t]{0.48\linewidth}
-    \centering
-    \textbf{2D --- the image rectangle}\par\vspace{0.5ex}
-    \includegraphics[width=0.92\linewidth, height=2.6cm, keepaspectratio]{figures/dct_2d_sample.png}\par
-    \vspace{0.6ex}
-    \includegraphics[width=0.92\linewidth, height=9cm, keepaspectratio]{figures/dct_2d_basis.png}\par
-    \vspace{0.5ex}
-    $\varphi_{n,m}(x, y) = \cos\!\left(\dfrac{n\pi x}{L_x}\right)\cos\!\left(\dfrac{m\pi y}{L_y}\right)$
+    \vbox to 16cm{\vss\centerline{\includegraphics[height=20cm, keepaspectratio]{figures/optimal_basis_step9.png}}\vss}%
   \end{minipage}\par
+  \vspace{1.0ex}
+
+  % ── Sub-section 2: the DCT special case ─────────────────────────────
+  \secTitle{cTitlePlum}{You've been using a Laplacian eigenbasis all along \;{\normalsize\normalfont\itshape(Best $k$-term basis in $\mathbb{R}^{n}$)}}
+  \vspace{1.0ex}
+
+  % Single row: 1D case (sample | basis) on the LEFT, 2D case (dog | basis)
+  % on the RIGHT. Each case mirrors the final slide arrangement — sample
+  % image on the left, "DCT basis" column on the right with label above
+  % and equation below.
+
+  % All four sub-minipages are FIXED-HEIGHT [t]-aligned with vfills around
+  % the image, so the labels at the TOP and equations at the BOTTOM line
+  % up across cases regardless of the image's natural aspect ratio.
+  \newcommand{\dctCellH}{8.5cm}%
+
+  % ─── 1D case (left half) — no equation below the image, it now lives
+  %      in the shared box at the bottom. ───
+  \begin{minipage}[t]{0.49\linewidth}\centering
+    \begin{minipage}[t][\dctCellH][c]{0.48\linewidth}\centering
+      \phantom{\textbf{DCT basis}}\par\vspace{0.4ex}
+      \vfill
+      \includegraphics[width=\linewidth, height=6.5cm, keepaspectratio]{figures/dct_1d_sample.png}
+      \vfill
+    \end{minipage}\hfill
+    \begin{minipage}[t][\dctCellH][c]{0.48\linewidth}\centering
+      \textbf{DCT basis}\par\vspace{0.4ex}
+      \vfill
+      \includegraphics[width=\linewidth, height=6.5cm, keepaspectratio]{figures/dct_1d_basis.png}
+      \vfill
+    \end{minipage}
+  \end{minipage}\hfill
+  % ─── 2D case (right half) ───
+  \begin{minipage}[t]{0.49\linewidth}\centering
+    \begin{minipage}[t][\dctCellH][c]{0.48\linewidth}\centering
+      \phantom{\textbf{DCT basis}}\par\vspace{0.4ex}
+      \vfill
+      \includegraphics[width=\linewidth, height=6.5cm, keepaspectratio]{figures/dct_2d_sample.png}
+      \vfill
+    \end{minipage}\hfill
+    \begin{minipage}[t][\dctCellH][c]{0.48\linewidth}\centering
+      \textbf{DCT basis}\par\vspace{0.4ex}
+      \vfill
+      \includegraphics[width=\linewidth, height=6.5cm, keepaspectratio]{figures/dct_2d_basis.png}
+      \vfill
+    \end{minipage}
+  \end{minipage}\par
+  \vspace{1.4ex}
+
+  % Text on the LEFT, both DCT basis expressions stacked in a framed
+  % plum-tinted box on the RIGHT — mirrors the layout used in "Our pipeline".
+  \begin{minipage}[c]{0.50\linewidth}\Large\justifying
+    \noindent\itshape Audio (MP3, AAC) and image (JPEG) codecs truncate to the top-$k$ DCT coefficients --- the DCT is exactly the Laplacian eigenbasis on $[0,L]$ (or $[0,L_x]\times[0,L_y]$) with Neumann BC. The next theorem explains why this $k$-term truncation is optimal.
+  \end{minipage}\hfill
+  \begin{minipage}[c]{0.47\linewidth}\centering
+    {\setlength{\fboxsep}{0.7em}\setlength{\fboxrule}{0.6pt}%
+    \fcolorbox{cTitlePlum!35!white}{cTitlePlum!8!white}{%
+      \begin{minipage}{\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax}\centering
+        \Large
+        \[
+          \varphi_n(x) = \cos\!\left(\dfrac{n\pi x}{L}\right)
+        \]
+        \[
+          \varphi_{n,m}(x, y) = \cos\!\left(\dfrac{n\pi x}{L_x}\right)\cos\!\left(\dfrac{m\pi y}{L_y}\right)
+        \]
+      \end{minipage}%
+    }}
+  \end{minipage}\par
+  \vspace{1.0ex}
+
+  % ── Sub-section 3: formal result (3 framed boxes) ───────────────────
+  \secTitle{cTitlePlum}{The optimality theorem \;{\normalsize\normalfont(Aflalo et al., 2016)}}
   \vspace{0.8ex}
-  \centering\textbf{\large Euclidean Laplacian eigenbasis \;\textemdash\; Neumann boundary conditions.}
-\end{block}
+  % Local box style for this subsection.
+  {\setlength{\fboxsep}{0.7em}\setlength{\fboxrule}{0.6pt}%
+  \fcolorbox{cBrandTo!35!white}{cBrandTo!8!white}{%
+    \begin{minipage}{\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax}
+      \Large\itshape\centering
+      Let $L \succeq 0$ be the Laplacian,
+      $\mathcal{C}_L = \{\, f : \langle f, L f\rangle \le 1 \,\}$,
+      and $p_L = \mathrm{Uniform}(\mathcal{C}_L)$.
+    \end{minipage}%
+  }\par
+  \vspace{1.2ex}
+  \fcolorbox{cBrandTo!35!white}{cBrandTo!8!white}{%
+    \begin{minipage}[t]{\dimexpr0.555\linewidth-2\fboxsep-2\fboxrule\relax}
+      \Large\justifying
+      \noindent\textbf{Theorem 1.}\;
+      \emph{Among all orthonormal $k$-subspaces, the expected
+            squared reconstruction error under $p_L$ is minimised by
+            the first $k$ eigenvectors of $L$:}
+      \[
+        \arg\!\min_{\{b_i\}_{i=1}^{k}}\;
+          \mathbb{E}_{f \sim p_L}\, \bigl\|f - \Pi_k f\bigr\|^{2}
+        \;=\; \{\varphi_1, \dots, \varphi_k\}.
+      \]
+    \end{minipage}%
+  }\hfill
+  \fcolorbox{cBrandTo!35!white}{cBrandTo!8!white}{%
+    \begin{minipage}[t]{\dimexpr0.415\linewidth-2\fboxsep-2\fboxrule\relax}
+      \Large\justifying
+      \noindent\textbf{Theorem 2.}\;
+      \emph{Under that basis the worst-case reconstruction error is
+            controlled by the next eigenvalue:}
+      \[
+        \max_{f \in \mathcal{C}_L}\; \bigl\|f - \Pi_k f\bigr\|^{2}
+        \;=\; \tfrac{1}{\lambda_{k+1}}.
+      \]
+    \end{minipage}%
+  }\par
+  }% end local box style
+  \vspace{1.0ex}
 
-\begin{block}{The optimal $k$-term basis is the eigenbasis of $L$}
-  \Large\justifying
+  % ── Sub-section 4: LBO eigenbasis on curved manifolds ───────────────
+  \secTitle{cTitlePlum}{By the theorem, on a manifold: the LBO eigenbasis}
+  \vspace{0.8ex}
+  \newlength{\mbThumb}\setlength{\mbThumb}{0.095\linewidth}%
+  \def\mbImg#1{\includegraphics[width=\mbThumb, height=\mbThumb, keepaspectratio]{figures/#1}}%
+  \def\mbDots{\;\raisebox{\dimexpr0.45\mbThumb\relax}{\Large$\cdots$}\;}%
+  \def\mbCap#1{\par\vspace{0.3ex}{\large\textbf{#1}}\par}%
 
-  Let $L \succeq 0$ be the Laplacian and let
-  \[
-    \mathcal{C}_L \;=\; \bigl\{\, f \;:\; \langle f,\, L f\rangle \le 1 \,\bigr\},
-    \qquad
-    p_L \;=\; \mathrm{Uniform}(\mathcal{C}_L).
-  \]
-
-  \noindent\textbf{Theorem 1.}\;
-  \emph{Among all orthonormal $k$-subspaces, the expected
-        squared reconstruction error under $p_L$ is minimised by
-        the first $k$ eigenvectors of $L$:}
-  \[
-    \arg\!\min_{\{b_i\}_{i=1}^{k}}\;
-      \mathbb{E}_{f \sim p_L}\, \bigl\|f - \Pi_k f\bigr\|^{2}
-    \;=\; \{\varphi_1, \dots, \varphi_k\}.
-  \]
-
-  \noindent\textbf{Theorem 2.}\;
-  \emph{Under that basis the worst-case error is sharp:}
-  \[
-    \max_{f \in \mathcal{C}_L}\; \bigl\|f - \Pi_k f\bigr\|^{2}
-    \;=\; \tfrac{1}{\lambda_{k+1}}.
-  \]
-
-  \vspace{0.4ex}
-  \hfill {\small\itshape Aflalo, Brezis, Bruckstein, Kimmel \& Sochen,
-                          C.\ R.\ Math.\ \textbf{354} (2016).}
-\end{block}
-
-\end{column}
-
-% ───────────── Column 3 ─────────────
-\begin{column}{\colwidthA}
-
-\begin{block}{Best $k$-truncated basis on curved domains --- the Laplace--Beltrami eigenbasis}
-  \centering
-
-  % Thumbnail size (frozen as an absolute length so it doesn't shrink
-  % inside the inner minipages — see the same trick used elsewhere).
-  \newlength{\mbThumb}\setlength{\mbThumb}{0.13\linewidth}%
-  \def\mbImg##1{\includegraphics[width=\mbThumb, height=\mbThumb, keepaspectratio]{figures/##1}}%
-  \def\mbDots{\;\raisebox{0.5ex}{\Large$\cdots$}\;}%
-  \def\mbCap##1{\par\vspace{0.3ex}{\small\textbf{##1}}\par}%
-
-  % ── Row 1 — smooth manifold | sampled manifold | smooth scalar functions
-  \begin{minipage}[t]{0.22\linewidth}\centering
+  % Row 1 — smooth manifold | sampled manifold | smooth scalar functions
+  \begin{minipage}[t]{0.18\linewidth}\centering
     \mbImg{manifold_pc_mesh.png}\mbCap{smooth manifold}
   \end{minipage}\hfill
-  \begin{minipage}[t]{0.22\linewidth}\centering
+  \begin{minipage}[t]{0.18\linewidth}\centering
     \mbImg{manifold_pc_points.png}\mbCap{sampled manifold}
   \end{minipage}\hfill
-  \begin{minipage}[t]{0.52\linewidth}\centering
-    \mbImg{manifold_pc_signal_diff_01.png}\,
+  \begin{minipage}[t]{0.62\linewidth}\centering
+    \mbImg{manifold_pc_signal_diff_01.png}\,%
     \mbImg{manifold_pc_signal_diff_02.png}\mbDots
-    \mbImg{manifold_pc_signal_diff_03.png}\,
-    \mbImg{manifold_pc_signal_diff_04.png}
+    \mbImg{manifold_pc_signal_diff_03.png}\,%
+    \mbImg{manifold_pc_signal_diff_04.png}%
     \mbCap{smooth scalar functions}
   \end{minipage}\par
   \vspace{1.2ex}
 
-  % ── Bases — four rows.
-  \def\mbBasisRow##1{%
-    \mbImg{manifold_pc_basis_##1_0.png}\,%
-    \mbImg{manifold_pc_basis_##1_1.png}\,%
-    \mbImg{manifold_pc_basis_##1_2.png}\mbDots
-    \mbImg{manifold_pc_basis_##1_47.png}\,%
-    \mbImg{manifold_pc_basis_##1_48.png}\,%
-    \mbImg{manifold_pc_basis_##1_49.png}%
+  \def\mbBasisRow#1{%
+    \mbImg{manifold_pc_basis_#1_0.png}\,%
+    \mbImg{manifold_pc_basis_#1_1.png}\,%
+    \mbImg{manifold_pc_basis_#1_2.png}\mbDots
+    \mbImg{manifold_pc_basis_#1_47.png}\,%
+    \mbImg{manifold_pc_basis_#1_48.png}\,%
+    \mbImg{manifold_pc_basis_#1_49.png}%
   }%
 
-  \mbBasisRow{1}\mbCap{orthogonal basis \#1}\vspace{0.9ex}
-  \mbBasisRow{2}\mbCap{orthogonal basis \#2}\vspace{0.9ex}
-
-  % ── Highlighted LBO basis (the winner)
-  {\setlength{\fboxsep}{6pt}%
-   \fcolorbox{cBrandFrom}{cBgSoft}{%
-     \begin{minipage}{0.95\linewidth}\centering
-       \mbBasisRow{4}\mbCap{LBO eigenbasis \;---\; optimal $k$-truncated basis}
-     \end{minipage}%
-   }}
+  % Only the LBO basis (random bases dropped to save space).
+  \begin{minipage}{0.95\linewidth}\centering
+    \mbBasisRow{4}\mbCap{LBO eigenbasis \;---\; optimal $k$-term basis}
+  \end{minipage}
 \end{block}
-
-\begin{block}{Our pipeline}
-  \centering
-  \includegraphics[width=\linewidth]{figures/pipeline.png}\par
-  \vspace{1.0ex}
-
-  \large
-  Train end-to-end with the average reconstruction loss
-  \[
-    \mathcal{L}_{\text{rec}} \;=\;
-    \frac{1}{m K}\;
-    \sum_{i=1}^{m}\; \sum_{k=1}^{K}\;
-    \bigl\lVert\, f^{(i)} \;-\; f^{(i)}_{\text{proj},\,k}\,\bigr\rVert_{2}^{2},
-  \]
-  measuring how well the first $k$ predicted basis vectors reconstruct
-  each probe $f^{(i)}$, averaged over $i$ and $k$.
-\end{block}
+}% end of custom-template group for "The best k-term basis"
 
 \end{column}
 
-% ───────────── Column 4 ─────────────
-\begin{column}{\colwidthA}
+% ───────── Column 3 + 4 (merged, double-wide) ─────────
+\begin{column}{\dimexpr2\colwidthA+1.5cm\relax}
 
-\begin{block}{Beyond the LBO}
-  Because the method never builds the operator explicitly, swapping
-  Laplacians is trivial: change only the probe sampler $p_L$.
-
-  \vspace{0.3ex}
-  \textbf{Hadamard probes.}\; Substituting random Hadamard probes
-  recovers the same eigenbasis at any prefix.
-
-  \vspace{0.3ex}
-  \textbf{Schrödinger operator.}\; Adding a potential
-  $V(x)$ to the probe energy yields the Schrödinger eigenstructure
-  $\bigl(-\Delta + V\bigr)\phi_i = \lambda_i\,\phi_i$.
-
-  \vspace{0.3ex}
+{%
+\setbeamertemplate{block begin}{%
+  \begin{lrbox}{\posterBlockBox}%
+  \begin{minipage}{\dimexpr\textwidth-1.2pt-16pt\relax}%
+  \begin{beamercolorbox}[wd=\linewidth, ht=3.4ex, dp=1.8ex, leftskip=1ex, rightskip=1ex]{block title}
+    \insertblocktitle
+  \end{beamercolorbox}
+  \begin{beamercolorbox}[wd=\linewidth, leftskip=1ex, rightskip=1ex, vmode]{block body}
+    \vspace{0.25ex}
+    \justifying
+}
+\setbeamertemplate{block end}{%
+    \vspace{0.5ex}
+  \end{beamercolorbox}
+  \end{minipage}%
+  \end{lrbox}%
+  \tikz[baseline]{\node[draw=black, line width=1.2pt, inner sep=8pt, outer sep=0pt, line cap=rect, line join=miter](){\usebox{\posterBlockBox}};}%
+  \vspace{0.9ex}
+}
+\setbeamercolor{block title}{fg=white, bg=cTitleNavy}%
+\begin{block}{\LARGE Our pipeline}
   \centering
-  \includegraphics[width=\linewidth]{figures/schrodinger_grid.pdf}
-\end{block}
+  \includegraphics[width=\linewidth]{figures/pipeline.png}\par
+  \vspace{1.8ex}
 
-\begin{block}{Image manifold}
-  The same recipe applied to CLIP / DINOv2 embeddings of Imagenette and
-  STL10 recovers clusters and outperforms UMAP, t-SNE, PCA, and
-  Laplacian eigenmaps on NMI \& ARI.
-  \vspace{0.3ex}
-  \centering
-  \includegraphics[width=0.95\linewidth]{figures/nmi_ari_bars.pdf}
+  % Text on the LEFT, equation framed on the RIGHT — uses the double-wide
+  % cell more efficiently than the original stacked layout.
+  \begin{minipage}[c]{0.45\linewidth}\LARGE\justifying
+    \noindent Train end-to-end with the \textbf{average
+    reconstruction loss}\,---\,how well the first $k$ predicted basis
+    vectors reconstruct each probe $f^{(i)}$, averaged over $i$ and $k$.
+  \end{minipage}\hfill
+  \begin{minipage}[c]{0.52\linewidth}\centering
+    {\setlength{\fboxsep}{0.8em}\setlength{\fboxrule}{0.6pt}%
+    \fcolorbox{cTitleNavy!35!white}{cTitleNavy!8!white}{%
+      \begin{minipage}{\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax}\centering
+        \huge
+        \[
+          \mathcal{L}_{\text{rec}} \;=\;
+          \frac{1}{m K}\;
+          \sum_{i=1}^{m}\; \sum_{k=1}^{K}\;
+          \bigl\lVert\, f^{(i)} \;-\; f^{(i)}_{\text{proj},\,k}\,\bigr\rVert_{2}^{2}
+        \]
+      \end{minipage}%
+    }}
+  \end{minipage}
 \end{block}
+}% end of custom-template group for "Our pipeline"
+% ──────── 5-cell results grid below "Our pipeline" ────────
+% No blank line above to avoid \parskip pushing the next row down — the
+% only gap between "Our pipeline" and the row below is the standard
+% \vspace{0.9ex} from the block-end template (matches the inter-cell gap
+% used in columns 1 and 2).
+% Helper: apply the "big-title" custom block template (taller bar) +
+% per-cell title bg. Use inside a {...} group right before \begin{block}.
+\newcommand{\bigTitleSetup}[1]{%
+  \setbeamertemplate{block begin}{%
+    \begin{lrbox}{\posterBlockBox}%
+    \begin{minipage}{\dimexpr\textwidth-1.2pt-16pt\relax}%
+    \begin{beamercolorbox}[wd=\linewidth, ht=3.4ex, dp=1.8ex, leftskip=1ex, rightskip=1ex]{block title}
+      \insertblocktitle
+    \end{beamercolorbox}
+    \begin{beamercolorbox}[wd=\linewidth, leftskip=1ex, rightskip=1ex, vmode]{block body}
+      \vspace{0.25ex}
+      \justifying
+  }%
+  \setbeamertemplate{block end}{%
+      \vspace{0.5ex}
+    \end{beamercolorbox}
+    \end{minipage}%
+    \end{lrbox}%
+    \tikz[baseline]{\node[draw=black, line width=1.2pt, inner sep=8pt, outer sep=0pt, line cap=rect, line join=miter](){\usebox{\posterBlockBox}};}%
+    \vspace{0.9ex}
+  }%
+  \setbeamercolor{block title}{fg=white, bg=#1}%
+}
+\noindent
+\begin{minipage}[t]{0.495\linewidth}
+  {\bigTitleSetup{cTitleCrimson}%
+  \begin{block}{\LARGE Training on samples of a single shape}
+    \centering
+    % 13-column grid: leftmost is the row label, next 9 are eigen modes
+    % $\varphi_{2..7,10,20,40}$, last 3 are reconstructions $k=5,25,50$.
+    % Every image lives in a 3.5 cm × 3.5 cm parbox (aspect preserved
+    % inside). The parbox guarantees identical cell dimensions regardless
+    % of the image's natural aspect — so every row in both cells is
+    % exactly 3.5 cm tall.
+    \newcommand{\ovImg}[2]{\parbox[c][3.5cm][c]{3.5cm}{\centering\includegraphics[width=3.5cm, height=3.5cm, keepaspectratio]{figures/overfit/#1/#2.png}}}%
+    \newcommand{\ovImgB}[1]{\parbox[c][3.5cm][c]{3.5cm}{\centering\includegraphics[width=3.5cm, height=3.5cm, keepaspectratio]{figures/overfit/botijo/#1.png}}}%
+    \setlength{\tabcolsep}{1pt}\renewcommand{\arraystretch}{0.85}%
+    % EVERY column uses m{W} so cell content is vertically centered in its
+    % row. The first column is the row label; the next 12 hold images.
+    % Result: "Cot. Lap." / "Ours" labels sit at the vertical middle of
+    % their image row, and the header v_i / k= line up on the same baseline.
+    \begin{tabular}{>{\raggedleft\arraybackslash}m{2.1cm}@{\hspace{6mm}}*{12}{>{\centering\arraybackslash}m{3.6cm}}}
+      & $\strut\mathbf{v}_2$ & $\strut\mathbf{v}_3$ & $\strut\mathbf{v}_4$ & $\strut\mathbf{v}_5$ & $\strut\mathbf{v}_6$ & $\strut\mathbf{v}_7$
+        & $\strut\mathbf{v}_{10}$ & $\strut\mathbf{v}_{20}$ & $\strut\mathbf{v}_{40}$
+        & $\strut k\!=\!5$ & $\strut k\!=\!25$ & $\strut k\!=\!50$ \\[0.2ex]
+      % ── Lion
+      {\small Cot.\,Lap.} & \ovImg{lion}{gt_eigen001} & \ovImg{lion}{gt_eigen002} & \ovImg{lion}{gt_eigen003} & \ovImg{lion}{gt_eigen004} & \ovImg{lion}{gt_eigen005} & \ovImg{lion}{gt_eigen006} & \ovImg{lion}{gt_eigen009} & \ovImg{lion}{gt_eigen019} & \ovImg{lion}{gt_eigen039} & \ovImg{lion}{gt_recon_k005} & \ovImg{lion}{gt_recon_k025} & \ovImg{lion}{gt_recon_k050} \\
+      {\small Ours}      & \ovImg{lion}{pred_eigen001} & \ovImg{lion}{pred_eigen002} & \ovImg{lion}{pred_eigen003} & \ovImg{lion}{pred_eigen004} & \ovImg{lion}{pred_eigen005} & \ovImg{lion}{pred_eigen006} & \ovImg{lion}{pred_eigen009} & \ovImg{lion}{pred_eigen019} & \ovImg{lion}{pred_eigen039} & \ovImg{lion}{pred_recon_k005} & \ovImg{lion}{pred_recon_k025} & \ovImg{lion}{pred_recon_k050} \\
+      % ── Botijo
+      {\small Cot.\,Lap.} & \ovImgB{gt_eigen001} & \ovImgB{gt_eigen002} & \ovImgB{gt_eigen003} & \ovImgB{gt_eigen004} & \ovImgB{gt_eigen005} & \ovImgB{gt_eigen006} & \ovImgB{gt_eigen009} & \ovImgB{gt_eigen019} & \ovImgB{gt_eigen039} & \ovImgB{gt_recon_k005} & \ovImgB{gt_recon_k025} & \ovImgB{gt_recon_k050} \\
+      {\small Ours}      & \ovImgB{pred_eigen001} & \ovImgB{pred_eigen002} & \ovImgB{pred_eigen003} & \ovImgB{pred_eigen004} & \ovImgB{pred_eigen005} & \ovImgB{pred_eigen006} & \ovImgB{pred_eigen009} & \ovImgB{pred_eigen019} & \ovImgB{pred_eigen039} & \ovImgB{pred_recon_k005} & \ovImgB{pred_recon_k025} & \ovImgB{pred_recon_k050} \\
+      % ── Armadillo
+      {\small Cot.\,Lap.} & \ovImg{armadillo}{gt_eigen001} & \ovImg{armadillo}{gt_eigen002} & \ovImg{armadillo}{gt_eigen003} & \ovImg{armadillo}{gt_eigen004} & \ovImg{armadillo}{gt_eigen005} & \ovImg{armadillo}{gt_eigen006} & \ovImg{armadillo}{gt_eigen009} & \ovImg{armadillo}{gt_eigen019} & \ovImg{armadillo}{gt_eigen039} & \ovImg{armadillo}{gt_recon_k005} & \ovImg{armadillo}{gt_recon_k025} & \ovImg{armadillo}{gt_recon_k050} \\
+      {\small Ours}      & \ovImg{armadillo}{pred_eigen001} & \ovImg{armadillo}{pred_eigen002} & \ovImg{armadillo}{pred_eigen003} & \ovImg{armadillo}{pred_eigen004} & \ovImg{armadillo}{pred_eigen005} & \ovImg{armadillo}{pred_eigen006} & \ovImg{armadillo}{pred_eigen009} & \ovImg{armadillo}{pred_eigen019} & \ovImg{armadillo}{pred_eigen039} & \ovImg{armadillo}{pred_recon_k005} & \ovImg{armadillo}{pred_recon_k025} & \ovImg{armadillo}{pred_recon_k050} \\
+    \end{tabular}
+  \end{block}
+  }% close bigTitle group
+\end{minipage}\hfill
+\begin{minipage}[t]{0.495\linewidth}
+  {\bigTitleSetup{cTitleEmerald}%
+  \begin{block}{\LARGE Training on samples of multiple shapes, and testing on \emph{unseen} shapes}
+    \centering
+    % Same fixed 3.5 cm × 3.5 cm parbox as the overfit cell on the left,
+    % so every cell is identical regardless of the image's aspect — both
+    % the overfit and unseen-shapes cells have exactly the same total
+    % height.
+    \newcommand{\gnImg}[2]{\parbox[c][3.5cm][c]{3.5cm}{\centering\includegraphics[width=3.5cm, height=3.5cm, keepaspectratio]{figures/general/#1/#2.png}}}%
+    \setlength{\tabcolsep}{1pt}\renewcommand{\arraystretch}{0.85}%
+    \begin{tabular}{>{\raggedleft\arraybackslash}m{2.1cm}@{\hspace{6mm}}*{12}{>{\centering\arraybackslash}m{3.6cm}}}
+      & $\strut\mathbf{v}_2$ & $\strut\mathbf{v}_3$ & $\strut\mathbf{v}_4$ & $\strut\mathbf{v}_5$ & $\strut\mathbf{v}_6$ & $\strut\mathbf{v}_7$
+        & $\strut\mathbf{v}_8$ & $\strut\mathbf{v}_{10}$ & $\strut\mathbf{v}_{20}$
+        & $\strut k\!=\!5$ & $\strut k\!=\!25$ & $\strut k\!=\!50$ \\[0.2ex]
+      % ── shape2 ──
+      {\small Cot.\,Lap.} & \gnImg{shape2}{gt_eigen001} & \gnImg{shape2}{gt_eigen002} & \gnImg{shape2}{gt_eigen003} & \gnImg{shape2}{gt_eigen004} & \gnImg{shape2}{gt_eigen005} & \gnImg{shape2}{gt_eigen006} & \gnImg{shape2}{gt_eigen007} & \gnImg{shape2}{gt_eigen009} & \gnImg{shape2}{gt_eigen019} & \gnImg{shape2}{gt_recon_k005} & \gnImg{shape2}{gt_recon_k025} & \gnImg{shape2}{gt_recon_k050} \\
+      {\small Ours}      & \gnImg{shape2}{pred_eigen001} & \gnImg{shape2}{pred_eigen002} & \gnImg{shape2}{pred_eigen003} & \gnImg{shape2}{pred_eigen004} & \gnImg{shape2}{pred_eigen005} & \gnImg{shape2}{pred_eigen006} & \gnImg{shape2}{pred_eigen007} & \gnImg{shape2}{pred_eigen009} & \gnImg{shape2}{pred_eigen019} & \gnImg{shape2}{pred_recon_k005} & \gnImg{shape2}{pred_recon_k025} & \gnImg{shape2}{pred_recon_k050} \\
+      % ── shape1 ──
+      {\small Cot.\,Lap.} & \gnImg{shape1}{gt_eigen001} & \gnImg{shape1}{gt_eigen002} & \gnImg{shape1}{gt_eigen003} & \gnImg{shape1}{gt_eigen004} & \gnImg{shape1}{gt_eigen005} & \gnImg{shape1}{gt_eigen006} & \gnImg{shape1}{gt_eigen007} & \gnImg{shape1}{gt_eigen009} & \gnImg{shape1}{gt_eigen019} & \gnImg{shape1}{gt_recon_k005} & \gnImg{shape1}{gt_recon_k025} & \gnImg{shape1}{gt_recon_k050} \\
+      {\small Ours}      & \gnImg{shape1}{pred_eigen001} & \gnImg{shape1}{pred_eigen002} & \gnImg{shape1}{pred_eigen003} & \gnImg{shape1}{pred_eigen004} & \gnImg{shape1}{pred_eigen005} & \gnImg{shape1}{pred_eigen006} & \gnImg{shape1}{pred_eigen007} & \gnImg{shape1}{pred_eigen009} & \gnImg{shape1}{pred_eigen019} & \gnImg{shape1}{pred_recon_k005} & \gnImg{shape1}{pred_recon_k025} & \gnImg{shape1}{pred_recon_k050} \\
+      % ── shape3 ──
+      {\small Cot.\,Lap.} & \gnImg{shape3}{gt_eigen001} & \gnImg{shape3}{gt_eigen002} & \gnImg{shape3}{gt_eigen003} & \gnImg{shape3}{gt_eigen004} & \gnImg{shape3}{gt_eigen005} & \gnImg{shape3}{gt_eigen006} & \gnImg{shape3}{gt_eigen007} & \gnImg{shape3}{gt_eigen009} & \gnImg{shape3}{gt_eigen019} & \gnImg{shape3}{gt_recon_k005} & \gnImg{shape3}{gt_recon_k025} & \gnImg{shape3}{gt_recon_k050} \\
+      {\small Ours}      & \gnImg{shape3}{pred_eigen001} & \gnImg{shape3}{pred_eigen002} & \gnImg{shape3}{pred_eigen003} & \gnImg{shape3}{pred_eigen004} & \gnImg{shape3}{pred_eigen005} & \gnImg{shape3}{pred_eigen006} & \gnImg{shape3}{pred_eigen007} & \gnImg{shape3}{pred_eigen009} & \gnImg{shape3}{pred_eigen019} & \gnImg{shape3}{pred_recon_k005} & \gnImg{shape3}{pred_recon_k025} & \gnImg{shape3}{pred_recon_k050} \\
+    \end{tabular}
+  \end{block}
+  }% close bigTitle group
+\end{minipage}
 
-\begin{block}{Take-aways}
-  \begin{itemize}
-    \item One differentiable map replaces the entire traditional
-          eigenstructure pipeline.
-    \item Generalises across shapes, sampling resolutions, and
-          operator families (LBO, Schrödinger, Hadamard).
-    \item Trained on 3 K points, inferred on 12 K --- no degradation.
-  \end{itemize}
-\end{block}
+\vspace{0.3cm}
+\noindent
+% ─── Cell 3: Schrödinger generalisation (slide 22) ───
+\begin{minipage}[t]{0.2425\linewidth}
+  {\bigTitleSetup{cTitleOrange}%
+  \begin{block}{\LARGE Schr\"odinger operator}
+    \centering
+    \newcommand{\schImg}[2]{\includegraphics[width=2.0cm]{figures/schrod/#1/#2.png}}%
+    \setlength{\tabcolsep}{1pt}\renewcommand{\arraystretch}{0.85}%
+    \noindent
+    \begin{minipage}[c]{0.20\linewidth}\centering
+      \begin{tabular}{>{\centering\arraybackslash}m{2.1cm}}
+        $\strut\text{Potential}$ \\[0.2ex]
+        \schImg{botijo}{potential} \\
+        \schImg{dente}{potential} \\[1.0ex]
+        $\strut\text{Probe}$ \\[0.2ex]
+        \schImg{botijo}{probe} \\
+        \schImg{dente}{probe} \\
+      \end{tabular}
+    \end{minipage}\hfill
+    \begin{minipage}[c]{0.78\linewidth}\centering
+      \begin{tabular}{>{\raggedleft\arraybackslash}m{1.2cm}@{\hspace{4mm}}*{7}{>{\centering\arraybackslash}m{2.1cm}}}
+        & $\strut\mathbf{v}_2$ & $\strut\mathbf{v}_3$ & $\strut\mathbf{v}_4$ & $\strut\mathbf{v}_5$ & $\strut\mathbf{v}_6$ & $\strut\mathbf{v}_7$ & $\strut\mathbf{v}_8$ \\[0.2ex]
+        {\small GT}   & \schImg{botijo}{gt_eigen001} & \schImg{botijo}{gt_eigen002} & \schImg{botijo}{gt_eigen003} & \schImg{botijo}{gt_eigen004} & \schImg{botijo}{gt_eigen005} & \schImg{botijo}{gt_eigen006} & \schImg{botijo}{gt_eigen007} \\
+        {\small Ours} & \schImg{botijo}{pred_eigen001} & \schImg{botijo}{pred_eigen002} & \schImg{botijo}{pred_eigen003} & \schImg{botijo}{pred_eigen004} & \schImg{botijo}{pred_eigen005} & \schImg{botijo}{pred_eigen006} & \schImg{botijo}{pred_eigen007} \\
+        {\small GT}   & \schImg{dente}{gt_eigen001}  & \schImg{dente}{gt_eigen002}  & \schImg{dente}{gt_eigen003}  & \schImg{dente}{gt_eigen004}  & \schImg{dente}{gt_eigen005}  & \schImg{dente}{gt_eigen006}  & \schImg{dente}{gt_eigen007} \\
+        {\small Ours} & \schImg{dente}{pred_eigen001}  & \schImg{dente}{pred_eigen002}  & \schImg{dente}{pred_eigen003}  & \schImg{dente}{pred_eigen004}  & \schImg{dente}{pred_eigen005}  & \schImg{dente}{pred_eigen006}  & \schImg{dente}{pred_eigen007} \\
+      \end{tabular}
+    \end{minipage}
+  \end{block}
+  }% close bigTitle group
+\end{minipage}\hspace{0.01\linewidth}% explicit gap between cells 3 & 4
+% ─── Cell 4: low/high resolution (slide 23) + vertex areas (slide 24) ───
+\begin{minipage}[t]{0.2425\linewidth}
+  {\bigTitleSetup{cTitleMagenta}%
+  \begin{block}{\LARGE Resolution \& sampling}
+    \centering
 
-\begin{block}{Acknowledgements \& code}
-  We thank the CVPR area chair and reviewers for valuable feedback.
-  Code, data, and the full paper:\par
-  \textcolor{cBrandFrom}{\textbf{github.com/royvelich/learning-eigenstructures}}
-\end{block}
+    \textbf{\large Train at low resolution, infer at higher resolution.}\par
+    \vspace{0.6ex}
+    \newcommand{\pgImg}[2]{\includegraphics[width=2.32cm]{figures/pegaso/#1/eigen#2.png}}%
+    \setlength{\tabcolsep}{1pt}\renewcommand{\arraystretch}{0.85}%
+    \begin{tabular}{>{\raggedleft\arraybackslash}m{1.4cm}@{\hspace{3mm}}*{6}{>{\centering\arraybackslash}m{2.42cm}}}
+      & $\strut\mathbf{v}_2$ & $\strut\mathbf{v}_8$ & $\strut\mathbf{v}_{14}$ & $\strut\mathbf{v}_{22}$ & $\strut\mathbf{v}_{30}$ & $\strut\mathbf{v}_{47}$ \\[0.2ex]
+      {\small 3K pts}  & \pgImg{p1}{001} & \pgImg{p1}{007} & \pgImg{p1}{013} & \pgImg{p1}{021} & \pgImg{p1}{029} & \pgImg{p1}{046} \\
+      {\small 12K pts} & \pgImg{p2}{001} & \pgImg{p2}{007} & \pgImg{p2}{013} & \pgImg{p2}{021} & \pgImg{p2}{029} & \pgImg{p2}{046} \\
+    \end{tabular}
+    \par\vspace{1.8ex}
+
+    \textbf{\large Predicted vertex areas / sampling density.}\par
+    \vspace{0.6ex}
+    \newcommand{\arImg}[1]{\includegraphics[width=2.62cm]{figures/areas/#1.png}}%
+    \begin{tabular}{*{6}{>{\centering\arraybackslash}m{2.72cm}}}
+      \arImg{lion} & \arImg{bimba} & \arImg{elephant} & \arImg{botijo} & \arImg{david} & \arImg{laurent_hand} \\
+    \end{tabular}
+  \end{block}
+  }% close bigTitle group
+\end{minipage}\hfill
+% ─── Cell 5: image manifold — STL10 clusters + NMI/ARI chart (slides 27+28) ───
+\begin{minipage}[t]{0.495\linewidth}
+  {\bigTitleSetup{cTitleSteel}%
+  \begin{block}{\LARGE Image manifold \;---\; STL10 clusters \& metrics}
+    \centering
+    % Side-by-side: STL10 cluster image on the LEFT, NMI/ARI chart on the
+    % RIGHT. Each takes ~48 % of the cell width.
+    \begin{minipage}[c]{0.49\linewidth}\centering
+      \textbf{\small STL10 clusters \;{\scriptsize\normalfont(DINOv2)}}\par
+      \vspace{0.4ex}
+      \includegraphics[width=\linewidth, height=18cm, keepaspectratio]{figures/stl10_clusters.png}
+    \end{minipage}\hfill
+    \begin{minipage}[c]{0.49\linewidth}\centering
+      \textbf{\small NMI \& ARI}\par
+      \vspace{0.4ex}
+      \includegraphics[width=\linewidth, height=18cm, keepaspectratio]{figures/nmi_ari_chart.png}
+    \end{minipage}
+  \end{block}
+  }% close bigTitle group
+\end{minipage}
 
 \end{column}
 

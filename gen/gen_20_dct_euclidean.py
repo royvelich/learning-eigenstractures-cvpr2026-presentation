@@ -36,11 +36,11 @@ def _frame_panel(ax):
 
 
 def _save_tight(fig, name):
-    """Save with bbox_inches='tight' so nothing is cropped, then PIL-crop
-    the alpha bbox for a clean canvas on the slide."""
+    """Save with zero padding, then PIL-crop the alpha bbox so the PNG's
+    pixel bounds equal the drawn content's tight bbox."""
     out = OUT_DIR / name
     fig.savefig(out, dpi=220, transparent=True,
-                bbox_inches="tight", pad_inches=0.04)
+                bbox_inches="tight", pad_inches=0)
     plt.close(fig)
     im = Image.open(out)
     bbox = im.getchannel("A").getbbox()
@@ -57,20 +57,21 @@ sig1d = gaussian_filter1d(rng.standard_normal(N_X), sigma=28.0)
 sig1d -= sig1d.mean()
 sig1d /= np.max(np.abs(sig1d)) * 1.05
 
-fig = plt.figure(figsize=(11.0, 2.0))
+fig = plt.figure(figsize=(11.0, 6.0))
 ax = fig.add_subplot(111)
 ax.plot(x, sig1d, color=SIG_COLOR, lw=2.6)
 ax.fill_between(x, 0.0, sig1d, color=SIG_COLOR, alpha=0.08)
 ax.axhline(0.0, color=GREY, lw=0.6)
 ax.set_xlim(0.0, 1.0)
-ax.set_ylim(-1.15, 1.15)
+ax.set_ylim(-1.03, 1.03)
 _frame_panel(ax)
+plt.subplots_adjust(left=0, right=1, top=1, bottom=0)
 _save_tight(fig, "dct_1d_sample.png")
 
 
 # 1D basis ---------------------------------------------------------------
-N1D = 8
-fig, axes = plt.subplots(2, 4, figsize=(11.0, 4.0))
+N1D = 12
+fig, axes = plt.subplots(3, 4, figsize=(11.0, 6.0))
 for k in range(N1D):
     ax = axes[k // 4, k % 4]
     y = np.cos(k * np.pi * x)
@@ -78,9 +79,12 @@ for k in range(N1D):
     ax.fill_between(x, 0.0, y, color=TEAL, alpha=0.10)
     ax.axhline(0.0, color=GREY, lw=0.6)
     ax.set_xlim(0.0, 1.0)
-    ax.set_ylim(-1.15, 1.15)
+    ax.set_ylim(-1.03, 1.03)
     _frame_panel(ax)
-plt.subplots_adjust(wspace=0.35, hspace=0.35)
+# Zero OUTER margins (so the PNG's pixel bounds touch the first/last
+# row's frame), but keep the original inter-subplot spacing.
+plt.subplots_adjust(left=0, right=1, top=1, bottom=0,
+                    wspace=0.35, hspace=0.35)
 _save_tight(fig, "dct_1d_basis.png")
 
 

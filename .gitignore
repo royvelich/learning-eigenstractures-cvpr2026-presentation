@@ -28,9 +28,20 @@ supp_metric@0.5x.png
 # Auto-regenerated cell PNGs (large; only the source screenshot dirs matter)
 public/applications/overfit_cells/
 
-# Poster build artifacts (the canonical output is poster.pdf)
+# Poster build artifacts (rebuild from poster.tex via lualatex; PDF
+# exceeds GitHub's 100 MB push limit).
+poster/poster.pdf
+poster/poster_preview-*.png
+poster/poster_export-*.png
 poster/preview-*.png
 poster/*.aux
 poster/*.log
 poster/*.out
+poster/*.nav
+poster/*.snm
+poster/*.toc
+poster/*.vrb
 poster/*.synctex.gz
+poster/figures_used/
+poster/figures_used.zip
+slides_clicks.pdf

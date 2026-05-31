@@ -1068,9 +1068,9 @@ class: text-left
 clicks: 9
 ---
 
-<div class="h-full flex flex-col pt-4 pb-3 px-2">
+<div class="h-full flex flex-col pt-2 pb-1 px-0">
 
-<h2 class="!text-xl !leading-snug !mb-4 font-serif text-center" style="color: var(--c-fg)">
+<h2 class="!text-xl !leading-snug !mb-2 font-serif text-center" style="color: var(--c-fg)">
 Best <i>k</i>-truncated basis — a 3D toy example.
 </h2>
 
@@ -1087,7 +1087,7 @@ Best <i>k</i>-truncated basis — a 3D toy example.
          click 8 → clean reset to the MSE-optimal plane + basis b1*, b2*
                    for {v, u, w} (PCA top-2 left singular vectors)
          click 9 → + projections + residual lines on the optimal plane -->
-<div class="flex-1 min-h-0 relative px-4 optimal-stage-host">
+<div class="flex-1 min-h-0 relative px-0 optimal-stage-host">
   <div class="absolute inset-0 flex items-center justify-center">
     <div class="optimal-stage-wrap">
       <img v-for="n in 8" :key="n"
@@ -1110,8 +1110,8 @@ Best <i>k</i>-truncated basis — a 3D toy example.
 .optimal-stage-wrap {
   position: relative;
   height: 100%;
-  /* aspect ratio matches the cropped APNG canvases (717 / 677 ≈ 1.059) */
-  aspect-ratio: 717 / 677;
+  /* aspect ratio matches the tight-cropped canvases (695 / 716 ≈ 0.971) */
+  aspect-ratio: 695 / 716;
 }
 .caption-row {
   position: relative;
@@ -1139,152 +1139,233 @@ Best <i>k</i>-truncated basis — a 3D toy example.
 ---
 layout: default
 class: text-left
-clicks: 6
+clicks: 5
 ---
 
-<div class="h-full flex flex-col pt-4 pb-3 px-2 relative">
+<div class="h-full flex flex-col pt-4 pb-3 px-2">
 
 <h2 class="!text-xl !leading-snug !mb-4 font-serif text-center" style="color: var(--c-fg)">
 Best <i>k</i>-truncated basis for 1D signals &amp; 2D images — it's the Laplacian eigenbasis in disguise.
 </h2>
 
 <!-- Click flow:
-       click 1 → 1D sample signal fades in
-       click 2 → 1D cosine modes fade in (smooth reveal)
-       click 3 → 2D sample image fades in
-       click 4 → 2D cosine product modes fade in
-       click 5 → 1D signal + 2D image fade out AND modes glide up to the
-                 top of their column (modes don't change size)
-       click 6 → "Neumann eigenbasis" caption fades in below the modes -->
-<div class="flex-1 min-h-0 grid grid-cols-[1.15fr_1fr] gap-10 px-6 items-stretch"
-     :class="{ 'modes-up': $clicks >= 5 }">
+       click 1 → 1D sample fades in BIG, centered across the slide
+       click 2 → 1D sample shrinks and slides to the LEFT half centre;
+                 1D DCT basis column (label · image · equation) fades in
+                 on the RIGHT half, 350 ms delayed.
+       click 3 → 1D content (sample + basis column) fades out;
+                 the 2D dog photo fades in BIG, centered across the slide.
+       click 4 → 2D dog shrinks and slides to the LEFT half centre;
+                 2D DCT basis column fades in on the RIGHT half. -->
+<div class="flex-1 min-h-0 relative px-4"
+     :class="{ 'show-basis-1d': $clicks === 2, 'show-basis-2d': $clicks >= 4 }">
 
-<!-- 1D — the curve [0, L] -->
-<div class="dct-col">
-  <img class="dct-sample dct-reveal" :class="{ 'is-on': $clicks >= 1 && $clicks < 5 }"
-       :src="`${$slidev.configs.base ?? '/'}applications/dct_1d_sample.png`"
-       alt="A smooth 1D signal on [0, L]" />
-  <img class="dct-basis dct-reveal" :class="{ 'is-on': $clicks >= 2 }"
+  <!-- ────────── 1D SAMPLE column (clicks 1–2) ────────── -->
+  <div class="dct-sample-col"
+       :class="{ 'visible': $clicks >= 1 && $clicks < 3 }">
+    <img class="dct-sample-img"
+         :src="`${$slidev.configs.base ?? '/'}applications/dct_1d_sample.png`"
+         alt="A smooth 1D signal on [0, L]" />
+  </div>
+
+  <!-- ────────── 1D DCT BASIS column (click 2 only) ────────── -->
+  <div class="dct-basis-col" :class="{ 'visible': $clicks === 2 }">
+
+  <div class="basis-label">DCT basis</div>
+
+  <img class="dct-basis-img"
        :src="`${$slidev.configs.base ?? '/'}applications/dct_1d_basis.png`"
        alt="1D DCT cosine modes on [0, L]" />
 
-  <div class="dct-formula dct-reveal" :class="{ 'is-on': $clicks >= 2 }">
+  <div class="basis-eq">
 
   $\varphi_n(x) = \cos\!\left(\dfrac{n\pi x}{L}\right)$
 
   </div>
-</div>
 
-<!-- 2D — the image rectangle -->
-<div class="dct-col">
-  <img class="dct-sample dct-reveal" :class="{ 'is-on': $clicks >= 3 && $clicks < 5 }"
-       :src="`${$slidev.configs.base ?? '/'}applications/dct_2d_sample.png`"
-       alt="A natural image (imagenette)" />
-  <img class="dct-basis dct-reveal" :class="{ 'is-on': $clicks >= 4 }"
+  </div>
+
+  <!-- ────────── 2D SAMPLE (dog photo) column (clicks 3–4) ────────── -->
+  <div class="dct-sample-2d-col"
+       :class="{ 'visible': $clicks >= 3 && $clicks < 5 }">
+    <img class="dct-sample-2d-img"
+         :src="`${$slidev.configs.base ?? '/'}applications/dct_2d_sample.png`"
+         alt="A natural image (imagenette)" />
+  </div>
+
+  <!-- ────────── 2D DCT BASIS column (click 4 only) ────────── -->
+  <div class="dct-basis-2d-col" :class="{ 'visible': $clicks === 4 }">
+
+  <div class="basis-label">DCT basis</div>
+
+  <img class="dct-basis-2d-img"
        :src="`${$slidev.configs.base ?? '/'}applications/dct_2d_basis.png`"
        alt="2D DCT product modes on a rectangle" />
 
-  <div class="dct-formula dct-reveal" :class="{ 'is-on': $clicks >= 4 }">
+  <div class="basis-eq">
 
   $\varphi_{n,m}(x, y) = \cos\!\left(\dfrac{n\pi x}{L_x}\right)\cos\!\left(\dfrac{m\pi y}{L_y}\right)$
 
   </div>
-</div>
 
-</div>
+  </div>
 
-<!-- Click 6 — the modes' identity, revealed below them. Absolutely
-     positioned so the slot doesn't shrink the grid above. -->
-<div class="dct-takeaway dct-reveal text-center"
-     :class="{ 'is-on': $clicks >= 6 }">
+  <!-- ────────── Punchline banner (click 5) ────────── -->
+  <div class="dct-punchline" :class="{ 'visible': $clicks >= 5 }">
 
-Euclidean Laplacian eigenbasis &nbsp;·&nbsp; <span class="grad">Neumann</span> BC
+  The <span class="grad">DCT</span> is the <span class="grad">Neumann Laplacian eigenbasis</span> on a box.
+
+  <div class="dct-punchline-eq">
+
+  $-\Delta\, \varphi_n = \lambda_n\, \varphi_n \;\; \text{on } \Omega, \qquad \partial_n\, \varphi_n = 0 \;\; \text{on } \partial\Omega$
+
+  </div>
+
+  </div>
 
 </div>
 
 </div>
 
 <style>
-.dct-col {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-  gap: 0.9rem;
-  width: 100%;
-  height: 100%;
-  min-height: 0;
-}
-/* Sample row: identical fixed display height in both columns so the
-   1D signal panel and the 2D image panel line up at the same height
-   on the slide. */
-.dct-sample {
-  flex: 0 0 auto;
-  height: 8vh;
-  max-width: 100%;
-  object-fit: contain;
-}
-/* Basis grid: fills the remaining vertical space below the sample.
-   On click 5 (.modes-up on the wrapper grid), translate the basis AND
-   formula up by exactly (sample height + column gap) so the modes
-   slide to the top of the column without changing size. */
-.dct-basis {
-  flex: 1 1 0;
-  min-height: 0;
-  max-width: 100%;
-  object-fit: contain;
-  transition: transform 520ms ease;
-}
-.modes-up .dct-basis {
-  transform: translateY(calc(-8vh - 0.9rem));
-}
-/* Math expression of the modes, just below their grid. */
-.dct-formula {
-  flex: 0 0 auto;
-  text-align: center;
-  font-size: 0.85rem;
-  color: var(--c-fg);
-  margin-top: 0.15rem;
-  transition: transform 520ms ease;
-}
-.modes-up .dct-formula {
-  transform: translateY(calc(-8vh - 0.9rem));
-}
-.dct-formula p { margin: 0; }
-.dct-formula .katex { font-size: 0.95em; }
-/* Takeaway caption (click 6) — out of flow so it doesn't steal vertical
-   space from the basis grid above. Anchored to the bottom of the slide
-   wrapper (which is position: relative). */
-.dct-takeaway {
+/* WIDTH-driven sizing. Each column has an explicit width (% of stage);
+   images inside use width: 100% with height: auto, so the IMG element's
+   bounding box equals the rendered PNG exactly — no leftover vertical
+   space inside the box. Label / equation sit directly above and below
+   the image via the column's flex layout (the flex `gap` is the actual
+   pixel distance to the image). */
+
+/* WIDTH-driven sizing for ALL columns. Each col is sized to its image
+   (width: 100% of col → height: auto preserves the PNG aspect), so the
+   col's centre at top:50% equals the image's centre. Label / equation
+   hang as absolutely-positioned children, 20 px above / below the image. */
+
+/* ─── 1D sample column (clicks 1–2) ─── */
+.dct-sample-col {
   position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 1rem;
-  font-size: 1.45rem;
-  font-weight: 500;
-  line-height: 1.3;
-  color: var(--c-fg);
-}
-.dct-takeaway .grad { font-weight: 600; }
-/* Smooth click-driven fade for each piece. The vertical slots are
-   reserved from frame 0 (CSS keeps the elements in the flex flow)
-   so the basis grid doesn't jump in once it appears.
-   Both opacity AND transform are listed here so the .modes-up
-   translateY on .dct-basis / .dct-formula is animated (single
-   `transition` declaration wins the cascade). */
-.dct-reveal {
+  top: 50%;
+  left: 50%;
+  width: 65%;
+  transform: translate(-50%, -50%);
   opacity: 0;
-  transition: opacity 420ms ease, transform 520ms ease;
+  transition: opacity 420ms ease,
+              width 600ms ease,
+              left 600ms ease;
 }
-.dct-reveal.is-on {
-  opacity: 1;
+.dct-sample-col.visible { opacity: 1; }
+.show-basis-1d .dct-sample-col {
+  width: 46%;
+  left: 25%;
 }
-/* webkit-background-clip: text clips the gradient flush with the glyph
-   bbox — serif horizontals on letters like the T in "DCT" extend a sliver
-   past that, so a small right padding keeps them from being sliced. */
-h2 .grad {
-  padding-right: 0.08em;
+.dct-sample-img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
 }
+
+/* ─── 1D DCT basis column (click 2) ─── */
+.dct-basis-col {
+  position: absolute;
+  top: 50%;
+  left: 75%;
+  width: 46%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: opacity 420ms ease 350ms;
+}
+.dct-basis-col.visible { opacity: 1; }
+.dct-basis-img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+/* ─── 2D dog sample column (clicks 3–4) ─── */
+.dct-sample-2d-col {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 40%;                /* big square (still smaller than 1D big) */
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: opacity 420ms ease,
+              width 600ms ease,
+              left 600ms ease;
+}
+.dct-sample-2d-col.visible { opacity: 1; }
+.show-basis-2d .dct-sample-2d-col {
+  width: 38%;
+  left: 25%;
+}
+.dct-sample-2d-img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+/* ─── 2D DCT basis column (click 4) ─── */
+.dct-basis-2d-col {
+  position: absolute;
+  top: 50%;
+  left: 75%;
+  width: 38%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: opacity 420ms ease 350ms;
+}
+.dct-basis-2d-col.visible { opacity: 1; }
+.dct-basis-2d-img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+/* ─── Shared label / equation styling for BOTH 1D and 2D basis cols ─── */
+.basis-label, .basis-eq {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 1.05rem;
+  color: var(--c-fg);
+  text-align: center;
+  line-height: 1.1;
+  white-space: nowrap;
+}
+.basis-label {
+  font-weight: 600;
+  bottom: calc(100% + 6px);   /* 20 px above the image */
+}
+.basis-eq {
+  top: calc(100% + 6px);      /* 20 px below the image */
+}
+.basis-eq p { margin: 0; }
+
+/* ─── Click-5 punchline: centered on the stage after the dog + 2D basis
+   fade out (350 ms delay so the fade-in lands after the fade-out). ─── */
+.dct-punchline {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90%;
+  text-align: center;
+  font-size: 1.7rem;
+  color: var(--c-fg);
+  line-height: 1.4;
+  opacity: 0;
+  transition: opacity 420ms ease 350ms;
+}
+.dct-punchline.visible { opacity: 1; }
+.dct-punchline .grad { font-weight: 600; }
+.dct-punchline-eq {
+  margin-top: 1rem;
+  font-size: 1.4rem;
+}
+.dct-punchline-eq p { margin: 0; }
 </style>
 
 ---

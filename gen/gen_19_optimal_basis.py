@@ -531,7 +531,7 @@ for stage in STAGES:
     if b is not None:
         bb_x0 = min(bb_x0, b[0]); bb_y0 = min(bb_y0, b[1])
         bb_x1 = max(bb_x1, b[2]); bb_y1 = max(bb_y1, b[3])
-PAD = 8
+PAD = 0
 bbox = (max(0, bb_x0 - PAD), max(0, bb_y0 - PAD), bb_x1 + PAD, bb_y1 + PAD)
 print(f"[ok] shared bbox = {bbox}")
 
@@ -597,7 +597,7 @@ for i in range(N_FRAMES):
             union_bbox[2] = max(union_bbox[2], b[2])
             union_bbox[3] = max(union_bbox[3], b[3])
 
-PAD = 8
+PAD = 0
 ax0, ay0, ax1, ay1 = union_bbox
 anim_bbox = (max(0, ax0 - PAD), max(0, ay0 - PAD), ax1 + PAD, ay1 + PAD)
 anim_frames = [im.crop(anim_bbox) for im in raw_frames]
