@@ -13,6 +13,8 @@ One image per pair → app_02_corr_<name>.png
 """
 from _common import decimate_pair, setup_plotter, save_screenshot, DEFTRANSFER
 import numpy as np
+import matplotlib.colors as mcolors
+import matplotlib.cm as mcm
 import pyvista as pv
 import trimesh
 from geomfum.shape import TriangleMesh
@@ -28,7 +30,7 @@ PAIRS = [
     ("flamingo", "flamingo-poses/flam-01.obj", "flamingo-poses/flam-06.obj"),
 ]
 TARGET_FACES = 8000
-SPECTRUM_SIZE = 30
+SPECTRUM_SIZE = 120
 
 
 def load_raw(path):
@@ -80,14 +82,35 @@ for name, fa, fb in PAIRS:
     # Functional map A → B (built from p2p via least squares).
     fmap = fm_converter(p2p, basis_a, basis_b)
 
-    # Low-frequency signal on A: combination of the first two non-trivial
-    # eigenvectors of basis A.
-    signal_a = basis_a.vecs[:, 1] + 0.6 * basis_a.vecs[:, 2]
+    # Paint mesh A by its (normalized) XYZ position, used as an RGB
+    # triple per vertex. Each channel is then independently projected
+    # onto basis_a, pushed by fmap into basis_b, and reconstructed on B,
+    # so matching anatomy on B inherits the colour of the corresponding
+    # region of A.
+    xyz_a = Va - Va.min(axis=0, keepdims=True)
+    xyz_a = xyz_a / np.maximum(xyz_a.max(axis=0, keepdims=True), 1e-12)
+    rgb_a = xyz_a
 
-    # Project onto basis_a, push through fmap, reconstruct on B.
-    signal_a_coeffs = basis_a.pinv @ signal_a
-    signal_b_coeffs = fmap @ signal_a_coeffs
-    signal_b = basis_b.vecs @ signal_b_coeffs
+    # The LBO basis is built with nonzero=True, which excludes the
+    # constant eigenvector. The projection therefore drops the DC mean
+    # of each channel — without restoring it, the reconstruction on B
+    # would be zero-mean and most of the surface would clip to black.
+    # We subtract the mean before projecting and add it back after, since
+    # the constant component is preserved by any correspondence.
+    mean_a = rgb_a.mean(axis=0, keepdims=True)        # (1, 3)
+    rgb_a_ac = rgb_a - mean_a                         # zero-mean per channel
+
+    coeffs_a = basis_a.pinv @ rgb_a_ac                # (k, 3)
+    coeffs_b = fmap @ coeffs_a                        # (k, 3)
+    rgb_b = basis_b.vecs @ coeffs_b + mean_a          # (n, 3) on mesh B
+
+    # Reconstruction on a finite basis can overshoot [0, 1]; clip so
+    # PyVista accepts the values as colours.
+    rgb_b = np.clip(rgb_b, 0.0, 1.0)
+
+    # PyVista expects uint8 RGB arrays when scalars are colours.
+    rgb_a_u8 = (rgb_a * 255.0 + 0.5).astype(np.uint8)
+    rgb_b_u8 = (rgb_b * 255.0 + 0.5).astype(np.uint8)
 
     # Render.
     faces_pv = np.hstack([np.full((F.shape[0], 1), 3, dtype=np.int64), F.astype(np.int64)]).ravel()
@@ -98,18 +121,14 @@ for name, fa, fb in PAIRS:
 
     mesh_a = pv.PolyData(Va_r, faces_pv)
     mesh_b = pv.PolyData(Vb_r, faces_pv)
-    mesh_a["sig"] = signal_a
-    mesh_b["sig"] = signal_b
-
-    # Shared color range across both meshes so equal anatomical regions
-    # actually map to equal colours visually.
-    clim_lo = float(min(signal_a.min(), signal_b.min()))
-    clim_hi = float(max(signal_a.max(), signal_b.max()))
+    mesh_a["rgb"] = rgb_a_u8
+    mesh_b["rgb"] = rgb_b_u8
 
     p = setup_plotter((1000, 500))
+    # Original Phong-style mix (low ambient, strong diffuse + crisp
+    # specular) — gives clear 3-D shading and sharp highlights.
     common = dict(
-        scalars="sig", cmap="Spectral", smooth_shading=True, show_scalar_bar=False,
-        clim=(clim_lo, clim_hi),
+        scalars="rgb", rgb=True, smooth_shading=True, show_scalar_bar=False,
         ambient=0.25, diffuse=0.75, specular=0.2, specular_power=15,
     )
     p.add_mesh(mesh_a, **common)
