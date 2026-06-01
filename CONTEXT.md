@@ -27,7 +27,8 @@ Hot-reload is on — edits to `slides.md` / `style.css` reflect instantly.
 
 ## File layout
 
-- `slides.md` — the deck (single markdown file, `---` separators between slides)
+- `slides.md` — the deck (single markdown file, `---` separators between slides; also holds many `hide: true` slides)
+- `transcripts/` — spoken-narration drafts for the ~5-min video (see "Video transcript" below)
 - `style.css` — global CSS (color palette, utility classes)
 - `package.json` — Slidev + theme deps
 - `public/` — static assets served at `/`
@@ -101,40 +102,59 @@ Hot-reload is on — edits to `slides.md` / `style.css` reflect instantly.
 
 5. **Titles in a multi-card row need a `min-height`** to align if some titles wrap and others don't. Reserve room for the worst-case wrap count.
 
----
+6. **Staggered "all on one click" reveals** use CSS `transition-delay`, not multiple `v-click` stops. Bind each element's `opacity` (and `transform`) to `$clicks >= N` via `:style`, and put a `transition` + a per-element `transition-delay` staircase in the static `style`. Vue merges static `style` and `:style`, so positioning/transition live in one and the animated props in the other. Set an explicit `clicks: N` in frontmatter so Slidev registers the intermediate stop even when no element literally carries `v-click="N"`. (See slide 3's `Δ(f)=Δf` assembly, and the `$clicks >= 2 ? 9 : 0` stage-image swap on slides 4/5.)
 
-## Current deck (8 slides)
-
-| # | Title / theme | Notes |
-|---|---|---|
-| 1 | **Title** | CVPR 2026 logo as 18% opacity backdrop (top-anchored). Author list, affiliations, Brezis dedication. |
-| 2 | **LBO is the workhorse** | Swiss-knife hero image labeled `Laplace–Beltrami Operator`. Eyebrow: "Motivation". |
-| 3 | **What its eigendecomposition unlocks** | 3×2 grid of 6 application cards (Shape Descriptors, Correspondence, Manifold Learning, Signal Processing, Geometry Processing, Physics). |
-| 4 | **Traditional pipeline** | 4 horizontal cards: Mesh › Stiffness & Mass › Eigensolve ($S\phi = \lambda M\phi$) › Eigenbasis. Titles have `min-height: 2.4rem` for vertical alignment. |
-| 5 | **Where the pipeline breaks down** | 3 cards: hard-coded intrinsic dim · no high-d extension · not differentiable (`torch.linalg.eigh` unstable, `torch.lobpcg` no grad). |
-| 6 | **The question** | Single big centered H1: "Can we bypass the bottlenecks and learn the eigenbasis…". Tagline: No mesh · No operator · No eigensolver. |
-| 7 | **Our approach (pipeline comparison)** | Two pipeline rows: traditional (faded, amber strikethrough on bypassed chips) vs. ours (gradient chips: Point cloud › Neural network › Eigenbasis). Two columns: BYPASSED (amber) / GAINED (emerald). |
-| 8 | **Optimal approximation theory** | Signal class $\mathcal{C}_L$, min-max theorem (Aflalo, Brezis, Bruckstein, Kimmel, Sochen 2016) in indigo theorem box. Emerald "So what?" callout: smoothness ⇒ $L=\Delta$ ⇒ optimal basis IS the Laplacian eigenbasis. |
+7. **Numbered-badge + pastel-box pattern** (slide 12): make the box `position: relative`, drop an absolutely-positioned `.thm-num` circle at `top:-11px; left:-11px`, and give each box a light pastel via a per-box class. The happy palette in use: sky `#e0f2fe`/`#38bdf8`, violet `#ede9fe`/`#a78bfa`, green `#dcfce7`/`#4ade80`, peach `#ffedd5`/`#fb923c`. The same pastels color-code the slide-10 pipeline chips by role (input/output/network/skipped).
 
 ---
 
-## Proposed arc — next slides
+## Video transcript (in progress)
 
-| # | Topic | Purpose |
+Roy is writing the spoken narration for a **~5-minute presentation video** (the full skeleton currently runs ~6:00, so there's trimming to do). Drafts live in `transcripts/`:
+
+- `full_draft_6min.txt` — end-to-end skeleton with `[SLIDE N · click X — Ys]` cues.
+- `slide01_title.txt`, `slide02_laplacian.txt`, `slide02_laplacian_short.txt` — early per-slide drafts (full + short variants).
+- `slide02_laplacian_short.txt` is being **repurposed as the running consolidated transcript** — Roy pastes the agreed short narration for each slide (currently slides 2–12) into it, keyed by `slide N:` / `[click K]`.
+
+How Roy likes transcript work (see memory `feedback-transcript-style`): **short, simple, viewer-friendly**, mapped to the slide's exact click structure, with a tighter length variant offered so he can pick. Causal claims must be technically precise (e.g. on slide 9 he wanted neighborhood-extraction→discrete, operator-assembly→explicit, eigensolve→non-differentiable — each cause matched to the right pipeline step).
+
+## Slide numbering convention
+
+When the user says "slide N," they mean the **N-th visible slide counting the title as slide 1 and skipping `hide: true` slides** — i.e. presentation order, not the position in `slides.md`. Always map a requested number through the live visible order (a quick parse of `slides.md` for `---` blocks + `hide:` flags), because the file also holds a large bank of hidden slides interleaved among the visible ones.
+
+## Current deck (27 visible slides + a hidden bank)
+
+The deck is now a full talk, not the old 8-slide draft. Many older / alternate / detailed-results / closing slides remain in `slides.md` as `hide: true` and do **not** appear in the deck.
+
+| # | Title | Notes |
 |---|---|---|
-| 9 | **Min-max ≡ PCA, signals from $\mathcal{C}_L$** | The dual formulation — averaging out instead of worst-case. Sets up an *expectation* objective, which is what gradient descent likes. |
-| 10 | **Probe functions** | Smoothing random functions via Gaussian kernel on kNN graph; "passes the burden from operator choice to probe distribution"; piecewise/polynomial/Schrödinger variants as preview. |
-| 11 | **Network architecture** | Transformer extractor on points → per-point features $\Phi_\theta(P) \in \mathbb{R}^{n\times K}$ → QR decomposition → orthonormal basis $Q$. |
-| 12 | **$M$-weighted projection** | Why we mix M-weighted projection with Euclidean error norm; first eigenvector = $\sqrt{M}$ encodes density (no separate mass network needed). |
-| 13 | **The training loss** | $\mathcal{L}_{rec} = \frac{1}{mK}\sum_{i,k}\|f^{(i)} - f^{(i)}_{\text{proj},k}\|_2^2$; eigenvalues = $1/\max_i\|\text{residual}\|^2$ as inference-time byproduct. |
-| 14 | **1D sanity check** | Recover Fourier-like basis on $[0,1]$. |
-| 15 | **3D overfitting** | Matches cotangent Laplacian — cosine similarities from Table 1, reconstruction comparison from Fig. 3. |
-| 16 | **3D generalization** | Foundation-model trained across SURREAL / SHREC'21 / ABC / FAUST / DeformingThings4D; eclectic test shapes; even handles 3D *volumes* (unseen at training). |
-| 17 | **Beyond Laplacians** | Probe family controls implicit operator: piecewise-constant → Walsh-Hadamard, polynomial → polynomial subspace, Schrödinger-like → Hamiltonian basis. |
-| 18 | **High-dim manifold learning** | Optimal Approximation Eigenmaps vs. UMAP / t-SNE / PCA / Laplacian Eigenmaps / Isomap on DINOv2 / CLIP embeddings (STL10, CIFAR100, Imagenette, Caltech256). NMI/ARI tables. |
-| 19 | **Conclusion + future work + acknowledgments** | Recap; downstream directions (DiffusionNet, LatentFunctionalMaps, FeatUp, scalable dim reduction); thank reviewers + Brezis dedication. |
+| 1 | **Title** | CVPR 2026 logo backdrop, authors, Brezis dedication. |
+| 2 | **The Laplacian** (intuition) | Point cloud → scalar signal → focal point → "deviation from local average" → Δf heatmap. |
+| 3 | **The Laplacian** (operator) `c3` | Linear PSD operator; `Δ(f)=Δf` self-assembles on click 2 (staggered); spectral-decomposition line on click 3. |
+| 4 | **Laplacian on Euclidean domains** `c4` | graphs → points/balls/Δf-labels → per-dim formulas → `Δf=-div(grad f)`. Stage-9 image revealed on click 2. |
+| 5 | **Laplacian on curved domains** `c3` | graph → geodesic balls/labels → Laplace–Beltrami formula. |
+| 6 | **The LBO is the swiss knife** | Swiss-knife hero image. |
+| 7 | **A single spectral basis — many families of tools** | 3×2 application grid (descriptors, correspondence, manifold learning, geodesics, mesh smoothing, deformation) + "…and more". |
+| 8 | **Computing the eigenstructure, the traditional way** | Two-track pipeline (mesh/cotangent + kNN/Belkin–Niyogi): neighborhood → operator → eigensolve → basis. |
+| 9 | **Three properties of the traditional pipeline** `c6` | discrete / explicit / not-differentiable, each struck through → continuous / implicit / differentiable. |
+| 10 | **Our approach** (pipeline) | Traditional row → middle struck → Ours: Point cloud › Neural network › Eigenbasis. **Light pastel chips, color-coded by role.** |
+| 11 | **Our approach** (principle) | *Operator construction → Probe-function design* (click 1); objective (click 2) + "LBO eigenbasis falls out on its own" (click 3). |
+| 12 | **The optimal *k*-term basis is the eigenbasis of *L*** `c4` | Aflalo–Brezis–Bruckstein–Kimmel–Sochen 2016. **2×2 four-box** layout, numbered badges + happy pastels: (1) class $\mathcal{C}_L$, (2) $p_L=\text{Uniform}$, (3) optimal basis $=\{\mathbf{v}_1,\dots,\mathbf{v}_k\}$, (4) worst-case error $1/\lambda_{k+1}$. |
+| 13 | **Best *k*-truncated basis on curved domains** `c7` | Laplace–Beltrami eigenbasis. |
+| 14 | **Our pipeline** `c23` | The full method, heavily animated. |
+| 15–16 | **Train on different samplings of a single shape** | Overfit / single-shape results. |
+| 17 | **Train on many shapes, test on unseen shapes** `c3` | Generalization. |
+| 18 | **Experiments on volumetric shapes** | No mesh, volumetric LBO. |
+| 19 | **Hadamard probe distributions** | Probe family swap. |
+| 20 | **Schrödinger operator** `c5` | Swap −Δ → −Δ+V. |
+| 21 | **Train low-res, infer high-res** `c2` | Sampling-agnostic. |
+| 22 | **Predicted vertex areas / sampling density** `c1` | Density encoded by first eigenvector ($\sqrt{M}$). |
+| 23 | **Setup** (image manifold) | CLIP / DINOv2 embeddings as a data manifold. |
+| 24–25 | **STL10 clusters — CLIP / DINOv2** | Image-manifold qualitative. |
+| 26 | **Quantitative comparison — NMI & ARI** | vs UMAP / t-SNE / PCA / LE. |
+| 27 | **Summary** | Recap. |
 
-This is a rough outline — adjust counts, merge / split as needed.
+Hidden bank (in-file, `hide: true`): "Maximizing variance ⇔ minimizing reconstruction error"; the two "Best *k*-truncated basis" theory slides (3D toy, 1D/2D images); an alternate "Train on many shapes…"; a full block of how-we-learn / training-algorithm / "Plug in Δ" / full-pipeline / single-3D-shape result detail (cosine similarity, oracle eigenfunctions I/II, predicted metric, generalize, image-manifold detail, Imagenette/STL10, trade-offs); the **Thank you!** closing; and an **"Animation test — armadillo clones"** v-motion prototype.
 
 ---
 
