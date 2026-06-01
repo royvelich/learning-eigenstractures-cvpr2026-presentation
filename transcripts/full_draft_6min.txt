@@ -1,0 +1,147 @@
+Video transcript — draft v1 (~6:00 at 140 wpm, ~840 words)
+==============================================================
+
+Cue legend:
+  [SLIDE N · click X — Ys]  → advance to slide N, click X is showing,
+                              this block is roughly Y seconds.
+  [click N]                 → advance to the next click mid-sentence.
+
+
+[SLIDE 1 · title slide — 5 s]
+Learning eigenstructures of unstructured data manifolds.
+
+
+[SLIDE 2 · The Laplacian operator — 25 s]
+The Laplace–Beltrami operator is one of the most reused objects in
+geometry and machine learning. Its eigenbasis powers shape
+descriptors, correspondence, manifold learning, mesh smoothing,
+geodesics — basically anything that needs a notion of frequency on a
+curved domain. This paper is about computing that basis differently.
+
+
+[SLIDE 3 · applications — 10 s]
+Same eigenbasis, six different tools. We want this kind of
+versatility — but learnable.
+
+
+[SLIDE 4 · best k-term basis (curved) — 25 s]
+Why is this basis so special? Because on a curved domain, the LBO
+eigenbasis is the best k-term basis — the basis that minimises the
+reconstruction error of any smooth function, using only k
+coefficients. So we want it. The question is: do we have to build
+it the classical way?
+
+
+[SLIDE 5 · DCT special case — 15 s]
+The Euclidean version of this story is the DCT. Same picture — best
+k-term basis on a flat strip — that's why JPEG works.
+
+
+[SLIDE 6 · traditional pipeline — 20 s]
+The classical recipe is: triangulate the surface, build a cotangent
+Laplacian, eigensolve, take the basis. It works — and it is the
+bedrock of a thousand papers.
+
+
+[SLIDE 7 · 3 properties of traditional pipeline — 25 s]
+But it has three properties.
+[click 1] It's discrete — the operator depends on the mesh.
+[click 2] It's explicit — you build the operator before you get the
+basis.
+[click 3] And it's not differentiable end-to-end. Inside a learning
+system, that's a wall.
+
+
+[SLIDE 8 · Our approach — 18 s]
+So we take a different route. We trade operator construction for
+probe-function design. We learn a basis whose top-k eigenvectors
+minimise the reconstruction error of a chosen family of probes —
+implicit, continuous, differentiable.
+
+
+[SLIDE 9 · Our pipeline — 45 s]
+[click 1] Sample a point cloud — a manifold.
+[click 2] Sample a family of smooth probe functions on it.
+[click 3] A neural network outputs a candidate ordered basis.
+[click 4] We project each probe onto the basis and reconstruct it.
+[click 5] The loss is the mean reconstruction error across probes.
+Minimising it forces the network's output to be the top-k
+eigenbasis of the Laplace–Beltrami operator — without ever building
+the operator.
+
+
+[SLIDE 10 · overfit single shape — 30 s]
+First check: can it match the gold standard? On a single shape, we
+compare our predicted basis to the cotangent Laplacian basis.
+[click 3] These are the cosine similarities — green is above 0.75.
+The low-frequency basis is essentially perfect, and even at v₂₀ and
+v₄₀ we recover the right eigenspaces.
+
+
+[SLIDE 11 · multi-shape generalisation — 30 s]
+Now generalisation.
+[click 3] Train on a small collection, test on shapes the network
+has never seen — a heptoroid, a wrench, a pegaso. Same green cosine
+numbers, no per-shape retraining.
+
+
+[SLIDE 12 · unseen shapes — 30 s]
+Push it harder.
+[click 3] Bull, dragon — completely out of training distribution.
+Still recovers the eigenbasis. We are no longer producing a basis
+per shape; we're producing a function that maps any point cloud to
+its eigenbasis.
+
+
+[SLIDE 13 · volumetric — 25 s]
+And it isn't limited to surfaces. Same pipeline, no changes — we
+sample volumetric point clouds, train on them, predict the
+volumetric LBO eigenbasis. There's no mesh here. There's nothing to
+triangulate.
+
+
+[SLIDE 14 · Hadamard probes — 15 s]
+The probe family matters less than you'd think — Hadamard probes
+work just as well, suggesting the loss is doing the work, not the
+probes' identity.
+
+
+[SLIDE 15 · Schrödinger — 25 s]
+And because we don't build the operator, we can swap it. Replace
+−Δ with the Schrödinger operator −Δ + V — same network, same loss,
+retrain — and the predicted basis tracks the Schrödinger
+eigenfunctions. Generality for free.
+
+
+[SLIDE 16 · Resolution & sampling — 15 s]
+Train at low resolution, infer at higher resolution. Train on one
+sampling pattern, infer on another. The framework is
+sampling-agnostic.
+
+
+[SLIDE 17 · Image manifold setup — 25 s]
+Now the part that doesn't even live in geometry. We embed
+Imagenette and STL10 with CLIP and DINOv2, treat the embeddings as
+a data manifold, and run the same pipeline on it.
+
+
+[SLIDE 18 · STL10 / NMI–ARI — 25 s]
+The predicted basis gives downstream clusters that beat UMAP,
+t-SNE, PCA, and Laplacian eigenmaps on NMI and ARI. The geometric
+story carries over to feature spaces with no surface at all.
+
+
+[SLIDE 19 · Summary — 30 s]
+To wrap up.
+(beat)
+One — a new philosophy for approximating the eigenbasis of
+unstructured data manifolds.
+Two — it's implicit, continuous, end-to-end differentiable.
+Three — instead of constructing the operator, we design probe
+functions.
+Thank you.
+
+
+==============================================================
+Word count: ~840.  Estimated runtime: ~6:00 at 140 wpm.
+==============================================================

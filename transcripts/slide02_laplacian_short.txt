@@ -1,0 +1,29 @@
+Slide 2 — "The Laplacian" — narration (short version)
+======================================================
+
+Slide budget: ~18–20 s.  4 clicks.
+
+Visual click timeline:
+  click 0 — grey point cloud
+  click 1 — coloured scalar signal appears
+  click 2 — one point gets highlighted
+  click 3 — phrase "deviation from local average" fades in
+  click 4 — Laplacian heatmap appears
+
+Narration
+---------
+
+[click 0]   A cloud of data points — a data manifold.
+
+[click 1]   Assign a scalar function to it — one value per point.
+
+[click 2]   Pick any point.
+
+[click 3]   The Laplacian measures how its value deviates from the
+            average of its neighbours.
+
+[click 4]   Do that everywhere — that's the Laplacian of the function.
+
+---
+Approx. word count: ~45.
+Estimated runtime at 140 wpm: ~19 s.

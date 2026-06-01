@@ -1,0 +1,42 @@
+Slide 2 — "The Laplacian" — narration draft
+============================================
+
+Slide budget: ~25–30 s.  4 clicks.
+
+Visual click timeline:
+  click 0 — grey data manifold (no signal yet)
+  click 1 — manifold gets a coloured scalar signal
+  click 2 — one point on the manifold is highlighted (focal)
+  click 3 — the phrase "deviation from local average" fades in
+  click 4 — the Laplacian-of-signal heatmap appears
+
+Narration
+---------
+
+[click 0 — grey point cloud is on screen]
+
+  Imagine we're given a cloud of data points — a data manifold.
+
+[click 1 — colour appears across the manifold]
+
+  Now suppose we have a scalar function defined on it,
+  assigning one value to every point.
+
+[click 2 — one point on the manifold lights up]
+
+  Pick any point.
+
+[click 3 — the phrase "deviation from local average" fades in]
+
+  The Laplacian at that point measures how much its value
+  deviates from the average of its local neighbours.
+
+[click 4 — the Laplacian heatmap appears across the manifold]
+
+  Do that everywhere, and we get the Laplacian of the function —
+  a new scalar field that highlights where the signal varies.
+
+---
+Approx. word count: ~75.
+Estimated runtime at 140 wpm: ~32 s (trimable to 25 s by dropping
+"new scalar field that highlights where the signal varies").
