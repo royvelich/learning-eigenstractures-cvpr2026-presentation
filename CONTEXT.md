@@ -25,6 +25,39 @@ Hot-reload is on — edits to `slides.md` / `style.css` reflect instantly.
 
 ---
 
+## Setup on a new machine
+
+**To present / edit the deck (Node only — this is all that's needed):**
+
+```bash
+npm ci          # exact install from package-lock.json — use `ci`, NOT `install`
+npm run dev     # → http://localhost:3030/
+```
+
+- Use **`npm ci`, not `npm install`**: several deps are pinned to `"latest"` in `package.json`, so only the committed `package-lock.json` guarantees a reproducible tree.
+- All figures are committed PNGs under `public/`, so **no Python is required just to run or present.**
+
+**To regenerate figures (optional — only when changing the `gen/` image generators):**
+
+```bash
+cd gen
+python -m venv .venv && source .venv/bin/activate   # macOS / Linux
+pip install -r requirements.txt
+```
+
+- `gen/requirements.txt`: numpy, scipy, pyvista, libigl, trimesh, scikit-learn, matplotlib, pillow.
+- Heads-up: `libigl` + `pyvista` / VTK can be fiddly on Apple Silicon — expect possible install friction.
+
+**Known-good versions** (Roy's dev machine, 2026-06): Node **v24** (Slidev v52 needs ≥ 20), npm **11**, Python **3.12**, `@slidev/cli` **52.15.2**. These are **not pinned** in the repo (no `.nvmrc` / `engines` / `==` versions).
+
+**Pinning is intentionally left optional.** When setting up on a new machine, **ASK Roy first** whether he wants a pinned/reproducible environment or just the latest:
+- **Pinned** → add `.nvmrc` (or an `engines` field) for Node, and freeze Python (`pip freeze > gen/requirements.txt`, add a `.python-version`).
+- **Unpinned** → just `npm ci` + an unpinned `pip install -r gen/requirements.txt`; accept whatever's latest.
+
+Don't pin unprompted — Roy wants to decide per-setup.
+
+---
+
 ## File layout
 
 - `slides.md` — the deck (single markdown file, `---` separators between slides; also holds many `hide: true` slides)
