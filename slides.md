@@ -102,7 +102,7 @@ The Laplacian
   />
 </div>
 
-<div v-click="2" class="mt-4">
+<div v-click="2" class="mt-4 fade-soft">
 
 <h1 class="!text-3xl !leading-tight max-w-5xl font-serif italic" style="color: #000">
 deviation from local average
@@ -111,6 +111,14 @@ deviation from local average
 </div>
 
 </div>
+
+<style>
+/* Smooth fade-in for the "deviation from local average" label.
+   Overrides Slidev's default 100ms v-click opacity toggle. */
+.fade-soft.slidev-vclick-target {
+  transition: opacity 600ms ease;
+}
+</style>
 
 ---
 layout: default
@@ -192,7 +200,7 @@ its <span class="lbo">spectral decomposition</span> consists of <em>eigenfunctio
 ---
 layout: default
 class: text-center
-clicks: 23
+clicks: 12
 ---
 
 <div class="h-full flex flex-col pt-2 pb-1 px-6 text-center">
@@ -203,12 +211,12 @@ The Laplacian on Euclidean domains
 
 <div class="flex-1 min-h-0 grid grid-cols-2 gap-x-8 gap-y-0" style="grid-template-rows: 1fr auto auto;">
 
-<!-- Reveal 1D first (clicks 1–10), then 2D (clicks 12–21).
-     Per-side progression: function → red point → red ball → Δf > 0
-     → blue point → blue ball → Δf < 0 → grey point → grey ball → Δf ≈ 0.
-     The Laplacian formula for each side appears only AFTER that side's
-     diagram is fully revealed (1D math: click 11, 2D math: click 22).
-     The unifying div-of-grad statement comes last, click 23. -->
+<!-- 1D (left) and 2D (right) reveal IN SYNC: each click adds the same
+     component to BOTH columns at once. Shared stage progression:
+     click 1 function · 2 red point · 3 red ball · 4 Δf>0 · 5 blue point
+     · 6 blue ball · 7 Δf<0 · 8 green point · 9 green ball · 10 Δf≈0.
+     Click 11 reveals both per-dimension formulas; click 12 the unifying
+     div-of-grad statement. -->
 <div class="min-h-0 flex items-center justify-center">
   <img
     :src="`${$slidev.configs.base ?? '/'}applications/lap_euclidean_1d_stage_${Math.min(Math.max($clicks - 1, 0), 9)}.png`"
@@ -220,8 +228,8 @@ The Laplacian on Euclidean domains
 
 <div class="min-h-0 flex items-center justify-center">
   <img
-    :src="`${$slidev.configs.base ?? '/'}applications/lap_euclidean_2d_stage_${Math.min(Math.max($clicks - 12, 0), 9)}.png`"
-    :style="{ opacity: $clicks >= 12 ? 1 : 0 }"
+    :src="`${$slidev.configs.base ?? '/'}applications/lap_euclidean_2d_stage_${Math.min(Math.max($clicks - 1, 0), 9)}.png`"
+    :style="{ opacity: $clicks >= 1 ? 1 : 0 }"
     class="max-h-full max-w-full object-contain"
     alt="Laplacian setup on R^2 — focal x0 with disk neighbourhood"
   />
@@ -229,19 +237,19 @@ The Laplacian on Euclidean domains
 
 <div class="text-center flex items-center justify-center" :style="{ opacity: $clicks >= 11 ? 1 : 0, fontSize: '14px' }">
 
-$\Delta f = \dfrac{d^2 f}{dx^2}$
+$\Delta f = -\dfrac{d^2 f}{dx^2}$
 
 </div>
 
-<div class="text-center flex items-center justify-center" :style="{ opacity: $clicks >= 22 ? 1 : 0, fontSize: '14px' }">
+<div class="text-center flex items-center justify-center" :style="{ opacity: $clicks >= 11 ? 1 : 0, fontSize: '14px' }">
 
-$\Delta f = \dfrac{\partial^2 f}{\partial u^2} + \dfrac{\partial^2 f}{\partial v^2}$
+$\Delta f = -\left( \dfrac{\partial^2 f}{\partial u^2} + \dfrac{\partial^2 f}{\partial v^2} \right)$
 
 </div>
 
-<div class="text-center flex items-center justify-center" :style="{ opacity: $clicks >= 23 ? 1 : 0, fontSize: '22px', gridColumn: '1 / -1' }">
+<div class="text-center flex items-center justify-center" :style="{ opacity: $clicks >= 12 ? 1 : 0, fontSize: '22px', gridColumn: '1 / -1' }">
 
-in general, $\Delta f \;=\; \operatorname{div}\bigl(\operatorname{grad} f\bigr)$ &nbsp;·&nbsp; the divergence of the gradient.
+in general, $\Delta f \;=\; -\operatorname{div}\bigl(\operatorname{grad} f\bigr)$ &nbsp;·&nbsp; minus the divergence of the gradient.
 
 </div>
 
@@ -276,7 +284,7 @@ The Laplacian on curved domains
 
 <div class="text-center mt-1" :style="{ opacity: $clicks >= 11 ? 1 : 0, fontSize: '22px' }">
 
-$\Delta_M f \;=\; \operatorname{div}_M\!\big(\nabla_M f\big)$ &nbsp;·&nbsp; the Laplace–Beltrami operator (LBO)
+$\Delta_M f \;=\; -\operatorname{div}_M\!\big(\nabla_M f\big)$ &nbsp;·&nbsp; the Laplace–Beltrami operator (LBO)
 
 </div>
 

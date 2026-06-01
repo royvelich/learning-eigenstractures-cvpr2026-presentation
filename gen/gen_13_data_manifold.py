@@ -4,7 +4,7 @@ Four figures with identical point positions:
   data_manifold_grey.png       — all points grey, no values yet
   data_manifold_coloured.png   — same points, coloured by a smooth scalar f
   data_manifold_focal.png      — one point emphasised at its own colour (f value)
-  data_manifold_laplacian.png  — same point recoloured to Δf = focal − mean(neighbours)
+  data_manifold_laplacian.png  — same point recoloured to Δf = f(focal) − mean(neighbours)
 """
 from _common import OUT_DIR
 import numpy as np
@@ -75,9 +75,10 @@ plt.savefig(str(OUT_DIR / "data_manifold_coloured.png"), dpi=200, transparent=Tr
 plt.close()
 print("[ok] data_manifold_coloured.png")
 
-# --- Discrete graph Laplacian using the analytical sign convention:
-# Δf[i] ≈ mean(f over neighbours within radius R) − f(i), so Δf < 0 at
-# peaks of f and > 0 at valleys, matching the continuous Δ = div(grad f).
+# --- Discrete graph Laplacian using the positive (PSD) sign convention:
+# Δf[i] ≈ f(i) − mean(f over neighbours within radius R), so Δf > 0 at
+# peaks of f and < 0 at valleys, matching the continuous Δ = −div(grad f)
+# and the "deviation from local average" framing used on slides 2–5.
 R_NBHD = 0.60
 tree = cKDTree(np.c_[X, Y])
 nbrs_list = [tree.query_ball_point([X[i], Y[i]], r=R_NBHD) for i in range(n)]
@@ -86,7 +87,7 @@ delta_f = np.zeros(n)
 for i in range(n):
     js = [j for j in nbrs_list[i] if j != i]
     if js:
-        delta_f[i] = np.mean(vals[js]) - vals[i]
+        delta_f[i] = vals[i] - np.mean(vals[js])
 
 # Focal point = a clear local maximum of f (the visible hill peak in the cloud).
 interior = (np.abs(X) < 1.7) & (np.abs(Y) < 0.8)
@@ -98,6 +99,14 @@ print(f"[focal] idx={best}  pos=({xf:.2f},{yf:.2f})  f={vals[best]:.3f}  dF={del
 # Shared Δf normalization — used for BOTH the focal-recoloured image and the
 # full Δf cloud, so the same point shows the same colour in both views.
 mdf = float(np.abs(delta_f).max())
+
+# Δf colour-scale half-range, shared by the focal image and the full Δf cloud
+# so the same point reads the same in both. Chosen as a fraction of the SIGNAL
+# scale m: tight enough to give visible contrast (the bulk of |Δf| ≈ 0.06–0.2),
+# but wide enough that the peak (Δf ≈ 0.21) stays light-moderate red rather than
+# saturating — conveying "a small, but real, local deviation". Tune DF_FRAC.
+DF_FRAC = 0.40
+df_vmax = DF_FRAC * m
 
 
 def render_focal(focal_color_value, focal_vmin, focal_vmax, out_name):
@@ -124,15 +133,21 @@ def render_focal(focal_color_value, focal_vmin, focal_vmax, out_name):
 
 # Focal coloured by its f-value (matches the background scale).
 render_focal(vals[best], -m, m, "data_manifold_focal.png")
-# Focal recoloured by its Δf value on the SAME [-mdf, mdf] scale used by the
-# full Δf cloud → identical reading in both images.
-render_focal(delta_f[best], -mdf, mdf, "data_manifold_laplacian.png")
+# Focal recoloured by its Δf value on the SIGNAL's [-m, m] scale (the SAME
+# scale used for the f-colouring) — NOT the Δf cloud's own [-mdf, mdf] range.
+# This way a small positive Laplacian reads as a *light* red, conveying that
+# the peak sits only slightly above its neighbourhood average (rather than
+# saturating to deep red just because it's the largest Laplacian in the cloud).
+render_focal(delta_f[best], -df_vmax, df_vmax, "data_manifold_laplacian.png")
 
-# Full Δf cloud — every point recoloured by Δf on [-mdf, mdf]. The analytical
-# sign convention makes peaks of f read as blue here and valleys as red.
+# Full Δf cloud — every point recoloured by Δf on the SIGNAL's [-m, m] scale
+# (matching the focal image and the f-colouring), NOT the Δf cloud's own
+# [-mdf, mdf] range. Laplacian values are small vs. the signal, so the whole
+# cloud reads pale — light red at peaks, light blue at valleys — conveying
+# "Δf measures only a small local deviation". Positive (PSD) sign convention.
 fig, ax = plt.subplots(figsize=(5.6, 3.4))
 ax.scatter(X, Y, c=delta_f, cmap="coolwarm", s=26, edgecolors="white",
-           linewidths=0.6, vmin=-mdf, vmax=mdf, zorder=2)
+           linewidths=0.6, vmin=-df_vmax, vmax=df_vmax, zorder=2)
 setup_ax(ax)
 plt.savefig(str(OUT_DIR / "data_manifold_laplacian_full.png"), dpi=200,
             transparent=True, bbox_inches="tight", pad_inches=0.02)

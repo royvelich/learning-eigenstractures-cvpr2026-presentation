@@ -1,0 +1,26 @@
+Slide 1 — Title — narration draft
+==================================
+
+Slide budget: ~12-16 s.  No clicks (static title slide).
+
+Narration
+---------
+
+  Hello, my name is Roy Velich, from the Technion — Israel Institute
+  of Technology. In this video I'll present my work, "Learning
+  Eigenstructures of Unstructured Data Manifolds" — joint work with
+  Arkadi Piven, David Bensaïd, Daniel Cremers, Thomas Dagès, and
+  Ron Kimmel.
+
+---
+Approx. word count: ~40.
+Estimated runtime at 140 wpm: ~16 s.
+
+
+Shorter variant (~10 s, ~28 words)
+----------------------------------
+
+  Hi, I'm Roy Velich from the Technion. In this video I'll present
+  "Learning Eigenstructures of Unstructured Data Manifolds" — joint
+  work with Arkadi Piven, David Bensaïd, Daniel Cremers, Thomas
+  Dagès, and Ron Kimmel.
