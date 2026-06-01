@@ -123,6 +123,7 @@ deviation from local average
 ---
 layout: default
 class: text-center
+clicks: 3
 ---
 
 <div class="h-full relative">
@@ -138,14 +139,17 @@ it's a linear, positive semi-definite (PSD) operator
 
 </div>
 
-<!-- Click 2: f-cloud appears at centre. Click 3: f-cloud scales down & slides left. -->
+<!-- Click 2 triggers the ENTIRE assembly as ONE staggered flow (no longer
+     spread across clicks 3-5). Every piece keys off $clicks >= 2 with a
+     CSS transition-delay staircase:
+       f fades in (0ms) -> slides left & shrinks (500ms) ->
+       Δ( ) appears (1100ms) -> = appears (1400ms) -> Δf appears (1700ms). -->
+
+<!-- f-cloud: fades in at centre, then slides left + scales down. -->
 <div
-  v-click="2"
-  v-motion
-  :initial="{ x: 0, scale: 1 }"
-  :click-3="{ x: -150, scale: 0.50 }"
   class="absolute"
-  style="top: 137px; left: 260px;"
+  style="top: 137px; left: 260px; transform-origin: center; transition: opacity 300ms ease, transform 650ms ease; transition-delay: 0ms, 500ms;"
+  :style="{ opacity: $clicks >= 2 ? 1 : 0, transform: $clicks >= 2 ? 'translateX(-150px) scale(0.5)' : 'translateX(0) scale(1)' }"
 >
   <img
     :src="`${$slidev.configs.base ?? '/'}applications/data_manifold_coloured.png`"
@@ -154,42 +158,47 @@ it's a linear, positive semi-definite (PSD) operator
   />
 </div>
 
-<!-- Δ on the left (click 3) -->
-<div v-click="3" class="absolute math-grad"
-     style="top: 50%; left: 130px; font-size: 60px; transform: translateY(calc(-50% + 8px));">
+<!-- Δ on the left -->
+<div class="absolute math-grad"
+     style="top: 50%; left: 130px; font-size: 60px; transform: translateY(calc(-50% + 8px)); transition: opacity 300ms ease; transition-delay: 1100ms;"
+     :style="{ opacity: $clicks >= 2 ? 1 : 0 }">
 
 $\Delta$
 
 </div>
 
 <!-- ( opening paren -->
-<div v-click="3" class="absolute"
-     style="top: 50%; left: 205px; font-size: 60px; color: var(--c-fg-muted); font-family: 'EB Garamond', serif; transform: translateY(-50%);">
+<div class="absolute"
+     style="top: 50%; left: 205px; font-size: 60px; color: var(--c-fg-muted); font-family: 'EB Garamond', serif; transform: translateY(-50%); transition: opacity 300ms ease; transition-delay: 1100ms;"
+     :style="{ opacity: $clicks >= 2 ? 1 : 0 }">
   (
 </div>
 
 <!-- ) closing paren -->
-<div v-click="3" class="absolute"
-     style="top: 50%; left: 450px; font-size: 60px; color: var(--c-fg-muted); font-family: 'EB Garamond', serif; transform: translateY(-50%);">
+<div class="absolute"
+     style="top: 50%; left: 450px; font-size: 60px; color: var(--c-fg-muted); font-family: 'EB Garamond', serif; transform: translateY(-50%); transition: opacity 300ms ease; transition-delay: 1100ms;"
+     :style="{ opacity: $clicks >= 2 ? 1 : 0 }">
   )
 </div>
 
-<!-- = sign (click 4) -->
-<div v-click="4" class="absolute"
-     style="top: 50%; left: 510px; font-size: 48px; color: var(--c-fg); font-family: 'EB Garamond', serif; transform: translateY(-50%);">
+<!-- = sign -->
+<div class="absolute"
+     style="top: 50%; left: 510px; font-size: 48px; color: var(--c-fg); font-family: 'EB Garamond', serif; transform: translateY(-50%); transition: opacity 300ms ease; transition-delay: 1400ms;"
+     :style="{ opacity: $clicks >= 2 ? 1 : 0 }">
   =
 </div>
 
-<!-- Δf-cloud, the output (click 5) -->
-<img v-click="5"
+<!-- Δf-cloud, the output -->
+<img
   :src="`${$slidev.configs.base ?? '/'}applications/data_manifold_laplacian_full.png`"
   class="absolute"
-  style="top: 50%; left: 560px; transform: translateY(-50%); width: 230px;"
+  style="top: 50%; left: 560px; transform: translateY(-50%); width: 230px; transition: opacity 300ms ease; transition-delay: 1700ms;"
+  :style="{ opacity: $clicks >= 2 ? 1 : 0 }"
   alt="Δf, the Laplacian output"
 />
 
-<!-- Eigendecomposition motivator: appears AFTER the illustration is built (click 6). -->
-<div v-click="6" class="absolute left-0 right-0 text-center text-2xl !leading-snug" style="bottom: 40px;">
+<!-- Eigendecomposition motivator: now click 3 (was click 6). -->
+<div v-click="3" class="absolute left-0 right-0 text-center text-2xl !leading-snug" style="bottom: 40px;">
 
 its <span class="lbo">spectral decomposition</span> consists of <em>eigenfunctions</em> and <em>eigenvalues</em>
 
@@ -200,7 +209,7 @@ its <span class="lbo">spectral decomposition</span> consists of <em>eigenfunctio
 ---
 layout: default
 class: text-center
-clicks: 12
+clicks: 4
 ---
 
 <div class="h-full flex flex-col pt-2 pb-1 px-6 text-center">
@@ -211,15 +220,14 @@ The Laplacian on Euclidean domains
 
 <div class="flex-1 min-h-0 grid grid-cols-2 gap-x-8 gap-y-0" style="grid-template-rows: 1fr auto auto;">
 
-<!-- 1D (left) and 2D (right) reveal IN SYNC: each click adds the same
-     component to BOTH columns at once. Shared stage progression:
-     click 1 function · 2 red point · 3 red ball · 4 Δf>0 · 5 blue point
-     · 6 blue ball · 7 Δf<0 · 8 green point · 9 green ball · 10 Δf≈0.
-     Click 11 reveals both per-dimension formulas; click 12 the unifying
+<!-- 4-click slide. Click 1 shows just the graphs (stage 0: the function in
+     both the 1D left and 2D right columns). Click 2 adds the three focal
+     points, their unit balls, and the Δf>0 / Δf<0 / Δf≈0 labels (stage 9).
+     Click 3 reveals both per-dimension formulas; click 4 the unifying
      div-of-grad statement. -->
 <div class="min-h-0 flex items-center justify-center">
   <img
-    :src="`${$slidev.configs.base ?? '/'}applications/lap_euclidean_1d_stage_${Math.min(Math.max($clicks - 1, 0), 9)}.png`"
+    :src="`${$slidev.configs.base ?? '/'}applications/lap_euclidean_1d_stage_${$clicks >= 2 ? 9 : 0}.png`"
     :style="{ opacity: $clicks >= 1 ? 1 : 0 }"
     class="max-h-full max-w-full object-contain"
     alt="Laplacian setup on R — focal x0 with interval neighbourhood"
@@ -228,28 +236,28 @@ The Laplacian on Euclidean domains
 
 <div class="min-h-0 flex items-center justify-center">
   <img
-    :src="`${$slidev.configs.base ?? '/'}applications/lap_euclidean_2d_stage_${Math.min(Math.max($clicks - 1, 0), 9)}.png`"
+    :src="`${$slidev.configs.base ?? '/'}applications/lap_euclidean_2d_stage_${$clicks >= 2 ? 9 : 0}.png`"
     :style="{ opacity: $clicks >= 1 ? 1 : 0 }"
     class="max-h-full max-w-full object-contain"
     alt="Laplacian setup on R^2 — focal x0 with disk neighbourhood"
   />
 </div>
 
-<div class="text-center flex items-center justify-center" :style="{ opacity: $clicks >= 11 ? 1 : 0, fontSize: '14px' }">
+<div class="text-center flex items-center justify-center" :style="{ opacity: $clicks >= 3 ? 1 : 0, fontSize: '14px' }">
 
 $\Delta f = -\dfrac{d^2 f}{dx^2}$
 
 </div>
 
-<div class="text-center flex items-center justify-center" :style="{ opacity: $clicks >= 11 ? 1 : 0, fontSize: '14px' }">
+<div class="text-center flex items-center justify-center" :style="{ opacity: $clicks >= 3 ? 1 : 0, fontSize: '14px' }">
 
 $\Delta f = -\left( \dfrac{\partial^2 f}{\partial u^2} + \dfrac{\partial^2 f}{\partial v^2} \right)$
 
 </div>
 
-<div class="text-center flex items-center justify-center" :style="{ opacity: $clicks >= 12 ? 1 : 0, fontSize: '22px', gridColumn: '1 / -1' }">
+<div class="text-center flex items-center justify-center" :style="{ opacity: $clicks >= 4 ? 1 : 0, fontSize: '22px', gridColumn: '1 / -1' }">
 
-in general, $\Delta f \;=\; -\operatorname{div}\bigl(\operatorname{grad} f\bigr)$ &nbsp;·&nbsp; minus the divergence of the gradient.
+in general, $\Delta f \;=\; -\operatorname{div}\bigl(\operatorname{grad} f\bigr)$ &nbsp;·&nbsp; divergence of the gradient.
 
 </div>
 
@@ -260,7 +268,7 @@ in general, $\Delta f \;=\; -\operatorname{div}\bigl(\operatorname{grad} f\bigr)
 ---
 layout: default
 class: text-center
-clicks: 11
+clicks: 3
 ---
 
 <div class="h-full flex flex-col pt-2 pb-2 px-2 text-center">
@@ -269,20 +277,19 @@ clicks: 11
 The Laplacian on curved domains
 </h1>
 
-<!-- Click-driven reveal (clicks 1–10) of the same staged scene used in
-     gen_16: domain + f-sheet, then red / blue / grey focal points with
-     their geodesic disks and Δf labels. The LBO formula appears only
-     after the diagram is fully revealed (click 11). -->
+<!-- 3-click slide. Click 1 shows just the graph (stage 0: domain + f-sheet).
+     Click 2 adds the red / blue / grey focal points, their geodesic disks
+     and Δf labels (stage 9). Click 3 reveals the LBO formula below. -->
 <div class="flex-1 min-h-0 flex items-center justify-center">
   <img
-    :src="`${$slidev.configs.base ?? '/'}applications/lap_curved_2d_stage_${Math.min(Math.max($clicks - 1, 0), 9)}.png`"
+    :src="`${$slidev.configs.base ?? '/'}applications/lap_curved_2d_stage_${$clicks >= 2 ? 9 : 0}.png`"
     :style="{ opacity: $clicks >= 1 ? 1 : 0, height: '100%' }"
     class="max-h-full max-w-full object-contain"
     alt="curved domain M with the function f as a sheet floating above it"
   />
 </div>
 
-<div class="text-center mt-1" :style="{ opacity: $clicks >= 11 ? 1 : 0, fontSize: '22px' }">
+<div class="text-center mt-1" :style="{ opacity: $clicks >= 3 ? 1 : 0, fontSize: '22px' }">
 
 $\Delta_M f \;=\; -\operatorname{div}_M\!\big(\nabla_M f\big)$ &nbsp;·&nbsp; the Laplace–Beltrami operator (LBO)
 
@@ -728,65 +735,13 @@ $\Delta$
 
 ---
 layout: default
-class: text-center
----
-
-<div class="h-full flex flex-col pt-6 pb-4 px-2">
-
-<h1 class="!text-xl !leading-snug !mb-8 font-serif text-center" style="color: #000">
-Our approach.
-</h1>
-
-<div class="flex-1 flex flex-col items-center justify-center px-12 text-center gap-6">
-
-<div class="trade-headline font-serif">
-<em>Operator construction</em>&nbsp;&nbsp;<span class="trade-arrow">→</span>&nbsp;&nbsp;<em>Probe-function design</em>.
-</div>
-
-<div class="trade-tagline">
-Learn a basis that minimises probe-function reconstruction error.
-</div>
-
-</div>
-
-</div>
-
-<style>
-.trade-headline {
-  font-size: 2.6rem;
-  line-height: 1.25;
-  color: var(--c-fg);
-  font-weight: 500;
-  white-space: nowrap;
-}
-.trade-headline em {
-  font-style: italic;
-  background-image: linear-gradient(135deg, var(--c-brand-from), var(--c-brand-to));
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-}
-.trade-arrow {
-  color: var(--c-success);
-  font-weight: 700;
-}
-.trade-tagline {
-  font-size: 1.4rem;
-  color: var(--c-fg-body);
-  max-width: 42ch;
-  line-height: 1.45;
-}
-</style>
-
----
-layout: default
 class: text-left
 ---
 
 <div class="h-full flex flex-col pt-6 pb-4 px-2">
 
 <h1 class="!text-xl !leading-snug !mb-8 font-serif text-center" style="color: #000">
-Skip the operator. Learn the eigenbasis directly.
+Our approach
 </h1>
 
 <!-- Both rows share one CSS grid so the chips align column-by-column.
@@ -798,24 +753,24 @@ Skip the operator. Learn the eigenbasis directly.
 
 <!-- Traditional label + chips (clicks 1 / 2) -->
 <div class="pipeline-row-label" style="grid-column: 1 / -1; grid-row: 1;" v-click="1">Traditional</div>
-<div class="chip chip-hero" style="grid-column: 1; grid-row: 2;" v-click="1">Point cloud</div>
+<div class="chip chip-hero chip-sky" style="grid-column: 1; grid-row: 2;" v-click="1">Point cloud</div>
 <div class="chip-arrow chip-arrow-hero" style="grid-column: 2; grid-row: 2;" v-click="1">›</div>
-<div class="chip chip-hero" :class="{ 'chip-bypassed': $clicks >= 2 }" style="grid-column: 3; grid-row: 2;" v-click="1">Neighborhood extraction</div>
+<div class="chip chip-hero chip-peach" :class="{ 'chip-bypassed': $clicks >= 2 }" style="grid-column: 3; grid-row: 2;" v-click="1">Neighborhood extraction</div>
 <div class="chip-arrow chip-arrow-hero" style="grid-column: 4; grid-row: 2;" v-click="1">›</div>
-<div class="chip chip-hero" :class="{ 'chip-bypassed': $clicks >= 2 }" style="grid-column: 5; grid-row: 2;" v-click="1">Operator extraction</div>
+<div class="chip chip-hero chip-peach" :class="{ 'chip-bypassed': $clicks >= 2 }" style="grid-column: 5; grid-row: 2;" v-click="1">Operator extraction</div>
 <div class="chip-arrow chip-arrow-hero" style="grid-column: 6; grid-row: 2;" v-click="1">›</div>
-<div class="chip chip-hero" :class="{ 'chip-bypassed': $clicks >= 2 }" style="grid-column: 7; grid-row: 2;" v-click="1">Eigensolve</div>
+<div class="chip chip-hero chip-peach" :class="{ 'chip-bypassed': $clicks >= 2 }" style="grid-column: 7; grid-row: 2;" v-click="1">Eigensolve</div>
 <div class="chip-arrow chip-arrow-hero" style="grid-column: 8; grid-row: 2;" v-click="1">›</div>
-<div class="chip chip-hero" style="grid-column: 9; grid-row: 2;" v-click="1">Eigenbasis</div>
+<div class="chip chip-hero chip-green" style="grid-column: 9; grid-row: 2;" v-click="1">Eigenbasis</div>
 
 <!-- Ours label + chips (click 3). Neural network spans grid columns 3..7,
      left edge = "Neighborhood extraction" left, right edge = "Eigensolve" right. -->
 <div class="pipeline-row-label ours-label" style="grid-column: 1 / -1; grid-row: 3;" v-click="3">Ours</div>
-<div class="chip chip-hero" style="grid-column: 1; grid-row: 4;" v-click="3">Point cloud</div>
+<div class="chip chip-hero chip-sky" style="grid-column: 1; grid-row: 4;" v-click="3">Point cloud</div>
 <div class="chip-arrow chip-arrow-hero" style="grid-column: 2; grid-row: 4;" v-click="3">›</div>
-<div class="chip chip-hero chip-net" style="grid-column: 3 / span 5; grid-row: 4;" v-click="3">Neural network</div>
+<div class="chip chip-hero chip-net chip-violet" style="grid-column: 3 / span 5; grid-row: 4;" v-click="3">Neural network</div>
 <div class="chip-arrow chip-arrow-hero" style="grid-column: 8; grid-row: 4;" v-click="3">›</div>
-<div class="chip chip-hero" style="grid-column: 9; grid-row: 4;" v-click="3">Eigenbasis</div>
+<div class="chip chip-hero chip-green" style="grid-column: 9; grid-row: 4;" v-click="3">Eigenbasis</div>
 
 </div>
 
@@ -953,17 +908,22 @@ Skip the operator. Learn the eigenbasis directly.
   padding: 0.55rem 1.1rem;
   font-size: 0.95rem;
   font-weight: 600;
-  color: white;
-  background-image: linear-gradient(135deg, var(--c-brand-from), var(--c-brand-to));
-  border: none;
-  box-shadow: 0 4px 12px rgba(43, 88, 118, 0.18);
+  color: var(--c-fg);
+  background: #f1f5f9;
+  border: 1px solid var(--c-border);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
 }
+/* Light "happy" pastels, coded by pipeline role. */
+.chip-sky    { background: #e0f2fe; border-color: #7dd3fc; }   /* input  */
+.chip-violet { background: #ede9fe; border-color: #c4b5fd; }   /* network */
+.chip-green  { background: #dcfce7; border-color: #86efac; }   /* output */
+.chip-peach  { background: #ffedd5; border-color: #fdba74; }   /* skipped */
 .chip-net {
   padding: 0.55rem 1.6rem;
   font-weight: 700;
 }
 .chip-arrow-hero {
-  color: var(--c-brand-to);
+  color: #94a3b8;
   font-size: 1.6rem;
   font-weight: 600;
 }
@@ -1011,6 +971,66 @@ Skip the operator. Learn the eigenbasis directly.
 }
 .bypass-label + ul li::before { background: var(--c-accent); }
 .gain-label   + ul li::before { background: var(--c-success); }
+</style>
+
+---
+layout: default
+class: text-center
+---
+
+<div class="h-full flex flex-col pt-6 pb-4 px-2">
+
+<h1 class="!text-xl !leading-snug !mb-8 font-serif text-center" style="color: #000">
+Our approach
+</h1>
+
+<div class="flex-1 flex flex-col items-center justify-center px-12 text-center gap-6">
+
+<div class="trade-headline font-serif" v-click="1">
+<em>Operator construction</em>&nbsp;&nbsp;<span class="trade-arrow">→</span>&nbsp;&nbsp;<em>Probe-function design</em>.
+</div>
+
+<div class="flex flex-col items-center gap-2">
+
+<div class="trade-tagline" v-click="2">
+Train a network to find the <i>k</i>-term basis that best reconstructs a family of probe functions.
+</div>
+
+<div class="trade-tagline" v-click="3">
+&hellip; and the LBO eigenbasis falls out on its own.
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<style>
+.trade-headline {
+  font-size: 2.6rem;
+  line-height: 1.25;
+  color: var(--c-fg);
+  font-weight: 500;
+  white-space: nowrap;
+}
+.trade-headline em {
+  font-style: italic;
+  background-image: linear-gradient(135deg, var(--c-brand-from), var(--c-brand-to));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.trade-arrow {
+  color: var(--c-success);
+  font-weight: 700;
+}
+.trade-tagline {
+  font-size: 1.4rem;
+  color: var(--c-fg-body);
+  max-width: 42ch;
+  line-height: 1.45;
+}
 </style>
 
 ---
@@ -1139,6 +1159,7 @@ Reconstruction / least-squares loss.
 layout: default
 class: text-left
 clicks: 9
+hide: true
 ---
 
 <div class="h-full flex flex-col pt-2 pb-1 px-0">
@@ -1213,6 +1234,7 @@ Best <i>k</i>-truncated basis — a 3D toy example.
 layout: default
 class: text-left
 clicks: 5
+hide: true
 ---
 
 <div class="h-full flex flex-col pt-4 pb-3 px-2">
@@ -1457,36 +1479,44 @@ Aflalo, Brezis, Bruckstein, Kimmel &amp; Sochen &nbsp;·&nbsp; C.&nbsp;R.&nbsp;M
 The optimal <i>k</i>-term basis is the eigenbasis of <i>L</i>.
 </h1>
 
-<!-- Click 1 — the smooth-signal class C_L. -->
-<div class="thm-row" v-click="1">
+<!-- 4-box layout (2x2 grid). Top row = the setup (smooth-signal class +
+     uniform distribution); bottom row = the two theorems. Each box reveals
+     on its own click (1..4). -->
+<div class="grid grid-cols-2 gap-4 mt-2 flex-1 min-h-0">
 
-<div class="thm-label">Smooth-signal class</div>
+<!-- Click 1 — the smooth-signal class C_L. -->
+<div class="thm-card thm-card-setup thm-c1" v-click="1">
+
+<div class="thm-num">1</div>
+
+<div class="thm-tag">Smooth-signal class</div>
 
 $$\mathcal{C}_L \;=\; \bigl\{\, f \;:\; \langle f,\, L f\rangle \le 1 \,\bigr\}$$
 
 </div>
 
 <!-- Click 2 — p_L as the uniform distribution over C_L. -->
-<div class="thm-row" v-click="2">
+<div class="thm-card thm-card-setup thm-c2" v-click="2">
 
-<div class="thm-label">Uniform distribution over the class</div>
+<div class="thm-num">2</div>
+
+<div class="thm-tag">Uniform distribution over the class</div>
 
 $$p_L \;=\; \mathrm{Uniform}(\mathcal{C}_L)$$
 
 </div>
 
-<!-- Clicks 3 & 4 — the two theorems shown side-by-side. -->
-<div class="grid grid-cols-2 gap-4 mt-3">
-
 <!-- Click 3 — the theorem itself: optimal k-truncated basis = first k
      eigenvectors of L. -->
-<div class="thm-card" v-click="3">
+<div class="thm-card thm-c3" v-click="3">
+
+<div class="thm-num">3</div>
 
 <div class="thm-tag">Theorem &nbsp;·&nbsp; optimal <i>k</i>-term basis</div>
 
 $$
 \arg\!\min_{\{b_i\}_{i=1}^k}\; \mathbb{E}_{f \sim p_L}\, \bigl\|f - \Pi_k f\bigr\|^2
-\;=\; \{\varphi_1, \dots, \varphi_k\}
+\;=\; \{\mathbf{v}_{1}, \dots, \mathbf{v}_{k}\}
 $$
 
 the first $k$ eigenvectors of $L$.
@@ -1494,7 +1524,9 @@ the first $k$ eigenvectors of $L$.
 </div>
 
 <!-- Click 4 — the matching error bound on the same basis. -->
-<div class="thm-card thm-card-bound" v-click="4">
+<div class="thm-card thm-card-bound thm-c4" v-click="4">
+
+<div class="thm-num">4</div>
 
 <div class="thm-tag">Theorem &nbsp;·&nbsp; worst-case error</div>
 
@@ -1526,21 +1558,57 @@ under the optimal basis.
   margin-bottom: 0.2rem;
 }
 .thm-card {
+  position: relative;
   border: 1px solid var(--c-border);
   border-left: 3px solid var(--c-brand-from);
   background: var(--c-bg-soft);
   padding: 0.85rem 1.0rem;
   border-radius: 8px;
-  font-size: 0.9rem;
+  font-size: 1.02rem;
   line-height: 1.5;
   color: var(--c-fg-body);
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.thm-card-setup {
+  border-left-color: var(--c-border);
 }
 .thm-card-bound {
   border-left-color: var(--c-success);
   background: rgba(4, 120, 87, 0.06);
 }
 .thm-card-bound .thm-tag { color: var(--c-success); }
+
+/* Numbered circle badge, top-left corner of each box. */
+.thm-num {
+  position: absolute;
+  top: -11px;
+  left: -11px;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Libertinus Serif', Cambria, Georgia, 'Times New Roman', serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #fff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.18);
+}
+
+/* Happy pastel backgrounds + matching badge / accent per box. */
+.thm-c1 { background: #e0f2fe; border-left-color: #38bdf8; }   /* sky    */
+.thm-c2 { background: #ede9fe; border-left-color: #a78bfa; }   /* violet */
+.thm-c3 { background: #dcfce7; border-left-color: #4ade80; }   /* green  */
+.thm-c4 { background: #ffedd5; border-left-color: #fb923c; }   /* peach  */
+.thm-c1 .thm-num { background: #0ea5e9; }
+.thm-c2 .thm-num { background: #8b5cf6; }
+.thm-c3 .thm-num { background: #22c55e; }
+.thm-c4 .thm-num { background: #f97316; }
+.thm-c4 .thm-tag { color: var(--c-fg); }
 .thm-card .katex-display { margin: 0.35rem 0; }
 .thm-tag {
   font-family: 'Libertinus Serif', Cambria, Georgia, 'Times New Roman', serif;

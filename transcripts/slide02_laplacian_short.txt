@@ -1,29 +1,79 @@
-Slide 2 — "The Laplacian" — narration (short version)
-======================================================
+Slide 2:
 
-Slide budget: ~18–20 s.  4 clicks.
+[click 1]   Consider we have a cloud of data points — a data manifold.
+[click 2]   And... we assign a scalar function to it, red colors for positive numbers, and blue for negative.
+[click 3]   Let's say we pick this point. A natural question to ask is: how much does a point's value deviates from the values around it?
+[click 4]   In this case, the point's value is slightly above its local average, so we assign to this color.
 
-Visual click timeline:
-  click 0 — grey point cloud
-  click 1 — coloured scalar signal appears
-  click 2 — one point gets highlighted
-  click 3 — phrase "deviation from local average" fades in
-  click 4 — Laplacian heatmap appears
 
-Narration
----------
+Slide 3:
 
-[click 0]   A cloud of data points — a data manifold.
+[click 1] this question is answered by the Laplacian operator.
+[click 2] it's a linear positive semi-definite operator that gets a scalar function as an input, and spits out another.
+[click 3] and therefore,
 
-[click 1]   Assign a scalar function to it — one value per point.
 
-[click 2]   Pick any point.
+Slide 4:
 
-[click 3]   The Laplacian measures how its value deviates from the
-            average of its neighbours.
+[clicks 1-2] On a flat, Euclidean domain, the neighbourhood of a point is just a ball — an interval on the line, a disk in the plane.
+[clicks 3] Comparing a point's value to the average over that ball is exactly what the second derivative measures.
+[clicks 4] So here the Laplacian is simply minus the sum of second derivatives — minus the divergence of the gradient.
 
-[click 4]   Do that everywhere — that's the Laplacian of the function.
 
----
-Approx. word count: ~45.
-Estimated runtime at 140 wpm: ~19 s.
+Slide 5:
+
+[clicks 1–10] On a curved surface, the neighbourhood bends with the metric — a geodesic ball instead of a flat disk.
+[click 11] That's the Laplace–Beltrami operator — divergence of the gradient, with respect to the metric. and it sits at the heart of everything that follows.
+
+slide 6:
+
+The Laplace–Beltrami operator is the swiss army knife of geometry processing — one operator, a huge range of uses.
+
+slide 7:
+
+And the reason is its spectral decomposition. One eigenbasis powers a whole toolbox
+
+[click 1] shape descriptors
+[click 2] correspondence
+[click 3] manifold learning
+[click 4] geodesics
+[click 5] mesh smoothing
+[click 6] deformation
+
+slide 8:
+
+[click 1] Given a point cloud, you start by extracting a neighbourhood for each point —
+[click 2] either triangulate it, or find its k nearest neighbours.
+[click 3] Then you explicitly build the operator matrices encoding the surface geometry and sampling density,
+[click 4] solve a generalized eigenproblem,
+[click 5] and out comes the eigenbasis.
+
+slide 9:
+
+This pipeline has three defining properties.
+[click 1] Neighbourhood extraction makes it discrete.
+[click 2] Operator assembly makes it explicit.
+[click 3] And the eigensolve makes it not differentiable.
+We propose a different approach
+[click 4] continuous
+[click 5] implicit
+[click 6] differentiable.
+
+slide 10:
+
+[click 1] This is the traditional pipeline.
+  ▎ [click 2] We skip the whole middle,
+  ▎ [click 3] and replace it with one neural network — point cloud straight to eigenbasis.
+
+slide 11:
+
+Click 1 — Operator construction → Probe-function design
+Click 2 — "Train a network to find the k-term basis that best reconstructs a family of probe functions."
+Click 3 — directly below it: "… and the LBO eigenbasis falls out on its own."
+
+slide 12:
+
+[click 1] Why does this work? Take the class of smooth signals.
+[click 2] with a uniform distribution over it.
+[click 3] The basis minimising expected reconstruction error is exactly the Laplacian's first k eigenvectors.
+[click 4] with worst-case error one over the next eigenvalue.
