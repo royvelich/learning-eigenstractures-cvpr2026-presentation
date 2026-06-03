@@ -1165,7 +1165,7 @@ hide: true
 <div class="h-full flex flex-col pt-2 pb-1 px-0">
 
 <h1 class="!text-xl !leading-snug !mb-2 font-serif text-center" style="color: #000">
-Best <i>k</i>-truncated basis — a 3D toy example.
+Best <i>k</i>-term basis — a 3D toy example.
 </h1>
 
 <!-- Click-by-click reveal — progressive build-up on a single canvas.
@@ -1234,13 +1234,12 @@ Best <i>k</i>-truncated basis — a 3D toy example.
 layout: default
 class: text-left
 clicks: 5
-hide: true
 ---
 
 <div class="h-full flex flex-col pt-4 pb-3 px-2">
 
 <h1 class="!text-xl !leading-snug !mb-4 font-serif text-center" style="color: #000">
-Best <i>k</i>-truncated basis for 1D signals &amp; 2D images — it's the Laplacian eigenbasis in disguise.
+Best <i>k</i>-term basis for 1D signals &amp; 2D images — it's the Laplacian eigenbasis in disguise.
 </h1>
 
 <!-- Click flow:
@@ -1506,7 +1505,7 @@ $$p_L \;=\; \mathrm{Uniform}(\mathcal{C}_L)$$
 
 </div>
 
-<!-- Click 3 — the theorem itself: optimal k-truncated basis = first k
+<!-- Click 3 — the theorem itself: optimal k-term basis = first k
      eigenvectors of L. -->
 <div class="thm-card thm-c3" v-click="3">
 
@@ -1639,7 +1638,7 @@ clicks: 7
 <div class="h-full flex flex-col pt-4 pb-3 px-2">
 
 <h1 class="!text-xl !leading-snug !mb-3 font-serif text-center" style="color: #000">
-Best <i>k</i>-truncated basis on curved domains — the Laplace–Beltrami eigenbasis.
+Best <i>k</i>-term basis on curved domains — the Laplace–Beltrami eigenbasis.
 </h1>
 
 <div class="flex-1 min-h-0 flex flex-col items-center justify-center gap-4 px-4">
@@ -1956,13 +1955,33 @@ $\underbrace{\hspace{200px}}_{\text{smooth probe functions } \{f_i\}}$
 <!-- Each eigen cell hosts a click-6 clone of signal_01. v-motion :initial offset = source position relative to this cell. Source = signal_01 at scalar row col 1, i.e. one row up (y = -110) and offset LEFT by this cell's column-left within the thumb-box: 0, 91.4, 219.2, 310.6 for cols 1, 2, 4, 5. -->
 <span class="ml-thumb-cell">
   <img class="ml-thumb" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_basis_2_0_tight.png`" alt="phi_0" />
-  <img class="ml-pl-clone" v-motion :initial="{ x: 0, y: -140, opacity: 0 }" :click-6="{ x: 0, y: 0, opacity: 1 }" :click-7="{ x: 0, y: 140, opacity: 1 }" :click-8="{ x: -30, y: 140, opacity: 1 }" :click-9="{ x: 155, y: 140, opacity: 0 }" :src="$clicks >= 7 ? `${$slidev.configs.base ?? '/'}applications/manifold_pc_signal_diff_01_proj_i0_tight.png` : `${$slidev.configs.base ?? '/'}applications/manifold_pc_signal_diff_01_tight.png`" alt="" />
-  <img class="ml-pl-clone" v-motion :initial="{ x: 91.4, y: -140, opacity: 0 }" :click-14="{ x: 0, y: 0, opacity: 1 }" :click-15="{ x: 0, y: 140, opacity: 1 }" :click-16="{ x: -30, y: 140, opacity: 1 }" :click-17="{ x: 155, y: 140, opacity: 0 }" :src="$clicks >= 15 ? `${$slidev.configs.base ?? '/'}applications/manifold_pc_signal_diff_02_proj_i0_tight.png` : `${$slidev.configs.base ?? '/'}applications/manifold_pc_signal_diff_02_tight.png`" alt="" />
+  <img class="ml-pl-clone" v-motion :initial="{ x: 0, y: -140, opacity: 0 }" :click-6="{ x: 0, y: 0, opacity: 0.6 }" :click-7="{ x: -185, y: 140, opacity: 1 }" :click-8="{ x: -220, y: 140, opacity: 1 }" :click-9="{ x: 155, y: 140, opacity: 0 }" :src="$clicks >= 7 ? `${$slidev.configs.base ?? '/'}applications/manifold_pc_basis_2_0_tight.png` : `${$slidev.configs.base ?? '/'}applications/manifold_pc_signal_diff_01_tight.png`" alt="" />
+  <span class="ml-coeff" v-motion :initial="{ x: 0, y: 140, opacity: 0 }" :click-7="{ x: -185, y: 140, opacity: 1 }" :click-8="{ x: -220, y: 140, opacity: 1 }" :click-9="{ x: 155, y: 140, opacity: 0 }">
+
+  $\langle f_1, b_1\rangle$
+
+  </span>
+  <img class="ml-pl-clone" v-motion :initial="{ x: 91.4, y: -140, opacity: 0 }" :click-14="{ x: 0, y: 0, opacity: 0.6 }" :click-15="{ x: -185, y: 140, opacity: 1 }" :click-16="{ x: -220, y: 140, opacity: 1 }" :click-17="{ x: 155, y: 140, opacity: 0 }" :src="$clicks >= 15 ? `${$slidev.configs.base ?? '/'}applications/manifold_pc_basis_2_0_tight.png` : `${$slidev.configs.base ?? '/'}applications/manifold_pc_signal_diff_02_tight.png`" alt="" />
+  <span class="ml-coeff" v-motion :initial="{ x: 0, y: 140, opacity: 0 }" :click-15="{ x: -185, y: 140, opacity: 1 }" :click-16="{ x: -220, y: 140, opacity: 1 }" :click-17="{ x: 155, y: 140, opacity: 0 }">
+
+  $\langle f_2, b_1\rangle$
+
+  </span>
 </span>
 <span class="ml-thumb-cell">
   <img class="ml-thumb" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_basis_2_1_tight.png`" alt="phi_1" />
-  <img class="ml-pl-clone" v-motion :initial="{ x: -91.4, y: -140, opacity: 0 }" :click-6="{ x: 0, y: 0, opacity: 1 }" :click-7="{ x: 0, y: 140, opacity: 1 }" :click-8="{ x: -15, y: 140, opacity: 1 }" :click-9="{ x: 64, y: 140, opacity: 0 }" :src="$clicks >= 7 ? `${$slidev.configs.base ?? '/'}applications/manifold_pc_signal_diff_01_proj_i1_tight.png` : `${$slidev.configs.base ?? '/'}applications/manifold_pc_signal_diff_01_tight.png`" alt="" />
-  <img class="ml-pl-clone" v-motion :initial="{ x: 0, y: -140, opacity: 0 }" :click-14="{ x: 0, y: 0, opacity: 1 }" :click-15="{ x: 0, y: 140, opacity: 1 }" :click-16="{ x: -15, y: 140, opacity: 1 }" :click-17="{ x: 64, y: 140, opacity: 0 }" :src="$clicks >= 15 ? `${$slidev.configs.base ?? '/'}applications/manifold_pc_signal_diff_02_proj_i1_tight.png` : `${$slidev.configs.base ?? '/'}applications/manifold_pc_signal_diff_02_tight.png`" alt="" />
+  <img class="ml-pl-clone" v-motion :initial="{ x: -91.4, y: -140, opacity: 0 }" :click-6="{ x: 0, y: 0, opacity: 0.6 }" :click-7="{ x: -130, y: 140, opacity: 1 }" :click-8="{ x: -150, y: 140, opacity: 1 }" :click-9="{ x: 64, y: 140, opacity: 0 }" :src="$clicks >= 7 ? `${$slidev.configs.base ?? '/'}applications/manifold_pc_basis_2_1_tight.png` : `${$slidev.configs.base ?? '/'}applications/manifold_pc_signal_diff_01_tight.png`" alt="" />
+  <span class="ml-coeff" v-motion :initial="{ x: 0, y: 140, opacity: 0 }" :click-7="{ x: -130, y: 140, opacity: 1 }" :click-8="{ x: -150, y: 140, opacity: 1 }" :click-9="{ x: 64, y: 140, opacity: 0 }">
+
+  $\langle f_1, b_2\rangle$
+
+  </span>
+  <img class="ml-pl-clone" v-motion :initial="{ x: 0, y: -140, opacity: 0 }" :click-14="{ x: 0, y: 0, opacity: 0.6 }" :click-15="{ x: -130, y: 140, opacity: 1 }" :click-16="{ x: -150, y: 140, opacity: 1 }" :click-17="{ x: 64, y: 140, opacity: 0 }" :src="$clicks >= 15 ? `${$slidev.configs.base ?? '/'}applications/manifold_pc_basis_2_1_tight.png` : `${$slidev.configs.base ?? '/'}applications/manifold_pc_signal_diff_02_tight.png`" alt="" />
+  <span class="ml-coeff" v-motion :initial="{ x: 0, y: 140, opacity: 0 }" :click-15="{ x: -130, y: 140, opacity: 1 }" :click-16="{ x: -150, y: 140, opacity: 1 }" :click-17="{ x: 64, y: 140, opacity: 0 }">
+
+  $\langle f_2, b_2\rangle$
+
+  </span>
 </span>
 <div class="ml-dots">
 
@@ -1971,13 +1990,33 @@ $\cdots$
 </div>
 <span class="ml-thumb-cell">
   <img class="ml-thumb" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_basis_2_48_tight.png`" alt="phi_48" />
-  <img class="ml-pl-clone" v-motion :initial="{ x: -219.2, y: -140, opacity: 0 }" :click-6="{ x: 0, y: 0, opacity: 1 }" :click-7="{ x: 0, y: 140, opacity: 1 }" :click-8="{ x: 15, y: 140, opacity: 1 }" :click-9="{ x: -64, y: 140, opacity: 0 }" :src="$clicks >= 7 ? `${$slidev.configs.base ?? '/'}applications/manifold_pc_signal_diff_01_proj_i48_tight.png` : `${$slidev.configs.base ?? '/'}applications/manifold_pc_signal_diff_01_tight.png`" alt="" />
-  <img class="ml-pl-clone" v-motion :initial="{ x: -127.8, y: -140, opacity: 0 }" :click-14="{ x: 0, y: 0, opacity: 1 }" :click-15="{ x: 0, y: 140, opacity: 1 }" :click-16="{ x: 15, y: 140, opacity: 1 }" :click-17="{ x: -64, y: 140, opacity: 0 }" :src="$clicks >= 15 ? `${$slidev.configs.base ?? '/'}applications/manifold_pc_signal_diff_02_proj_i48_tight.png` : `${$slidev.configs.base ?? '/'}applications/manifold_pc_signal_diff_02_tight.png`" alt="" />
+  <img class="ml-pl-clone" v-motion :initial="{ x: -219.2, y: -140, opacity: 0 }" :click-6="{ x: 0, y: 0, opacity: 0.6 }" :click-7="{ x: -55, y: 140, opacity: 1 }" :click-8="{ x: -70, y: 140, opacity: 1 }" :click-9="{ x: -64, y: 140, opacity: 0 }" :src="$clicks >= 7 ? `${$slidev.configs.base ?? '/'}applications/manifold_pc_basis_2_48_tight.png` : `${$slidev.configs.base ?? '/'}applications/manifold_pc_signal_diff_01_tight.png`" alt="" />
+  <span class="ml-coeff" v-motion :initial="{ x: 0, y: 140, opacity: 0 }" :click-7="{ x: -55, y: 140, opacity: 1 }" :click-8="{ x: -70, y: 140, opacity: 1 }" :click-9="{ x: -64, y: 140, opacity: 0 }">
+
+  $\langle f_1, b_{K\!-\!1}\rangle$
+
+  </span>
+  <img class="ml-pl-clone" v-motion :initial="{ x: -127.8, y: -140, opacity: 0 }" :click-14="{ x: 0, y: 0, opacity: 0.6 }" :click-15="{ x: -55, y: 140, opacity: 1 }" :click-16="{ x: -70, y: 140, opacity: 1 }" :click-17="{ x: -64, y: 140, opacity: 0 }" :src="$clicks >= 15 ? `${$slidev.configs.base ?? '/'}applications/manifold_pc_basis_2_48_tight.png` : `${$slidev.configs.base ?? '/'}applications/manifold_pc_signal_diff_02_tight.png`" alt="" />
+  <span class="ml-coeff" v-motion :initial="{ x: 0, y: 140, opacity: 0 }" :click-15="{ x: -55, y: 140, opacity: 1 }" :click-16="{ x: -70, y: 140, opacity: 1 }" :click-17="{ x: -64, y: 140, opacity: 0 }">
+
+  $\langle f_2, b_{K\!-\!1}\rangle$
+
+  </span>
 </span>
 <span class="ml-thumb-cell">
   <img class="ml-thumb" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_basis_2_49_tight.png`" alt="phi_49" />
-  <img class="ml-pl-clone" v-motion :initial="{ x: -310.6, y: -140, opacity: 0 }" :click-6="{ x: 0, y: 0, opacity: 1 }" :click-7="{ x: 0, y: 140, opacity: 1 }" :click-8="{ x: 30, y: 140, opacity: 1 }" :click-9="{ x: -155, y: 140, opacity: 0 }" :src="$clicks >= 7 ? `${$slidev.configs.base ?? '/'}applications/manifold_pc_signal_diff_01_proj_i49_tight.png` : `${$slidev.configs.base ?? '/'}applications/manifold_pc_signal_diff_01_tight.png`" alt="" />
-  <img class="ml-pl-clone" v-motion :initial="{ x: -219.2, y: -140, opacity: 0 }" :click-14="{ x: 0, y: 0, opacity: 1 }" :click-15="{ x: 0, y: 140, opacity: 1 }" :click-16="{ x: 30, y: 140, opacity: 1 }" :click-17="{ x: -155, y: 140, opacity: 0 }" :src="$clicks >= 15 ? `${$slidev.configs.base ?? '/'}applications/manifold_pc_signal_diff_02_proj_i49_tight.png` : `${$slidev.configs.base ?? '/'}applications/manifold_pc_signal_diff_02_tight.png`" alt="" />
+  <img class="ml-pl-clone" v-motion :initial="{ x: -310.6, y: -140, opacity: 0 }" :click-6="{ x: 0, y: 0, opacity: 0.6 }" :click-7="{ x: 0, y: 140, opacity: 1 }" :click-8="{ x: 0, y: 140, opacity: 1 }" :click-9="{ x: -155, y: 140, opacity: 0 }" :src="$clicks >= 7 ? `${$slidev.configs.base ?? '/'}applications/manifold_pc_basis_2_49_tight.png` : `${$slidev.configs.base ?? '/'}applications/manifold_pc_signal_diff_01_tight.png`" alt="" />
+  <span class="ml-coeff" v-motion :initial="{ x: 0, y: 140, opacity: 0 }" :click-7="{ x: 0, y: 140, opacity: 1 }" :click-8="{ x: 0, y: 140, opacity: 1 }" :click-9="{ x: -155, y: 140, opacity: 0 }">
+
+  $\langle f_1, b_K\rangle$
+
+  </span>
+  <img class="ml-pl-clone" v-motion :initial="{ x: -219.2, y: -140, opacity: 0 }" :click-14="{ x: 0, y: 0, opacity: 0.6 }" :click-15="{ x: 0, y: 140, opacity: 1 }" :click-16="{ x: 0, y: 140, opacity: 1 }" :click-17="{ x: -155, y: 140, opacity: 0 }" :src="$clicks >= 15 ? `${$slidev.configs.base ?? '/'}applications/manifold_pc_basis_2_49_tight.png` : `${$slidev.configs.base ?? '/'}applications/manifold_pc_signal_diff_02_tight.png`" alt="" />
+  <span class="ml-coeff" v-motion :initial="{ x: 0, y: 140, opacity: 0 }" :click-15="{ x: 0, y: 140, opacity: 1 }" :click-16="{ x: 0, y: 140, opacity: 1 }" :click-17="{ x: -155, y: 140, opacity: 0 }">
+
+  $\langle f_2, b_K\rangle$
+
+  </span>
 </span>
 <!-- Underbrace labeling the eigen row as the predicted eigenbasis {b_i}. -->
 <div class="ml-underbrace">
@@ -1986,28 +2025,28 @@ $\underbrace{\hspace{200px}}_{\text{predicted } K\text{-truncated eigenbasis } \
 
 </div>
 <!-- Row-3 dots (the projection row, below the eigens). Appears 50ms after click 7. Positioned at the dots-column x (left: 182.8) and row-3 y (top: 110) of the eigen thumb-box. On click 9 fades out in place. -->
-<div class="ml-pl-row3-dots" :class="{ shown: $clicks >= 7, collapsing: $clicks >= 9 }">
+<div class="ml-pl-row3-dots" :class="{ shown: $clicks >= 7, collapsing: $clicks >= 9 }" :style="{ transform: $clicks >= 8 ? 'translateX(-18px)' : 'translateX(0)' }">
 
 $\cdots$
 
 </div>
 <!-- '+' signs between row-3 items (click 8), rendered by KaTeX. On click 9 they translate to row center (--dx-collapse) and fade out. -->
-<div class="ml-pl-row3-plus" :class="{ shown: $clicks >= 8, collapsing: $clicks >= 9 }" style="left: 66px; --dx-collapse: 132px;">
+<div class="ml-pl-row3-plus" :class="{ shown: $clicks >= 8, collapsing: $clicks >= 9 }" style="left: -119px; --dx-collapse: 317px;">
 
 $+$
 
 </div>
-<div class="ml-pl-row3-plus" :class="{ shown: $clicks >= 8, collapsing: $clicks >= 9 }" style="left: 172px; --dx-collapse: 26px;">
+<div class="ml-pl-row3-plus" :class="{ shown: $clicks >= 8, collapsing: $clicks >= 9 }" style="left: 28px; --dx-collapse: 170px;">
 
 $+$
 
 </div>
-<div class="ml-pl-row3-plus" :class="{ shown: $clicks >= 8, collapsing: $clicks >= 9 }" style="left: 224px; --dx-collapse: -26px;">
+<div class="ml-pl-row3-plus" :class="{ shown: $clicks >= 8, collapsing: $clicks >= 9 }" style="left: 82px; --dx-collapse: 116px;">
 
 $+$
 
 </div>
-<div class="ml-pl-row3-plus" :class="{ shown: $clicks >= 8, collapsing: $clicks >= 9 }" style="left: 330px; --dx-collapse: -132px;">
+<div class="ml-pl-row3-plus" :class="{ shown: $clicks >= 8, collapsing: $clicks >= 9 }" style="left: 250px; --dx-collapse: -52px;">
 
 $+$
 
@@ -2043,27 +2082,27 @@ $\|^2$
      thumb-box — the signal_01 expression has already shifted-left
      out of this region by click 12, so the positions are free. -->
 <!-- Row-3 dots and + signs for signal_02. Shown click 15/16; collapse at click 17. -->
-<div class="ml-pl-row3-dots" :class="{ shown: $clicks >= 15, collapsing: $clicks >= 17 }">
+<div class="ml-pl-row3-dots" :class="{ shown: $clicks >= 15, collapsing: $clicks >= 17 }" :style="{ transform: $clicks >= 16 ? 'translateX(-18px)' : 'translateX(0)' }">
 
 $\cdots$
 
 </div>
-<div class="ml-pl-row3-plus" :class="{ shown: $clicks >= 16, collapsing: $clicks >= 17 }" style="left: 66px; --dx-collapse: 132px;">
+<div class="ml-pl-row3-plus" :class="{ shown: $clicks >= 16, collapsing: $clicks >= 17 }" style="left: -119px; --dx-collapse: 317px;">
 
 $+$
 
 </div>
-<div class="ml-pl-row3-plus" :class="{ shown: $clicks >= 16, collapsing: $clicks >= 17 }" style="left: 172px; --dx-collapse: 26px;">
+<div class="ml-pl-row3-plus" :class="{ shown: $clicks >= 16, collapsing: $clicks >= 17 }" style="left: 28px; --dx-collapse: 170px;">
 
 $+$
 
 </div>
-<div class="ml-pl-row3-plus" :class="{ shown: $clicks >= 16, collapsing: $clicks >= 17 }" style="left: 224px; --dx-collapse: -26px;">
+<div class="ml-pl-row3-plus" :class="{ shown: $clicks >= 16, collapsing: $clicks >= 17 }" style="left: 82px; --dx-collapse: 116px;">
 
 $+$
 
 </div>
-<div class="ml-pl-row3-plus" :class="{ shown: $clicks >= 16, collapsing: $clicks >= 17 }" style="left: 330px; --dx-collapse: -132px;">
+<div class="ml-pl-row3-plus" :class="{ shown: $clicks >= 16, collapsing: $clicks >= 17 }" style="left: 250px; --dx-collapse: -52px;">
 
 $+$
 
@@ -2450,13 +2489,27 @@ $\mathcal{L}\bigl(\{b_i\}_{i=1}^{K}\bigr) = \sum_{k=1}^{K} \left( \sum_i \bigl\|
   object-fit: contain;
   pointer-events: none;
 }
+.ml-coeff {
+  position: absolute;
+  top: 0;
+  right: calc(100% - 10px);
+  font-size: 1.0rem;
+  color: var(--c-fg-body);
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  height: 85px;
+  white-space: nowrap;
+}
+.ml-coeff p { margin: 0; line-height: 1; }
+.ml-coeff .katex { font-size: 1.0rem; }
 /* Row-3 dots (between proj_i1 and proj_i48 after click 7). Positioned in the
    eigen thumb-box coordinate frame at (left=182.8, top=110) — matching the
    dots column x and one row-step below the eigen row. Fades in 50ms after
    click 7, matching the test-slide pattern. */
 .ml-pl-row3-dots {
   position: absolute;
-  left: 182.8px;
+  left: 58px;
   top: 140px;
   width: 30px;
   height: 85px;
@@ -2470,11 +2523,10 @@ $\mathcal{L}\bigl(\{b_i\}_{i=1}^{K}\bigr) = \sum_{k=1}^{K} \left( \sum_i \bigl\|
   padding: 0 0.15rem;
   opacity: 0;
   pointer-events: none;
-  transition: opacity 350ms ease;
+  transition: opacity 200ms ease, transform 300ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 .ml-pl-row3-dots.shown {
   opacity: 1;
-  transition-delay: 50ms;
 }
 /* '+' signs in row 3 (click 8). Same vertical band as the row-3 dots (top: 110, height: 85, centered). Each instance positions itself at its 'left' via translateX(-50%) so the inline `style="left: ..."` value is the *centre* x of the '+' character. */
 .ml-pl-row3-plus {
@@ -2490,7 +2542,7 @@ $\mathcal{L}\bigl(\{b_i\}_{i=1}^{K}\bigr) = \sum_{k=1}^{K} \left( \sum_i \bigl\|
   opacity: 0;
   pointer-events: none;
   transform: translateX(-50%);
-  transition: opacity 350ms ease;
+  transition: opacity 200ms ease;
 }
 .ml-pl-row3-plus.shown { opacity: 1; }
 .ml-pl-row3-plus {
