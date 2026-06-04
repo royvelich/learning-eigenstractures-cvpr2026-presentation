@@ -1236,6 +1236,10 @@ class: text-left
 clicks: 5
 ---
 
+<script setup>
+import katex from 'katex'
+</script>
+
 <div class="h-full flex flex-col pt-4 pb-3 px-2">
 
 <h1 class="!text-xl !leading-snug !mb-4 font-serif text-center" style="color: #000">
@@ -1244,32 +1248,42 @@ Best <i>k</i>-term basis for 1D signals &amp; 2D images — it's the Laplacian e
 
 <!-- Click flow:
        click 1 → 1D sample fades in BIG, centered across the slide
-       click 2 → 1D sample shrinks and slides to the LEFT half centre;
-                 1D DCT basis column (label · image · equation) fades in
-                 on the RIGHT half, 350 ms delayed.
-       click 3 → 1D content (sample + basis column) fades out;
-                 the 2D dog photo fades in BIG, centered across the slide.
-       click 4 → 2D dog shrinks and slides to the LEFT half centre;
-                 2D DCT basis column fades in on the RIGHT half. -->
+       click 2 → 1D sample shrinks left, DCT basis right
+       click 3 → 12 signal clones fly onto the 3×4 basis grid, fading out
+       click 4 → 2D dog photo fades in BIG
+       click 4 → signal shrinks left, basis shifts left (right col anchored), ⟨f,φᵢ⟩ labels appear
+       click 5 → punchline -->
 <div class="flex-1 min-h-0 relative px-4"
-     :class="{ 'show-basis-1d': $clicks === 2, 'show-basis-2d': $clicks >= 4 }">
+     :class="{ 'show-basis-1d': $clicks >= 2, 'show-proj-1d': $clicks >= 4 }">
 
-  <!-- ────────── 1D SAMPLE column (clicks 1–2) ────────── -->
+  <!-- ────────── 1D SAMPLE column (clicks 1–4) ────────── -->
   <div class="dct-sample-col"
-       :class="{ 'visible': $clicks >= 1 && $clicks < 3 }">
+       :class="{ 'visible': $clicks >= 1 && $clicks < 5 }">
     <img class="dct-sample-img"
          :src="`${$slidev.configs.base ?? '/'}applications/dct_1d_sample.png`"
          alt="A smooth 1D signal on [0, L]" />
   </div>
 
-  <!-- ────────── 1D DCT BASIS column (click 2 only) ────────── -->
-  <div class="dct-basis-col" :class="{ 'visible': $clicks === 2 }">
+  <!-- ────────── 1D DCT BASIS column (clicks 2–4) ────────── -->
+  <div class="dct-basis-col" :class="{ 'visible': $clicks >= 2 && $clicks < 5 }">
 
   <div class="basis-label">DCT basis</div>
 
-  <img class="dct-basis-img"
-       :src="`${$slidev.configs.base ?? '/'}applications/dct_1d_basis.png`"
-       alt="1D DCT cosine modes on [0, L]" />
+  <!-- 3×4 grid of individual basis mode images -->
+  <div class="dct-basis-grid" :class="{ spread: $clicks >= 4 }">
+    <div v-for="i in 12" :key="'cell'+i" class="dct-basis-cell">
+      <div class="dct-proj-label" :class="{ visible: $clicks >= 4 }" :style="{ transitionDelay: (i-1)*25+'ms' }" v-html="katex.renderToString('\\langle f, b_{' + i + '}\\rangle', {throwOnError:false})"></div>
+      <img class="dct-basis-cell-img"
+           :src="`${$slidev.configs.base ?? '/'}applications/dct_1d_mode_${i-1}.png`" />
+      <!-- Signal clone flies onto this cell at click 3 -->
+      <img class="dct-clone"
+           v-motion
+           :initial="{ x: -300 + ((i-1) % 4) * 30, y: 0, opacity: 0 }"
+           :click-3="{ x: 0, y: 0, opacity: 0.5, transition: { duration: 800, ease: 'easeOut', delay: (i-1) * 30 } }"
+           :click-4="{ x: 0, y: 0, opacity: 0, transition: { duration: 300 } }"
+           :src="`${$slidev.configs.base ?? '/'}applications/dct_1d_sample.png`" />
+    </div>
+  </div>
 
   <div class="basis-eq">
 
@@ -1279,16 +1293,16 @@ Best <i>k</i>-term basis for 1D signals &amp; 2D images — it's the Laplacian e
 
   </div>
 
-  <!-- ────────── 2D SAMPLE (dog photo) column (clicks 3–4) ────────── -->
+  <!-- ────────── 2D SAMPLE (dog photo) column (disabled for now) ────────── -->
   <div class="dct-sample-2d-col"
-       :class="{ 'visible': $clicks >= 3 && $clicks < 5 }">
+       :class="{ 'visible': false }">
     <img class="dct-sample-2d-img"
          :src="`${$slidev.configs.base ?? '/'}applications/dct_2d_sample.png`"
          alt="A natural image (imagenette)" />
   </div>
 
   <!-- ────────── 2D DCT BASIS column (click 4 only) ────────── -->
-  <div class="dct-basis-2d-col" :class="{ 'visible': $clicks === 4 }">
+  <div class="dct-basis-2d-col" :class="{ 'visible': false }">
 
   <div class="basis-label">DCT basis</div>
 
@@ -1305,7 +1319,7 @@ Best <i>k</i>-term basis for 1D signals &amp; 2D images — it's the Laplacian e
   </div>
 
   <!-- ────────── Punchline banner (click 5) ────────── -->
-  <div class="dct-punchline" :class="{ 'visible': $clicks >= 5 }">
+  <div class="dct-punchline" :class="{ 'visible': false }">
 
   The DCT is the Neumann Laplacian eigenbasis on a box.
 
@@ -1351,6 +1365,10 @@ Best <i>k</i>-term basis for 1D signals &amp; 2D images — it's the Laplacian e
   width: 46%;
   left: 25%;
 }
+.show-proj-1d .dct-sample-col {
+  width: 28%;
+  left: 12%;
+}
 .dct-sample-img {
   display: block;
   width: 100%;
@@ -1362,19 +1380,60 @@ Best <i>k</i>-term basis for 1D signals &amp; 2D images — it's the Laplacian e
 .dct-basis-col {
   position: absolute;
   top: 50%;
-  left: 75%;
+  right: 2%;
   width: 46%;
-  transform: translate(-50%, -50%);
+  transform: translateY(-50%);
   opacity: 0;
   transition: opacity 420ms ease 350ms;
 }
 .dct-basis-col.visible { opacity: 1; }
-.dct-basis-img {
+.dct-basis-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+.dct-basis-grid.spread .dct-basis-cell {
+  transform: translateX(calc(var(--col-shift, 0) * 1px));
+}
+.dct-basis-cell {
+  position: relative;
+  transition: transform 600ms ease;
+  --col-shift: 0;
+}
+.dct-basis-grid.spread .dct-basis-cell:nth-child(4n+1) { --col-shift: -135; }
+.dct-basis-grid.spread .dct-basis-cell:nth-child(4n+2) { --col-shift: -95; }
+.dct-basis-grid.spread .dct-basis-cell:nth-child(4n+3) { --col-shift: -50; }
+.dct-basis-grid.spread .dct-basis-cell:nth-child(4n+4) { --col-shift: 0; }
+.dct-basis-cell-img {
   display: block;
   width: 100%;
   height: auto;
-  object-fit: contain;
 }
+.dct-clone {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  pointer-events: none;
+}
+.dct-proj-label {
+  position: absolute;
+  right: calc(100% + 5px);
+  top: 0;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  font-size: 1.0rem;
+  color: var(--c-fg-body);
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity 300ms ease;
+}
+.dct-proj-label.visible { opacity: 1; }
+.dct-proj-label p { margin: 0; line-height: 1; }
+.dct-proj-label .katex { font-size: 1.0rem; }
 
 /* ─── 2D dog sample column (clicks 3–4) ─── */
 .dct-sample-2d-col {

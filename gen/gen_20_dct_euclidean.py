@@ -120,3 +120,76 @@ for n in range(N2D):
         _frame_panel(ax)
 plt.subplots_adjust(wspace=0.18, hspace=0.18)
 _save_tight(fig, "dct_2d_basis.png")
+
+
+# ─── Individual 1D basis modes (for projection animation) ──────────────────
+MODE_INDICES_1D = [0, 1, 2, 3]
+for k in MODE_INDICES_1D:
+    fig = plt.figure(figsize=(3.5, 3.5))
+    ax = fig.add_subplot(111)
+    y = np.cos(k * np.pi * x)
+    ax.plot(x, y, color=TEAL, lw=2.6)
+    ax.fill_between(x, 0.0, y, color=TEAL, alpha=0.10)
+    ax.axhline(0.0, color=GREY, lw=0.6)
+    ax.set_xlim(0.0, 1.0)
+    ax.set_ylim(-1.03, 1.03)
+    _frame_panel(ax)
+    plt.subplots_adjust(left=0, right=1, top=1, bottom=0)
+    _save_tight(fig, f"dct_1d_mode_{k}.png")
+
+
+# ─── Individual 2D basis modes (for projection animation) ──────────────────
+MODE_INDICES_2D = [(0, 0), (0, 1), (1, 0), (1, 1)]
+for n, m in MODE_INDICES_2D:
+    fig = plt.figure(figsize=(3.5, 3.5))
+    ax = fig.add_subplot(111)
+    f = np.cos(n * np.pi * xx) * np.cos(m * np.pi * yy)
+    ax.imshow(f, cmap="RdBu_r", vmin=-1.0, vmax=1.0,
+              extent=[0.0, 1.0, 0.0, 1.0], origin="lower")
+    _frame_panel(ax)
+    plt.subplots_adjust(left=0, right=1, top=1, bottom=0)
+    _save_tight(fig, f"dct_2d_mode_{n}{m}.png")
+
+
+# ─── 1D truncated reconstruction (k=8) ─────────────────────────────────────
+K_RECON = 8
+coeffs_1d = np.array([np.trapezoid(sig1d * np.cos(k * np.pi * x), x) * 2.0
+                      for k in range(K_RECON)])
+coeffs_1d[0] /= 2.0  # DC term normalization
+recon_1d = sum(coeffs_1d[k] * np.cos(k * np.pi * x) for k in range(K_RECON))
+
+fig = plt.figure(figsize=(11.0, 6.0))
+ax = fig.add_subplot(111)
+ax.plot(x, recon_1d, color=INDIGO, lw=2.6)
+ax.fill_between(x, 0.0, recon_1d, color=INDIGO, alpha=0.08)
+ax.axhline(0.0, color=GREY, lw=0.6)
+ax.set_xlim(0.0, 1.0)
+ax.set_ylim(-1.03, 1.03)
+_frame_panel(ax)
+plt.subplots_adjust(left=0, right=1, top=1, bottom=0)
+_save_tight(fig, "dct_1d_recon_k8.png")
+
+
+# ─── 2D truncated reconstruction (k=8 lowest-frequency modes) ──────────────
+from scipy.fft import dctn, idctn
+
+img_arr = np.asarray(square).astype(np.float64)
+K_2D = 8
+recon_2d = np.zeros_like(img_arr)
+for ch in range(3):
+    c = dctn(img_arr[:, :, ch], norm="ortho")
+    mask = np.zeros_like(c)
+    # keep the K_2D lowest-frequency modes (top-left triangle)
+    for i in range(c.shape[0]):
+        for j in range(c.shape[1]):
+            if i + j < K_2D:
+                mask[i, j] = 1.0
+    recon_2d[:, :, ch] = idctn(c * mask, norm="ortho")
+
+recon_2d = np.clip(recon_2d, 0, 255).astype(np.uint8)
+
+fig = plt.figure(figsize=(4.4, 4.4))
+ax = fig.add_subplot(111)
+ax.imshow(recon_2d, extent=[0.0, 1.0, 0.0, 1.0], origin="upper")
+_frame_panel(ax)
+_save_tight(fig, "dct_2d_recon_k8.png")
