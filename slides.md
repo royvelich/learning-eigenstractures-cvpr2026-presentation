@@ -1233,7 +1233,7 @@ Best <i>k</i>-term basis — a 3D toy example.
 ---
 layout: default
 class: text-left
-clicks: 5
+clicks: 6
 ---
 
 <script setup>
@@ -1250,24 +1250,24 @@ Best <i>k</i>-term basis for 1D signals &amp; 2D images — it's the Laplacian e
        click 1 → 1D sample fades in BIG, centered across the slide
        click 2 → 1D sample shrinks left, DCT basis right
        click 3 → 12 signal clones fly onto the 3×4 basis grid, fading out
-       click 4 → 2D dog photo fades in BIG
        click 4 → signal shrinks left, basis shifts left (right col anchored), ⟨f,φᵢ⟩ labels appear
-       click 5 → punchline -->
+       click 5 → Σ and parentheses wrap the grid, everything shifts left more
+       click 6 → (future) -->
 <div class="flex-1 min-h-0 relative px-4"
-     :class="{ 'show-basis-1d': $clicks >= 2, 'show-proj-1d': $clicks >= 4 }">
+     :class="{ 'show-basis-1d': $clicks >= 2, 'show-proj-1d': $clicks >= 4, 'show-sum-1d': $clicks >= 5, 'show-collapse-1d': $clicks >= 6 }">
 
-  <!-- ────────── 1D SAMPLE column (clicks 1–4) ────────── -->
+  <!-- ────────── 1D SAMPLE column (clicks 1–5) ────────── -->
   <div class="dct-sample-col"
-       :class="{ 'visible': $clicks >= 1 && $clicks < 5 }">
+       :class="{ 'visible': $clicks >= 1 }">
     <img class="dct-sample-img"
          :src="`${$slidev.configs.base ?? '/'}applications/dct_1d_sample.png`"
          alt="A smooth 1D signal on [0, L]" />
   </div>
 
   <!-- ────────── 1D DCT BASIS column (clicks 2–4) ────────── -->
-  <div class="dct-basis-col" :class="{ 'visible': $clicks >= 2 && $clicks < 5 }">
+  <div class="dct-basis-col" :class="{ 'visible': $clicks >= 2 }">
 
-  <div class="basis-label">DCT basis</div>
+  <div class="basis-label" :style="{ opacity: $clicks >= 4 ? 0 : 1, transition: 'opacity 300ms ease' }">DCT basis</div>
 
   <!-- 3×4 grid of individual basis mode images -->
   <div class="dct-basis-grid" :class="{ spread: $clicks >= 4 }">
@@ -1285,7 +1285,30 @@ Best <i>k</i>-term basis for 1D signals &amp; 2D images — it's the Laplacian e
     </div>
   </div>
 
-  <div class="basis-eq">
+  <!-- Σ summation + parentheses wrapping the grid (click 5) -->
+  <div class="dct-sum-sigma" :class="{ visible: $clicks >= 5 }">
+
+  $\displaystyle\sum$
+
+  </div>
+  <div class="dct-sum-paren-l" :class="{ visible: $clicks >= 5 }">
+
+  $\Bigg($
+
+  </div>
+  <div class="dct-sum-paren-r" :class="{ visible: $clicks >= 5 }">
+
+  $\Bigg)$
+
+  </div>
+
+  <!-- Reconstructed signal (appears at click 6 after collapse) -->
+  <div class="dct-recon-1d" :class="{ visible: $clicks >= 6 }">
+    <img class="dct-recon-1d-img"
+         :src="`${$slidev.configs.base ?? '/'}applications/dct_1d_recon_k8.png`" />
+  </div>
+
+  <div class="basis-eq" :style="{ opacity: $clicks >= 4 ? 0 : 1, transition: 'opacity 300ms ease' }">
 
   $\varphi_n(x) = \cos\!\left(\dfrac{n\pi x}{L}\right)$
 
@@ -1384,13 +1407,17 @@ Best <i>k</i>-term basis for 1D signals &amp; 2D images — it's the Laplacian e
   width: 46%;
   transform: translateY(-50%);
   opacity: 0;
-  transition: opacity 420ms ease 350ms;
+  transition: opacity 420ms ease 350ms, right 600ms ease, width 600ms ease;
 }
 .dct-basis-col.visible { opacity: 1; }
 .dct-basis-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 20px;
+  transition: transform 600ms ease;
+}
+.show-sum-1d .dct-basis-grid {
+  transform: scale(0.82);
 }
 .dct-basis-grid.spread .dct-basis-cell {
   transform: translateX(calc(var(--col-shift, 0) * 1px));
@@ -1434,6 +1461,95 @@ Best <i>k</i>-term basis for 1D signals &amp; 2D images — it's the Laplacian e
 .dct-proj-label.visible { opacity: 1; }
 .dct-proj-label p { margin: 0; line-height: 1; }
 .dct-proj-label .katex { font-size: 1.0rem; }
+
+/* ─── Click 5: summation wrapping ─── */
+.show-sum-1d .dct-sample-col {
+  width: 20%;
+  left: 8%;
+}
+.show-sum-1d .dct-basis-grid .dct-basis-cell:nth-child(4n+1) { --col-shift: -155; }
+.show-sum-1d .dct-basis-grid .dct-basis-cell:nth-child(4n+2) { --col-shift: -112; }
+.show-sum-1d .dct-basis-grid .dct-basis-cell:nth-child(4n+3) { --col-shift: -62; }
+.show-sum-1d .dct-basis-grid .dct-basis-cell:nth-child(4n+4) { --col-shift: -10; }
+
+/* ─── Click 6: collapse grid + sigma/parens into center, show reconstruction ─── */
+.show-collapse-1d .dct-sample-col {
+  width: 41%;
+  left: 25%;
+}
+.show-collapse-1d .dct-basis-grid {
+  transform: scale(0.3);
+  opacity: 0;
+  transition: transform 700ms cubic-bezier(0.4, 0, 0.2, 1), opacity 500ms ease;
+}
+.show-collapse-1d .dct-sum-sigma,
+.show-collapse-1d .dct-sum-paren-l,
+.show-collapse-1d .dct-sum-paren-r {
+  opacity: 0 !important;
+  transition: opacity 500ms ease;
+}
+.show-collapse-1d .dct-proj-label {
+  opacity: 0 !important;
+}
+.dct-recon-1d {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90%;
+  opacity: 0;
+  transition: opacity 500ms ease 300ms;
+}
+.show-collapse-1d .dct-recon-1d {
+  width: 90%;
+}
+.dct-recon-1d.visible { opacity: 1; }
+.dct-recon-1d-img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.dct-sum-sigma {
+  position: absolute;
+  left: -245px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--c-fg);
+  opacity: 0;
+  transition: opacity 400ms ease;
+}
+.dct-sum-sigma.visible { opacity: 1; }
+.dct-sum-sigma p { margin: 0; }
+.dct-sum-sigma .katex { font-size: 4.5rem; }
+.dct-sum-paren-l {
+  position: absolute;
+  left: -190px;
+  top: 0;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  color: var(--c-fg);
+  opacity: 0;
+  transition: opacity 400ms ease;
+}
+.dct-sum-paren-l.visible { opacity: 1; }
+.dct-sum-paren-l p { margin: 0; }
+.dct-sum-paren-l .katex { font-size: 10rem; }
+.dct-sum-paren-r {
+  position: absolute;
+  right: -25px;
+  top: 0;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  color: var(--c-fg);
+  opacity: 0;
+  transition: opacity 400ms ease;
+}
+.dct-sum-paren-r.visible { opacity: 1; }
+.dct-sum-paren-r p { margin: 0; }
+.dct-sum-paren-r .katex { font-size: 10rem; }
 
 /* ─── 2D dog sample column (clicks 3–4) ─── */
 .dct-sample-2d-col {
