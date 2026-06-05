@@ -216,7 +216,7 @@ its <span class="lbo">spectral decomposition</span> consists of <em>eigenfunctio
 <!--
 1. This question is answered by the Laplacian operator.
 2. It's a linear positive semi-definite operator that gets a scalar function as an input, and spits out another.
-3. And therefore,
+3. Therefore, it admits a spectral decomposition — and that's the central theme of this talk.
 -->
 
 ---
@@ -279,10 +279,10 @@ in general, $\Delta f \;=\; -\operatorname{div}\bigl(\operatorname{grad} f\bigr)
 </div>
 
 <!--
-1. On a flat, Euclidean domain, the neighbourhood of a point is just a ball — an interval on the line, a disk in the plane.
+1. On flat domains, the neighbourhood is a Euclidean ball — an interval or a disk.
 2. (continued)
-3. Comparing a point's value to the average over that ball is exactly what the second derivative measures.
-4. So here the Laplacian is simply minus the sum of second derivatives — minus the divergence of the gradient.
+3. Deviation from local average = second derivative.
+4. Laplacian = minus sum of second derivatives = minus divergence of gradient.
 -->
 
 ---
@@ -318,9 +318,9 @@ $\Delta_M f \;=\; -\operatorname{div}_M\!\big(\nabla_M f\big)$ &nbsp;·&nbsp; th
 </div>
 
 <!--
-1. On a curved surface, the neighbourhood bends with the metric — a geodesic ball instead of a flat disk.
-2. (build-up continues through click 10)
-3. That's the Laplace–Beltrami operator — divergence of the gradient, with respect to the metric. And it sits at the heart of everything that follows.
+1. On curved domains, local neighbourhoods are geodesic balls — defined by the metric.
+2. We need metric-aware gradient and divergence.
+3. That gives us the Laplace–Beltrami operator — the Laplacian generalized to curved surfaces.
 -->
 
 ---
@@ -345,7 +345,7 @@ The LBO is the <span style="color: var(--c-danger)">swiss knife</span> of geomet
 </div>
 
 <!--
-The Laplace–Beltrami operator is the swiss army knife of geometry processing — one operator, a huge range of uses.
+The Laplace–Beltrami operator, and specifically its eigendecomposition, is the swiss army knife of geometry processing.
 -->
 
 
@@ -1100,7 +1100,7 @@ Train a network to find the <i>k</i>-term basis that best reconstructs a family 
 </style>
 
 <!--
-1. Instead of constructing the operator explicitly, we design probe functions.
+1. We transform the problem from explicit operator construction to probe function design.
 2. Train a network to find the k-term basis that best reconstructs a family of probe functions.
 3. …and the LBO eigenbasis falls out on its own.
 -->
@@ -3564,6 +3564,32 @@ $\mathcal{L}\bigl(\{b_i\}_{i=1}^{K}\bigr) = \sum_{k=1}^{K} \left( \sum_i \bigl\|
   padding: 0 0.15rem;
 }
 </style>
+
+<!--
+1. Point cloud input.
+2. Upper branch: sample smooth probe functions on it.
+3. Lower branch: a neural network predicts an eigenbasis.
+4. (grid shifts up)
+5. Focus on one probe function.
+6. Project it onto each predicted eigenvector.
+7. The projections land — coefficients times basis vectors.
+8. Add them up — linear combination.
+9. Collapse into the reconstruction.
+10. Compare: original minus reconstruction.
+11. Squared norm — that's the loss for one function.
+12. Shift aside.
+13. Now the second probe function.
+14. Same projection.
+15. Coefficients land.
+16. Plus signs.
+17. Collapse into reconstruction.
+18. Original minus reconstruction.
+19. Norm squared.
+20. Shift and combine.
+21. All probe functions contribute.
+22. Sum over all: the reconstruction loss.
+23. Final ordered-basis loss — nested sum forces ordering.
+-->
 
 ---
 layout: default
