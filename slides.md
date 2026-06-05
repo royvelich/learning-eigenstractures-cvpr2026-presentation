@@ -120,6 +120,13 @@ deviation from local average
 }
 </style>
 
+<!--
+1. Consider we have a cloud of data points — a data manifold.
+2. And... we assign a scalar function to it, red colors for positive numbers, and blue for negative.
+3. Let's say we pick this point. A natural question to ask is: how much does a point's value deviate from the values around it?
+4. In this case, the point's value is slightly above its local average, so we assign to this color.
+-->
+
 ---
 layout: default
 class: text-center
@@ -206,6 +213,12 @@ its <span class="lbo">spectral decomposition</span> consists of <em>eigenfunctio
 
 </div>
 
+<!--
+1. This question is answered by the Laplacian operator.
+2. It's a linear positive semi-definite operator that gets a scalar function as an input, and spits out another.
+3. And therefore,
+-->
+
 ---
 layout: default
 class: text-center
@@ -265,6 +278,13 @@ in general, $\Delta f \;=\; -\operatorname{div}\bigl(\operatorname{grad} f\bigr)
 
 </div>
 
+<!--
+1. On a flat, Euclidean domain, the neighbourhood of a point is just a ball — an interval on the line, a disk in the plane.
+2. (continued)
+3. Comparing a point's value to the average over that ball is exactly what the second derivative measures.
+4. So here the Laplacian is simply minus the sum of second derivatives — minus the divergence of the gradient.
+-->
+
 ---
 layout: default
 class: text-center
@@ -297,6 +317,12 @@ $\Delta_M f \;=\; -\operatorname{div}_M\!\big(\nabla_M f\big)$ &nbsp;·&nbsp; th
 
 </div>
 
+<!--
+1. On a curved surface, the neighbourhood bends with the metric — a geodesic ball instead of a flat disk.
+2. (build-up continues through click 10)
+3. That's the Laplace–Beltrami operator — divergence of the gradient, with respect to the metric. And it sits at the heart of everything that follows.
+-->
+
 ---
 layout: default
 class: text-center
@@ -317,6 +343,11 @@ The LBO is the <span style="color: var(--c-danger)">swiss knife</span> of geomet
 </div>
 
 </div>
+
+<!--
+The Laplace–Beltrami operator is the swiss army knife of geometry processing — one operator, a huge range of uses.
+-->
+
 
 ---
 layout: default
@@ -393,6 +424,16 @@ A single spectral basis &mdash; many families of tools.
   text-align: center;
 }
 </style>
+
+<!--
+And the reason is its spectral decomposition. One eigenbasis powers a whole toolbox:
+1. shape descriptors
+2. correspondence
+3. manifold learning
+4. geodesics
+5. mesh smoothing
+6. deformation
+-->
 
 ---
 layout: default
@@ -611,6 +652,14 @@ $\{\mathbf{y}_i\},\; \{\lambda_i\}$
 }
 </style>
 
+<!--
+1. Given a point cloud, you start by extracting a neighbourhood for each point —
+2. either triangulate it, or find its k nearest neighbours.
+3. Then you explicitly build the operator matrices encoding the surface geometry and sampling density,
+4. solve a generalized eigenproblem,
+5. and out comes the eigenbasis.
+-->
+
 ---
 layout: default
 class: text-left
@@ -732,6 +781,17 @@ $\Delta$
 .bottleneck-delta .katex { font-size: inherit; color: inherit; }
 .bottleneck-delta p { margin: 0; padding: 0; line-height: 1; }
 </style>
+
+<!--
+This pipeline has three defining properties.
+1. Neighbourhood extraction makes it discrete.
+2. Operator assembly makes it explicit.
+3. And the eigensolve makes it not differentiable.
+We propose a different approach:
+4. continuous
+5. implicit
+6. differentiable.
+-->
 
 ---
 layout: default
@@ -973,6 +1033,12 @@ Our approach
 .gain-label   + ul li::before { background: var(--c-success); }
 </style>
 
+<!--
+1. This is the traditional pipeline.
+2. We skip the whole middle,
+3. and replace it with one neural network — point cloud straight to eigenbasis.
+-->
+
 ---
 layout: default
 class: text-center
@@ -1032,6 +1098,12 @@ Train a network to find the <i>k</i>-term basis that best reconstructs a family 
   line-height: 1.45;
 }
 </style>
+
+<!--
+1. Instead of constructing the operator explicitly, we design probe functions.
+2. Train a network to find the k-term basis that best reconstructs a family of probe functions.
+3. …and the LBO eigenbasis falls out on its own.
+-->
 
 ---
 layout: default
@@ -1346,7 +1418,7 @@ DCT basis $\{b_i\}$
 
   <div class="dct-min-text" :class="{ visible: $clicks >= 7 }">
 
-  The DCT basis **minimizes** the reconstruction error.
+  The DCT is the **optimal fixed basis** for smooth, correlated signals.
 
   </div>
 
@@ -1755,6 +1827,18 @@ DCT basis $\{b_i\}$
 .dct-punchline-eq p { margin: 0; }
 </style>
 
+<!--
+Let's recall what a k-term basis does in practice. This is how JPEG and MP3 work under the hood.
+
+1. A smooth 1D signal we want to compress.
+2. We project it onto the DCT basis.
+3. Each basis function gets a coefficient — the inner product with the signal.
+4. The coefficients tell us how much of each mode is in the signal.
+5. Sum them up — this is the k-term reconstruction.
+6. The reconstruction approximates the original. Some detail is lost.
+7. The DCT is the optimal fixed basis for smooth, correlated signals.
+-->
+
 ---
 layout: default
 class: text-left
@@ -1870,7 +1954,7 @@ input image $f$
 
   <div class="dct2-min-text" :class="{ visible: $clicks >= 7 }">
 
-  The DCT basis **minimizes** the reconstruction error.
+  The DCT is the **optimal fixed basis** for smooth, correlated signals.
 
   </div>
 
@@ -2120,6 +2204,16 @@ input image $f$
 .dct2-min-text p { margin: 0; }
 </style>
 
+<!--
+1. Same idea for a 2D image.
+2. Project onto the 2D DCT basis — products of cosines.
+3. Each mode gets a coefficient.
+4. The coefficients capture how much of each spatial frequency is present.
+5. Sum them up.
+6. The k-term reconstruction — recognizable but lossy.
+7. The DCT is the optimal fixed basis for smooth, correlated signals.
+-->
+
 ---
 layout: default
 class: text-left
@@ -2133,7 +2227,7 @@ Best <i>k</i>-term basis for 1D signals &amp; 2D images — it's the Laplacian e
 </h1>
 
 <div class="flex-1 flex items-center justify-center">
-<div :style="{ opacity: $clicks >= 1 ? 1 : 0, transition: 'opacity 500ms ease' }" style="text-align: center; font-size: 1.7rem; color: var(--c-fg); line-height: 1.4;">
+<div v-click style="text-align: center; font-size: 1.7rem; color: var(--c-fg); line-height: 1.4;">
 
 The DCT is the Neumann Laplacian eigenbasis on a box.
 
@@ -2147,6 +2241,10 @@ $-\Delta\, \varphi_n = \lambda_n\, \varphi_n \;\; \text{on } \Omega, \qquad \par
 </div>
 
 </div>
+
+<!--
+1. The DCT is not just a signal processing trick — it's the eigenbasis of the Laplacian on a box with Neumann boundary conditions.
+-->
 
 ---
 layout: default
@@ -2314,6 +2412,13 @@ under the optimal basis.
 .thm-foot strong { color: var(--c-success); font-weight: 600; }
 h2 .grad { padding-right: 0.08em; }
 </style>
+
+<!--
+1. Consider the class of signals with bounded Dirichlet energy — signals that are smooth with respect to L.
+2. Take a uniform distribution over this class.
+3. The k-term basis that minimizes the expected reconstruction error is exactly the first k eigenvectors of L.
+4. The worst-case error is 1/λ_{k+1}.
+-->
 
 ---
 layout: default
@@ -2490,6 +2595,17 @@ Best <i>k</i>-term basis on curved domains — the Laplace–Beltrami eigenbasis
   text-align: center;
 }
 </style>
+
+<!--
+The theorem generalizes to curved domains.
+1. Consider this curved domain — the armadillo.
+2. Sample its surface.
+3. Consider the class of smooth signals on our domain.
+4. Among all possible k-term basis sets...
+5. (continued)
+6. (continued)
+7. It's the LBO's eigenvectors that minimize reconstruction error — they best represent smooth signals on the surface.
+-->
 
 ---
 layout: default
