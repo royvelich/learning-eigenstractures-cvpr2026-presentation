@@ -1233,7 +1233,7 @@ Best <i>k</i>-term basis — a 3D toy example.
 ---
 layout: default
 class: text-left
-clicks: 6
+clicks: 7
 ---
 
 <script setup>
@@ -1254,7 +1254,7 @@ Best <i>k</i>-term basis for 1D signals &amp; 2D images — it's the Laplacian e
        click 5 → Σ and parentheses wrap the grid, everything shifts left more
        click 6 → (future) -->
 <div class="flex-1 min-h-0 relative px-4"
-     :class="{ 'show-basis-1d': $clicks >= 2, 'show-proj-1d': $clicks >= 4, 'show-sum-1d': $clicks >= 5, 'show-collapse-1d': $clicks >= 6 }">
+     :class="{ 'show-basis-1d': $clicks >= 2, 'show-proj-1d': $clicks >= 4, 'show-sum-1d': $clicks >= 5, 'show-collapse-1d': $clicks >= 6, 'show-norm-1d': $clicks >= 7 }">
 
   <!-- ────────── 1D SAMPLE column (clicks 1–5) ────────── -->
   <div class="dct-sample-col"
@@ -1262,6 +1262,7 @@ Best <i>k</i>-term basis for 1D signals &amp; 2D images — it's the Laplacian e
     <img class="dct-sample-img"
          :src="`${$slidev.configs.base ?? '/'}applications/dct_1d_sample.png`"
          alt="A smooth 1D signal on [0, L]" />
+    <div class="dct-img-label" :class="{ visible: $clicks >= 6 && $clicks < 7 }">input signal</div>
   </div>
 
   <!-- ────────── 1D DCT BASIS column (clicks 2–4) ────────── -->
@@ -1275,10 +1276,10 @@ Best <i>k</i>-term basis for 1D signals &amp; 2D images — it's the Laplacian e
       <div class="dct-proj-label" :class="{ visible: $clicks >= 4 }" :style="{ transitionDelay: (i-1)*25+'ms' }" v-html="katex.renderToString('\\langle f, b_{' + i + '}\\rangle', {throwOnError:false})"></div>
       <img class="dct-basis-cell-img"
            :src="`${$slidev.configs.base ?? '/'}applications/dct_1d_mode_${i-1}.png`" />
-      <!-- Signal clone flies onto this cell at click 3 -->
+      <!-- Signal clone flies from signal center onto this cell at click 3 -->
       <img class="dct-clone"
            v-motion
-           :initial="{ x: -300 + ((i-1) % 4) * 30, y: 0, opacity: 0 }"
+           :initial="{ x: -256 - ((i-1) % 4) * 114, y: 74 - Math.floor((i-1) / 4) * 74, opacity: 0 }"
            :click-3="{ x: 0, y: 0, opacity: 0.5, transition: { duration: 800, ease: 'easeOut', delay: (i-1) * 30 } }"
            :click-4="{ x: 0, y: 0, opacity: 0, transition: { duration: 300 } }"
            :src="`${$slidev.configs.base ?? '/'}applications/dct_1d_sample.png`" />
@@ -1306,6 +1307,7 @@ Best <i>k</i>-term basis for 1D signals &amp; 2D images — it's the Laplacian e
   <div class="dct-recon-1d" :class="{ visible: $clicks >= 6 }">
     <img class="dct-recon-1d-img"
          :src="`${$slidev.configs.base ?? '/'}applications/dct_1d_recon_k8.png`" />
+    <div class="dct-img-label" :class="{ visible: $clicks >= 6 && $clicks < 7 }">reconstructed signal</div>
   </div>
 
   <div class="basis-eq" :style="{ opacity: $clicks >= 4 ? 0 : 1, transition: 'opacity 300ms ease' }">
@@ -1313,6 +1315,23 @@ Best <i>k</i>-term basis for 1D signals &amp; 2D images — it's the Laplacian e
   $\varphi_n(x) = \cos\!\left(\dfrac{n\pi x}{L}\right)$
 
   </div>
+
+  </div>
+
+  <!-- ────────── Norm brackets + minus (click 7) ────────── -->
+  <div class="dct-norm-l" :class="{ visible: $clicks >= 7 }">
+
+  $\Bigg\|$
+
+  </div>
+  <div class="dct-norm-minus" :class="{ visible: $clicks >= 7 }">
+
+  $-$
+
+  </div>
+  <div class="dct-norm-r" :class="{ visible: $clicks >= 7 }">
+
+  $\Bigg\|^2$
 
   </div>
 
@@ -1381,7 +1400,8 @@ Best <i>k</i>-term basis for 1D signals &amp; 2D images — it's the Laplacian e
   opacity: 0;
   transition: opacity 420ms ease,
               width 600ms ease,
-              left 600ms ease;
+              left 600ms ease,
+              top 600ms ease;
 }
 .dct-sample-col.visible { opacity: 1; }
 .show-basis-1d .dct-sample-col {
@@ -1498,7 +1518,7 @@ Best <i>k</i>-term basis for 1D signals &amp; 2D images — it's the Laplacian e
   transform: translate(-50%, -50%);
   width: 90%;
   opacity: 0;
-  transition: opacity 500ms ease 300ms;
+  transition: opacity 500ms ease 300ms, width 600ms ease, left 600ms ease, top 600ms ease;
 }
 .show-collapse-1d .dct-recon-1d {
   width: 90%;
@@ -1509,6 +1529,58 @@ Best <i>k</i>-term basis for 1D signals &amp; 2D images — it's the Laplacian e
   width: 100%;
   height: auto;
 }
+.dct-img-label {
+  text-align: center;
+  font-size: 1.1rem;
+  color: var(--c-fg-muted);
+  margin-top: 8px;
+  opacity: 0;
+  transition: opacity 300ms ease;
+}
+.dct-img-label.visible { opacity: 1; }
+
+/* ─── Click 7: norm brackets + minus between the two images ─── */
+.show-norm-1d .dct-sample-col {
+  width: 34%;
+  left: 28%;
+}
+.show-norm-1d .dct-recon-1d {
+  width: 75%;
+  left: 45%;
+}
+.dct-norm-l {
+  position: absolute;
+  top: 47%;
+  left: 4%;
+  transform: translateY(-50%);
+  opacity: 0;
+  transition: opacity 400ms ease;
+}
+.dct-norm-l.visible { opacity: 1; }
+.dct-norm-l p { margin: 0; }
+.dct-norm-l .katex { font-size: 5rem; }
+.dct-norm-minus {
+  position: absolute;
+  top: 47%;
+  left: 50.2%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: opacity 400ms ease;
+}
+.dct-norm-minus.visible { opacity: 1; }
+.dct-norm-minus p { margin: 0; }
+.dct-norm-minus .katex { font-size: 2.5rem; }
+.dct-norm-r {
+  position: absolute;
+  top: 45%;
+  right: -1%;
+  transform: translateY(-50%);
+  opacity: 0;
+  transition: opacity 400ms ease;
+}
+.dct-norm-r.visible { opacity: 1; }
+.dct-norm-r p { margin: 0; }
+.dct-norm-r .katex { font-size: 5rem; }
 
 .dct-sum-sigma {
   position: absolute;
