@@ -1344,6 +1344,12 @@ DCT basis $\{b_i\}$
 
   </div>
 
+  <div class="dct-min-text" :class="{ visible: $clicks >= 7 }">
+
+  The DCT basis **minimizes** the reconstruction error.
+
+  </div>
+
   <!-- ────────── 2D SAMPLE (dog photo) column (disabled for now) ────────── -->
   <div class="dct-sample-2d-col"
        :class="{ 'visible': false }">
@@ -1607,6 +1613,20 @@ DCT basis $\{b_i\}$
 .dct-norm-r.visible { opacity: 1; }
 .dct-norm-r p { margin: 0; }
 .dct-norm-r .katex { font-size: 5rem; }
+.dct-min-text {
+  position: absolute;
+  bottom: 8%;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 1.3rem;
+  color: var(--c-fg);
+  text-align: center;
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity 400ms ease;
+}
+.dct-min-text.visible { opacity: 1; }
+.dct-min-text p { margin: 0; }
 
 .dct-sum-sigma {
   position: absolute;
@@ -1748,7 +1768,7 @@ import katex from 'katex'
 <div class="h-full flex flex-col pt-4 pb-3 px-2">
 
 <h1 class="!text-xl !leading-snug !mb-4 font-serif text-center" style="color: #000">
-Best <i>k</i>-term basis for 2D images — same idea, higher dimensions.
+Best <i>k</i>-term basis for 1D signals &amp; 2D images — it's the Laplacian eigenbasis in disguise.
 </h1>
 
 <!-- Click flow (2D version):
@@ -1845,6 +1865,12 @@ input image $f$
   <div class="dct2-norm-r" :class="{ visible: $clicks >= 7 }">
 
   $\Bigg\|^2$
+
+  </div>
+
+  <div class="dct2-min-text" :class="{ visible: $clicks >= 7 }">
+
+  The DCT basis **minimizes** the reconstruction error.
 
   </div>
 
@@ -2078,7 +2104,49 @@ input image $f$
 .dct2-norm-r.visible { opacity: 1; }
 .dct2-norm-r p { margin: 0; }
 .dct2-norm-r .katex { font-size: 5rem; }
+.dct2-min-text {
+  position: absolute;
+  bottom: 8%;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 1.3rem;
+  color: var(--c-fg);
+  text-align: center;
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity 400ms ease;
+}
+.dct2-min-text.visible { opacity: 1; }
+.dct2-min-text p { margin: 0; }
 </style>
+
+---
+layout: default
+class: text-left
+clicks: 1
+---
+
+<div class="h-full flex flex-col pt-4 pb-3 px-2">
+
+<h1 class="!text-xl !leading-snug !mb-4 font-serif text-center" style="color: #000">
+Best <i>k</i>-term basis for 1D signals &amp; 2D images — it's the Laplacian eigenbasis in disguise.
+</h1>
+
+<div class="flex-1 flex items-center justify-center">
+<div :style="{ opacity: $clicks >= 1 ? 1 : 0, transition: 'opacity 500ms ease' }" style="text-align: center; font-size: 1.7rem; color: var(--c-fg); line-height: 1.4;">
+
+The DCT is the Neumann Laplacian eigenbasis on a box.
+
+<div style="margin-top: 1rem; font-size: 1.4rem;">
+
+$-\Delta\, \varphi_n = \lambda_n\, \varphi_n \;\; \text{on } \Omega, \qquad \partial_n\, \varphi_n = 0 \;\; \text{on } \partial\Omega$
+
+</div>
+
+</div>
+</div>
+
+</div>
 
 ---
 layout: default
