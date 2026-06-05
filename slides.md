@@ -1738,6 +1738,351 @@ DCT basis $\{b_i\}$
 ---
 layout: default
 class: text-left
+clicks: 7
+---
+
+<script setup>
+import katex from 'katex'
+</script>
+
+<div class="h-full flex flex-col pt-4 pb-3 px-2">
+
+<h1 class="!text-xl !leading-snug !mb-4 font-serif text-center" style="color: #000">
+Best <i>k</i>-term basis for 2D images — same idea, higher dimensions.
+</h1>
+
+<!-- Click flow (2D version):
+       click 1 → 2D image appears big centered
+       click 2 → image shrinks left, 2D DCT basis grid (4×4) appears right
+       click 3 → 16 image clones fly onto basis grid, fading out
+       click 4 → labels appear, columns shift left
+       click 5 → Σ and parentheses wrap
+       click 6 → collapse → reconstructed image appears
+       click 7 → norm brackets + minus -->
+<div class="flex-1 min-h-0 relative px-4"
+     :class="{ 'show-basis-2d': $clicks >= 2, 'show-proj-2d': $clicks >= 4, 'show-sum-2d': $clicks >= 5, 'show-collapse-2d': $clicks >= 6, 'show-norm-2d': $clicks >= 7 }">
+
+  <!-- ────────── 2D SAMPLE column ────────── -->
+  <div class="dct2-sample-col"
+       :class="{ 'visible': $clicks >= 1 }">
+    <div class="dct2-img-label-top" :style="{ opacity: $clicks >= 4 ? 0 : 1, transition: 'opacity 300ms ease' }">
+
+input image $f$
+
+</div>
+    <img class="dct2-sample-img"
+         :src="`${$slidev.configs.base ?? '/'}applications/dct_2d_sample.png`" />
+    <div class="dct2-img-label" :class="{ visible: $clicks >= 6 && $clicks < 7 }">input image</div>
+  </div>
+
+  <!-- ────────── 2D DCT BASIS column ────────── -->
+  <div class="dct2-basis-col" :class="{ 'visible': $clicks >= 2 }">
+
+  <div class="dct2-basis-label" :style="{ opacity: $clicks >= 4 ? 0 : 1, transition: 'opacity 300ms ease' }">
+
+2D DCT basis $\{b_{n,m}\}$
+
+</div>
+
+  <!-- 4×4 grid of individual 2D basis mode images -->
+  <div class="dct2-basis-grid" :class="{ spread: $clicks >= 4 }">
+    <div v-for="i in 12" :key="'cell2d'+i" class="dct2-basis-cell">
+      <div class="dct2-proj-label" :class="{ visible: $clicks >= 4 }" :style="{ transitionDelay: (i-1)*25+'ms' }" v-html="katex.renderToString('\\langle f, b_{' + Math.floor((i-1)/4) + ',' + (i-1)%4 + '}\\rangle', {throwOnError:false})"></div>
+      <img class="dct2-basis-cell-img"
+           :src="`${$slidev.configs.base ?? '/'}applications/dct_2d_mode_${Math.floor((i-1)/4)}${(i-1)%4}.png`" />
+      <img class="dct2-clone"
+           v-motion
+           :initial="{ x: -256 - ((i-1) % 4) * 90, y: 90 - Math.floor((i-1) / 4) * 90, opacity: 0 }"
+           :click-3="{ x: 0, y: 0, opacity: 0.5, transition: { duration: 800, ease: 'easeOut', delay: (i-1) * 30 } }"
+           :click-4="{ x: 0, y: 0, opacity: 0, transition: { duration: 300 } }"
+           :src="`${$slidev.configs.base ?? '/'}applications/dct_2d_sample.png`" />
+    </div>
+  </div>
+
+  <!-- Σ summation + parentheses (click 5) -->
+  <div class="dct2-sum-sigma" :class="{ visible: $clicks >= 5 }">
+
+  $\displaystyle\sum$
+
+  </div>
+  <div class="dct2-sum-paren-l" :class="{ visible: $clicks >= 5 }">
+
+  $\Bigg($
+
+  </div>
+  <div class="dct2-sum-paren-r" :class="{ visible: $clicks >= 5 }">
+
+  $\Bigg)$
+
+  </div>
+
+  <!-- Reconstructed image (click 6) -->
+  <div class="dct2-recon" :class="{ visible: $clicks >= 6 }">
+    <img class="dct2-recon-img"
+         :src="`${$slidev.configs.base ?? '/'}applications/dct_2d_recon_k32.png`" />
+    <div class="dct2-img-label" :class="{ visible: $clicks >= 6 && $clicks < 7 }">reconstructed image</div>
+  </div>
+
+  <div class="dct2-basis-eq" :style="{ opacity: $clicks >= 4 ? 0 : 1, transition: 'opacity 300ms ease' }">
+
+  $\varphi_{n,m}(x,y) = \cos\!\left(\dfrac{n\pi x}{L_x}\right)\cos\!\left(\dfrac{m\pi y}{L_y}\right)$
+
+  </div>
+
+  </div>
+
+  <!-- Norm brackets + minus (click 7) -->
+  <div class="dct2-norm-l" :class="{ visible: $clicks >= 7 }">
+
+  $\Bigg\|$
+
+  </div>
+  <div class="dct2-norm-minus" :class="{ visible: $clicks >= 7 }">
+
+  $-$
+
+  </div>
+  <div class="dct2-norm-r" :class="{ visible: $clicks >= 7 }">
+
+  $\Bigg\|^2$
+
+  </div>
+
+</div>
+
+</div>
+
+<style>
+/* ─── 2D sample column ─── */
+.dct2-sample-col {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 38%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: opacity 420ms ease, width 600ms ease, left 600ms ease, top 600ms ease;
+}
+.dct2-sample-col.visible { opacity: 1; }
+.show-basis-2d .dct2-sample-col { width: 30%; left: 22%; }
+.show-proj-2d .dct2-sample-col { width: 22%; left: 12%; }
+.show-sum-2d .dct2-sample-col { width: 16%; left: 8%; }
+.show-collapse-2d .dct2-sample-col { width: 30%; left: 25%; top: calc(50% - 20px); }
+.show-norm-2d .dct2-sample-col { width: 26%; left: 28%; top: calc(50% + 10px); }
+.dct2-sample-img { display: block; width: 100%; height: auto; }
+
+/* ─── 2D DCT basis column ─── */
+.dct2-basis-col {
+  position: absolute;
+  top: calc(50% - 20px);
+  right: 2%;
+  width: 40%;
+  transform: translateY(-50%);
+  opacity: 0;
+  transition: opacity 420ms ease 350ms;
+}
+.dct2-basis-col.visible { opacity: 1; }
+
+/* ─── 2D basis grid ─── */
+.dct2-basis-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin-top: 15px;
+  transition: transform 600ms ease;
+}
+.show-sum-2d .dct2-basis-grid { transform: scale(0.82); }
+.dct2-basis-grid.spread .dct2-basis-cell {
+  transform: translateX(calc(var(--col-shift, 0) * 1px));
+}
+.dct2-basis-cell {
+  position: relative;
+  transition: transform 600ms ease;
+  --col-shift: 0;
+}
+.dct2-basis-grid.spread .dct2-basis-cell:nth-child(4n+1) { --col-shift: -210; }
+.dct2-basis-grid.spread .dct2-basis-cell:nth-child(4n+2) { --col-shift: -148; }
+.dct2-basis-grid.spread .dct2-basis-cell:nth-child(4n+3) { --col-shift: -76; }
+.dct2-basis-grid.spread .dct2-basis-cell:nth-child(4n+4) { --col-shift: 0; }
+.show-sum-2d .dct2-basis-grid .dct2-basis-cell:nth-child(4n+1) { --col-shift: -230; }
+.show-sum-2d .dct2-basis-grid .dct2-basis-cell:nth-child(4n+2) { --col-shift: -160; }
+.show-sum-2d .dct2-basis-grid .dct2-basis-cell:nth-child(4n+3) { --col-shift: -82; }
+.show-sum-2d .dct2-basis-grid .dct2-basis-cell:nth-child(4n+4) { --col-shift: -10; }
+.dct2-basis-cell-img { display: block; width: 100%; height: auto; }
+.dct2-clone {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  object-fit: contain;
+  pointer-events: none;
+}
+
+/* ─── 2D projection labels ─── */
+.dct2-proj-label {
+  position: absolute;
+  right: calc(100% + 5px);
+  top: 0; height: 100%;
+  display: flex;
+  align-items: center;
+  font-size: 1.0rem;
+  color: var(--c-fg-body);
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity 300ms ease;
+}
+.dct2-proj-label.visible { opacity: 1; }
+
+/* ─── 2D labels ─── */
+.dct2-basis-label {
+  position: absolute;
+  bottom: calc(100% + 5px);
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--c-fg);
+  text-align: center;
+  white-space: nowrap;
+}
+.dct2-basis-label p { margin: 0; }
+.dct2-basis-eq {
+  position: absolute;
+  top: calc(100% + 30px);
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 1.05rem;
+  color: var(--c-fg);
+  text-align: center;
+  white-space: nowrap;
+}
+.dct2-basis-eq p { margin: 0; }
+.dct2-img-label-top {
+  position: absolute;
+  bottom: calc(100% + 10px);
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--c-fg);
+  white-space: nowrap;
+}
+.dct2-img-label-top p { margin: 0; }
+.dct2-img-label {
+  text-align: center;
+  font-size: 1.1rem;
+  color: var(--c-fg-muted);
+  margin-top: 8px;
+  opacity: 0;
+  transition: opacity 300ms ease;
+}
+.dct2-img-label.visible { opacity: 1; }
+
+/* ─── 2D Sigma + parens (click 5) ─── */
+.dct2-sum-sigma {
+  position: absolute;
+  left: -325px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--c-fg);
+  opacity: 0;
+  transition: opacity 400ms ease;
+}
+.dct2-sum-sigma.visible { opacity: 1; }
+.dct2-sum-sigma p { margin: 0; }
+.dct2-sum-sigma .katex { font-size: 4.5rem; }
+.dct2-sum-paren-l {
+  position: absolute;
+  left: -270px;
+  top: 0; height: 100%;
+  display: flex;
+  align-items: center;
+  color: var(--c-fg);
+  opacity: 0;
+  transition: opacity 400ms ease;
+}
+.dct2-sum-paren-l.visible { opacity: 1; }
+.dct2-sum-paren-l p { margin: 0; }
+.dct2-sum-paren-l .katex { font-size: 10rem; }
+.dct2-sum-paren-r {
+  position: absolute;
+  right: -25px;
+  top: 0; height: 100%;
+  display: flex;
+  align-items: center;
+  color: var(--c-fg);
+  opacity: 0;
+  transition: opacity 400ms ease;
+}
+.dct2-sum-paren-r.visible { opacity: 1; }
+.dct2-sum-paren-r p { margin: 0; }
+.dct2-sum-paren-r .katex { font-size: 10rem; }
+
+/* ─── 2D collapse (click 6) ─── */
+.show-collapse-2d .dct2-basis-grid {
+  transform: scale(0.3);
+  opacity: 0;
+  transition: transform 700ms cubic-bezier(0.4, 0, 0.2, 1), opacity 500ms ease;
+}
+.show-collapse-2d .dct2-sum-sigma,
+.show-collapse-2d .dct2-sum-paren-l,
+.show-collapse-2d .dct2-sum-paren-r {
+  opacity: 0 !important;
+  transition: opacity 500ms ease;
+}
+.show-collapse-2d .dct2-proj-label { opacity: 0 !important; }
+.dct2-recon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 75%;
+  opacity: 0;
+  transition: opacity 500ms ease 300ms, width 600ms ease, left 600ms ease, top 600ms ease;
+}
+.dct2-recon.visible { opacity: 1; }
+.show-norm-2d .dct2-recon { width: 65%; left: 45%; top: calc(50% + 30px); }
+.dct2-recon-img { display: block; width: 100%; height: auto; }
+
+/* ─── 2D norm (click 7) ─── */
+.show-norm-2d .dct2-sample-col { width: 26%; left: 28%; top: calc(50% + 10px); }
+.dct2-norm-l {
+  position: absolute;
+  top: 47%; left: 4%;
+  transform: translateY(-50%);
+  opacity: 0;
+  transition: opacity 400ms ease;
+}
+.dct2-norm-l.visible { opacity: 1; }
+.dct2-norm-l p { margin: 0; }
+.dct2-norm-l .katex { font-size: 5rem; }
+.dct2-norm-minus {
+  position: absolute;
+  top: 47%;
+  left: 52%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: opacity 400ms ease;
+}
+.dct2-norm-minus.visible { opacity: 1; }
+.dct2-norm-minus p { margin: 0; }
+.dct2-norm-minus .katex { font-size: 2.5rem; }
+.dct2-norm-r {
+  position: absolute;
+  top: 45%;
+  right: -1%;
+  transform: translateY(-50%);
+  opacity: 0;
+  transition: opacity 400ms ease;
+}
+.dct2-norm-r.visible { opacity: 1; }
+.dct2-norm-r p { margin: 0; }
+.dct2-norm-r .katex { font-size: 5rem; }
+</style>
+
+---
+layout: default
+class: text-left
 clicks: 4
 ---
 
