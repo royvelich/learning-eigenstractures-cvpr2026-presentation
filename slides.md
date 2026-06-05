@@ -1259,6 +1259,11 @@ Best <i>k</i>-term basis for 1D signals &amp; 2D images — it's the Laplacian e
   <!-- ────────── 1D SAMPLE column (clicks 1–5) ────────── -->
   <div class="dct-sample-col"
        :class="{ 'visible': $clicks >= 1 }">
+    <div class="dct-img-label-top" :style="{ opacity: $clicks >= 4 ? 0 : 1, transition: 'opacity 300ms ease' }">
+
+input signal $f$
+
+</div>
     <img class="dct-sample-img"
          :src="`${$slidev.configs.base ?? '/'}applications/dct_1d_sample.png`"
          alt="A smooth 1D signal on [0, L]" />
@@ -1268,7 +1273,11 @@ Best <i>k</i>-term basis for 1D signals &amp; 2D images — it's the Laplacian e
   <!-- ────────── 1D DCT BASIS column (clicks 2–4) ────────── -->
   <div class="dct-basis-col" :class="{ 'visible': $clicks >= 2 }">
 
-  <div class="basis-label" :style="{ opacity: $clicks >= 4 ? 0 : 1, transition: 'opacity 300ms ease' }">DCT basis</div>
+  <div class="basis-label" :style="{ opacity: $clicks >= 4 ? 0 : 1, transition: 'opacity 300ms ease' }">
+
+DCT basis $\{b_i\}$
+
+</div>
 
   <!-- 3×4 grid of individual basis mode images -->
   <div class="dct-basis-grid" :class="{ spread: $clicks >= 4 }">
@@ -1422,7 +1431,7 @@ Best <i>k</i>-term basis for 1D signals &amp; 2D images — it's the Laplacian e
 /* ─── 1D DCT basis column (click 2) ─── */
 .dct-basis-col {
   position: absolute;
-  top: 50%;
+  top: calc(50% - 20px);
   right: 2%;
   width: 46%;
   transform: translateY(-50%);
@@ -1434,6 +1443,8 @@ Best <i>k</i>-term basis for 1D signals &amp; 2D images — it's the Laplacian e
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 20px;
+  padding-top: 15px;
+  margin-top: -5px;
   transition: transform 600ms ease;
 }
 .show-sum-1d .dct-basis-grid {
@@ -1496,6 +1507,7 @@ Best <i>k</i>-term basis for 1D signals &amp; 2D images — it's the Laplacian e
 .show-collapse-1d .dct-sample-col {
   width: 41%;
   left: 25%;
+  top: calc(50% - 20px);
 }
 .show-collapse-1d .dct-basis-grid {
   transform: scale(0.3);
@@ -1529,6 +1541,18 @@ Best <i>k</i>-term basis for 1D signals &amp; 2D images — it's the Laplacian e
   width: 100%;
   height: auto;
 }
+.dct-img-label-top {
+  position: absolute;
+  bottom: calc(100% + 10px);
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--c-fg);
+  white-space: nowrap;
+}
+.dct-img-label-top p { margin: 0; }
 .dct-img-label {
   text-align: center;
   font-size: 1.1rem;
@@ -1543,10 +1567,12 @@ Best <i>k</i>-term basis for 1D signals &amp; 2D images — it's the Laplacian e
 .show-norm-1d .dct-sample-col {
   width: 34%;
   left: 28%;
+  top: calc(50% + 10px);
 }
 .show-norm-1d .dct-recon-1d {
   width: 75%;
   left: 45%;
+  top: calc(50% + 30px);
 }
 .dct-norm-l {
   position: absolute;
@@ -1678,10 +1704,10 @@ Best <i>k</i>-term basis for 1D signals &amp; 2D images — it's the Laplacian e
 }
 .basis-label {
   font-weight: 600;
-  bottom: calc(100% + 6px);   /* 20 px above the image */
+  bottom: calc(100% + 5px);
 }
 .basis-eq {
-  top: calc(100% + 6px);      /* 20 px below the image */
+  top: calc(100% + 40px);
 }
 .basis-eq p { margin: 0; }
 
