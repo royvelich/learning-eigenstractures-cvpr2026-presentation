@@ -1306,6 +1306,7 @@ Best <i>k</i>-term basis — a 3D toy example.
 layout: default
 class: text-left
 clicks: 7
+hide: true
 ---
 
 <script setup>
@@ -3594,6 +3595,133 @@ $\mathcal{L}\bigl(\{b_i\}_{i=1}^{K}\bigr) = \sum_{k=1}^{K} \left( \sum_i \bigl\|
 ---
 layout: default
 class: text-left
+clicks: 3
+---
+
+<div class="h-full flex flex-col pt-4 pb-3 px-2">
+
+<h1 class="!text-2xl !leading-snug !mb-4 font-serif text-center" style="color: #000">
+Train on different samplings of a single shape.
+</h1>
+
+<div class="flex-1 relative" style="overflow: visible;">
+
+  <!-- Lion mesh (click 1: big centered, click 2: shrinks left) -->
+  <div class="lion-mesh-col" :class="{ visible: $clicks >= 1, shrunk: $clicks >= 2 }">
+    <img class="lion-mesh-img" :src="`${$slidev.configs.base ?? '/'}applications/lion_mesh.png`" />
+  </div>
+
+  <!-- Arrow from lion to samples (click 2) -->
+  <div class="lion-arrow" :class="{ visible: $clicks >= 2 }">
+    <svg viewBox="0 0 60 16" width="60" height="16" xmlns="http://www.w3.org/2000/svg">
+      <path d="M 2 8 L 46 8" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="butt" />
+      <path d="M 46 3 L 56 8 L 46 13 Z" fill="currentColor" />
+    </svg>
+  </div>
+
+  <!-- Point cloud samples (click 2: vertical, staggered fade-in) -->
+  <div class="lion-samples" :class="{ visible: $clicks >= 2 }">
+    <img class="lion-sample-img transition-all duration-300 delay-[0ms]" :class="$clicks >= 2 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'" :src="`${$slidev.configs.base ?? '/'}applications/lion_pc_sample_0.png`" />
+    <img class="lion-sample-img transition-all duration-300 delay-[100ms]" :class="$clicks >= 2 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'" :src="`${$slidev.configs.base ?? '/'}applications/lion_pc_sample_1.png`" />
+    <img class="lion-sample-img transition-all duration-300 delay-[200ms]" :class="$clicks >= 2 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'" :src="`${$slidev.configs.base ?? '/'}applications/lion_pc_sample_2.png`" />
+    <img class="lion-sample-img transition-all duration-300 delay-[300ms]" :class="$clicks >= 2 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'" :src="`${$slidev.configs.base ?? '/'}applications/lion_pc_sample_3.png`" />
+    <img class="lion-sample-img transition-all duration-300 delay-[400ms]" :class="$clicks >= 2 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'" :src="`${$slidev.configs.base ?? '/'}applications/lion_pc_sample_4.png`" />
+  </div>
+
+  <!-- Arrow from samples to pipeline (click 3) -->
+  <div class="lion-arrow-2" :class="{ visible: $clicks >= 3 }">
+    <svg viewBox="0 0 60 16" width="60" height="16" xmlns="http://www.w3.org/2000/svg">
+      <path d="M 2 8 L 46 8" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="butt" />
+      <path d="M 46 3 L 56 8 L 46 13 Z" fill="currentColor" />
+    </svg>
+  </div>
+
+  <!-- "Our pipeline" box (click 3) -->
+  <div class="lion-pipeline-box" :class="{ visible: $clicks >= 3 }">
+
+  **Our pipeline**
+
+  </div>
+
+</div>
+
+</div>
+
+<style>
+.lion-mesh-col {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 60%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: opacity 420ms ease, width 600ms ease, left 600ms ease;
+}
+.lion-mesh-col.visible { opacity: 1; }
+.lion-mesh-col.shrunk { width: 35%; left: 14%; }
+.lion-mesh-img { display: block; max-height: 420px; width: auto; margin: 0 auto; }
+.lion-arrow {
+  position: absolute;
+  top: 50%;
+  left: 33%;
+  transform: translateY(-50%);
+  color: var(--c-fg-subtle);
+  opacity: 0;
+  transition: opacity 400ms ease;
+}
+.lion-arrow.visible { opacity: 1; }
+.lion-samples {
+  position: absolute;
+  top: calc(50% + 30px);
+  left: 42%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  width: 22%;
+}
+.lion-samples.visible { }
+.lion-sample-img { display: block; width: 100%; height: auto; margin-top: -60px; }
+.lion-sample-img:first-child { margin-top: 0; }
+.lion-sample-img:nth-child(odd) { transform: translateX(-30px); }
+.lion-sample-img:nth-child(even) { transform: translateX(30px); }
+.lion-arrow-2 {
+  position: absolute;
+  top: 50%;
+  left: 64%;
+  transform: translateY(-50%);
+  color: var(--c-fg-subtle);
+  opacity: 0;
+  transition: opacity 400ms ease;
+}
+.lion-arrow-2.visible { opacity: 1; }
+.lion-pipeline-box {
+  position: absolute;
+  top: 50%;
+  left: 76%;
+  transform: translateY(-50%);
+  background: #e0f2fe;
+  border: 2px solid #38bdf8;
+  border-radius: 8px;
+  padding: 0.6rem 2rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--c-brand-from);
+  opacity: 0;
+  transition: opacity 400ms ease;
+}
+.lion-pipeline-box.visible { opacity: 1; }
+.lion-pipeline-box p { margin: 0; }
+</style>
+
+<!--
+1. Consider this lion shape — a smooth manifold.
+2. We sample it multiple times with different point clouds.
+3. All samples feed into our pipeline — we train on different samplings of the same shape.
+-->
+
+---
+layout: default
+class: text-left
 clicks: 6
 ---
 
@@ -3669,7 +3797,7 @@ $k=50$
 
 </div>
 
-<div class="text-xs text-right w-full pr-1 whitespace-nowrap transition-opacity duration-300 -translate-x-[10px]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">Cot.&nbsp;Lap.</div>
+<div class="text-base text-right w-full pr-1 whitespace-nowrap transition-opacity duration-300 -translate-x-[10px]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">Cot.&nbsp;Lap.</div>
 <div class="cos-cell"><img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[0ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/lion/item_0000_gt_eigen001.png`" /><div class="cosine-label" style="color: #047857">0.99</div></div>
 <div class="cos-cell"><img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[60ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/lion/item_0000_gt_eigen002.png`" /><div class="cosine-label" style="color: #047857">0.97</div></div>
 <div class="cos-cell"><img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[120ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/lion/item_0000_gt_eigen003.png`" /><div class="cosine-label" style="color: #047857">0.99</div></div>
@@ -3683,7 +3811,7 @@ $k=50$
 <img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[600ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/lion/item_0000_gt_recon_k025.png`" />
 <img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[660ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/lion/item_0000_gt_recon_k050.png`" />
 
-<div class="text-xs text-right w-full pr-1 whitespace-nowrap transition-opacity duration-300 -translate-x-[10px]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'">Ours</div>
+<div class="text-base text-right w-full pr-1 whitespace-nowrap transition-opacity duration-300 -translate-x-[10px]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'">Ours</div>
 <img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[0ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/lion/item_0000_pred_eigen001.png`" />
 <img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[60ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/lion/item_0000_pred_eigen002.png`" />
 <img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[120ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/lion/item_0000_pred_eigen003.png`" />
@@ -3697,7 +3825,7 @@ $k=50$
 <img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[600ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/lion/item_0000_pred_recon_k025.png`" />
 <img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[660ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/lion/item_0000_pred_recon_k050.png`" />
 
-<div class="text-xs text-right w-full pr-1 whitespace-nowrap transition-opacity duration-300 -translate-x-[10px]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">Cot.&nbsp;Lap.</div>
+<div class="text-base text-right w-full pr-1 whitespace-nowrap transition-opacity duration-300 -translate-x-[10px]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">Cot.&nbsp;Lap.</div>
 <div class="cos-cell"><img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[0ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/botijo/item_0000_gt_eigen001.png`" /><div class="cosine-label" style="color: #047857">0.99</div></div>
 <div class="cos-cell"><img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[60ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/botijo/item_0000_gt_eigen002.png`" /><div class="cosine-label" style="color: #047857">0.95</div></div>
 <div class="cos-cell"><img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[120ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/botijo/item_0000_gt_eigen003.png`" /><div class="cosine-label" style="color: #047857">0.94</div></div>
@@ -3711,7 +3839,7 @@ $k=50$
 <img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[600ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/botijo/item_0000_gt_recon_k025.png`" />
 <img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[660ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/botijo/item_0000_gt_recon_k050.png`" />
 
-<div class="text-xs text-right w-full pr-1 whitespace-nowrap transition-opacity duration-300 -translate-x-[10px]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'">Ours</div>
+<div class="text-base text-right w-full pr-1 whitespace-nowrap transition-opacity duration-300 -translate-x-[10px]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'">Ours</div>
 <img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[0ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/botijo/item_0000_pred_eigen001.png`" />
 <img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[60ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/botijo/item_0000_pred_eigen002.png`" />
 <img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[120ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/botijo/item_0000_pred_eigen003.png`" />
@@ -3725,7 +3853,7 @@ $k=50$
 <img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[600ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/botijo/item_0000_pred_recon_k025.png`" />
 <img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[660ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/botijo/item_0000_pred_recon_k050.png`" />
 
-<div class="text-xs text-right w-full pr-1 whitespace-nowrap transition-opacity duration-300 -translate-x-[10px]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">Cot.&nbsp;Lap.</div>
+<div class="text-base text-right w-full pr-1 whitespace-nowrap transition-opacity duration-300 -translate-x-[10px]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">Cot.&nbsp;Lap.</div>
 <div class="cos-cell"><img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[0ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/armadillo/item_0000_gt_eigen001.png`" /><div class="cosine-label" style="color: #047857">1.00</div></div>
 <div class="cos-cell"><img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[60ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/armadillo/item_0000_gt_eigen002.png`" /><div class="cosine-label" style="color: #047857">0.99</div></div>
 <div class="cos-cell"><img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[120ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/armadillo/item_0000_gt_eigen003.png`" /><div class="cosine-label" style="color: #047857">0.99</div></div>
@@ -3739,7 +3867,7 @@ $k=50$
 <img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[600ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/armadillo/item_0000_gt_recon_k025.png`" />
 <img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[660ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/armadillo/item_0000_gt_recon_k050.png`" />
 
-<div class="text-xs text-right w-full pr-1 whitespace-nowrap transition-opacity duration-300 -translate-x-[10px]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'">Ours</div>
+<div class="text-base text-right w-full pr-1 whitespace-nowrap transition-opacity duration-300 -translate-x-[10px]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'">Ours</div>
 <img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[0ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/armadillo/item_0000_pred_eigen001.png`" />
 <img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[60ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/armadillo/item_0000_pred_eigen002.png`" />
 <img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[120ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/armadillo/item_0000_pred_eigen003.png`" />
@@ -3787,10 +3915,10 @@ $k=50$
   left: 50%;
   bottom: -10px;
   transform: translateX(-50%);
-  font-size: 9px;
+  font-size: 14px;
   font-weight: 600;
   background: rgba(255, 255, 255, 0.92);
-  padding: 1px 4px;
+  padding: 2px 6px;
   border-radius: 3px;
   border: 1px solid rgba(0, 0, 0, 0.08);
   white-space: nowrap;
@@ -3926,7 +4054,7 @@ $k=50$
 
 </div>
 
-<div class="text-xs text-right w-full pr-1 whitespace-nowrap transition-opacity duration-300 -translate-x-[10px]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">Cot.&nbsp;Lap.</div>
+<div class="text-base text-right w-full pr-1 whitespace-nowrap transition-opacity duration-300 -translate-x-[10px]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">Cot.&nbsp;Lap.</div>
 <div class="cos-cell"><img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[0ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/heptoroid/item_0000_gt_eigen001.png`" /><div class="cosine-label" style="color: #047857">1.00</div></div>
 <div class="cos-cell"><img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[60ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/heptoroid/item_0000_gt_eigen002.png`" /><div class="cosine-label" style="color: #047857">1.00</div></div>
 <div class="cos-cell"><img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[120ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/heptoroid/item_0000_gt_eigen003.png`" /><div class="cosine-label" style="color: #047857">0.99</div></div>
@@ -3940,7 +4068,7 @@ $k=50$
 <img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[600ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/heptoroid/item_0000_gt_recon_k025.png`" />
 <img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[660ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/heptoroid/item_0000_gt_recon_k050.png`" />
 
-<div class="text-xs text-right w-full pr-1 whitespace-nowrap transition-opacity duration-300 -translate-x-[10px]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'">Ours</div>
+<div class="text-base text-right w-full pr-1 whitespace-nowrap transition-opacity duration-300 -translate-x-[10px]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'">Ours</div>
 <img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[0ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/heptoroid/item_0000_pred_eigen001.png`" />
 <img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[60ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/heptoroid/item_0000_pred_eigen002.png`" />
 <img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[120ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/heptoroid/item_0000_pred_eigen003.png`" />
@@ -3954,7 +4082,7 @@ $k=50$
 <img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[600ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/heptoroid/item_0000_pred_recon_k025.png`" />
 <img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[660ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/heptoroid/item_0000_pred_recon_k050.png`" />
 
-<div class="text-xs text-right w-full pr-1 whitespace-nowrap transition-opacity duration-300 -translate-x-[10px]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">Cot.&nbsp;Lap.</div>
+<div class="text-base text-right w-full pr-1 whitespace-nowrap transition-opacity duration-300 -translate-x-[10px]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">Cot.&nbsp;Lap.</div>
 <div class="cos-cell"><img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[0ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/wrench/item_0000_gt_eigen001.png`" /><div class="cosine-label" style="color: #047857">1.00</div></div>
 <div class="cos-cell"><img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[60ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/wrench/item_0000_gt_eigen002.png`" /><div class="cosine-label" style="color: #047857">0.99</div></div>
 <div class="cos-cell"><img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[120ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/wrench/item_0000_gt_eigen003.png`" /><div class="cosine-label" style="color: #047857">0.99</div></div>
@@ -3968,7 +4096,7 @@ $k=50$
 <img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[600ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/wrench/item_0000_gt_recon_k025.png`" />
 <img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[660ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/wrench/item_0000_gt_recon_k050.png`" />
 
-<div class="text-xs text-right w-full pr-1 whitespace-nowrap transition-opacity duration-300 -translate-x-[10px]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'">Ours</div>
+<div class="text-base text-right w-full pr-1 whitespace-nowrap transition-opacity duration-300 -translate-x-[10px]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'">Ours</div>
 <img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[0ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/wrench/item_0000_pred_eigen001.png`" />
 <img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[60ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/wrench/item_0000_pred_eigen002.png`" />
 <img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[120ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/wrench/item_0000_pred_eigen003.png`" />
@@ -3982,7 +4110,7 @@ $k=50$
 <img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[600ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/wrench/item_0000_pred_recon_k025.png`" />
 <img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[660ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/wrench/item_0000_pred_recon_k050.png`" />
 
-<div class="text-xs text-right w-full pr-1 whitespace-nowrap transition-opacity duration-300 -translate-x-[10px]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">Cot.&nbsp;Lap.</div>
+<div class="text-base text-right w-full pr-1 whitespace-nowrap transition-opacity duration-300 -translate-x-[10px]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">Cot.&nbsp;Lap.</div>
 <div class="cos-cell"><img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[0ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/pegaso/item_0000_gt_eigen001.png`" /><div class="cosine-label" style="color: #047857">0.99</div></div>
 <div class="cos-cell"><img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[60ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/pegaso/item_0000_gt_eigen002.png`" /><div class="cosine-label" style="color: #047857">0.86</div></div>
 <div class="cos-cell"><img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[120ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/pegaso/item_0000_gt_eigen003.png`" /><div class="cosine-label" style="color: #047857">0.89</div></div>
@@ -3996,7 +4124,7 @@ $k=50$
 <img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[600ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/pegaso/item_0000_gt_recon_k025.png`" />
 <img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[660ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/pegaso/item_0000_gt_recon_k050.png`" />
 
-<div class="text-xs text-right w-full pr-1 whitespace-nowrap transition-opacity duration-300 -translate-x-[10px]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'">Ours</div>
+<div class="text-base text-right w-full pr-1 whitespace-nowrap transition-opacity duration-300 -translate-x-[10px]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'">Ours</div>
 <img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[0ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/pegaso/item_0000_pred_eigen001.png`" />
 <img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[60ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/pegaso/item_0000_pred_eigen002.png`" />
 <img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[120ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/pegaso/item_0000_pred_eigen003.png`" />
@@ -4042,10 +4170,10 @@ $k=50$
   left: 50%;
   bottom: -10px;
   transform: translateX(-50%);
-  font-size: 9px;
+  font-size: 14px;
   font-weight: 600;
   background: rgba(255, 255, 255, 0.92);
-  padding: 1px 4px;
+  padding: 2px 6px;
   border-radius: 3px;
   border: 1px solid rgba(0, 0, 0, 0.08);
   white-space: nowrap;
@@ -4095,6 +4223,213 @@ $k=50$
 .ml-pop-stage[data-step="5"] img[src*="eigen039"],
 .ml-pop-stage[data-step="5"] img[src*="eigen040"] { animation-delay: 300ms; }
 </style>
+
+---
+layout: default
+class: text-left
+clicks: 2
+---
+
+<div class="h-full flex flex-col pt-4 pb-3 px-2">
+
+<h1 class="!text-2xl !leading-snug !mb-6 font-serif text-center" style="color: #000">
+Train at low resolution, infer at higher resolution.
+</h1>
+
+<div class="flex-1 min-h-0 flex items-center justify-center">
+
+<div class="grid gap-2 items-center justify-items-center flex-none -translate-x-[30px]" style="grid-template-columns: 90px repeat(6, 135px); grid-template-rows: auto repeat(2, 135px);">
+
+<div></div>
+<div class="text-sm text-center transition-opacity duration-300 translate-y-4" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">
+
+$\mathbf{v}_{2}$
+
+</div>
+<div class="text-sm text-center transition-opacity duration-300 translate-y-4" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">
+
+$\mathbf{v}_{8}$
+
+</div>
+<div class="text-sm text-center transition-opacity duration-300 translate-y-4" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">
+
+$\mathbf{v}_{14}$
+
+</div>
+<div class="text-sm text-center transition-opacity duration-300 translate-y-4" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">
+
+$\mathbf{v}_{22}$
+
+</div>
+<div class="text-sm text-center transition-opacity duration-300 translate-y-4" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">
+
+$\mathbf{v}_{30}$
+
+</div>
+<div class="text-sm text-center transition-opacity duration-300 translate-y-4" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">
+
+$\mathbf{v}_{47}$
+
+</div>
+
+<div class="text-xs text-right w-full pr-1 whitespace-nowrap transition-opacity duration-300" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">3K pts</div>
+<img class="w-[135px] h-[135px] object-contain block transition-opacity duration-300 delay-[0ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}rebuttal_screenshots/pegaso1/item_0000_pred_eigen001.png`" />
+<img class="w-[135px] h-[135px] object-contain block transition-opacity duration-300 delay-[80ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}rebuttal_screenshots/pegaso1/item_0000_pred_eigen007.png`" />
+<img class="w-[135px] h-[135px] object-contain block transition-opacity duration-300 delay-[160ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}rebuttal_screenshots/pegaso1/item_0000_pred_eigen013.png`" />
+<img class="w-[135px] h-[135px] object-contain block transition-opacity duration-300 delay-[240ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}rebuttal_screenshots/pegaso1/item_0000_pred_eigen021.png`" />
+<img class="w-[135px] h-[135px] object-contain block transition-opacity duration-300 delay-[320ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}rebuttal_screenshots/pegaso1/item_0000_pred_eigen029.png`" />
+<img class="w-[135px] h-[135px] object-contain block transition-opacity duration-300 delay-[400ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}rebuttal_screenshots/pegaso1/item_0000_pred_eigen046.png`" />
+
+<div class="text-xs text-right w-full pr-1 whitespace-nowrap transition-opacity duration-300" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'">12K pts</div>
+<img class="w-[135px] h-[135px] object-contain block transition-opacity duration-300 delay-[0ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}rebuttal_screenshots/pegaso2/item_0000_pred_eigen001.png`" />
+<img class="w-[135px] h-[135px] object-contain block transition-opacity duration-300 delay-[80ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}rebuttal_screenshots/pegaso2/item_0000_pred_eigen007.png`" />
+<img class="w-[135px] h-[135px] object-contain block transition-opacity duration-300 delay-[160ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}rebuttal_screenshots/pegaso2/item_0000_pred_eigen013.png`" />
+<img class="w-[135px] h-[135px] object-contain block transition-opacity duration-300 delay-[240ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}rebuttal_screenshots/pegaso2/item_0000_pred_eigen021.png`" />
+<img class="w-[135px] h-[135px] object-contain block transition-opacity duration-300 delay-[320ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}rebuttal_screenshots/pegaso2/item_0000_pred_eigen029.png`" />
+<img class="w-[135px] h-[135px] object-contain block transition-opacity duration-300 delay-[400ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}rebuttal_screenshots/pegaso2/item_0000_pred_eigen046.png`" />
+
+</div>
+
+</div>
+
+</div>
+
+---
+layout: default
+class: text-left
+clicks: 3
+---
+
+<div class="h-full flex flex-col pt-4 pb-3 px-2">
+
+<h1 class="!text-2xl !leading-snug !mb-4 font-serif text-center" style="color: #000">
+Train on many shapes, test on unseen shapes.
+</h1>
+
+<div class="flex-1 relative" style="overflow: visible;">
+
+  <!-- 4 shape meshes (click 1: big centered in 2x2 grid, click 2: shrink left) -->
+  <div class="multi-mesh-col" :class="{ visible: $clicks >= 1, shrunk: $clicks >= 2 }">
+    <div class="multi-mesh-grid">
+      <img class="multi-mesh-img" :src="`${$slidev.configs.base ?? '/'}applications/multi_lion_mesh.png`" />
+      <img class="multi-mesh-img" :src="`${$slidev.configs.base ?? '/'}applications/multi_armadillo_mesh.png`" />
+      <img class="multi-mesh-img" :src="`${$slidev.configs.base ?? '/'}applications/multi_botijo_mesh.png`" />
+      <img class="multi-mesh-img" :src="`${$slidev.configs.base ?? '/'}applications/multi_fertility_mesh.png`" />
+    </div>
+  </div>
+
+  <!-- Arrow from meshes to samples (click 2) -->
+  <div class="multi-arrow" :class="{ visible: $clicks >= 2 }">
+    <svg viewBox="0 0 60 16" width="60" height="16" xmlns="http://www.w3.org/2000/svg">
+      <path d="M 2 8 L 46 8" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="butt" />
+      <path d="M 46 3 L 56 8 L 46 13 Z" fill="currentColor" />
+    </svg>
+  </div>
+
+  <!-- Point cloud samples from all shapes (click 2: staggered) -->
+  <div class="multi-samples" :class="{ visible: $clicks >= 2 }">
+    <img class="multi-sample-img transition-all duration-300 delay-[0ms]" :class="$clicks >= 2 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'" :src="`${$slidev.configs.base ?? '/'}applications/multi_lion_pc.png`" />
+    <img class="multi-sample-img transition-all duration-300 delay-[100ms]" :class="$clicks >= 2 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'" :src="`${$slidev.configs.base ?? '/'}applications/multi_armadillo_pc.png`" />
+    <img class="multi-sample-img transition-all duration-300 delay-[200ms]" :class="$clicks >= 2 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'" :src="`${$slidev.configs.base ?? '/'}applications/multi_botijo_pc.png`" />
+    <img class="multi-sample-img transition-all duration-300 delay-[300ms]" :class="$clicks >= 2 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'" :src="`${$slidev.configs.base ?? '/'}applications/multi_fertility_pc.png`" />
+    <img class="multi-sample-img transition-all duration-300 delay-[400ms]" :class="$clicks >= 2 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'" :src="`${$slidev.configs.base ?? '/'}applications/multi_armadillo_pc2.png`" />
+  </div>
+
+  <!-- Arrow from samples to pipeline (click 3) -->
+  <div class="multi-arrow-2" :class="{ visible: $clicks >= 3 }">
+    <svg viewBox="0 0 60 16" width="60" height="16" xmlns="http://www.w3.org/2000/svg">
+      <path d="M 2 8 L 46 8" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="butt" />
+      <path d="M 46 3 L 56 8 L 46 13 Z" fill="currentColor" />
+    </svg>
+  </div>
+
+  <!-- "Our pipeline" box (click 3) -->
+  <div class="multi-pipeline-box" :class="{ visible: $clicks >= 3 }">
+
+  **Our pipeline**
+
+  </div>
+
+</div>
+
+</div>
+
+<style>
+.multi-mesh-col {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 55%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: opacity 420ms ease, width 600ms ease, left 600ms ease;
+}
+.multi-mesh-col.visible { opacity: 1; }
+.multi-mesh-col.shrunk { width: 30%; left: 16%; }
+.multi-mesh-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+}
+.multi-mesh-img { display: block; width: 100%; height: auto; margin: -30px 0; }
+.multi-mesh-img { display: block; width: 100%; height: auto; }
+.multi-arrow {
+  position: absolute;
+  top: 50%;
+  left: 34%;
+  transform: translateY(-50%);
+  color: var(--c-fg-subtle);
+  opacity: 0;
+  transition: opacity 400ms ease;
+}
+.multi-arrow.visible { opacity: 1; }
+.multi-samples {
+  position: absolute;
+  top: calc(50% + 20px);
+  left: 42%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  width: 18%;
+}
+.multi-sample-img { display: block; width: 100%; height: auto; margin-top: -90px; }
+.multi-sample-img:first-child { margin-top: 0; }
+.multi-sample-img:nth-child(odd) { transform: translateX(-30px); }
+.multi-sample-img:nth-child(even) { transform: translateX(30px); }
+.multi-arrow-2 {
+  position: absolute;
+  top: 50%;
+  left: 62%;
+  transform: translateY(-50%);
+  color: var(--c-fg-subtle);
+  opacity: 0;
+  transition: opacity 400ms ease;
+}
+.multi-arrow-2.visible { opacity: 1; }
+.multi-pipeline-box {
+  position: absolute;
+  top: 50%;
+  left: 74%;
+  transform: translateY(-50%);
+  background: #e0f2fe;
+  border: 2px solid #38bdf8;
+  border-radius: 8px;
+  padding: 0.6rem 2rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--c-brand-from);
+  opacity: 0;
+  transition: opacity 400ms ease;
+}
+.multi-pipeline-box.visible { opacity: 1; }
+.multi-pipeline-box p { margin: 0; }
+</style>
+
+<!--
+1. Now we train on multiple different shapes — lion, armadillo, botijo, fertility.
+2. Sample point clouds from each shape.
+3. All feed into the same pipeline — the network learns to generalize across shapes.
+-->
 
 ---
 layout: default
@@ -4175,7 +4510,7 @@ $k=50$
 
 </div>
 
-<div class="text-xs text-right w-full pr-1 whitespace-nowrap transition-opacity duration-300 -translate-x-[10px]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">Cot.&nbsp;Lap.</div>
+<div class="text-base text-right w-full pr-1 whitespace-nowrap transition-opacity duration-300 -translate-x-[10px]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">Cot.&nbsp;Lap.</div>
 <div class="cos-cell"><img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[0ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec15_shape2/item_0009_gt_eigen001.png`" /><div class="cosine-label" style="color: #047857">0.99</div></div>
 <div class="cos-cell"><img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[60ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec15_shape2/item_0009_gt_eigen002.png`" /><div class="cosine-label" style="color: #047857">0.95</div></div>
 <div class="cos-cell"><img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[120ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec15_shape2/item_0009_gt_eigen003.png`" /><div class="cosine-label" style="color: #047857">0.99</div></div>
@@ -4189,7 +4524,7 @@ $k=50$
 <img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[600ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec15_shape2/item_0009_gt_recon_k025.png`" />
 <img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[660ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec15_shape2/item_0009_gt_recon_k050.png`" />
 
-<div class="text-xs text-right w-full pr-1 whitespace-nowrap transition-opacity duration-300 -translate-x-[10px]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'">Ours</div>
+<div class="text-base text-right w-full pr-1 whitespace-nowrap transition-opacity duration-300 -translate-x-[10px]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'">Ours</div>
 <img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[0ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec15_shape2/item_0009_pred_eigen001.png`" />
 <img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[60ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec15_shape2/item_0009_pred_eigen002.png`" />
 <img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[120ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec15_shape2/item_0009_pred_eigen003.png`" />
@@ -4203,7 +4538,7 @@ $k=50$
 <img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[600ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec15_shape2/item_0009_pred_recon_k025.png`" />
 <img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[660ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec15_shape2/item_0009_pred_recon_k050.png`" />
 
-<div class="text-xs text-right w-full pr-1 whitespace-nowrap transition-opacity duration-300 -translate-x-[10px]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">Cot.&nbsp;Lap.</div>
+<div class="text-base text-right w-full pr-1 whitespace-nowrap transition-opacity duration-300 -translate-x-[10px]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">Cot.&nbsp;Lap.</div>
 <div class="cos-cell"><img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[0ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec15_shape1/item_0006_gt_eigen001.png`" /><div class="cosine-label" style="color: #047857">0.89</div></div>
 <div class="cos-cell"><img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[60ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec15_shape1/item_0006_gt_eigen002.png`" /><div class="cosine-label" style="color: #047857">0.77</div></div>
 <div class="cos-cell"><img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[120ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec15_shape1/item_0006_gt_eigen003.png`" /><div class="cosine-label" style="color: #047857">0.90</div></div>
@@ -4217,7 +4552,7 @@ $k=50$
 <img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[600ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec15_shape1/item_0006_gt_recon_k025.png`" />
 <img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[660ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec15_shape1/item_0006_gt_recon_k050.png`" />
 
-<div class="text-xs text-right w-full pr-1 whitespace-nowrap transition-opacity duration-300 -translate-x-[10px]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'">Ours</div>
+<div class="text-base text-right w-full pr-1 whitespace-nowrap transition-opacity duration-300 -translate-x-[10px]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'">Ours</div>
 <img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[0ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec15_shape1/item_0006_pred_eigen001.png`" />
 <img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[60ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec15_shape1/item_0006_pred_eigen002.png`" />
 <img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[120ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec15_shape1/item_0006_pred_eigen003.png`" />
@@ -4231,7 +4566,7 @@ $k=50$
 <img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[600ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec15_shape1/item_0006_pred_recon_k025.png`" />
 <img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[660ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec15_shape1/item_0006_pred_recon_k050.png`" />
 
-<div class="text-xs text-right w-full pr-1 whitespace-nowrap transition-opacity duration-300 -translate-x-[10px]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">Cot.&nbsp;Lap.</div>
+<div class="text-base text-right w-full pr-1 whitespace-nowrap transition-opacity duration-300 -translate-x-[10px]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">Cot.&nbsp;Lap.</div>
 <div class="cos-cell"><img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[0ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec15_shape4/item_0014_gt_eigen001.png`" /><div class="cosine-label" style="color: #047857">0.78</div></div>
 <div class="cos-cell"><img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[60ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec15_shape4/item_0014_gt_eigen002.png`" /><div class="cosine-label" style="color: #047857">0.77</div></div>
 <div class="cos-cell"><img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[120ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec15_shape4/item_0014_gt_eigen003.png`" /><div class="cosine-label" style="color: #b91c1c">0.24</div></div>
@@ -4245,7 +4580,7 @@ $k=50$
 <img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[600ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec15_shape4/item_0014_gt_recon_k025.png`" />
 <img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[660ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec15_shape4/item_0014_gt_recon_k050.png`" />
 
-<div class="text-xs text-right w-full pr-1 whitespace-nowrap transition-opacity duration-300 -translate-x-[10px]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'">Ours</div>
+<div class="text-base text-right w-full pr-1 whitespace-nowrap transition-opacity duration-300 -translate-x-[10px]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'">Ours</div>
 <img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[0ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec15_shape4/item_0014_pred_eigen001.png`" />
 <img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[60ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec15_shape4/item_0014_pred_eigen002.png`" />
 <img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[120ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec15_shape4/item_0014_pred_eigen003.png`" />
@@ -4279,10 +4614,10 @@ $k=50$
   left: 50%;
   bottom: -10px;
   transform: translateX(-50%);
-  font-size: 9px;
+  font-size: 14px;
   font-weight: 600;
   background: rgba(255, 255, 255, 0.92);
-  padding: 1px 4px;
+  padding: 2px 6px;
   border-radius: 3px;
   border: 1px solid rgba(0, 0, 0, 0.08);
   white-space: nowrap;
@@ -4376,7 +4711,7 @@ $k=50$
 
 </div>
 
-<div class="text-xs text-right w-full pr-1 whitespace-nowrap transition-opacity duration-300 -translate-x-[10px]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">Cot.&nbsp;Lap.</div>
+<div class="text-base text-right w-full pr-1 whitespace-nowrap transition-opacity duration-300 -translate-x-[10px]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">Cot.&nbsp;Lap.</div>
 <div class="cos-cell"><img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[0ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec15_shape3/item_0018_gt_eigen001.png`" /><div class="cosine-label" style="color: #047857">0.96</div></div>
 <div class="cos-cell"><img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[60ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec15_shape3/item_0018_gt_eigen002.png`" /><div class="cosine-label" style="color: #047857">0.95</div></div>
 <div class="cos-cell"><img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[120ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec15_shape3/item_0018_gt_eigen003.png`" /><div class="cosine-label" style="color: #047857">0.95</div></div>
@@ -4390,7 +4725,7 @@ $k=50$
 <img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[600ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec15_shape3/item_0018_gt_recon_k025.png`" />
 <img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[660ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec15_shape3/item_0018_gt_recon_k050.png`" />
 
-<div class="text-xs text-right w-full pr-1 whitespace-nowrap transition-opacity duration-300 -translate-x-[10px]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'">Ours</div>
+<div class="text-base text-right w-full pr-1 whitespace-nowrap transition-opacity duration-300 -translate-x-[10px]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'">Ours</div>
 <img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[0ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec15_shape3/item_0018_pred_eigen001.png`" />
 <img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[60ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec15_shape3/item_0018_pred_eigen002.png`" />
 <img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[120ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec15_shape3/item_0018_pred_eigen003.png`" />
@@ -4404,7 +4739,7 @@ $k=50$
 <img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[600ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec15_shape3/item_0018_pred_recon_k025.png`" />
 <img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[660ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec15_shape3/item_0018_pred_recon_k050.png`" />
 
-<div class="text-xs text-right w-full pr-1 whitespace-nowrap transition-opacity duration-300 -translate-x-[10px]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">Cot.&nbsp;Lap.</div>
+<div class="text-base text-right w-full pr-1 whitespace-nowrap transition-opacity duration-300 -translate-x-[10px]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">Cot.&nbsp;Lap.</div>
 <div class="cos-cell"><img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[0ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/thingi10k_shape4/item_0005_gt_eigen001.png`" /><div class="cosine-label" style="color: #047857">1.00</div></div>
 <div class="cos-cell"><img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[60ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/thingi10k_shape4/item_0005_gt_eigen002.png`" /><div class="cosine-label" style="color: #047857">1.00</div></div>
 <div class="cos-cell"><img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[120ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/thingi10k_shape4/item_0005_gt_eigen003.png`" /><div class="cosine-label" style="color: #047857">0.99</div></div>
@@ -4418,7 +4753,7 @@ $k=50$
 <img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[600ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/thingi10k_shape4/item_0005_gt_recon_k025.png`" />
 <img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[660ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/thingi10k_shape4/item_0005_gt_recon_k050.png`" />
 
-<div class="text-xs text-right w-full pr-1 whitespace-nowrap transition-opacity duration-300 -translate-x-[10px]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'">Ours</div>
+<div class="text-base text-right w-full pr-1 whitespace-nowrap transition-opacity duration-300 -translate-x-[10px]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'">Ours</div>
 <img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[0ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/thingi10k_shape4/item_0005_pred_eigen001.png`" />
 <img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[60ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/thingi10k_shape4/item_0005_pred_eigen002.png`" />
 <img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[120ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/thingi10k_shape4/item_0005_pred_eigen003.png`" />
@@ -4432,7 +4767,7 @@ $k=50$
 <img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[600ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/thingi10k_shape4/item_0005_pred_recon_k025.png`" />
 <img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[660ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/thingi10k_shape4/item_0005_pred_recon_k050.png`" />
 
-<div class="text-xs text-right w-full pr-1 whitespace-nowrap transition-opacity duration-300 -translate-x-[10px]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">Cot.&nbsp;Lap.</div>
+<div class="text-base text-right w-full pr-1 whitespace-nowrap transition-opacity duration-300 -translate-x-[10px]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">Cot.&nbsp;Lap.</div>
 <div class="cos-cell"><img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[0ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/thingi10k_shape7/item_0012_gt_eigen001.png`" /><div class="cosine-label" style="color: #b45309">0.53</div></div>
 <div class="cos-cell"><img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[60ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/thingi10k_shape7/item_0012_gt_eigen002.png`" /><div class="cosine-label" style="color: #047857">0.93</div></div>
 <div class="cos-cell"><img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[120ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/thingi10k_shape7/item_0012_gt_eigen003.png`" /><div class="cosine-label" style="color: #b45309">0.58</div></div>
@@ -4446,7 +4781,7 @@ $k=50$
 <img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[600ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/thingi10k_shape7/item_0012_gt_recon_k025.png`" />
 <img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[660ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/thingi10k_shape7/item_0012_gt_recon_k050.png`" />
 
-<div class="text-xs text-right w-full pr-1 whitespace-nowrap transition-opacity duration-300 -translate-x-[10px]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'">Ours</div>
+<div class="text-base text-right w-full pr-1 whitespace-nowrap transition-opacity duration-300 -translate-x-[10px]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'">Ours</div>
 <img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[0ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/thingi10k_shape7/item_0012_pred_eigen001.png`" />
 <img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[60ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/thingi10k_shape7/item_0012_pred_eigen002.png`" />
 <img class="w-[62px] h-[62px] object-contain block transition-opacity duration-300 delay-[120ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/thingi10k_shape7/item_0012_pred_eigen003.png`" />
@@ -4478,10 +4813,10 @@ $k=50$
   left: 50%;
   bottom: -10px;
   transform: translateX(-50%);
-  font-size: 9px;
+  font-size: 14px;
   font-weight: 600;
   background: rgba(255, 255, 255, 0.92);
-  padding: 1px 4px;
+  padding: 2px 6px;
   border-radius: 3px;
   border: 1px solid rgba(0, 0, 0, 0.08);
   white-space: nowrap;
@@ -4636,6 +4971,7 @@ $k=50$
 layout: default
 class: text-left
 clicks: 2
+hide: true
 ---
 
 <div class="h-full flex flex-col pt-4 pb-3 px-2">
@@ -4678,6 +5014,7 @@ Experiments on Hadamard probe distributions.
 layout: default
 class: text-left
 clicks: 5
+hide: true
 ---
 
 <div class="h-full flex flex-col pt-4 pb-3 px-2">
@@ -4834,76 +5171,6 @@ $\mathbf{v}_{8}$
 ---
 layout: default
 class: text-left
-clicks: 2
----
-
-<div class="h-full flex flex-col pt-4 pb-3 px-2">
-
-<h1 class="!text-2xl !leading-snug !mb-6 font-serif text-center" style="color: #000">
-Train at low resolution, infer at higher resolution.
-</h1>
-
-<div class="flex-1 min-h-0 flex items-center justify-center">
-
-<div class="grid gap-2 items-center justify-items-center flex-none -translate-x-[30px]" style="grid-template-columns: 90px repeat(6, 135px); grid-template-rows: auto repeat(2, 135px);">
-
-<div></div>
-<div class="text-sm text-center transition-opacity duration-300 translate-y-4" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">
-
-$\mathbf{v}_{2}$
-
-</div>
-<div class="text-sm text-center transition-opacity duration-300 translate-y-4" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">
-
-$\mathbf{v}_{8}$
-
-</div>
-<div class="text-sm text-center transition-opacity duration-300 translate-y-4" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">
-
-$\mathbf{v}_{14}$
-
-</div>
-<div class="text-sm text-center transition-opacity duration-300 translate-y-4" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">
-
-$\mathbf{v}_{22}$
-
-</div>
-<div class="text-sm text-center transition-opacity duration-300 translate-y-4" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">
-
-$\mathbf{v}_{30}$
-
-</div>
-<div class="text-sm text-center transition-opacity duration-300 translate-y-4" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">
-
-$\mathbf{v}_{47}$
-
-</div>
-
-<div class="text-xs text-right w-full pr-1 whitespace-nowrap transition-opacity duration-300" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">3K pts</div>
-<img class="w-[135px] h-[135px] object-contain block transition-opacity duration-300 delay-[0ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}rebuttal_screenshots/pegaso1/item_0000_pred_eigen001.png`" />
-<img class="w-[135px] h-[135px] object-contain block transition-opacity duration-300 delay-[80ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}rebuttal_screenshots/pegaso1/item_0000_pred_eigen007.png`" />
-<img class="w-[135px] h-[135px] object-contain block transition-opacity duration-300 delay-[160ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}rebuttal_screenshots/pegaso1/item_0000_pred_eigen013.png`" />
-<img class="w-[135px] h-[135px] object-contain block transition-opacity duration-300 delay-[240ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}rebuttal_screenshots/pegaso1/item_0000_pred_eigen021.png`" />
-<img class="w-[135px] h-[135px] object-contain block transition-opacity duration-300 delay-[320ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}rebuttal_screenshots/pegaso1/item_0000_pred_eigen029.png`" />
-<img class="w-[135px] h-[135px] object-contain block transition-opacity duration-300 delay-[400ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}rebuttal_screenshots/pegaso1/item_0000_pred_eigen046.png`" />
-
-<div class="text-xs text-right w-full pr-1 whitespace-nowrap transition-opacity duration-300" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'">12K pts</div>
-<img class="w-[135px] h-[135px] object-contain block transition-opacity duration-300 delay-[0ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}rebuttal_screenshots/pegaso2/item_0000_pred_eigen001.png`" />
-<img class="w-[135px] h-[135px] object-contain block transition-opacity duration-300 delay-[80ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}rebuttal_screenshots/pegaso2/item_0000_pred_eigen007.png`" />
-<img class="w-[135px] h-[135px] object-contain block transition-opacity duration-300 delay-[160ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}rebuttal_screenshots/pegaso2/item_0000_pred_eigen013.png`" />
-<img class="w-[135px] h-[135px] object-contain block transition-opacity duration-300 delay-[240ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}rebuttal_screenshots/pegaso2/item_0000_pred_eigen021.png`" />
-<img class="w-[135px] h-[135px] object-contain block transition-opacity duration-300 delay-[320ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}rebuttal_screenshots/pegaso2/item_0000_pred_eigen029.png`" />
-<img class="w-[135px] h-[135px] object-contain block transition-opacity duration-300 delay-[400ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}rebuttal_screenshots/pegaso2/item_0000_pred_eigen046.png`" />
-
-</div>
-
-</div>
-
-</div>
-
----
-layout: default
-class: text-left
 clicks: 1
 ---
 
@@ -5021,6 +5288,7 @@ Setup.
 layout: default
 class: text-left
 clicks: 1
+hide: true
 ---
 
 <div class="h-full flex flex-col pt-4 pb-3 px-2">
