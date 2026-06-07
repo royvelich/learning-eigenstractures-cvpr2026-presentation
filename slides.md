@@ -3924,7 +3924,7 @@ $\mathbf{v}_{40}$
   left: 50%;
   bottom: -10px;
   transform: translateX(-50%);
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 600;
   background: rgba(255, 255, 255, 0.92);
   padding: 2px 6px;
@@ -4202,7 +4202,7 @@ $k=50$
   left: 50%;
   bottom: -10px;
   transform: translateX(-50%);
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 600;
   background: rgba(255, 255, 255, 0.92);
   padding: 2px 6px;
@@ -4657,7 +4657,7 @@ $k=50$
   left: 50%;
   bottom: -10px;
   transform: translateX(-50%);
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 600;
   background: rgba(255, 255, 255, 0.92);
   padding: 2px 6px;
@@ -4856,7 +4856,7 @@ $\mathbf{v}_{13}$
   left: 50%;
   bottom: -10px;
   transform: translateX(-50%);
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 600;
   background: rgba(255, 255, 255, 0.92);
   padding: 2px 6px;
@@ -5687,7 +5687,7 @@ Quantitative comparison &mdash; NMI &amp; ARI.
 </div>
 
 <!--
-1. Here we see some quantitative comparison. We evaluate clustering quality on DINOv2 embeddings measured by NMI and ARI metrics (the higher the better) — we evaluate each method on two datasets (STL10, Imagenette), three target dimensions (2, 5, 10). Our method (leftmost column on each chart), is competitive with or better than SOTA method like UMAP.
+1. Here we see some quantitative comparison. We evaluate clustering quality on DINOv2 embeddings measured by NMI and ARI metrics (the higher the better) — we evaluate each method on two datasets (STL10, Imagenette), three target dimensions (2, 5, 10). We can see that our method, the leftmost column on each chart, is competitive with or better than SOTA methods like UMAP.
 -->
 
 ---
@@ -5706,7 +5706,7 @@ Summary.
 <div class="summary-step">
 <span class="summary-num">1</span>
 <div class="summary-body">
-A new <strong>philosophy</strong> for approximating the eigenbasis of unstructured data manifolds.
+A new <strong>philosophy</strong> for approximating the Laplacian eigenbasis of unstructured data manifolds.
 </div>
 </div>
 
