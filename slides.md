@@ -3597,7 +3597,7 @@ class: text-center
 ---
 
 <h1 class="!text-3xl font-serif grad">
-Experiments and Results — Surfaces in 3D
+Experiments and Results
 </h1>
 
 ---
@@ -4730,12 +4730,12 @@ $\mathbf{v}_{8}$
 </div>
 <div class="text-base text-center transition-opacity duration-300 translate-y-6" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">
 
-$\mathbf{v}_{8}$
+$\mathbf{v}_{9}$
 
 </div>
 <div class="text-base text-center transition-opacity duration-300 translate-y-6" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">
 
-$\mathbf{v}_{9}$
+$\mathbf{v}_{10}$
 
 </div>
 <div class="text-base text-center transition-opacity duration-300 translate-y-6" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">
@@ -4762,8 +4762,8 @@ $\mathbf{v}_{13}$
 <div class="cos-cell"><img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[240ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec15_shape3/item_0018_gt_eigen005.png`" /><div class="cosine-label" style="color: #b45309">0.56</div></div>
 <div class="cos-cell"><img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[300ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec15_shape3/item_0018_gt_eigen006.png`" /><div class="cosine-label" style="color: #b91c1c">0.39</div></div>
 <div class="cos-cell"><img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[360ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec15_shape3/item_0018_gt_eigen007.png`" /><div class="cosine-label" style="color: #047857">0.75</div></div>
-<div class="cos-cell"><img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[420ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec15_shape3/item_0018_gt_eigen007.png`" /><div class="cosine-label" style="color: #047857">0.75</div></div>
-<div class="cos-cell"><img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[480ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec15_shape3/item_0018_gt_eigen008.png`" /><div class="cosine-label" style="color: #047857">0.89</div></div>
+<div class="cos-cell"><img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[420ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec15_shape3/item_0018_gt_eigen008.png`" /><div class="cosine-label" style="color: #047857">0.89</div></div>
+<div class="cos-cell"><img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[480ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec15_shape3/item_0018_gt_eigen009.png`" /><div class="cosine-label" style="color: #b45309">0.30</div></div>
 <div class="cos-cell"><img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[540ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec15_shape3/item_0018_gt_eigen010.png`" /><div class="cosine-label" style="color: #b45309">0.04</div></div>
 <div class="cos-cell"><img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[600ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec15_shape3/item_0018_gt_eigen011.png`" /><div class="cosine-label" style="color: #b45309">0.22</div></div>
 <div class="cos-cell"><img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[660ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec15_shape3/item_0018_gt_eigen012.png`" /><div class="cosine-label" style="color: #b45309">0.23</div></div>
@@ -4776,8 +4776,8 @@ $\mathbf{v}_{13}$
 <img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[240ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec15_shape3/item_0018_pred_eigen005.png`" />
 <img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[300ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec15_shape3/item_0018_pred_eigen006.png`" />
 <img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[360ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec15_shape3/item_0018_pred_eigen007.png`" />
-<img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[420ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec15_shape3/item_0018_pred_eigen007.png`" />
-<img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[480ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec15_shape3/item_0018_pred_eigen008.png`" />
+<img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[420ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec15_shape3/item_0018_pred_eigen008.png`" />
+<img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[480ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec15_shape3/item_0018_pred_eigen009.png`" />
 <div class="cos-cell"><img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[540ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec15_shape3/item_0018_pred_eigen010.png`" /></div>
 <div class="cos-cell"><img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[600ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec15_shape3/item_0018_pred_eigen011.png`" /></div>
 <div class="cos-cell"><img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[660ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec15_shape3/item_0018_pred_eigen012.png`" /></div>
@@ -4790,8 +4790,8 @@ $\mathbf{v}_{13}$
 <div class="cos-cell"><img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[240ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/thingi10k_shape4/item_0005_gt_eigen005.png`" /><div class="cosine-label" style="color: #b91c1c">0.12</div></div>
 <div class="cos-cell"><img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[300ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/thingi10k_shape4/item_0005_gt_eigen006.png`" /><div class="cosine-label" style="color: #b91c1c">0.13</div></div>
 <div class="cos-cell"><img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[360ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/thingi10k_shape4/item_0005_gt_eigen007.png`" /><div class="cosine-label" style="color: #047857">0.61</div></div>
-<div class="cos-cell"><img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[420ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/thingi10k_shape4/item_0005_gt_eigen007.png`" /><div class="cosine-label" style="color: #047857">0.61</div></div>
-<div class="cos-cell"><img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[480ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/thingi10k_shape4/item_0005_gt_eigen008.png`" /><div class="cosine-label" style="color: #b45309">0.49</div></div>
+<div class="cos-cell"><img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[420ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/thingi10k_shape4/item_0005_gt_eigen008.png`" /><div class="cosine-label" style="color: #b45309">0.49</div></div>
+<div class="cos-cell"><img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[480ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/thingi10k_shape4/item_0005_gt_eigen009.png`" /><div class="cosine-label" style="color: #b45309">0.55</div></div>
 <div class="cos-cell"><img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[540ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/thingi10k_shape4/item_0005_gt_eigen010.png`" /><div class="cosine-label" style="color: #047857">0.78</div></div>
 <div class="cos-cell"><img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[600ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/thingi10k_shape4/item_0005_gt_eigen011.png`" /><div class="cosine-label" style="color: #047857">0.62</div></div>
 <div class="cos-cell"><img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[660ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/thingi10k_shape4/item_0005_gt_eigen012.png`" /><div class="cosine-label" style="color: #047857">0.70</div></div>
@@ -4804,8 +4804,8 @@ $\mathbf{v}_{13}$
 <img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[240ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/thingi10k_shape4/item_0005_pred_eigen005.png`" />
 <img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[300ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/thingi10k_shape4/item_0005_pred_eigen006.png`" />
 <img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[360ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/thingi10k_shape4/item_0005_pred_eigen007.png`" />
-<img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[420ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/thingi10k_shape4/item_0005_pred_eigen007.png`" />
-<img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[480ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/thingi10k_shape4/item_0005_pred_eigen008.png`" />
+<img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[420ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/thingi10k_shape4/item_0005_pred_eigen008.png`" />
+<img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[480ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/thingi10k_shape4/item_0005_pred_eigen009.png`" />
 <div class="cos-cell"><img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[540ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/thingi10k_shape4/item_0005_pred_eigen010.png`" /></div>
 <div class="cos-cell"><img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[600ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/thingi10k_shape4/item_0005_pred_eigen011.png`" /></div>
 <div class="cos-cell"><img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[660ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/thingi10k_shape4/item_0005_pred_eigen012.png`" /></div>
@@ -4818,8 +4818,8 @@ $\mathbf{v}_{13}$
 <div class="cos-cell"><img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[240ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/thingi10k_shape7/item_0012_gt_eigen005.png`" /><div class="cosine-label" style="color: #b91c1c">0.42</div></div>
 <div class="cos-cell"><img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[300ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/thingi10k_shape7/item_0012_gt_eigen006.png`" /><div class="cosine-label" style="color: #047857">0.60</div></div>
 <div class="cos-cell"><img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[360ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/thingi10k_shape7/item_0012_gt_eigen007.png`" /><div class="cosine-label" style="color: #047857">0.70</div></div>
-<div class="cos-cell"><img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[420ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/thingi10k_shape7/item_0012_gt_eigen007.png`" /><div class="cosine-label" style="color: #047857">0.70</div></div>
-<div class="cos-cell"><img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[480ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/thingi10k_shape7/item_0012_gt_eigen008.png`" /><div class="cosine-label" style="color: #b45309">0.18</div></div>
+<div class="cos-cell"><img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[420ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/thingi10k_shape7/item_0012_gt_eigen008.png`" /><div class="cosine-label" style="color: #b45309">0.18</div></div>
+<div class="cos-cell"><img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[480ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/thingi10k_shape7/item_0012_gt_eigen009.png`" /><div class="cosine-label" style="color: #b45309">0.35</div></div>
 <div class="cos-cell"><img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[540ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/thingi10k_shape7/item_0012_gt_eigen010.png`" /><div class="cosine-label" style="color: #b45309">0.40</div></div>
 <div class="cos-cell"><img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[600ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/thingi10k_shape7/item_0012_gt_eigen011.png`" /><div class="cosine-label" style="color: #b45309">0.32</div></div>
 <div class="cos-cell"><img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[660ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/thingi10k_shape7/item_0012_gt_eigen012.png`" /><div class="cosine-label" style="color: #b45309">0.25</div></div>
@@ -4832,8 +4832,8 @@ $\mathbf{v}_{13}$
 <img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[240ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/thingi10k_shape7/item_0012_pred_eigen005.png`" />
 <img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[300ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/thingi10k_shape7/item_0012_pred_eigen006.png`" />
 <img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[360ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/thingi10k_shape7/item_0012_pred_eigen007.png`" />
-<img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[420ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/thingi10k_shape7/item_0012_pred_eigen007.png`" />
-<img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[480ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/thingi10k_shape7/item_0012_pred_eigen008.png`" />
+<img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[420ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/thingi10k_shape7/item_0012_pred_eigen008.png`" />
+<img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[480ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/thingi10k_shape7/item_0012_pred_eigen009.png`" />
 <div class="cos-cell"><img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[540ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/thingi10k_shape7/item_0012_pred_eigen010.png`" /></div>
 <div class="cos-cell"><img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[600ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/thingi10k_shape7/item_0012_pred_eigen011.png`" /></div>
 <div class="cos-cell"><img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[660ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/thingi10k_shape7/item_0012_pred_eigen012.png`" /></div>
@@ -5495,7 +5495,7 @@ We evaluate our predicted eigenbasis on <strong>dimensionality reduction</strong
 <div :style="{ opacity: $clicks >= 3 ? 1 : 0, transition: 'opacity 400ms ease' }" style="font-size: 1.15rem; color: var(--c-fg); text-align: left; display: inline-block; margin-top: 0.5rem;">
 <strong>Our approach:</strong>
 <ul style="margin: 0.3rem 0 0 1.2rem; line-height: 1.8;">
-<li>Project each embedding onto the first <em>d</em> predicted eigenfunctions</li>
+<li>Reduction to dim=<em>d</em> → project each embedding onto the first <em>d</em> predicted eigenvectors</li>
 <li>No extra optimization needed</li>
 </ul>
 </div>
@@ -5652,6 +5652,10 @@ STL10 clusters &mdash; DINOv2 embeddings.
 
 </div>
 
+<!--
+1. So what we see here are clusters from 2D dimensionality reduction of DINOv2 embeddings on 1500 STL10 images, comparing various methods. Our method is top-left — it exhibits clear class separation.
+-->
+
 ---
 layout: default
 class: text-left
@@ -5664,17 +5668,27 @@ clicks: 1
 Quantitative comparison &mdash; NMI &amp; ARI.
 </h1>
 
-<div class="flex-1 min-h-0 flex items-center justify-center">
+<div class="flex-1 min-h-0 flex flex-col items-center justify-center">
 
 <img
   :src="`${$slidev.configs.base ?? '/'}comparison_barchart_nmi_ari.png`"
-  class="max-h-[410px] max-w-[880px] object-contain block translate-y-[20px] transition-opacity duration-300"
+  class="max-h-[340px] max-w-[820px] object-contain block transition-opacity duration-300"
   :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'"
 />
 
+
+<div class="text-sm mt-3 px-8 text-center transition-opacity duration-300" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" style="color: var(--c-fg-muted); line-height: 1.8;">
+<strong>ARI:</strong> How often clusters and true classes agree on point-pairs (1 = perfect, 0 = chance).<br/>
+<strong>NMI:</strong> How much knowing a point's cluster tells you about its true class (0-to-1 scale).
 </div>
 
 </div>
+
+</div>
+
+<!--
+1. Here we see some quantitative comparison. We evaluate clustering quality on DINOv2 embeddings measured by NMI and ARI metrics (the higher the better) — we evaluate each method on two datasets (STL10, Imagenette), three target dimensions (2, 5, 10). Our method (leftmost column on each chart), is competitive with or better than SOTA method like UMAP.
+-->
 
 ---
 layout: default
@@ -5759,6 +5773,48 @@ A new <strong>philosophy</strong> for approximating the eigenbasis of unstructur
   font-weight: 700;
 }
 </style>
+
+
+---
+layout: center
+class: text-center
+---
+
+<h1 class="!text-4xl font-serif grad">
+Thank you!
+</h1>
+
+<div class="mt-4 text-lg" style="color: var(--c-fg-muted);">
+
+Questions?
+
+</div>
+
+<div class="mt-6">
+<img :src="`${$slidev.configs.base ?? '/'}qr.png`" class="h-[220px] mx-auto" />
+</div>
+
+
+---
+layout: center
+class: text-center
+---
+
+<img :src="`${$slidev.configs.base ?? '/'}pipeline@0.5x.png`" class="max-h-[480px] max-w-[900px] object-contain" />
+
+---
+layout: center
+class: text-center
+---
+
+<img :src="`${$slidev.configs.base ?? '/'}eigenvalues_qualitative@0.5x.png`" class="max-h-[480px] max-w-[900px] object-contain" />
+
+---
+layout: center
+class: text-center
+---
+
+<img :src="`${$slidev.configs.base ?? '/'}supp_metric@0.5x.png`" class="max-h-[480px] max-w-[900px] object-contain" />
 
 ---
 layout: default
