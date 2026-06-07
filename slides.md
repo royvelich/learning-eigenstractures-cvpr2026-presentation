@@ -2610,7 +2610,7 @@ The theorem generalizes to curved domains.
 ---
 layout: default
 class: text-left
-clicks: 22
+clicks: 14
 ---
 
 <script setup>
@@ -2726,15 +2726,15 @@ Our pipeline.
 </div>
 <div class="ml-thumb-wrap" :style="{ opacity: $clicks >= 2 ? 1 : 0 }">
 <div class="ml-box ml-thumb-box">
-<span class="ml-thumb-cell" :class="{ masked: $clicks >= 13 && $clicks < 21 }"><img class="ml-thumb" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_signal_diff_01_tight.png`" alt="smooth function 1" /></span>
+<span class="ml-thumb-cell"><img class="ml-thumb" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_signal_diff_01_tight.png`" alt="smooth function 1" /></span>
 <span class="ml-thumb-cell" :class="{ masked: $clicks >= 5 && $clicks < 13 }"><img class="ml-thumb" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_signal_diff_02_tight.png`" alt="smooth function 2" /></span>
-<div class="ml-dots" :class="{ masked: $clicks >= 5 && $clicks < 21 }">
+<div class="ml-dots" :class="{ masked: $clicks >= 5 && $clicks < 13 }">
 
 $\cdots$
 
 </div>
-<span class="ml-thumb-cell" :class="{ masked: $clicks >= 5 && $clicks < 21 }"><img class="ml-thumb" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_signal_diff_03_tight.png`" alt="smooth function 3" /></span>
-<span class="ml-thumb-cell" :class="{ masked: $clicks >= 5 && $clicks < 21 }"><img class="ml-thumb" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_signal_diff_04_tight.png`" alt="smooth function 4" /></span>
+<span class="ml-thumb-cell" :class="{ masked: $clicks >= 5 && $clicks < 13 }"><img class="ml-thumb" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_signal_diff_03_tight.png`" alt="smooth function 3" /></span>
+<span class="ml-thumb-cell" :class="{ masked: $clicks >= 5 && $clicks < 13 }"><img class="ml-thumb" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_signal_diff_04_tight.png`" alt="smooth function 4" /></span>
 <!-- Underbrace labeling the smooth functions row as {f_i}. -->
 <div class="ml-underbrace">
 
@@ -2753,7 +2753,7 @@ $\underbrace{\hspace{200px}}_{\text{smooth probe functions } \{f_i\}}$
 </svg>
 </div>
 <div class="ml-thumb-wrap" :style="{ opacity: $clicks >= 3 ? 1 : 0 }">
-<div class="ml-box ml-thumb-box" :class="{ 'loss-fade-out': $clicks >= 23 }">
+<div class="ml-box ml-thumb-box">
 <!-- Each eigen cell hosts a click-6 clone of signal_01. v-motion :initial offset = source position relative to this cell. Source = signal_01 at scalar row col 1, i.e. one row up (y = -110) and offset LEFT by this cell's column-left within the thumb-box: 0, 91.4, 219.2, 310.6 for cols 1, 2, 4, 5. -->
 <span class="ml-thumb-cell">
   <img class="ml-thumb" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_basis_2_0_tight.png`" alt="phi_0" />
@@ -2763,8 +2763,8 @@ $\underbrace{\hspace{200px}}_{\text{smooth probe functions } \{f_i\}}$
   $\langle f_1, b_1\rangle$
 
   </span>
-  <img class="ml-pl-clone" v-motion :initial="{ x: 91.4, y: -140, opacity: 0 }" :click-14="{ x: 0, y: 0, opacity: 0.6 }" :click-15="{ x: -185, y: 140, opacity: 1 }" :click-16="{ x: -220, y: 140, opacity: 1 }" :click-17="{ x: 155, y: 140, opacity: 0 }" :src="$clicks >= 15 ? `${$slidev.configs.base ?? '/'}applications/manifold_pc_basis_2_0_tight.png` : `${$slidev.configs.base ?? '/'}applications/manifold_pc_signal_diff_02_tight.png`" alt="" />
-  <span class="ml-coeff" v-motion :initial="{ x: 0, y: 140, opacity: 0 }" :click-15="{ x: -185, y: 140, opacity: 1 }" :click-16="{ x: -220, y: 140, opacity: 1 }" :click-17="{ x: 155, y: 140, opacity: 0 }">
+  <img class="ml-pl-clone" v-motion :initial="{ x: 91.4, y: -140, opacity: 0 }" :click-14="{ x: 0, y: 0, opacity: 0 }" :click-15="{ x: -185, y: 140, opacity: 0 }" :click-16="{ x: -220, y: 140, opacity: 1 }" :click-17="{ x: 155, y: 140, opacity: 0 }" :src="$clicks >= 15 ? `${$slidev.configs.base ?? '/'}applications/manifold_pc_basis_2_0_tight.png` : `${$slidev.configs.base ?? '/'}applications/manifold_pc_signal_diff_02_tight.png`" alt="" />
+  <span class="ml-coeff" v-motion :initial="{ x: 0, y: 140, opacity: 0 }" :click-15="{ x: -185, y: 140, opacity: 0 }" :click-16="{ x: -220, y: 140, opacity: 1 }" :click-17="{ x: 155, y: 140, opacity: 0 }">
 
   $\langle f_2, b_1\rangle$
 
@@ -2778,8 +2778,8 @@ $\underbrace{\hspace{200px}}_{\text{smooth probe functions } \{f_i\}}$
   $\langle f_1, b_2\rangle$
 
   </span>
-  <img class="ml-pl-clone" v-motion :initial="{ x: 0, y: -140, opacity: 0 }" :click-14="{ x: 0, y: 0, opacity: 0.6 }" :click-15="{ x: -130, y: 140, opacity: 1 }" :click-16="{ x: -150, y: 140, opacity: 1 }" :click-17="{ x: 64, y: 140, opacity: 0 }" :src="$clicks >= 15 ? `${$slidev.configs.base ?? '/'}applications/manifold_pc_basis_2_1_tight.png` : `${$slidev.configs.base ?? '/'}applications/manifold_pc_signal_diff_02_tight.png`" alt="" />
-  <span class="ml-coeff" v-motion :initial="{ x: 0, y: 140, opacity: 0 }" :click-15="{ x: -130, y: 140, opacity: 1 }" :click-16="{ x: -150, y: 140, opacity: 1 }" :click-17="{ x: 64, y: 140, opacity: 0 }">
+  <img class="ml-pl-clone" v-motion :initial="{ x: 0, y: -140, opacity: 0 }" :click-14="{ x: 0, y: 0, opacity: 0 }" :click-15="{ x: -130, y: 140, opacity: 0 }" :click-16="{ x: -150, y: 140, opacity: 1 }" :click-17="{ x: 64, y: 140, opacity: 0 }" :src="$clicks >= 15 ? `${$slidev.configs.base ?? '/'}applications/manifold_pc_basis_2_1_tight.png` : `${$slidev.configs.base ?? '/'}applications/manifold_pc_signal_diff_02_tight.png`" alt="" />
+  <span class="ml-coeff" v-motion :initial="{ x: 0, y: 140, opacity: 0 }" :click-15="{ x: -130, y: 140, opacity: 0 }" :click-16="{ x: -150, y: 140, opacity: 1 }" :click-17="{ x: 64, y: 140, opacity: 0 }">
 
   $\langle f_2, b_2\rangle$
 
@@ -2798,8 +2798,8 @@ $\cdots$
   $\langle f_1, b_{K\!-\!1}\rangle$
 
   </span>
-  <img class="ml-pl-clone" v-motion :initial="{ x: -127.8, y: -140, opacity: 0 }" :click-14="{ x: 0, y: 0, opacity: 0.6 }" :click-15="{ x: -55, y: 140, opacity: 1 }" :click-16="{ x: -70, y: 140, opacity: 1 }" :click-17="{ x: -64, y: 140, opacity: 0 }" :src="$clicks >= 15 ? `${$slidev.configs.base ?? '/'}applications/manifold_pc_basis_2_48_tight.png` : `${$slidev.configs.base ?? '/'}applications/manifold_pc_signal_diff_02_tight.png`" alt="" />
-  <span class="ml-coeff" v-motion :initial="{ x: 0, y: 140, opacity: 0 }" :click-15="{ x: -55, y: 140, opacity: 1 }" :click-16="{ x: -70, y: 140, opacity: 1 }" :click-17="{ x: -64, y: 140, opacity: 0 }">
+  <img class="ml-pl-clone" v-motion :initial="{ x: -127.8, y: -140, opacity: 0 }" :click-14="{ x: 0, y: 0, opacity: 0 }" :click-15="{ x: -55, y: 140, opacity: 0 }" :click-16="{ x: -70, y: 140, opacity: 1 }" :click-17="{ x: -64, y: 140, opacity: 0 }" :src="$clicks >= 15 ? `${$slidev.configs.base ?? '/'}applications/manifold_pc_basis_2_48_tight.png` : `${$slidev.configs.base ?? '/'}applications/manifold_pc_signal_diff_02_tight.png`" alt="" />
+  <span class="ml-coeff" v-motion :initial="{ x: 0, y: 140, opacity: 0 }" :click-15="{ x: -55, y: 140, opacity: 0 }" :click-16="{ x: -70, y: 140, opacity: 1 }" :click-17="{ x: -64, y: 140, opacity: 0 }">
 
   $\langle f_2, b_{K\!-\!1}\rangle$
 
@@ -2813,8 +2813,8 @@ $\cdots$
   $\langle f_1, b_K\rangle$
 
   </span>
-  <img class="ml-pl-clone" v-motion :initial="{ x: -219.2, y: -140, opacity: 0 }" :click-14="{ x: 0, y: 0, opacity: 0.6 }" :click-15="{ x: 0, y: 140, opacity: 1 }" :click-16="{ x: 0, y: 140, opacity: 1 }" :click-17="{ x: -155, y: 140, opacity: 0 }" :src="$clicks >= 15 ? `${$slidev.configs.base ?? '/'}applications/manifold_pc_basis_2_49_tight.png` : `${$slidev.configs.base ?? '/'}applications/manifold_pc_signal_diff_02_tight.png`" alt="" />
-  <span class="ml-coeff" v-motion :initial="{ x: 0, y: 140, opacity: 0 }" :click-15="{ x: 0, y: 140, opacity: 1 }" :click-16="{ x: 0, y: 140, opacity: 1 }" :click-17="{ x: -155, y: 140, opacity: 0 }">
+  <img class="ml-pl-clone" v-motion :initial="{ x: -219.2, y: -140, opacity: 0 }" :click-14="{ x: 0, y: 0, opacity: 0 }" :click-15="{ x: 0, y: 140, opacity: 0 }" :click-16="{ x: 0, y: 140, opacity: 1 }" :click-17="{ x: -155, y: 140, opacity: 0 }" :src="$clicks >= 15 ? `${$slidev.configs.base ?? '/'}applications/manifold_pc_basis_2_49_tight.png` : `${$slidev.configs.base ?? '/'}applications/manifold_pc_signal_diff_02_tight.png`" alt="" />
+  <span class="ml-coeff" v-motion :initial="{ x: 0, y: 140, opacity: 0 }" :click-15="{ x: 0, y: 140, opacity: 0 }" :click-16="{ x: 0, y: 140, opacity: 1 }" :click-17="{ x: -155, y: 140, opacity: 0 }">
 
   $\langle f_2, b_K\rangle$
 
@@ -2884,57 +2884,57 @@ $\|^2$
      thumb-box — the signal_01 expression has already shifted-left
      out of this region by click 12, so the positions are free. -->
 <!-- Row-3 dots and + signs for signal_02. Shown click 15/16; collapse at click 17. -->
-<div class="ml-pl-row3-dots" :class="{ shown: $clicks >= 15, collapsing: $clicks >= 17 }" :style="{ transform: $clicks >= 16 ? 'translateX(-18px)' : 'translateX(0)' }">
+<div class="ml-pl-row3-dots" :class="{ shown: false, collapsing: false }" :style="{ transform: $clicks >= 16 ? 'translateX(-18px)' : 'translateX(0)' }">
 
 $\cdots$
 
 </div>
-<div class="ml-pl-row3-plus" :class="{ shown: $clicks >= 16, collapsing: $clicks >= 17 }" style="left: -119px; --dx-collapse: 317px;">
+<div class="ml-pl-row3-plus" :class="{ shown: false, collapsing: false }" style="left: -119px; --dx-collapse: 317px;">
 
 $+$
 
 </div>
-<div class="ml-pl-row3-plus" :class="{ shown: $clicks >= 16, collapsing: $clicks >= 17 }" style="left: 28px; --dx-collapse: 170px;">
+<div class="ml-pl-row3-plus" :class="{ shown: false, collapsing: false }" style="left: 28px; --dx-collapse: 170px;">
 
 $+$
 
 </div>
-<div class="ml-pl-row3-plus" :class="{ shown: $clicks >= 16, collapsing: $clicks >= 17 }" style="left: 82px; --dx-collapse: 116px;">
+<div class="ml-pl-row3-plus" :class="{ shown: false, collapsing: false }" style="left: 82px; --dx-collapse: 116px;">
 
 $+$
 
 </div>
-<div class="ml-pl-row3-plus" :class="{ shown: $clicks >= 16, collapsing: $clicks >= 17 }" style="left: 250px; --dx-collapse: -52px;">
+<div class="ml-pl-row3-plus" :class="{ shown: false, collapsing: false }" style="left: 250px; --dx-collapse: -52px;">
 
 $+$
 
 </div>
 <!-- Signal_02 loss-expression container. Same idea: container-level transform
      on click 20 shifts+scales the whole expression as a unit. -->
-<div class="ml-pl-loss-group" :class="{ 'shifted-m': $clicks >= 20 }">
-<!-- Sum image: k=50 reconstruction of signal_02. Click 17. -->
-<img class="ml-pl-sum" :class="{ shown: $clicks >= 17 }" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_signal_diff_02_recon_k5_tight.png`" alt="" />
-<!-- f2 clone animates DOWN from signal_02 (row 1 col 2). Source offset = (91.4 - 30, -110 - 110) = (61.4, -220). Click 18. -->
-<img class="ml-pl-f-clone" v-motion :initial="{ x: 61.4, y: -280, scale: 1, opacity: 0 }" :click-18="{ x: 0, y: 0, scale: 1, opacity: 1 }" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_signal_diff_02_tight.png`" alt="" />
-<div class="ml-pl-minus" :class="{ shown: $clicks >= 18 }" style="left: 135px;">
+<div class="ml-pl-loss-group shifted-m" :style="{ opacity: $clicks >= 13 ? 1 : 0, transition: 'opacity 500ms ease 250ms' }">
+<!-- Sum image: k=50 reconstruction of signal_02. -->
+<img class="ml-pl-sum" :class="{ shown: $clicks >= 13 }" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_signal_diff_02_recon_k5_tight.png`" alt="" />
+<!-- f2 clone fades in at final position at click 13 -->
+<img class="ml-pl-f-clone" :style="{ opacity: $clicks >= 13 ? 1 : 0, transition: 'opacity 500ms ease 250ms' }" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_signal_diff_02_tight.png`" alt="" />
+<div class="ml-pl-minus" :class="{ shown: $clicks >= 13 }" style="left: 135px;">
 
 $-$
 
 </div>
-<!-- Norm brackets for signal_02. Click 19. -->
-<div class="ml-pl-norm-bracket" :class="{ shown: $clicks >= 19 }" style="left: 2px; top: 130px;">
+<!-- Norm brackets for signal_02. -->
+<div class="ml-pl-norm-bracket" :class="{ shown: $clicks >= 13 }" style="left: 2px; top: 130px;">
 
 $\|$
 
 </div>
-<div class="ml-pl-norm-bracket" :class="{ shown: $clicks >= 19 }" style="left: 242px; top: 130px;">
+<div class="ml-pl-norm-bracket" :class="{ shown: $clicks >= 13 }" style="left: 242px; top: 130px;">
 
 $\|^2$
 
 </div>
 </div>
 <!-- "+" sign between the two shifted loss expressions, click 20. Sits in the gap between signal_01's right bracket (≈ thumb-box x -195) and signal_02's left bracket (≈ thumb-box x -156). -->
-<div class="ml-pl-plus-between" :class="{ shown: $clicks >= 20 }" style="left: -284px;">
+<div class="ml-pl-plus-between" :class="{ shown: $clicks >= 13 }" style="left: -284px;">
 
 $+$
 
@@ -2944,38 +2944,38 @@ $+$
      directly at their final positions (no flow). Static containers
      pre-positioned with shifted-3 / shifted-4 transforms. -->
 <div class="ml-pl-loss-group shifted-3">
-<img class="ml-pl-sum" :class="{ shown: $clicks >= 21 }" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_signal_diff_03_recon_k5_tight.png`" alt="" />
-<img class="ml-pl-f-clone" :style="{ opacity: $clicks >= 21 ? 1 : 0, transition: 'opacity 500ms ease 250ms' }" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_signal_diff_03_tight.png`" alt="" />
-<div class="ml-pl-minus" :class="{ shown: $clicks >= 21 }" style="left: 135px;">
+<img class="ml-pl-sum" :class="{ shown: $clicks >= 13 }" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_signal_diff_03_recon_k5_tight.png`" alt="" />
+<img class="ml-pl-f-clone" :style="{ opacity: $clicks >= 13 ? 1 : 0, transition: 'opacity 500ms ease 250ms' }" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_signal_diff_03_tight.png`" alt="" />
+<div class="ml-pl-minus" :class="{ shown: $clicks >= 13 }" style="left: 135px;">
 
 $-$
 
 </div>
-<div class="ml-pl-norm-bracket" :class="{ shown: $clicks >= 21 }" style="left: 2px; top: 130px;">
+<div class="ml-pl-norm-bracket" :class="{ shown: $clicks >= 13 }" style="left: 2px; top: 130px;">
 
 $\|$
 
 </div>
-<div class="ml-pl-norm-bracket" :class="{ shown: $clicks >= 21 }" style="left: 242px; top: 130px;">
+<div class="ml-pl-norm-bracket" :class="{ shown: $clicks >= 13 }" style="left: 242px; top: 130px;">
 
 $\|^2$
 
 </div>
 </div>
 <div class="ml-pl-loss-group shifted-4">
-<img class="ml-pl-sum" :class="{ shown: $clicks >= 21 }" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_signal_diff_04_recon_k5_tight.png`" alt="" />
-<img class="ml-pl-f-clone" :style="{ opacity: $clicks >= 21 ? 1 : 0, transition: 'opacity 500ms ease 250ms' }" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_signal_diff_04_tight.png`" alt="" />
-<div class="ml-pl-minus" :class="{ shown: $clicks >= 21 }" style="left: 135px;">
+<img class="ml-pl-sum" :class="{ shown: $clicks >= 13 }" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_signal_diff_04_recon_k5_tight.png`" alt="" />
+<img class="ml-pl-f-clone" :style="{ opacity: $clicks >= 13 ? 1 : 0, transition: 'opacity 500ms ease 250ms' }" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_signal_diff_04_tight.png`" alt="" />
+<div class="ml-pl-minus" :class="{ shown: $clicks >= 13 }" style="left: 135px;">
 
 $-$
 
 </div>
-<div class="ml-pl-norm-bracket" :class="{ shown: $clicks >= 21 }" style="left: 2px; top: 130px;">
+<div class="ml-pl-norm-bracket" :class="{ shown: $clicks >= 13 }" style="left: 2px; top: 130px;">
 
 $\|$
 
 </div>
-<div class="ml-pl-norm-bracket" :class="{ shown: $clicks >= 21 }" style="left: 242px; top: 130px;">
+<div class="ml-pl-norm-bracket" :class="{ shown: $clicks >= 13 }" style="left: 242px; top: 130px;">
 
 $\|^2$
 
@@ -2983,32 +2983,32 @@ $\|^2$
 </div>
 <!-- Middle of the sum (click 21): + ⋯ + between sig2 and sig3.
      Gap widened (sig1, sig2 shifted left by 30) for breathing room. -->
-<div class="ml-pl-plus-between" :class="{ shown: $clicks >= 21 }" style="left: -65px;">
+<div class="ml-pl-plus-between" :class="{ shown: $clicks >= 13 }" style="left: -65px;">
 
 $+$
 
 </div>
-<div class="ml-pl-plus-between" :class="{ shown: $clicks >= 21 }" style="left: -36px;">
+<div class="ml-pl-plus-between" :class="{ shown: $clicks >= 13 }" style="left: -36px;">
 
 $\cdots$
 
 </div>
-<div class="ml-pl-plus-between" :class="{ shown: $clicks >= 21 }" style="left: -7px;">
+<div class="ml-pl-plus-between" :class="{ shown: $clicks >= 13 }" style="left: -7px;">
 
 $+$
 
 </div>
 <!-- + sign between sig3-sig4 (click 21). -->
-<div class="ml-pl-plus-between" :class="{ shown: $clicks >= 21 }" style="left: 216px;">
+<div class="ml-pl-plus-between" :class="{ shown: $clicks >= 13 }" style="left: 216px;">
 
 $+$
 
 </div>
 <!-- Click 22: underbrace below the full sum labeling the loss. The sum spans
      thumb-box x≈[-489, 417], center ≈ -36. Width ~905 visually. -->
-<div class="ml-loss-underbrace" :class="{ shown: $clicks >= 22 }" style="left: -30px; top: 200px;">
+<div class="ml-loss-underbrace" :class="{ shown: $clicks >= 14 }" style="left: -30px; top: 200px;">
 
-$\underbrace{\hspace{420px}}_{\sum_i \bigl\| f_i - \sum_{j=1}^{K} \langle f_i, b_j\rangle b_j \bigr\|^2}$
+$\underbrace{\hspace{420px}}_{\Large\sum_i \left\| f_i - \sum_{j=1}^{K} \langle f_i, b_j\rangle b_j \right\|^2}$
 
 </div>
 </div>
@@ -4252,6 +4252,7 @@ More challenging geometries — cosine similarities remain high across almost al
 layout: default
 class: text-left
 clicks: 2
+hide: true
 ---
 
 <div class="h-full flex flex-col pt-4 pb-3 px-2">
@@ -4872,6 +4873,7 @@ $k=50$
 layout: default
 class: text-left
 clicks: 2
+hide: true
 ---
 
 <div class="h-full flex flex-col pt-4 pb-3 px-2">
@@ -5224,6 +5226,7 @@ $\mathbf{v}_{8}$
 layout: default
 class: text-left
 clicks: 1
+hide: true
 ---
 
 <div class="h-full flex flex-col pt-4 pb-3 px-2">
@@ -5256,6 +5259,229 @@ Our method also estimates the sampling density — the mass of each vertex — d
 ---
 layout: default
 class: text-left
+clicks: 3
+---
+
+<div class="h-full flex flex-col pt-4 pb-3 px-2">
+
+<h1 class="!text-2xl !leading-snug !mb-4 font-serif text-center" style="color: #000">
+Train on different samplings of the same image manifold.
+</h1>
+
+<div class="flex-1 relative" style="overflow: visible;">
+
+  <!-- Sample images (click 1: centered, click 2: shrink left) -->
+  <div class="imgman-images" :class="{ visible: $clicks >= 1, shrunk: $clicks >= 2 }">
+    <img class="imgman-img" :src="`${$slidev.configs.base ?? '/'}datasets/imagenette_1.jpg`" />
+    <img class="imgman-img" :src="`${$slidev.configs.base ?? '/'}datasets/imagenette_2.jpg`" />
+    <img class="imgman-img" :src="`${$slidev.configs.base ?? '/'}datasets/imagenette_3.jpg`" />
+    <img class="imgman-img" :src="`${$slidev.configs.base ?? '/'}datasets/imagenette_4.jpg`" />
+    <img class="imgman-img" :src="`${$slidev.configs.base ?? '/'}datasets/imagenette_5.jpg`" />
+    <img class="imgman-img" :src="`${$slidev.configs.base ?? '/'}datasets/imagenette_6.jpg`" />
+    <img class="imgman-img" :src="`${$slidev.configs.base ?? '/'}datasets/imagenette_7.jpg`" />
+    <img class="imgman-img" :src="`${$slidev.configs.base ?? '/'}datasets/imagenette_8.jpg`" />
+    <img class="imgman-img" :src="`${$slidev.configs.base ?? '/'}datasets/imagenette_9.jpg`" />
+    <img class="imgman-img" :src="`${$slidev.configs.base ?? '/'}datasets/imagenette_10.jpg`" />
+  </div>
+
+  <!-- Underbrace below images (click 1 only) -->
+  <div class="imgman-underbrace" :style="{ opacity: $clicks >= 1 && $clicks < 2 ? 1 : 0, transition: 'opacity 300ms ease' }">
+
+$\underbrace{\hspace{350px}}_{\normalsize\text{An image manifold (e.g. STL10, Imagenette, etc.)}}$
+
+</div>
+
+  <!-- Arrow from images to embeddings (click 2) -->
+  <div class="imgman-arrow" :class="{ visible: $clicks >= 2 }">
+    <svg viewBox="0 0 60 16" width="60" height="16" xmlns="http://www.w3.org/2000/svg">
+      <path d="M 2 8 L 46 8" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="butt" />
+      <path d="M 46 3 L 56 8 L 46 13 Z" fill="currentColor" />
+    </svg>
+  </div>
+
+  <!-- Embedding boxes (click 2: staggered fade-in) -->
+  <div class="imgman-embeddings" :class="{ visible: $clicks >= 2 }">
+    <div class="imgman-emb-box transition-all duration-300 delay-[0ms]" :class="$clicks >= 2 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'">Image #1 embeddings</div>
+    <div class="imgman-emb-box transition-all duration-300 delay-[100ms]" :class="$clicks >= 2 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'">Image #2 embeddings</div>
+    <div class="imgman-dots transition-all duration-300 delay-[200ms]" :class="$clicks >= 2 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'">⋮</div>
+    <div class="imgman-emb-box transition-all duration-300 delay-[300ms]" :class="$clicks >= 2 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'">Image #N embeddings</div>
+  </div>
+
+  <!-- Underbrace below embeddings (click 2) -->
+  <div class="imgman-emb-underbrace" :style="{ opacity: $clicks >= 2 ? 1 : 0, transition: 'opacity 400ms ease 400ms' }">
+
+$\underbrace{\hspace{120px}}_{\small\text{DINO / CLIP embeddings}}$
+
+</div>
+
+  <!-- Arrow from embeddings to pipeline (click 3) -->
+  <div class="imgman-arrow-2" :class="{ visible: $clicks >= 3 }">
+    <svg viewBox="0 0 60 16" width="60" height="16" xmlns="http://www.w3.org/2000/svg">
+      <path d="M 2 8 L 46 8" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="butt" />
+      <path d="M 46 3 L 56 8 L 46 13 Z" fill="currentColor" />
+    </svg>
+  </div>
+
+  <!-- "Our pipeline" box (click 3) -->
+  <div class="imgman-pipeline-box" :class="{ visible: $clicks >= 3 }">
+
+  **Our pipeline**
+
+  </div>
+
+</div>
+
+</div>
+
+<style>
+.imgman-images {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 6px;
+  width: 85%;
+  opacity: 0;
+  transition: opacity 420ms ease, width 600ms ease, left 600ms ease;
+}
+.imgman-images.visible { opacity: 1; }
+.imgman-images.shrunk { width: 25%; left: 11%; }
+.imgman-img { display: block; width: 100%; height: auto; border-radius: 6px; }
+.imgman-dots { font-size: 1.8rem; color: var(--c-fg-subtle); text-align: center; }
+.imgman-underbrace {
+  position: absolute;
+  bottom: -10%;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  font-size: 1.2rem;
+  color: var(--c-fg);
+}
+.imgman-underbrace p { margin: 0; }
+.imgman-arrow {
+  position: absolute;
+  top: 50%;
+  left: 28%;
+  transform: translateY(-50%);
+  color: var(--c-fg-subtle);
+  opacity: 0;
+  transition: opacity 400ms ease;
+}
+.imgman-arrow.visible { opacity: 1; }
+.imgman-embeddings {
+  position: absolute;
+  top: 50%;
+  left: 37%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.imgman-emb-box {
+  background: #fef3c7;
+  border: 2px solid #f59e0b;
+  border-radius: 6px;
+  padding: 0.5rem 1.2rem;
+  font-size: 1.45rem;
+  font-weight: 500;
+  color: #000;
+  white-space: nowrap;
+}
+.imgman-emb-underbrace {
+  position: absolute;
+  bottom: 8%;
+  left: 52%;
+  transform: translateX(-50%);
+  text-align: center;
+  font-size: 1.2rem;
+  color: var(--c-fg);
+}
+.imgman-emb-underbrace p { margin: 0; }
+.imgman-arrow-2 {
+  position: absolute;
+  top: 50%;
+  left: 71%;
+  transform: translateY(-50%);
+  color: var(--c-fg-subtle);
+  opacity: 0;
+  transition: opacity 400ms ease;
+}
+.imgman-arrow-2.visible { opacity: 1; }
+.imgman-pipeline-box {
+  position: absolute;
+  top: 50%;
+  left: 81%;
+  transform: translateY(-50%);
+  background: #e0f2fe;
+  border: 2px solid #38bdf8;
+  border-radius: 8px;
+  padding: 0.6rem 2rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+  white-space: nowrap;
+  color: var(--c-brand-from);
+  opacity: 0;
+  transition: opacity 400ms ease;
+}
+.imgman-pipeline-box.visible { opacity: 1; }
+.imgman-pipeline-box p { margin: 0; }
+</style>
+
+<!--
+1. Images from the dataset — these are our "shapes" on the image manifold.
+2. Each image is embedded via DINOv2 — the embeddings form a point cloud in high-dimensional space.
+3. Feed the embeddings into our pipeline — learn the eigenbasis of the image manifold.
+-->
+
+---
+layout: default
+class: text-left
+clicks: 3
+transition: none
+---
+
+<div class="h-full flex flex-col pt-4 pb-3 px-2">
+
+<h1 class="!text-2xl !leading-snug !mb-4 font-serif text-center" style="color: #000">
+Train on different samplings of the same image manifold.
+</h1>
+
+<div class="flex-1 flex flex-col items-center justify-center" style="max-width: 85%; margin: 0 auto;">
+
+<div :style="{ opacity: $clicks >= 1 ? 1 : 0, transition: 'opacity 400ms ease' }" style="font-size: 1.4rem; color: var(--c-fg); margin-bottom: 1.5rem; text-align: center;">
+We evaluate our learned eigenbasis on <strong>dimensionality reduction</strong> downstream tasks, comparing against:
+</div>
+
+<div :style="{ opacity: $clicks >= 2 ? 1 : 0, transition: 'opacity 400ms ease' }" style="display: flex; justify-content: center; gap: 0.7rem; flex-wrap: wrap; margin-bottom: 1.5rem;">
+<span style="background: #dbeafe; border: 2px solid #3b82f6; border-radius: 6px; padding: 0.3rem 0.9rem; font-size: 1.1rem; font-weight: 600; color: #1d4ed8;">PCA</span>
+<span style="background: #dcfce7; border: 2px solid #22c55e; border-radius: 6px; padding: 0.3rem 0.9rem; font-size: 1.1rem; font-weight: 600; color: #166534;">t-SNE</span>
+<span style="background: #fef3c7; border: 2px solid #f59e0b; border-radius: 6px; padding: 0.3rem 0.9rem; font-size: 1.1rem; font-weight: 600; color: #92400e;">UMAP</span>
+<span style="background: #fce7f3; border: 2px solid #ec4899; border-radius: 6px; padding: 0.3rem 0.9rem; font-size: 1.1rem; font-weight: 600; color: #9d174d;">Isomap</span>
+<span style="background: #ede9fe; border: 2px solid #8b5cf6; border-radius: 6px; padding: 0.3rem 0.9rem; font-size: 1.1rem; font-weight: 600; color: #5b21b6;">Laplacian Eigenmaps</span>
+</div>
+
+<div :style="{ opacity: $clicks >= 3 ? 1 : 0, transition: 'opacity 400ms ease' }" style="font-size: 1.15rem; color: var(--c-fg); text-align: left; display: inline-block; margin-top: 0.5rem;">
+<strong>Our approach:</strong>
+<ul style="margin: 0.3rem 0 0 1.2rem; line-height: 1.8;">
+<li>Project each embedding onto the first <em>d</em> predicted eigenfunctions</li>
+<li>No extra optimization needed</li>
+</ul>
+</div>
+
+</div>
+
+</div>
+
+<!--
+We test the learned image-manifold eigenbasis on clustering / dimensionality reduction, comparing against PCA, t-SNE, UMAP, and Laplacian Eigenmaps.
+-->
+
+---
+layout: default
+class: text-left
+hide: true
 ---
 
 <div class="h-full flex flex-col pt-4 pb-3 px-2">
@@ -5378,13 +5604,19 @@ clicks: 1
 STL10 clusters &mdash; DINOv2 embeddings.
 </h1>
 
-<div class="flex-1 min-h-0 flex items-center justify-center">
+<div class="flex-1 min-h-0 flex items-center">
 
+<div class="w-[240px] pr-4 text-base text-left transition-opacity duration-300" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" style="color: var(--c-fg-muted); line-height: 1.5;">
+2D dimensionality reduction of DINOv2 embeddings from 1500 sample images (STL10).
+</div>
+
+<div class="flex-1 flex items-center justify-center">
 <img
   :src="`${$slidev.configs.base ?? '/'}supp_stl10_dino_cluster1@3x.png`"
-  class="max-h-[410px] max-w-[880px] object-contain block translate-y-[20px] transition-opacity duration-300"
+  class="max-h-[410px] max-w-[750px] object-contain block translate-y-[20px] transition-opacity duration-300"
   :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'"
 />
+</div>
 
 </div>
 
