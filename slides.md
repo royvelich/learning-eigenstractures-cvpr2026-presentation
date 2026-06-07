@@ -3731,7 +3731,7 @@ On the first experiement, we train our model on different samplings of a single 
 ---
 layout: default
 class: text-left
-clicks: 6
+clicks: 5
 ---
 
 <div class="h-full flex flex-col pt-4 pb-3 px-2">
@@ -3745,64 +3745,64 @@ Train on different samplings of a single shape.
 <div class="grid gap-1 items-center justify-items-center ml-pop-stage" :data-step="$clicks" style="grid-template-columns: 55px repeat(12, 67px); grid-auto-rows: 67px;">
 
 <div></div>
-<div class="text-sm text-center transition-opacity duration-300 translate-y-6" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">
+<div class="text-base text-center transition-opacity duration-300 translate-y-6" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">
 
 $\mathbf{v}_{2}$
 
 </div>
-<div class="text-sm text-center transition-opacity duration-300 translate-y-6" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">
+<div class="text-base text-center transition-opacity duration-300 translate-y-6" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">
 
 $\mathbf{v}_{3}$
 
 </div>
-<div class="text-sm text-center transition-opacity duration-300 translate-y-6" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">
+<div class="text-base text-center transition-opacity duration-300 translate-y-6" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">
 
 $\mathbf{v}_{4}$
 
 </div>
-<div class="text-sm text-center transition-opacity duration-300 translate-y-6" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">
+<div class="text-base text-center transition-opacity duration-300 translate-y-6" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">
 
 $\mathbf{v}_{5}$
 
 </div>
-<div class="text-sm text-center transition-opacity duration-300 translate-y-6" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">
+<div class="text-base text-center transition-opacity duration-300 translate-y-6" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">
 
 $\mathbf{v}_{6}$
 
 </div>
-<div class="text-sm text-center transition-opacity duration-300 translate-y-6" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">
+<div class="text-base text-center transition-opacity duration-300 translate-y-6" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">
 
 $\mathbf{v}_{7}$
 
 </div>
-<div class="text-sm text-center transition-opacity duration-300 translate-y-6" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">
+<div class="text-base text-center transition-opacity duration-300 translate-y-6" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">
+
+$\mathbf{v}_{8}$
+
+</div>
+<div class="text-base text-center transition-opacity duration-300 translate-y-6" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">
+
+$\mathbf{v}_{9}$
+
+</div>
+<div class="text-base text-center transition-opacity duration-300 translate-y-6" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">
 
 $\mathbf{v}_{10}$
 
 </div>
-<div class="text-sm text-center transition-opacity duration-300 translate-y-6" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">
+<div class="text-base text-center transition-opacity duration-300 translate-y-6" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">
 
 $\mathbf{v}_{20}$
 
 </div>
-<div class="text-sm text-center transition-opacity duration-300 translate-y-6" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">
+<div class="text-base text-center transition-opacity duration-300 translate-y-6" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">
+
+$\mathbf{v}_{30}$
+
+</div>
+<div class="text-base text-center transition-opacity duration-300 translate-y-6" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">
 
 $\mathbf{v}_{40}$
-
-</div>
-<div class="text-sm text-center transition-opacity duration-300 translate-y-6" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">
-
-$k=5$
-
-</div>
-<div class="text-sm text-center transition-opacity duration-300 translate-y-6" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">
-
-$k=25$
-
-</div>
-<div class="text-sm text-center transition-opacity duration-300 translate-y-6" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">
-
-$k=50$
 
 </div>
 
@@ -3813,12 +3813,12 @@ $k=50$
 <div class="cos-cell"><img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[180ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/lion/item_0000_gt_eigen004.png`" /><div class="cosine-label" style="color: #047857">1.00</div></div>
 <div class="cos-cell"><img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[240ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/lion/item_0000_gt_eigen005.png`" /><div class="cosine-label" style="color: #047857">0.99</div></div>
 <div class="cos-cell"><img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[300ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/lion/item_0000_gt_eigen006.png`" /><div class="cosine-label" style="color: #047857">0.97</div></div>
-<div class="cos-cell"><img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[360ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/lion/item_0000_gt_eigen009.png`" /><div class="cosine-label" style="color: #047857">0.85</div></div>
-<div class="cos-cell"><img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[420ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/lion/item_0000_gt_eigen019.png`" /><div class="cosine-label" style="color: #047857">0.68</div></div>
-<div class="cos-cell"><img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[480ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/lion/item_0000_gt_eigen039.png`" /><div class="cosine-label" style="color: #047857">0.82</div></div>
-<img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[540ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/lion/item_0000_gt_recon_k005.png`" />
-<img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[600ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/lion/item_0000_gt_recon_k025.png`" />
-<img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[660ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/lion/item_0000_gt_recon_k050.png`" />
+<div class="cos-cell"><img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[360ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/lion/item_0000_gt_eigen007.png`" /><div class="cosine-label" style="color: #047857">0.94</div></div>
+<div class="cos-cell"><img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[420ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/lion/item_0000_gt_eigen008.png`" /><div class="cosine-label" style="color: #047857">0.93</div></div>
+<div class="cos-cell"><img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[480ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/lion/item_0000_gt_eigen009.png`" /><div class="cosine-label" style="color: #047857">0.85</div></div>
+<div class="cos-cell"><img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[540ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/lion/item_0000_gt_eigen019.png`" /><div class="cosine-label" style="color: #047857">0.68</div></div>
+<div class="cos-cell"><img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[600ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/lion/item_0000_gt_eigen029.png`" /><div class="cosine-label" style="color: #047857">0.96</div></div>
+<div class="cos-cell"><img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[660ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/lion/item_0000_gt_eigen039.png`" /><div class="cosine-label" style="color: #047857">0.82</div></div>
 
 <div class="text-base text-right w-full pr-1 whitespace-nowrap transition-opacity duration-300 -translate-x-[10px]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'">Ours</div>
 <img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[0ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/lion/item_0000_pred_eigen001.png`" />
@@ -3827,12 +3827,12 @@ $k=50$
 <img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[180ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/lion/item_0000_pred_eigen004.png`" />
 <img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[240ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/lion/item_0000_pred_eigen005.png`" />
 <img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[300ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/lion/item_0000_pred_eigen006.png`" />
-<img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[360ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/lion/item_0000_pred_eigen009.png`" />
-<img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[420ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/lion/item_0000_pred_eigen019.png`" />
-<img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[480ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/lion/item_0000_pred_eigen039.png`" />
-<img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[540ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/lion/item_0000_pred_recon_k005.png`" />
-<img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[600ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/lion/item_0000_pred_recon_k025.png`" />
-<img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[660ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/lion/item_0000_pred_recon_k050.png`" />
+<img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[360ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/lion/item_0000_pred_eigen007.png`" />
+<img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[420ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/lion/item_0000_pred_eigen008.png`" />
+<img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[480ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/lion/item_0000_pred_eigen009.png`" />
+<div class="cos-cell"><img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[540ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/lion/item_0000_pred_eigen019.png`" /></div>
+<div class="cos-cell"><img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[600ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/lion/item_0000_pred_eigen029.png`" /></div>
+<div class="cos-cell"><img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[660ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/lion/item_0000_pred_eigen039.png`" /></div>
 
 <div class="text-base text-right w-full pr-1 whitespace-nowrap transition-opacity duration-300 -translate-x-[10px]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">Cot.&nbsp;Lap.</div>
 <div class="cos-cell"><img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[0ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/botijo/item_0000_gt_eigen001.png`" /><div class="cosine-label" style="color: #047857">0.99</div></div>
@@ -3841,12 +3841,12 @@ $k=50$
 <div class="cos-cell"><img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[180ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/botijo/item_0000_gt_eigen004.png`" /><div class="cosine-label" style="color: #047857">0.96</div></div>
 <div class="cos-cell"><img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[240ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/botijo/item_0000_gt_eigen005.png`" /><div class="cosine-label" style="color: #047857">0.99</div></div>
 <div class="cos-cell"><img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[300ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/botijo/item_0000_gt_eigen006.png`" /><div class="cosine-label" style="color: #047857">0.98</div></div>
-<div class="cos-cell"><img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[360ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/botijo/item_0000_gt_eigen009.png`" /><div class="cosine-label" style="color: #047857">0.98</div></div>
-<div class="cos-cell"><img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[420ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/botijo/item_0000_gt_eigen019.png`" /><div class="cosine-label" style="color: #047857">0.95</div></div>
-<div class="cos-cell"><img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[480ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/botijo/item_0000_gt_eigen039.png`" /><div class="cosine-label" style="color: #047857">0.96</div></div>
-<img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[540ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/botijo/item_0000_gt_recon_k005.png`" />
-<img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[600ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/botijo/item_0000_gt_recon_k025.png`" />
-<img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[660ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/botijo/item_0000_gt_recon_k050.png`" />
+<div class="cos-cell"><img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[360ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/botijo/item_0000_gt_eigen007.png`" /><div class="cosine-label" style="color: #047857">0.98</div></div>
+<div class="cos-cell"><img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[420ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/botijo/item_0000_gt_eigen008.png`" /><div class="cosine-label" style="color: #047857">0.99</div></div>
+<div class="cos-cell"><img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[480ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/botijo/item_0000_gt_eigen009.png`" /><div class="cosine-label" style="color: #047857">0.98</div></div>
+<div class="cos-cell"><img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[540ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/botijo/item_0000_gt_eigen019.png`" /><div class="cosine-label" style="color: #047857">0.95</div></div>
+<div class="cos-cell"><img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[600ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/botijo/item_0000_gt_eigen029.png`" /><div class="cosine-label" style="color: #047857">0.90</div></div>
+<div class="cos-cell"><img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[660ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/botijo/item_0000_gt_eigen039.png`" /><div class="cosine-label" style="color: #047857">0.96</div></div>
 
 <div class="text-base text-right w-full pr-1 whitespace-nowrap transition-opacity duration-300 -translate-x-[10px]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'">Ours</div>
 <img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[0ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/botijo/item_0000_pred_eigen001.png`" />
@@ -3855,12 +3855,12 @@ $k=50$
 <img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[180ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/botijo/item_0000_pred_eigen004.png`" />
 <img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[240ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/botijo/item_0000_pred_eigen005.png`" />
 <img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[300ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/botijo/item_0000_pred_eigen006.png`" />
-<img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[360ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/botijo/item_0000_pred_eigen009.png`" />
-<img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[420ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/botijo/item_0000_pred_eigen019.png`" />
-<img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[480ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/botijo/item_0000_pred_eigen039.png`" />
-<img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[540ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/botijo/item_0000_pred_recon_k005.png`" />
-<img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[600ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/botijo/item_0000_pred_recon_k025.png`" />
-<img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[660ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/botijo/item_0000_pred_recon_k050.png`" />
+<img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[360ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/botijo/item_0000_pred_eigen007.png`" />
+<img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[420ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/botijo/item_0000_pred_eigen008.png`" />
+<img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[480ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/botijo/item_0000_pred_eigen009.png`" />
+<div class="cos-cell"><img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[540ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/botijo/item_0000_pred_eigen019.png`" /></div>
+<div class="cos-cell"><img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[600ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/botijo/item_0000_pred_eigen029.png`" /></div>
+<div class="cos-cell"><img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[660ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/botijo/item_0000_pred_eigen039.png`" /></div>
 
 <div class="text-base text-right w-full pr-1 whitespace-nowrap transition-opacity duration-300 -translate-x-[10px]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">Cot.&nbsp;Lap.</div>
 <div class="cos-cell"><img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[0ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/armadillo/item_0000_gt_eigen001.png`" /><div class="cosine-label" style="color: #047857">1.00</div></div>
@@ -3869,12 +3869,12 @@ $k=50$
 <div class="cos-cell"><img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[180ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/armadillo/item_0000_gt_eigen004.png`" /><div class="cosine-label" style="color: #047857">0.99</div></div>
 <div class="cos-cell"><img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[240ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/armadillo/item_0000_gt_eigen005.png`" /><div class="cosine-label" style="color: #047857">0.99</div></div>
 <div class="cos-cell"><img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[300ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/armadillo/item_0000_gt_eigen006.png`" /><div class="cosine-label" style="color: #047857">0.99</div></div>
-<div class="cos-cell"><img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[360ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/armadillo/item_0000_gt_eigen009.png`" /><div class="cosine-label" style="color: #047857">0.99</div></div>
-<div class="cos-cell"><img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[420ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/armadillo/item_0000_gt_eigen019.png`" /><div class="cosine-label" style="color: #047857">0.99</div></div>
-<div class="cos-cell"><img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[480ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/armadillo/item_0000_gt_eigen039.png`" /><div class="cosine-label" style="color: #047857">0.67</div></div>
-<img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[540ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/armadillo/item_0000_gt_recon_k005.png`" />
-<img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[600ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/armadillo/item_0000_gt_recon_k025.png`" />
-<img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[660ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/armadillo/item_0000_gt_recon_k050.png`" />
+<div class="cos-cell"><img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[360ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/armadillo/item_0000_gt_eigen007.png`" /><div class="cosine-label" style="color: #047857">0.84</div></div>
+<div class="cos-cell"><img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[420ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/armadillo/item_0000_gt_eigen008.png`" /><div class="cosine-label" style="color: #047857">0.84</div></div>
+<div class="cos-cell"><img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[480ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/armadillo/item_0000_gt_eigen009.png`" /><div class="cosine-label" style="color: #047857">0.99</div></div>
+<div class="cos-cell"><img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[540ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/armadillo/item_0000_gt_eigen019.png`" /><div class="cosine-label" style="color: #047857">0.99</div></div>
+<div class="cos-cell"><img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[600ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/armadillo/item_0000_gt_eigen029.png`" /><div class="cosine-label" style="color: #b45309">0.53</div></div>
+<div class="cos-cell"><img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[660ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/armadillo/item_0000_gt_eigen039.png`" /><div class="cosine-label" style="color: #047857">0.67</div></div>
 
 <div class="text-base text-right w-full pr-1 whitespace-nowrap transition-opacity duration-300 -translate-x-[10px]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'">Ours</div>
 <img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[0ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/armadillo/item_0000_pred_eigen001.png`" />
@@ -3883,12 +3883,12 @@ $k=50$
 <img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[180ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/armadillo/item_0000_pred_eigen004.png`" />
 <img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[240ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/armadillo/item_0000_pred_eigen005.png`" />
 <img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[300ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/armadillo/item_0000_pred_eigen006.png`" />
-<img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[360ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/armadillo/item_0000_pred_eigen009.png`" />
-<img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[420ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/armadillo/item_0000_pred_eigen019.png`" />
-<img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[480ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/armadillo/item_0000_pred_eigen039.png`" />
-<img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[540ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/armadillo/item_0000_pred_recon_k005.png`" />
-<img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[600ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/armadillo/item_0000_pred_recon_k025.png`" />
-<img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[660ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/armadillo/item_0000_pred_recon_k050.png`" />
+<img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[360ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/armadillo/item_0000_pred_eigen007.png`" />
+<img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[420ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/armadillo/item_0000_pred_eigen008.png`" />
+<img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[480ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/armadillo/item_0000_pred_eigen009.png`" />
+<div class="cos-cell"><img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[540ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/armadillo/item_0000_pred_eigen019.png`" /></div>
+<div class="cos-cell"><img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[600ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/armadillo/item_0000_pred_eigen029.png`" /></div>
+<div class="cos-cell"><img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[660ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/armadillo/item_0000_pred_eigen039.png`" /></div>
 
 </div>
 
@@ -3924,7 +3924,7 @@ $k=50$
   left: 50%;
   bottom: -10px;
   transform: translateX(-50%);
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 600;
   background: rgba(255, 255, 255, 0.92);
   padding: 2px 6px;
@@ -3942,47 +3942,41 @@ $k=50$
   opacity: 1;
 }
 
-/* ── Click 4 — wave across v_2 .. v_7 (6 columns) ─────────────────────── */
+/* ── Click 4 — wave across v_2 .. v_10 (9 columns) ────────────────────── */
 .ml-pop-stage[data-step="4"] img[src*="eigen001"],
 .ml-pop-stage[data-step="4"] img[src*="eigen002"],
 .ml-pop-stage[data-step="4"] img[src*="eigen003"],
 .ml-pop-stage[data-step="4"] img[src*="eigen004"],
 .ml-pop-stage[data-step="4"] img[src*="eigen005"],
-.ml-pop-stage[data-step="4"] img[src*="eigen006"] {
+.ml-pop-stage[data-step="4"] img[src*="eigen006"],
+.ml-pop-stage[data-step="4"] img[src*="eigen007"],
+.ml-pop-stage[data-step="4"] img[src*="eigen008"],
+.ml-pop-stage[data-step="4"] img[src*="eigen009"] {
   animation: pop-once 350ms ease both;
   position: relative;
   z-index: 30;
 }
 .ml-pop-stage[data-step="4"] img[src*="eigen001"] { animation-delay:   0ms; }
-.ml-pop-stage[data-step="4"] img[src*="eigen002"] { animation-delay: 150ms; }
-.ml-pop-stage[data-step="4"] img[src*="eigen003"] { animation-delay: 300ms; }
-.ml-pop-stage[data-step="4"] img[src*="eigen004"] { animation-delay: 450ms; }
-.ml-pop-stage[data-step="4"] img[src*="eigen005"] { animation-delay: 600ms; }
-.ml-pop-stage[data-step="4"] img[src*="eigen006"] { animation-delay: 750ms; }
+.ml-pop-stage[data-step="4"] img[src*="eigen002"] { animation-delay: 100ms; }
+.ml-pop-stage[data-step="4"] img[src*="eigen003"] { animation-delay: 200ms; }
+.ml-pop-stage[data-step="4"] img[src*="eigen004"] { animation-delay: 300ms; }
+.ml-pop-stage[data-step="4"] img[src*="eigen005"] { animation-delay: 400ms; }
+.ml-pop-stage[data-step="4"] img[src*="eigen006"] { animation-delay: 500ms; }
+.ml-pop-stage[data-step="4"] img[src*="eigen007"] { animation-delay: 600ms; }
+.ml-pop-stage[data-step="4"] img[src*="eigen008"] { animation-delay: 700ms; }
+.ml-pop-stage[data-step="4"] img[src*="eigen009"] { animation-delay: 800ms; }
 
-/* ── Click 5 — wave across v_10, v_20, v_40 (3 columns) ───────────────── */
-.ml-pop-stage[data-step="5"] img[src*="eigen009"],
+/* ── Click 5 — wave across v_20, v_30, v_40 (3 columns) ───────────────── */
 .ml-pop-stage[data-step="5"] img[src*="eigen019"],
+.ml-pop-stage[data-step="5"] img[src*="eigen029"],
 .ml-pop-stage[data-step="5"] img[src*="eigen039"] {
   animation: pop-once 350ms ease both;
   position: relative;
   z-index: 30;
 }
-.ml-pop-stage[data-step="5"] img[src*="eigen009"] { animation-delay:   0ms; }
-.ml-pop-stage[data-step="5"] img[src*="eigen019"] { animation-delay: 150ms; }
+.ml-pop-stage[data-step="5"] img[src*="eigen019"] { animation-delay:   0ms; }
+.ml-pop-stage[data-step="5"] img[src*="eigen029"] { animation-delay: 150ms; }
 .ml-pop-stage[data-step="5"] img[src*="eigen039"] { animation-delay: 300ms; }
-
-/* ── Click 6 — wave across k=5, k=25, k=50 (3 columns) ────────────────── */
-.ml-pop-stage[data-step="6"] img[src*="recon_k005"],
-.ml-pop-stage[data-step="6"] img[src*="recon_k025"],
-.ml-pop-stage[data-step="6"] img[src*="recon_k050"] {
-  animation: pop-once 350ms ease both;
-  position: relative;
-  z-index: 30;
-}
-.ml-pop-stage[data-step="6"] img[src*="recon_k005"] { animation-delay:   0ms; }
-.ml-pop-stage[data-step="6"] img[src*="recon_k025"] { animation-delay: 150ms; }
-.ml-pop-stage[data-step="6"] img[src*="recon_k050"] { animation-delay: 300ms; }
 </style>
 
 <!--
@@ -4013,62 +4007,62 @@ Train on different samplings of a single shape.
 <div class="grid gap-1 items-center justify-items-center ml-pop-stage" :data-step="$clicks" style="grid-template-columns: 55px repeat(12, 67px); grid-auto-rows: 67px;">
 
 <div></div>
-<div class="text-sm text-center transition-opacity duration-300 translate-y-6" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">
+<div class="text-base text-center transition-opacity duration-300 translate-y-6" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">
 
 $\mathbf{v}_{2}$
 
 </div>
-<div class="text-sm text-center transition-opacity duration-300 translate-y-6" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">
+<div class="text-base text-center transition-opacity duration-300 translate-y-6" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">
 
 $\mathbf{v}_{3}$
 
 </div>
-<div class="text-sm text-center transition-opacity duration-300 translate-y-6" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">
+<div class="text-base text-center transition-opacity duration-300 translate-y-6" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">
 
 $\mathbf{v}_{4}$
 
 </div>
-<div class="text-sm text-center transition-opacity duration-300 translate-y-6" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">
+<div class="text-base text-center transition-opacity duration-300 translate-y-6" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">
 
 $\mathbf{v}_{5}$
 
 </div>
-<div class="text-sm text-center transition-opacity duration-300 translate-y-6" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">
+<div class="text-base text-center transition-opacity duration-300 translate-y-6" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">
 
 $\mathbf{v}_{6}$
 
 </div>
-<div class="text-sm text-center transition-opacity duration-300 translate-y-6" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">
+<div class="text-base text-center transition-opacity duration-300 translate-y-6" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">
 
 $\mathbf{v}_{7}$
 
 </div>
-<div class="text-sm text-center transition-opacity duration-300 translate-y-6" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">
+<div class="text-base text-center transition-opacity duration-300 translate-y-6" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">
 
 $\mathbf{v}_{10}$
 
 </div>
-<div class="text-sm text-center transition-opacity duration-300 translate-y-6" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">
+<div class="text-base text-center transition-opacity duration-300 translate-y-6" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">
 
 $\mathbf{v}_{25}$
 
 </div>
-<div class="text-sm text-center transition-opacity duration-300 translate-y-6" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">
+<div class="text-base text-center transition-opacity duration-300 translate-y-6" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">
 
 $\mathbf{v}_{40}$
 
 </div>
-<div class="text-sm text-center transition-opacity duration-300 translate-y-6" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">
+<div class="text-base text-center transition-opacity duration-300 translate-y-6" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">
 
 $k=5$
 
 </div>
-<div class="text-sm text-center transition-opacity duration-300 translate-y-6" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">
+<div class="text-base text-center transition-opacity duration-300 translate-y-6" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">
 
 $k=25$
 
 </div>
-<div class="text-sm text-center transition-opacity duration-300 translate-y-6" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">
+<div class="text-base text-center transition-opacity duration-300 translate-y-6" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">
 
 $k=50$
 
@@ -4190,7 +4184,7 @@ $k=50$
   left: 50%;
   bottom: -10px;
   transform: translateX(-50%);
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 600;
   background: rgba(255, 255, 255, 0.92);
   padding: 2px 6px;
@@ -4480,62 +4474,62 @@ Train on many shapes, test on unseen shapes.
 <div class="grid gap-1 items-center justify-items-center ml-pop-stage" :data-step="$clicks" style="grid-template-columns: 55px repeat(12, 67px); grid-auto-rows: 67px;">
 
 <div></div>
-<div class="text-sm text-center transition-opacity duration-300 translate-y-6" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">
+<div class="text-base text-center transition-opacity duration-300 translate-y-6" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">
 
 $\mathbf{v}_{2}$
 
 </div>
-<div class="text-sm text-center transition-opacity duration-300 translate-y-6" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">
+<div class="text-base text-center transition-opacity duration-300 translate-y-6" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">
 
 $\mathbf{v}_{3}$
 
 </div>
-<div class="text-sm text-center transition-opacity duration-300 translate-y-6" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">
+<div class="text-base text-center transition-opacity duration-300 translate-y-6" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">
 
 $\mathbf{v}_{4}$
 
 </div>
-<div class="text-sm text-center transition-opacity duration-300 translate-y-6" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">
+<div class="text-base text-center transition-opacity duration-300 translate-y-6" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">
 
 $\mathbf{v}_{5}$
 
 </div>
-<div class="text-sm text-center transition-opacity duration-300 translate-y-6" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">
+<div class="text-base text-center transition-opacity duration-300 translate-y-6" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">
 
 $\mathbf{v}_{6}$
 
 </div>
-<div class="text-sm text-center transition-opacity duration-300 translate-y-6" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">
+<div class="text-base text-center transition-opacity duration-300 translate-y-6" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">
 
 $\mathbf{v}_{7}$
 
 </div>
-<div class="text-sm text-center transition-opacity duration-300 translate-y-6" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">
+<div class="text-base text-center transition-opacity duration-300 translate-y-6" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">
 
 $\mathbf{v}_{8}$
 
 </div>
-<div class="text-sm text-center transition-opacity duration-300 translate-y-6" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">
+<div class="text-base text-center transition-opacity duration-300 translate-y-6" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">
 
 $\mathbf{v}_{10}$
 
 </div>
-<div class="text-sm text-center transition-opacity duration-300 translate-y-6" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">
+<div class="text-base text-center transition-opacity duration-300 translate-y-6" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">
 
 $\mathbf{v}_{20}$
 
 </div>
-<div class="text-sm text-center transition-opacity duration-300 translate-y-6" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">
+<div class="text-base text-center transition-opacity duration-300 translate-y-6" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">
 
 $k=5$
 
 </div>
-<div class="text-sm text-center transition-opacity duration-300 translate-y-6" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">
+<div class="text-base text-center transition-opacity duration-300 translate-y-6" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">
 
 $k=25$
 
 </div>
-<div class="text-sm text-center transition-opacity duration-300 translate-y-6" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">
+<div class="text-base text-center transition-opacity duration-300 translate-y-6" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">
 
 $k=50$
 
@@ -4645,7 +4639,7 @@ $k=50$
   left: 50%;
   bottom: -10px;
   transform: translateX(-50%);
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 600;
   background: rgba(255, 255, 255, 0.92);
   padding: 2px 6px;
@@ -4681,64 +4675,64 @@ Train on many shapes, test on unseen shapes.
 <div class="grid gap-1 items-center justify-items-center ml-pop-stage" :data-step="$clicks" style="grid-template-columns: 55px repeat(12, 67px); grid-auto-rows: 67px;">
 
 <div></div>
-<div class="text-sm text-center transition-opacity duration-300 translate-y-6" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">
+<div class="text-base text-center transition-opacity duration-300 translate-y-6" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">
 
 $\mathbf{v}_{2}$
 
 </div>
-<div class="text-sm text-center transition-opacity duration-300 translate-y-6" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">
+<div class="text-base text-center transition-opacity duration-300 translate-y-6" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">
 
 $\mathbf{v}_{3}$
 
 </div>
-<div class="text-sm text-center transition-opacity duration-300 translate-y-6" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">
+<div class="text-base text-center transition-opacity duration-300 translate-y-6" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">
 
 $\mathbf{v}_{4}$
 
 </div>
-<div class="text-sm text-center transition-opacity duration-300 translate-y-6" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">
+<div class="text-base text-center transition-opacity duration-300 translate-y-6" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">
 
 $\mathbf{v}_{5}$
 
 </div>
-<div class="text-sm text-center transition-opacity duration-300 translate-y-6" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">
+<div class="text-base text-center transition-opacity duration-300 translate-y-6" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">
 
 $\mathbf{v}_{6}$
 
 </div>
-<div class="text-sm text-center transition-opacity duration-300 translate-y-6" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">
+<div class="text-base text-center transition-opacity duration-300 translate-y-6" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">
 
 $\mathbf{v}_{7}$
 
 </div>
-<div class="text-sm text-center transition-opacity duration-300 translate-y-6" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">
+<div class="text-base text-center transition-opacity duration-300 translate-y-6" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">
 
 $\mathbf{v}_{8}$
 
 </div>
-<div class="text-sm text-center transition-opacity duration-300 translate-y-6" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">
+<div class="text-base text-center transition-opacity duration-300 translate-y-6" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">
 
-$\mathbf{v}_{10}$
-
-</div>
-<div class="text-sm text-center transition-opacity duration-300 translate-y-6" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">
-
-$\mathbf{v}_{20}$
+$\mathbf{v}_{8}$
 
 </div>
-<div class="text-sm text-center transition-opacity duration-300 translate-y-6" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">
+<div class="text-base text-center transition-opacity duration-300 translate-y-6" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">
 
-$k=5$
-
-</div>
-<div class="text-sm text-center transition-opacity duration-300 translate-y-6" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">
-
-$k=25$
+$\mathbf{v}_{9}$
 
 </div>
-<div class="text-sm text-center transition-opacity duration-300 translate-y-6" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">
+<div class="text-base text-center transition-opacity duration-300 translate-y-6" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">
 
-$k=50$
+$\mathbf{v}_{11}$
+
+</div>
+<div class="text-base text-center transition-opacity duration-300 translate-y-6" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">
+
+$\mathbf{v}_{12}$
+
+</div>
+<div class="text-base text-center transition-opacity duration-300 translate-y-6" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">
+
+$\mathbf{v}_{13}$
 
 </div>
 
@@ -4750,11 +4744,11 @@ $k=50$
 <div class="cos-cell"><img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[240ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec15_shape3/item_0018_gt_eigen005.png`" /><div class="cosine-label" style="color: #b45309">0.56</div></div>
 <div class="cos-cell"><img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[300ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec15_shape3/item_0018_gt_eigen006.png`" /><div class="cosine-label" style="color: #b91c1c">0.39</div></div>
 <div class="cos-cell"><img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[360ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec15_shape3/item_0018_gt_eigen007.png`" /><div class="cosine-label" style="color: #047857">0.75</div></div>
-<div class="cos-cell"><img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[420ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec15_shape3/item_0018_gt_eigen009.png`" /><div class="cosine-label" style="color: #b91c1c">0.30</div></div>
-<div class="cos-cell"><img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[480ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec15_shape3/item_0018_gt_eigen019.png`" /><div class="cosine-label" style="color: #b91c1c">0.35</div></div>
-<img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[540ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec15_shape3/item_0018_gt_recon_k005.png`" />
-<img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[600ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec15_shape3/item_0018_gt_recon_k025.png`" />
-<img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[660ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec15_shape3/item_0018_gt_recon_k050.png`" />
+<div class="cos-cell"><img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[420ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec15_shape3/item_0018_gt_eigen007.png`" /><div class="cosine-label" style="color: #047857">0.75</div></div>
+<div class="cos-cell"><img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[480ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec15_shape3/item_0018_gt_eigen008.png`" /><div class="cosine-label" style="color: #047857">0.89</div></div>
+<div class="cos-cell"><img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[540ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec15_shape3/item_0018_gt_eigen010.png`" /><div class="cosine-label" style="color: #b45309">0.04</div></div>
+<div class="cos-cell"><img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[600ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec15_shape3/item_0018_gt_eigen011.png`" /><div class="cosine-label" style="color: #b45309">0.22</div></div>
+<div class="cos-cell"><img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[660ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec15_shape3/item_0018_gt_eigen012.png`" /><div class="cosine-label" style="color: #b45309">0.23</div></div>
 
 <div class="text-base text-right w-full pr-1 whitespace-nowrap transition-opacity duration-300 -translate-x-[10px]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'">Ours</div>
 <img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[0ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec15_shape3/item_0018_pred_eigen001.png`" />
@@ -4764,11 +4758,11 @@ $k=50$
 <img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[240ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec15_shape3/item_0018_pred_eigen005.png`" />
 <img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[300ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec15_shape3/item_0018_pred_eigen006.png`" />
 <img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[360ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec15_shape3/item_0018_pred_eigen007.png`" />
-<img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[420ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec15_shape3/item_0018_pred_eigen009.png`" />
-<img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[480ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec15_shape3/item_0018_pred_eigen019.png`" />
-<img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[540ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec15_shape3/item_0018_pred_recon_k005.png`" />
-<img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[600ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec15_shape3/item_0018_pred_recon_k025.png`" />
-<img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[660ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec15_shape3/item_0018_pred_recon_k050.png`" />
+<img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[420ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec15_shape3/item_0018_pred_eigen007.png`" />
+<img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[480ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec15_shape3/item_0018_pred_eigen008.png`" />
+<div class="cos-cell"><img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[540ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec15_shape3/item_0018_pred_eigen010.png`" /></div>
+<div class="cos-cell"><img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[600ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec15_shape3/item_0018_pred_eigen011.png`" /></div>
+<div class="cos-cell"><img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[660ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec15_shape3/item_0018_pred_eigen012.png`" /></div>
 
 <div class="text-base text-right w-full pr-1 whitespace-nowrap transition-opacity duration-300 -translate-x-[10px]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">Cot.&nbsp;Lap.</div>
 <div class="cos-cell"><img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[0ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/thingi10k_shape4/item_0005_gt_eigen001.png`" /><div class="cosine-label" style="color: #047857">1.00</div></div>
@@ -4778,11 +4772,11 @@ $k=50$
 <div class="cos-cell"><img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[240ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/thingi10k_shape4/item_0005_gt_eigen005.png`" /><div class="cosine-label" style="color: #b91c1c">0.12</div></div>
 <div class="cos-cell"><img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[300ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/thingi10k_shape4/item_0005_gt_eigen006.png`" /><div class="cosine-label" style="color: #b91c1c">0.13</div></div>
 <div class="cos-cell"><img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[360ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/thingi10k_shape4/item_0005_gt_eigen007.png`" /><div class="cosine-label" style="color: #047857">0.61</div></div>
-<div class="cos-cell"><img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[420ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/thingi10k_shape4/item_0005_gt_eigen009.png`" /><div class="cosine-label" style="color: #b45309">0.55</div></div>
-<div class="cos-cell"><img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[480ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/thingi10k_shape4/item_0005_gt_eigen019.png`" /><div class="cosine-label" style="color: #b45309">0.54</div></div>
-<img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[540ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/thingi10k_shape4/item_0005_gt_recon_k005.png`" />
-<img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[600ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/thingi10k_shape4/item_0005_gt_recon_k025.png`" />
-<img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[660ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/thingi10k_shape4/item_0005_gt_recon_k050.png`" />
+<div class="cos-cell"><img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[420ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/thingi10k_shape4/item_0005_gt_eigen007.png`" /><div class="cosine-label" style="color: #047857">0.61</div></div>
+<div class="cos-cell"><img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[480ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/thingi10k_shape4/item_0005_gt_eigen008.png`" /><div class="cosine-label" style="color: #b45309">0.49</div></div>
+<div class="cos-cell"><img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[540ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/thingi10k_shape4/item_0005_gt_eigen010.png`" /><div class="cosine-label" style="color: #047857">0.78</div></div>
+<div class="cos-cell"><img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[600ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/thingi10k_shape4/item_0005_gt_eigen011.png`" /><div class="cosine-label" style="color: #047857">0.62</div></div>
+<div class="cos-cell"><img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[660ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/thingi10k_shape4/item_0005_gt_eigen012.png`" /><div class="cosine-label" style="color: #047857">0.70</div></div>
 
 <div class="text-base text-right w-full pr-1 whitespace-nowrap transition-opacity duration-300 -translate-x-[10px]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'">Ours</div>
 <img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[0ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/thingi10k_shape4/item_0005_pred_eigen001.png`" />
@@ -4792,11 +4786,11 @@ $k=50$
 <img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[240ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/thingi10k_shape4/item_0005_pred_eigen005.png`" />
 <img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[300ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/thingi10k_shape4/item_0005_pred_eigen006.png`" />
 <img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[360ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/thingi10k_shape4/item_0005_pred_eigen007.png`" />
-<img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[420ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/thingi10k_shape4/item_0005_pred_eigen009.png`" />
-<img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[480ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/thingi10k_shape4/item_0005_pred_eigen019.png`" />
-<img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[540ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/thingi10k_shape4/item_0005_pred_recon_k005.png`" />
-<img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[600ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/thingi10k_shape4/item_0005_pred_recon_k025.png`" />
-<img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[660ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/thingi10k_shape4/item_0005_pred_recon_k050.png`" />
+<img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[420ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/thingi10k_shape4/item_0005_pred_eigen007.png`" />
+<img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[480ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/thingi10k_shape4/item_0005_pred_eigen008.png`" />
+<div class="cos-cell"><img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[540ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/thingi10k_shape4/item_0005_pred_eigen010.png`" /></div>
+<div class="cos-cell"><img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[600ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/thingi10k_shape4/item_0005_pred_eigen011.png`" /></div>
+<div class="cos-cell"><img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[660ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/thingi10k_shape4/item_0005_pred_eigen012.png`" /></div>
 
 <div class="text-base text-right w-full pr-1 whitespace-nowrap transition-opacity duration-300 -translate-x-[10px]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">Cot.&nbsp;Lap.</div>
 <div class="cos-cell"><img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[0ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/thingi10k_shape7/item_0012_gt_eigen001.png`" /><div class="cosine-label" style="color: #b45309">0.53</div></div>
@@ -4806,11 +4800,11 @@ $k=50$
 <div class="cos-cell"><img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[240ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/thingi10k_shape7/item_0012_gt_eigen005.png`" /><div class="cosine-label" style="color: #b91c1c">0.42</div></div>
 <div class="cos-cell"><img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[300ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/thingi10k_shape7/item_0012_gt_eigen006.png`" /><div class="cosine-label" style="color: #047857">0.60</div></div>
 <div class="cos-cell"><img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[360ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/thingi10k_shape7/item_0012_gt_eigen007.png`" /><div class="cosine-label" style="color: #047857">0.70</div></div>
-<div class="cos-cell"><img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[420ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/thingi10k_shape7/item_0012_gt_eigen009.png`" /><div class="cosine-label" style="color: #b91c1c">0.35</div></div>
-<div class="cos-cell"><img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[480ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/thingi10k_shape7/item_0012_gt_eigen019.png`" /><div class="cosine-label" style="color: #b91c1c">0.13</div></div>
-<img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[540ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/thingi10k_shape7/item_0012_gt_recon_k005.png`" />
-<img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[600ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/thingi10k_shape7/item_0012_gt_recon_k025.png`" />
-<img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[660ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/thingi10k_shape7/item_0012_gt_recon_k050.png`" />
+<div class="cos-cell"><img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[420ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/thingi10k_shape7/item_0012_gt_eigen007.png`" /><div class="cosine-label" style="color: #047857">0.70</div></div>
+<div class="cos-cell"><img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[480ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/thingi10k_shape7/item_0012_gt_eigen008.png`" /><div class="cosine-label" style="color: #b45309">0.18</div></div>
+<div class="cos-cell"><img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[540ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/thingi10k_shape7/item_0012_gt_eigen010.png`" /><div class="cosine-label" style="color: #b45309">0.40</div></div>
+<div class="cos-cell"><img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[600ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/thingi10k_shape7/item_0012_gt_eigen011.png`" /><div class="cosine-label" style="color: #b45309">0.32</div></div>
+<div class="cos-cell"><img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[660ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/thingi10k_shape7/item_0012_gt_eigen012.png`" /><div class="cosine-label" style="color: #b45309">0.25</div></div>
 
 <div class="text-base text-right w-full pr-1 whitespace-nowrap transition-opacity duration-300 -translate-x-[10px]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'">Ours</div>
 <img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[0ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/thingi10k_shape7/item_0012_pred_eigen001.png`" />
@@ -4820,11 +4814,11 @@ $k=50$
 <img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[240ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/thingi10k_shape7/item_0012_pred_eigen005.png`" />
 <img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[300ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/thingi10k_shape7/item_0012_pred_eigen006.png`" />
 <img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[360ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/thingi10k_shape7/item_0012_pred_eigen007.png`" />
-<img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[420ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/thingi10k_shape7/item_0012_pred_eigen009.png`" />
-<img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[480ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/thingi10k_shape7/item_0012_pred_eigen019.png`" />
-<img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[540ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/thingi10k_shape7/item_0012_pred_recon_k005.png`" />
-<img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[600ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/thingi10k_shape7/item_0012_pred_recon_k025.png`" />
-<img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[660ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/thingi10k_shape7/item_0012_pred_recon_k050.png`" />
+<img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[420ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/thingi10k_shape7/item_0012_pred_eigen007.png`" />
+<img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[480ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/thingi10k_shape7/item_0012_pred_eigen008.png`" />
+<div class="cos-cell"><img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[540ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/thingi10k_shape7/item_0012_pred_eigen010.png`" /></div>
+<div class="cos-cell"><img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[600ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/thingi10k_shape7/item_0012_pred_eigen011.png`" /></div>
+<div class="cos-cell"><img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[660ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/thingi10k_shape7/item_0012_pred_eigen012.png`" /></div>
 
 </div>
 
@@ -4844,7 +4838,7 @@ $k=50$
   left: 50%;
   bottom: -10px;
   transform: translateX(-50%);
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 600;
   background: rgba(255, 255, 255, 0.92);
   padding: 2px 6px;
@@ -4886,62 +4880,62 @@ Experiments on volumetric shapes.
 
 <div class="grid gap-1 items-center justify-items-center vol-grid" :class="{ 'popped': $clicks >= 2 }" style="grid-template-columns: repeat(12, 70px); grid-auto-rows: 70px;">
 
-<div class="text-sm text-center transition-opacity duration-300 translate-y-6" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">
+<div class="text-base text-center transition-opacity duration-300 translate-y-6" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">
 
 $\mathbf{v}_{2}$
 
 </div>
-<div class="text-sm text-center transition-opacity duration-300 translate-y-6" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">
+<div class="text-base text-center transition-opacity duration-300 translate-y-6" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">
 
 $\mathbf{v}_{3}$
 
 </div>
-<div class="text-sm text-center transition-opacity duration-300 translate-y-6" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">
+<div class="text-base text-center transition-opacity duration-300 translate-y-6" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">
 
 $\mathbf{v}_{4}$
 
 </div>
-<div class="text-sm text-center transition-opacity duration-300 translate-y-6" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">
+<div class="text-base text-center transition-opacity duration-300 translate-y-6" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">
 
 $\mathbf{v}_{5}$
 
 </div>
-<div class="text-sm text-center transition-opacity duration-300 translate-y-6" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">
+<div class="text-base text-center transition-opacity duration-300 translate-y-6" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">
 
 $\mathbf{v}_{6}$
 
 </div>
-<div class="text-sm text-center transition-opacity duration-300 translate-y-6" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">
+<div class="text-base text-center transition-opacity duration-300 translate-y-6" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">
 
 $\mathbf{v}_{7}$
 
 </div>
-<div class="text-sm text-center transition-opacity duration-300 translate-y-6" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">
+<div class="text-base text-center transition-opacity duration-300 translate-y-6" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">
 
 $\mathbf{v}_{8}$
 
 </div>
-<div class="text-sm text-center transition-opacity duration-300 translate-y-6" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">
+<div class="text-base text-center transition-opacity duration-300 translate-y-6" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">
 
 $\mathbf{v}_{10}$
 
 </div>
-<div class="text-sm text-center transition-opacity duration-300 translate-y-6" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">
+<div class="text-base text-center transition-opacity duration-300 translate-y-6" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">
 
 $\mathbf{v}_{20}$
 
 </div>
-<div class="text-sm text-center transition-opacity duration-300 translate-y-6" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">
+<div class="text-base text-center transition-opacity duration-300 translate-y-6" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">
 
 $k=5$
 
 </div>
-<div class="text-sm text-center transition-opacity duration-300 translate-y-6" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">
+<div class="text-base text-center transition-opacity duration-300 translate-y-6" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">
 
 $k=25$
 
 </div>
-<div class="text-sm text-center transition-opacity duration-300 translate-y-6" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">
+<div class="text-base text-center transition-opacity duration-300 translate-y-6" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">
 
 $k=50$
 
