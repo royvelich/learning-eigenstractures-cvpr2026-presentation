@@ -3834,7 +3834,7 @@ $\mathbf{v}_{40}$
 <div class="cos-cell"><img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[600ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/lion/item_0000_pred_eigen029.png`" /></div>
 <div class="cos-cell"><img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[660ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/lion/item_0000_pred_eigen039.png`" /></div>
 
-<div class="text-base text-right w-full pr-1 whitespace-nowrap transition-opacity duration-300 -translate-x-[10px]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">Cot.&nbsp;Lap.</div>
+<div class="shape-sep text-base text-right w-full pr-1 whitespace-nowrap transition-opacity duration-300 -translate-x-[10px]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">Cot.&nbsp;Lap.</div>
 <div class="cos-cell"><img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[0ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/botijo/item_0000_gt_eigen001.png`" /><div class="cosine-label" style="color: #047857">0.99</div></div>
 <div class="cos-cell"><img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[60ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/botijo/item_0000_gt_eigen002.png`" /><div class="cosine-label" style="color: #047857">0.95</div></div>
 <div class="cos-cell"><img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[120ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/botijo/item_0000_gt_eigen003.png`" /><div class="cosine-label" style="color: #047857">0.94</div></div>
@@ -3862,7 +3862,7 @@ $\mathbf{v}_{40}$
 <div class="cos-cell"><img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[600ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/botijo/item_0000_pred_eigen029.png`" /></div>
 <div class="cos-cell"><img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[660ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/botijo/item_0000_pred_eigen039.png`" /></div>
 
-<div class="text-base text-right w-full pr-1 whitespace-nowrap transition-opacity duration-300 -translate-x-[10px]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">Cot.&nbsp;Lap.</div>
+<div class="shape-sep text-base text-right w-full pr-1 whitespace-nowrap transition-opacity duration-300 -translate-x-[10px]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">Cot.&nbsp;Lap.</div>
 <div class="cos-cell"><img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[0ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/armadillo/item_0000_gt_eigen001.png`" /><div class="cosine-label" style="color: #047857">1.00</div></div>
 <div class="cos-cell"><img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[60ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/armadillo/item_0000_gt_eigen002.png`" /><div class="cosine-label" style="color: #047857">0.99</div></div>
 <div class="cos-cell"><img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[120ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/armadillo/item_0000_gt_eigen003.png`" /><div class="cosine-label" style="color: #047857">0.99</div></div>
@@ -3977,6 +3977,24 @@ $\mathbf{v}_{40}$
 .ml-pop-stage[data-step="5"] img[src*="eigen019"] { animation-delay:   0ms; }
 .ml-pop-stage[data-step="5"] img[src*="eigen029"] { animation-delay: 150ms; }
 .ml-pop-stage[data-step="5"] img[src*="eigen039"] { animation-delay: 300ms; }
+.shape-sep {
+  position: relative;
+}
+.shape-sep::before {
+  content: '';
+  position: absolute;
+  top: -25px;
+  left: 95px;
+  width: 800px;
+  height: 1px;
+  background: var(--c-border);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 300ms ease;
+}
+.ml-pop-stage:not([data-step="0"]):not([data-step="1"]) .shape-sep::before {
+  opacity: 1;
+}
 </style>
 
 <!--
@@ -4764,7 +4782,7 @@ $\mathbf{v}_{13}$
 <div class="cos-cell"><img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[600ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec15_shape3/item_0018_pred_eigen011.png`" /></div>
 <div class="cos-cell"><img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[660ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/shrec15_shape3/item_0018_pred_eigen012.png`" /></div>
 
-<div class="text-base text-right w-full pr-1 whitespace-nowrap transition-opacity duration-300 -translate-x-[10px]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">Cot.&nbsp;Lap.</div>
+<div class="shape-sep text-base text-right w-full pr-1 whitespace-nowrap transition-opacity duration-300 -translate-x-[10px]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">Cot.&nbsp;Lap.</div>
 <div class="cos-cell"><img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[0ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/thingi10k_shape4/item_0005_gt_eigen001.png`" /><div class="cosine-label" style="color: #047857">1.00</div></div>
 <div class="cos-cell"><img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[60ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/thingi10k_shape4/item_0005_gt_eigen002.png`" /><div class="cosine-label" style="color: #047857">1.00</div></div>
 <div class="cos-cell"><img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[120ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/thingi10k_shape4/item_0005_gt_eigen003.png`" /><div class="cosine-label" style="color: #047857">0.99</div></div>
@@ -4792,7 +4810,7 @@ $\mathbf{v}_{13}$
 <div class="cos-cell"><img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[600ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/thingi10k_shape4/item_0005_pred_eigen011.png`" /></div>
 <div class="cos-cell"><img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[660ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/thingi10k_shape4/item_0005_pred_eigen012.png`" /></div>
 
-<div class="text-base text-right w-full pr-1 whitespace-nowrap transition-opacity duration-300 -translate-x-[10px]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">Cot.&nbsp;Lap.</div>
+<div class="shape-sep text-base text-right w-full pr-1 whitespace-nowrap transition-opacity duration-300 -translate-x-[10px]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">Cot.&nbsp;Lap.</div>
 <div class="cos-cell"><img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[0ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/thingi10k_shape7/item_0012_gt_eigen001.png`" /><div class="cosine-label" style="color: #b45309">0.53</div></div>
 <div class="cos-cell"><img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[60ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/thingi10k_shape7/item_0012_gt_eigen002.png`" /><div class="cosine-label" style="color: #047857">0.93</div></div>
 <div class="cos-cell"><img class="w-[67px] h-[67px] object-contain block transition-opacity duration-300 delay-[120ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}generalization_screenshots/thingi10k_shape7/item_0012_gt_eigen003.png`" /><div class="cosine-label" style="color: #b45309">0.58</div></div>
@@ -4853,6 +4871,24 @@ $\mathbf{v}_{13}$
 }
 /* Reveal from click 3 onward. */
 .ml-pop-stage:not([data-step="0"]):not([data-step="1"]):not([data-step="2"]) .cosine-label {
+  opacity: 1;
+}
+.shape-sep {
+  position: relative;
+}
+.shape-sep::before {
+  content: '';
+  position: absolute;
+  top: -25px;
+  left: 95px;
+  width: 800px;
+  height: 1px;
+  background: var(--c-border);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 300ms ease;
+}
+.ml-pop-stage:not([data-step="0"]):not([data-step="1"]) .shape-sep::before {
   opacity: 1;
 }
 </style>
@@ -5445,7 +5481,7 @@ Train on different samplings of the same image manifold.
 <div class="flex-1 flex flex-col items-center justify-center" style="max-width: 85%; margin: 0 auto;">
 
 <div :style="{ opacity: $clicks >= 1 ? 1 : 0, transition: 'opacity 400ms ease' }" style="font-size: 1.4rem; color: var(--c-fg); margin-bottom: 1.5rem; text-align: center;">
-We evaluate our learned eigenbasis on <strong>dimensionality reduction</strong> downstream tasks, comparing against:
+We evaluate our predicted eigenbasis on <strong>dimensionality reduction</strong>, against:
 </div>
 
 <div :style="{ opacity: $clicks >= 2 ? 1 : 0, transition: 'opacity 400ms ease' }" style="display: flex; justify-content: center; gap: 0.7rem; flex-wrap: wrap; margin-bottom: 1.5rem;">
