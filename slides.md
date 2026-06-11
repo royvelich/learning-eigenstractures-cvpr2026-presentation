@@ -5687,7 +5687,7 @@ Quantitative comparison &mdash; NMI &amp; ARI.
 </div>
 
 <!--
-1. Here we see some quantitative comparison. We evaluate clustering quality on DINOv2 embeddings measured by NMI and ARI metrics (the higher the better) — we evaluate each method on two datasets (STL10, Imagenette), three target dimensions (2, 5, 10). We can see that our method, the leftmost column on each chart, is competitive with or better than SOTA methods like UMAP.
+1. Here we see a quantitative comparison. We evaluate clustering quality on DINOv2 embeddings measured by NMI and ARI metrics (the higher the better) — we evaluate each method on two datasets (STL10, Imagenette), three target dimensions (2, 5, 10). We can see that our method, the leftmost column on each chart, is competitive with or better than SOTA methods like UMAP.
 -->
 
 ---
