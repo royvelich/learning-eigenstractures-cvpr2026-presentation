@@ -636,6 +636,185 @@ And the reason is its spectral decomposition. One eigenbasis powers a whole tool
 
 ---
 layout: default
+class: text-center
+clicks: 5
+---
+
+<div class="h-full flex flex-col pt-2 pb-2 px-2 text-center">
+
+<div class="eyebrow">Application · Shape descriptors</div>
+
+<h1 class="!text-xl !leading-snug !mb-1 font-serif" style="color: #000">
+A descriptor from <span class="grad">heat diffusion</span>
+</h1>
+
+<div class="flex-1 min-h-0 grid grid-cols-2 gap-4 items-center">
+
+<div class="h-full flex items-center justify-center">
+  <img
+    :src="`${$slidev.configs.base ?? '/'}applications/desc_diffuse_${Math.min($clicks, 4)}.png`"
+    class="max-h-full max-w-full object-contain"
+    alt="heat diffusing across a horse surface from a source point"
+  />
+</div>
+
+<div class="h-full min-h-0 flex flex-col items-center justify-center gap-2">
+
+<div class="flex gap-2 w-full justify-center items-stretch">
+
+<div style="flex: 1 1 0; min-width: 0; background: var(--c-bg-soft); border: 1px solid var(--c-border); border-radius: 12px; padding: 6px 10px;">
+
+<div style="font-size: 15px; color: var(--c-fg-body)">
+
+$k_t(p,x)=\sum_k e^{-\lambda_k t}\varphi_k(p)\varphi_k(x)$
+
+</div>
+
+<div style="font-size: 12.5px; color: var(--c-fg-muted); margin-top: 2px">
+
+heat from $p$ to $x$ after time $t$
+
+</div>
+
+</div>
+
+<div v-show="$clicks >= 5" style="flex: 1 1 0; min-width: 0; background: #fff7ed; border: 1px solid #fed7aa; border-radius: 12px; padding: 6px 10px;">
+
+<div style="font-size: 15px; color: var(--c-fg-body)">
+
+$k_t(p,p)=\sum_k e^{-\lambda_k t}\varphi_k(p)^2$
+
+</div>
+
+<div style="font-size: 12.5px; color: var(--c-accent); margin-top: 2px">
+
+set $x{=}p$: heat that *stays* at $p$
+
+</div>
+
+</div>
+
+</div>
+
+<img
+  v-show="$clicks >= 5"
+  :src="`${$slidev.configs.base ?? '/'}applications/desc_curve_one.png`"
+  class="flex-1 min-h-0 max-h-full max-w-full object-contain"
+  alt="HKS curve: heat retained at the source point versus scale"
+/>
+
+</div>
+
+</div>
+
+</div>
+
+<!--
+1. Drop a unit of heat at a point p.
+2. It diffuses across the surface, governed by the Laplace–Beltrami operator — quickly into nearby pointy regions, slowly across flat ones.
+3. The heat that stays at p, summed over all scales t, is its Heat Kernel Signature — a per-point fingerprint that needs no formula, just the eigenbasis.
+-->
+
+---
+layout: default
+class: text-center
+clicks: 2
+---
+
+<div class="h-full flex flex-col pt-2 pb-2 px-2 text-center">
+
+<div class="eyebrow">Application · Shape descriptors</div>
+
+<h1 class="!text-xl !leading-snug !mb-1 font-serif" style="color: #000">
+From a <span class="grad">few points</span> to <span class="grad">every point</span>
+</h1>
+
+<div class="flex-1 min-h-0 grid grid-cols-2 gap-4 items-center">
+
+<div class="h-full flex items-center justify-center">
+  <img
+    :src="`${$slidev.configs.base ?? '/'}applications/${$clicks >= 2 ? 'desc_field' : 'desc_points'}.png`"
+    class="max-h-full max-w-full object-contain"
+    alt="three marked points, then the descriptor field over the whole surface"
+  />
+</div>
+
+<div class="h-full flex items-center justify-center">
+  <img
+    v-show="$clicks >= 1"
+    :src="`${$slidev.configs.base ?? '/'}applications/desc_curves3.png`"
+    class="max-h-full max-w-full object-contain"
+    alt="HKS signature curves for the three points"
+  />
+</div>
+
+</div>
+
+<div class="text-center mt-1" :style="{ opacity: $clicks >= 2 ? 1 : 0, fontSize: '18px', color: 'var(--c-fg-muted)' }">
+
+…evaluate $h(x,t)$ at <em>every</em> vertex → a dense descriptor field.
+
+</div>
+
+</div>
+
+<!--
+1. Pick a few points — each gets its own signature curve, and different geometry gives a clearly different curve.
+2. The curves are the fingerprints.
+3. Compute the same signature at every vertex and you get a dense, intrinsic descriptor field over the whole shape.
+-->
+
+---
+layout: default
+class: text-center
+clicks: 1
+---
+
+<div class="h-full flex flex-col pt-2 pb-2 px-2 text-center">
+
+<div class="eyebrow">Application · Shape descriptors</div>
+
+<h1 class="!text-xl !leading-snug !mb-1 font-serif" style="color: #000">
+The fingerprint is <span class="grad">pose-invariant</span>
+</h1>
+
+<div class="flex-1 min-h-0 grid grid-cols-2 gap-6 items-center">
+
+<div class="h-full flex items-center justify-center">
+  <img
+    :src="`${$slidev.configs.base ?? '/'}applications/desc_rgb_a.png`"
+    class="max-h-full max-w-full object-contain"
+    alt="3-scale RGB descriptor painted on the first pose"
+  />
+</div>
+
+<div class="h-full flex items-center justify-center">
+  <img
+    v-show="$clicks >= 1"
+    :src="`${$slidev.configs.base ?? '/'}applications/desc_rgb_b.png`"
+    class="max-h-full max-w-full object-contain"
+    alt="same descriptor on a different pose — corresponding regions share colour"
+  />
+</div>
+
+</div>
+
+<div class="text-center mt-1" style="font-size: 18px; color: var(--c-fg-muted)">
+
+Three scales → R, G, B. Corresponding regions share colour across poses — the basis for <span class="lbo">correspondence</span>.
+
+</div>
+
+</div>
+
+<!--
+1. Encode three scales of the descriptor as red, green and blue.
+2. On a completely different pose the colours land in the same places — the descriptor is (near-)isometry invariant.
+3. That invariance is exactly what makes spectral descriptors the workhorse of shape correspondence.
+-->
+
+---
+layout: default
 class: text-left
 ---
 
