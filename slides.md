@@ -761,7 +761,7 @@ From a <span class="grad">few points</span> to <span class="grad">every point</s
 
 <div class="text-center mt-1" :style="{ opacity: $clicks >= 2 ? 1 : 0, fontSize: '18px', color: 'var(--c-fg-muted)' }">
 
-…evaluate $h(x,t)$ at <em>every</em> vertex → a dense descriptor field.
+…evaluate $h(x,t^\star)$ at <em>every</em> vertex (one scale $t^\star$) → a dense descriptor field.
 
 </div>
 

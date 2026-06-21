@@ -167,9 +167,21 @@ def build():
                  str(OUT_DIR / "desc_points.png"), pts=pts, pcols=pcols)
     print("[ok] desc_points.png")
 
+    # the scale at which the shape is painted (slide 15 field)
+    tmid = ts[len(ts) // 2]
+
     fig, ax = plt.subplots(figsize=(6.6, 4.2))
     for i, c, lbl in zip(pts, pcols, ["nose", "hoof", "tail"]):
         ax.plot(tfine, hfine[:, i], color=c, lw=3, label=lbl)
+    # vertical line marking the single scale shown on the shape, with the
+    # value each curve takes there (= the colour painted on that point)
+    ax.axvline(tmid, color=GRAY, ls="--", lw=1.6, zorder=1)
+    for i, c in zip(pts, pcols):
+        yv = float(np.exp(-tmid * lam) @ (Phi[i] ** 2))
+        ax.scatter([tmid], [yv], color=c, edgecolor=FG, zorder=6, s=55)
+    ax.annotate(r"$t^\star$ (shown on shape)", xy=(tmid, ax.get_ylim()[1]),
+                xytext=(0, -2), textcoords="offset points",
+                ha="center", va="top", fontsize=12, color=FG)
     ax.set_xscale("log")
     ax.set_xlabel("$t$  (log scale)", fontsize=13)
     ax.set_ylabel("$h(x,t)$", fontsize=13)
@@ -182,8 +194,7 @@ def build():
     plt.close()
     print("[ok] desc_curves3.png")
 
-    # field at a mid scale over every vertex
-    tmid = ts[len(ts) // 2]
+    # field at the same mid scale over every vertex
     field = np.exp(-tmid * lam) @ (Phi ** 2).T
     clim = (float(np.percentile(field, 2)), float(np.percentile(field, 98)))
     render_field(V, F, field, FIELD, clim, str(OUT_DIR / "desc_field.png"))
