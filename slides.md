@@ -648,9 +648,52 @@ clicks: 5
 A descriptor from <span class="grad">heat diffusion</span>
 </h1>
 
-<div class="flex-1 min-h-0 grid grid-cols-2 gap-4 items-center">
+<div class="flex-1 min-h-0 grid grid-cols-2 gap-x-6 gap-y-2" style="grid-template-rows: auto minmax(0, 1fr);">
 
-<div class="h-full flex items-center justify-center">
+<!-- top-left: k_t(p,x) -->
+<div class="flex items-center justify-center">
+
+<div style="width: 100%; background: var(--c-bg-soft); border: 1px solid var(--c-border); border-radius: 12px; padding: 8px 14px;">
+
+<div style="font-size: 18px; color: var(--c-fg-body)">
+
+$k_t(p,x)=\sum_k e^{-\lambda_k t}\varphi_k(p)\varphi_k(x)$
+
+</div>
+
+<div style="font-size: 13px; color: var(--c-fg-muted); margin-top: 3px">
+
+heat that flows from $p$ to $x$ after time $t$
+
+</div>
+
+</div>
+
+</div>
+
+<!-- top-right: k_t(p,p) -->
+<div class="flex items-center justify-center">
+
+<div v-show="$clicks >= 5" style="width: 100%; background: #fff7ed; border: 1px solid #fed7aa; border-radius: 12px; padding: 8px 14px;">
+
+<div style="font-size: 18px; color: var(--c-fg-body)">
+
+$k_t(p,p)=\sum_k e^{-\lambda_k t}\varphi_k(p)^2$
+
+</div>
+
+<div style="font-size: 13px; color: var(--c-accent); margin-top: 3px">
+
+set $x{=}p$: heat that *stays* at $p$ — its fingerprint
+
+</div>
+
+</div>
+
+</div>
+
+<!-- bottom-left: heat diffusion -->
+<div class="min-h-0 flex items-center justify-center">
   <img
     :src="`${$slidev.configs.base ?? '/'}applications/desc_diffuse_${Math.min($clicks, 4)}.png`"
     class="max-h-full max-w-full object-contain"
@@ -658,51 +701,14 @@ A descriptor from <span class="grad">heat diffusion</span>
   />
 </div>
 
-<div class="h-full min-h-0 flex flex-col items-center justify-center gap-2">
-
-<div class="flex gap-2 w-full justify-center items-stretch">
-
-<div style="flex: 1 1 0; min-width: 0; background: var(--c-bg-soft); border: 1px solid var(--c-border); border-radius: 12px; padding: 6px 10px;">
-
-<div style="font-size: 15px; color: var(--c-fg-body)">
-
-$k_t(p,x)=\sum_k e^{-\lambda_k t}\varphi_k(p)\varphi_k(x)$
-
-</div>
-
-<div style="font-size: 12.5px; color: var(--c-fg-muted); margin-top: 2px">
-
-heat from $p$ to $x$ after time $t$
-
-</div>
-
-</div>
-
-<div v-show="$clicks >= 5" style="flex: 1 1 0; min-width: 0; background: #fff7ed; border: 1px solid #fed7aa; border-radius: 12px; padding: 6px 10px;">
-
-<div style="font-size: 15px; color: var(--c-fg-body)">
-
-$k_t(p,p)=\sum_k e^{-\lambda_k t}\varphi_k(p)^2$
-
-</div>
-
-<div style="font-size: 12.5px; color: var(--c-accent); margin-top: 2px">
-
-set $x{=}p$: heat that *stays* at $p$
-
-</div>
-
-</div>
-
-</div>
-
-<img
-  v-show="$clicks >= 5"
-  :src="`${$slidev.configs.base ?? '/'}applications/desc_curve_one.png`"
-  class="flex-1 min-h-0 max-h-full max-w-full object-contain"
-  alt="HKS curve: heat retained at the source point versus scale"
-/>
-
+<!-- bottom-right: signature curve -->
+<div class="min-h-0 flex items-center justify-center">
+  <img
+    v-show="$clicks >= 5"
+    :src="`${$slidev.configs.base ?? '/'}applications/desc_curve_one.png`"
+    class="max-h-full max-w-full object-contain"
+    alt="HKS curve: heat retained at the source point versus scale"
+  />
 </div>
 
 </div>
