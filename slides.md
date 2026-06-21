@@ -326,6 +326,207 @@ layout: default
 class: text-center
 ---
 
+<div class="h-full flex flex-col pt-2 pb-2 px-2 text-center">
+
+<h1 class="!text-xl !leading-snug !mb-1 font-serif" style="color: #000">
+Eigenfunctions of the Laplacian — <span class="grad">1D interval</span>
+</h1>
+
+<div class="text-center mt-1 mb-1" style="font-size: 18px; color: var(--c-fg-muted)">
+
+Domain $\Omega=[0,\pi]$ &nbsp;·&nbsp; $-\varphi_k'' = \lambda_k\,\varphi_k$ &nbsp;·&nbsp; $\varphi_k(x)=\cos(kx),\quad \lambda_k=k^2$
+
+</div>
+
+<div class="flex-1 min-h-0 flex items-center justify-center">
+  <img
+    :src="`${$slidev.configs.base ?? '/'}applications/eigfun_1d.png`"
+    class="max-h-full max-w-full object-contain"
+    alt="first six Laplacian eigenfunctions on the interval — cosines"
+  />
+</div>
+
+</div>
+
+<!--
+1. The domain here is just the interval. The Laplacian is the second derivative.
+2. Its eigenfunctions are the cosines — ordered by frequency, with eigenvalue k squared.
+3. These are exactly the DCT basis functions. Next we use them to reconstruct a signal.
+-->
+
+---
+layout: default
+class: text-center
+clicks: 5
+---
+
+<div class="h-full flex flex-col pt-2 pb-2 px-2 text-center">
+
+<h1 class="!text-xl !leading-snug !mb-1 font-serif" style="color: #000">
+Eigen-reconstruction on a <span class="grad">1D interval</span>
+</h1>
+
+<div class="flex-1 min-h-0 flex items-center justify-center">
+  <img
+    :src="`${$slidev.configs.base ?? '/'}applications/eigrec_1d_${Math.min($clicks, 5)}.png`"
+    class="max-h-full max-w-full object-contain"
+    alt="1D signal reconstructed from a growing number of cosine eigenfunctions"
+  />
+</div>
+
+<div class="text-center mt-1" style="font-size: 20px; color: var(--c-fg-muted)">
+
+$f \;\approx\; f_K \;=\; \sum_{k=1}^{K} \langle f, \varphi_k\rangle\, \varphi_k$ &nbsp;·&nbsp; eigenfunctions $\varphi_k$ of the Laplacian
+
+</div>
+
+</div>
+
+<!--
+1. Same target signal throughout. We project it onto the Laplacian eigenfunctions and keep the first K terms.
+2. K = 1 is just the average — a flat reconstruction, huge residual.
+3. Each click doubles K. On the interval the eigenfunctions are cosines, and the residual collapses fast.
+-->
+
+---
+layout: default
+class: text-center
+---
+
+<div class="h-full flex flex-col pt-2 pb-2 px-2 text-center">
+
+<h1 class="!text-xl !leading-snug !mb-1 font-serif" style="color: #000">
+Eigenfunctions of the Laplacian — <span class="grad">2D domain</span>
+</h1>
+
+<div class="text-center mt-1 mb-1" style="font-size: 18px; color: var(--c-fg-muted)">
+
+Domain $\Omega=[0,1]^2$ &nbsp;·&nbsp; $-\Delta\varphi = \lambda\,\varphi$ &nbsp;·&nbsp; $\varphi_{ij}(x,y)=\cos(i\pi x)\cos(j\pi y),\quad \lambda_{ij}=\pi^2(i^2+j^2)$
+
+</div>
+
+<div class="flex-1 min-h-0 flex items-center justify-center">
+  <img
+    :src="`${$slidev.configs.base ?? '/'}applications/eigfun_2d.png`"
+    class="max-h-full max-w-full object-contain"
+    alt="first six Laplacian eigenfunctions on the unit square — cosine products"
+  />
+</div>
+
+</div>
+
+<!--
+1. On the square the domain is two-dimensional, and the eigenfunctions are products of cosines.
+2. They are indexed by two frequencies; the eigenvalue grows with both.
+3. Same spectral ladder, one dimension up — then we reconstruct.
+-->
+
+---
+layout: default
+class: text-center
+clicks: 5
+---
+
+<div class="h-full flex flex-col pt-2 pb-2 px-2 text-center">
+
+<h1 class="!text-xl !leading-snug !mb-1 font-serif" style="color: #000">
+Eigen-reconstruction on a <span class="grad">2D domain</span>
+</h1>
+
+<div class="flex-1 min-h-0 flex items-center justify-center">
+  <img
+    :src="`${$slidev.configs.base ?? '/'}applications/eigrec_2d_${Math.min($clicks, 5)}.png`"
+    class="max-h-full max-w-full object-contain"
+    alt="2D signal reconstructed from a growing number of cosine-product eigenfunctions"
+  />
+</div>
+
+<div class="text-center mt-1" style="font-size: 20px; color: var(--c-fg-muted)">
+
+$f \;\approx\; f_K \;=\; \sum_{k=1}^{K} \langle f, \varphi_k\rangle\, \varphi_k$ &nbsp;·&nbsp; eigenfunctions $\varphi_k$ of the Laplacian
+
+</div>
+
+</div>
+
+<!--
+1. Exactly the same recipe, now on the square — eigenfunctions are 2D cosine products, ordered by eigenvalue.
+2. Low K gives a blurry blob; high-frequency detail needs more modes.
+3. Watch the residual map cool off as K grows.
+-->
+
+---
+layout: default
+class: text-center
+---
+
+<div class="h-full flex flex-col pt-2 pb-2 px-2 text-center">
+
+<h1 class="!text-xl !leading-snug !mb-1 font-serif" style="color: #000">
+Eigenfunctions of the Laplacian — <span class="grad">curved surface</span>
+</h1>
+
+<div class="text-center mt-1 mb-1" style="font-size: 18px; color: var(--c-fg-muted)">
+
+Domain: a surface $\mathcal{M}$ &nbsp;·&nbsp; $\Delta_{\mathcal{M}}\varphi_k = \lambda_k\,\varphi_k$ &nbsp;·&nbsp; <span class="lbo">Laplace–Beltrami</span> — no closed form, computed numerically
+
+</div>
+
+<div class="flex-1 min-h-0 flex items-center justify-center">
+  <img
+    :src="`${$slidev.configs.base ?? '/'}applications/eigfun_3d.png`"
+    class="max-h-full max-w-full object-contain"
+    alt="first six Laplace-Beltrami eigenfunctions on the armadillo surface"
+  />
+</div>
+
+</div>
+
+<!--
+1. On a curved surface there is no formula — the eigenfunctions are computed from the discretized Laplace–Beltrami operator.
+2. But the pattern is the same: phi_0 is constant, and higher modes oscillate more, with growing eigenvalue.
+3. These are the natural Fourier-like basis of the shape — and we reconstruct with them next.
+-->
+
+---
+layout: default
+class: text-center
+clicks: 5
+---
+
+<div class="h-full flex flex-col pt-2 pb-2 px-2 text-center">
+
+<h1 class="!text-xl !leading-snug !mb-1 font-serif" style="color: #000">
+Eigen-reconstruction on a <span class="grad">curved surface</span>
+</h1>
+
+<div class="flex-1 min-h-0 flex items-center justify-center">
+  <img
+    :src="`${$slidev.configs.base ?? '/'}applications/eigrec_3d_${Math.min($clicks, 5)}.png`"
+    class="max-h-full max-w-full object-contain"
+    alt="signal on a surface reconstructed from a growing number of Laplace-Beltrami eigenfunctions"
+  />
+</div>
+
+<div class="text-center mt-1" style="font-size: 20px; color: var(--c-fg-muted)">
+
+$f \;\approx\; f_K \;=\; \sum_{k=1}^{K} \langle f, \varphi_k\rangle\, \varphi_k$ &nbsp;·&nbsp; eigenfunctions $\varphi_k$ of the <span class="lbo">Laplace–Beltrami operator</span>
+
+</div>
+
+</div>
+
+<!--
+1. The punchline: the very same construction works on a curved manifold — now the eigenfunctions are those of the Laplace–Beltrami operator.
+2. No mesh-specific tricks; the spectral recipe is identical to 1D and 2D.
+3. With a few dozen LBO eigenfunctions the signal on the surface is faithfully reconstructed.
+-->
+
+---
+layout: default
+class: text-center
+---
+
 <div class="flex flex-col items-center h-full pt-6 pb-4 text-center">
 
 <h1 class="!text-xl !leading-snug !mb-4 max-w-5xl font-serif" style="color: #000">
