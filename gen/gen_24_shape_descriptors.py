@@ -139,17 +139,17 @@ def build():
         print(f"[ok] desc_diffuse_{j}.png")
 
     # ---- HKS curves ------------------------------------------------------
-    hks = np.einsum("tk,nk->tn", np.exp(-np.outer(ts, lam)), Phi ** 2)  # (T, nV)
-    # dense curves over a finer t for smooth plotting
-    tfine = np.geomspace(ts[0], ts[-1], 120)
+    # dense curve spanning the marker range so the markers lie exactly on it
+    tfine = np.geomspace(diff_ts[0], diff_ts[-1], 200)
     hfine = np.einsum("tk,nk->tn", np.exp(-np.outer(tfine, lam)), Phi ** 2)
+    # marker y-values evaluated exactly on the HKS function (not interpolated)
+    mark_y = np.exp(-np.outer(diff_ts, lam)) @ (Phi[src] ** 2)
 
     fig, ax = plt.subplots(figsize=(6.6, 4.2))
     ax.plot(tfine, hfine[:, src], color=TEAL, lw=3)
-    ax.scatter(diff_ts, np.interp(diff_ts, tfine, hfine[:, src]),
-               color="#39ff14", edgecolor=FG, zorder=5, s=55)
+    ax.scatter(diff_ts, mark_y, color="#39ff14", edgecolor=FG, zorder=5, s=55)
     ax.set_xscale("log")
-    ax.set_xlabel("scale  $t$  (log)", fontsize=13)
+    ax.set_xlabel("$t$  (log scale)", fontsize=13)
     ax.set_ylabel(r"$h(p,t)=\sum_k e^{-\lambda_k t}\varphi_k(p)^2$", fontsize=13)
     ax.set_title("Heat retained at $p$ — its signature", fontsize=14, color=FG)
     ax.spines[["top", "right"]].set_visible(False)
@@ -171,7 +171,7 @@ def build():
     for i, c, lbl in zip(pts, pcols, ["nose", "hoof", "tail"]):
         ax.plot(tfine, hfine[:, i], color=c, lw=3, label=lbl)
     ax.set_xscale("log")
-    ax.set_xlabel("scale  $t$  (log)", fontsize=13)
+    ax.set_xlabel("$t$  (log scale)", fontsize=13)
     ax.set_ylabel("$h(x,t)$", fontsize=13)
     ax.set_title("Each point → a distinct signature", fontsize=14, color=FG)
     ax.legend(frameon=False, fontsize=12)
