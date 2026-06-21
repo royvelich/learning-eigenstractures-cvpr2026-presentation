@@ -170,29 +170,34 @@ def build():
     # the scale at which the shape is painted (slide 15 field)
     tmid = ts[len(ts) // 2]
 
-    fig, ax = plt.subplots(figsize=(6.6, 4.2))
-    for i, c, lbl in zip(pts, pcols, ["nose", "hoof", "tail"]):
-        ax.plot(tfine, hfine[:, i], color=c, lw=3, label=lbl)
-    # vertical line marking the single scale shown on the shape, with the
-    # value each curve takes there (= the colour painted on that point)
-    ax.axvline(tmid, color=GRAY, ls="--", lw=1.6, zorder=1)
-    for i, c in zip(pts, pcols):
-        yv = float(np.exp(-tmid * lam) @ (Phi[i] ** 2))
-        ax.scatter([tmid], [yv], color=c, edgecolor=FG, zorder=6, s=55)
-    ax.annotate(r"$t^\star$ (shown on shape)", xy=(tmid, ax.get_ylim()[1]),
-                xytext=(0, -2), textcoords="offset points",
-                ha="center", va="top", fontsize=12, color=FG)
-    ax.set_xscale("log")
-    ax.set_xlabel("$t$  (log scale)", fontsize=13)
-    ax.set_ylabel("$h(x,t)$", fontsize=13)
-    ax.set_title("Each point → a distinct signature", fontsize=14, color=FG)
-    ax.legend(frameon=False, fontsize=12)
-    ax.spines[["top", "right"]].set_visible(False)
-    plt.tight_layout()
-    plt.savefig(str(OUT_DIR / "desc_curves3.png"), dpi=150, transparent=True,
-                bbox_inches="tight", pad_inches=0.06)
-    plt.close()
-    print("[ok] desc_curves3.png")
+    def plot_curves3(with_line, out):
+        fig, ax = plt.subplots(figsize=(6.6, 4.2))
+        for i, c, lbl in zip(pts, pcols, ["nose", "hoof", "tail"]):
+            ax.plot(tfine, hfine[:, i], color=c, lw=3, label=lbl)
+        if with_line:
+            # vertical line at the single scale shown on the shape, with the
+            # value each curve takes there (= the colour painted on that point)
+            ax.axvline(tmid, color=GRAY, ls="--", lw=1.6, zorder=1)
+            for i, c in zip(pts, pcols):
+                yv = float(np.exp(-tmid * lam) @ (Phi[i] ** 2))
+                ax.scatter([tmid], [yv], color=c, edgecolor=FG, zorder=6, s=55)
+            ax.annotate(r"$t^\star$ (shown on shape)", xy=(tmid, ax.get_ylim()[1]),
+                        xytext=(0, -2), textcoords="offset points",
+                        ha="center", va="top", fontsize=12, color=FG)
+        ax.set_xscale("log")
+        ax.set_xlabel("$t$  (log scale)", fontsize=13)
+        ax.set_ylabel("$h(x,t)$", fontsize=13)
+        ax.set_title("Each point → a distinct signature", fontsize=14, color=FG)
+        ax.legend(frameon=False, fontsize=12)
+        ax.spines[["top", "right"]].set_visible(False)
+        plt.tight_layout()
+        plt.savefig(str(OUT_DIR / out), dpi=150, transparent=True,
+                    bbox_inches="tight", pad_inches=0.06)
+        plt.close()
+        print(f"[ok] {out}")
+
+    plot_curves3(False, "desc_curves3.png")           # curves only
+    plot_curves3(True, "desc_curves3_tstar.png")      # + t* line (with field)
 
     # field at the same mid scale over every vertex
     field = np.exp(-tmid * lam) @ (Phi ** 2).T

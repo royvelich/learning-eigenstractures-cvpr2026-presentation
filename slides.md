@@ -751,7 +751,7 @@ From a <span class="grad">few points</span> to <span class="grad">every point</s
 <div class="h-full flex items-center justify-center">
   <img
     v-show="$clicks >= 1"
-    :src="`${$slidev.configs.base ?? '/'}applications/desc_curves3.png`"
+    :src="`${$slidev.configs.base ?? '/'}applications/desc_curves3${$clicks >= 2 ? '_tstar' : ''}.png`"
     class="max-h-full max-w-full object-contain"
     alt="HKS signature curves for the three points"
   />
