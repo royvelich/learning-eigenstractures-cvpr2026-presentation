@@ -693,12 +693,15 @@ set $x{=}p$: heat that *stays* at $p$ — its fingerprint
 </div>
 
 <!-- bottom-left: heat diffusion -->
-<div class="min-h-0 flex items-center justify-center">
+<div class="min-h-0 flex flex-col items-center justify-center">
   <img
     :src="`${$slidev.configs.base ?? '/'}applications/desc_diffuse_${Math.min($clicks, 4)}.png`"
-    class="max-h-full max-w-full object-contain"
+    class="flex-1 min-h-0 max-h-full max-w-full object-contain"
     alt="heat diffusing across a horse surface from a source point"
   />
+  <div style="font-size: 17px; color: var(--c-fg-muted); margin-top: 2px">
+    diffusion time &nbsp; <span style="font-style: italic">t</span> = {{ [26, 103, 410, 1630, 6480][Math.min($clicks, 4)] }}
+  </div>
 </div>
 
 <!-- bottom-right: signature curve -->
