@@ -1281,7 +1281,7 @@ In practice, a surface is a <span class="grad">discrete mesh</span>
        alt="armadillo: smooth surface, then discrete mesh, then a function on the vertices" />
 </div>
 
-<div class="text-center mt-1" style="font-size: 19px; color: var(--c-fg-body); min-height: 2.2em">
+<div class="text-center mt-1" style="font-size: 18px; color: var(--c-fg-body); height: 3em; display: flex; align-items: center; justify-content: center">
 
 <span v-show="$clicks < 1">A shape <em>looks</em> like a smooth surface…</span>
 <span v-show="$clicks === 1">…but we store it as a <span class="grad">finite mesh</span> — a discrete sample of vertices and faces.</span>
