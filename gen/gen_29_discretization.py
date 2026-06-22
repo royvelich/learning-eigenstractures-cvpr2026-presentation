@@ -17,7 +17,7 @@ def build():
     import pyvista as pv
     from PIL import Image
 
-    V, F = load_mesh(MPZ14 / "armadillo.obj", target_faces=3500)
+    V, F = load_mesh(MPZ14 / "armadillo.obj", target_faces=1700)
     V[:, 0] = -V[:, 0]; V[:, 2] = -V[:, 2]          # face the camera
     faces = faces_pv(F)
     CAM = "xy"
@@ -60,16 +60,15 @@ def build():
                render_points_as_spheres=True)
     setup(p); save(p, "disc_mesh.png")
 
-    # 3) a scalar function = values at the vertices (colour the field, keep the
-    # sample points visible as dark dots)
+    # 3) a scalar function = values at the vertices: colour ONLY the vertex
+    # points (the surface stays neutral grey), with large balls
     p = pv.Plotter(off_screen=True, window_size=(1000, 1000))
     p.set_background([1, 1, 1, 0])
-    surf = pv.PolyData(V, faces); surf["f"] = f
-    p.add_mesh(surf, scalars="f", cmap="coolwarm", clim=(-cap, cap),
-               smooth_shading=True, show_scalar_bar=False,
-               ambient=0.34, diffuse=0.72, specular=0.12)
-    p.add_mesh(pv.PolyData(V), color="#0f172a", point_size=4,
-               render_points_as_spheres=True)
+    p.add_mesh(pv.PolyData(V, faces), color="#d6d8dc", smooth_shading=True,
+               ambient=0.45, diffuse=0.6, specular=0.05)
+    pts = pv.PolyData(V); pts["f"] = f
+    p.add_mesh(pts, scalars="f", cmap="coolwarm", clim=(-cap, cap),
+               point_size=22, render_points_as_spheres=True, show_scalar_bar=False)
     setup(p); save(p, "disc_func.png")
 
 
