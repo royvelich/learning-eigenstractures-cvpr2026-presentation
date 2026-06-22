@@ -5964,38 +5964,21 @@ layout: default
 class: text-left
 ---
 
-<div class="h-full flex flex-row gap-3">
+<div class="h-full flex flex-col pt-2 pb-2 px-2 text-center">
 
-<div class="title-col">
-  <h1 class="!text-lg !leading-snug !mb-0 font-serif" style="color: #000">
-    Predicted metric.
-  </h1>
-</div>
+<h1 class="!text-xl !leading-snug !mb-2 font-serif" style="color: #000">
+Predicted metric.
+</h1>
 
-<div class="flex-1 min-w-0 flex items-center pr-6">
+<div class="flex-1 min-h-0 flex items-center justify-center">
   <img
     :src="`${$slidev.configs.base ?? '/'}supp_metric@0.5x.png`"
-    class="h-full w-full object-contain object-right"
-    alt="Evaluation metric"
+    class="max-h-full max-w-full object-contain"
+    alt="Predicted metric across many shapes"
   />
 </div>
 
 </div>
-
-<style>
-.slidev-layout {
-  padding: 0.75rem !important;
-}
-.title-col {
-  width: 14rem;
-  flex-shrink: 0;
-  padding-left: 1.5rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  text-align: left;
-}
-</style>
 
 ---
 layout: default
