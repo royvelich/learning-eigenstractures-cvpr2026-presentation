@@ -1151,7 +1151,7 @@ The Laplacian of the <span class="grad">coordinates</span> = curvature
 
 <!-- LEFT hero: bumpy shape → mean-curvature vector field -->
 <div class="h-full min-h-0 flex flex-col items-center justify-center gap-1">
-  <img :src="`${$slidev.configs.base ?? '/'}applications/${$clicks >= 3 ? 'smooth_sph_Hvec' : 'smooth_sph_plain'}.png`"
+  <img :src="`${$slidev.configs.base ?? '/'}applications/${$clicks >= 3 ? 'smooth_sph_Hvec.gif' : 'smooth_sph_plain.png'}`"
        class="flex-1 min-h-0 max-h-full max-w-full object-contain" alt="bumpy sphere" />
 
   <div v-show="$clicks < 3" style="font-size: 15px; color: var(--c-fg-muted)">

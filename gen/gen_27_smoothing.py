@@ -186,6 +186,68 @@ def build_coord_decomposition():
     print("[ok] smooth_sph_Hvec.png")
 
 
+def build_Hvec_gif(n_frames=30, out_name="smooth_sph_Hvec.gif"):
+    """Rotating turntable of the H-coloured sphere with mean-curvature arrows."""
+    import pyvista as pv
+    from PIL import Image
+
+    V, F = load_mesh(SPHERE)
+    L = igl.cotmatrix(V, F)
+    M = igl.massmatrix(V, F, igl.MASSMATRIX_TYPE_VORONOI)
+    minv = 1.0 / np.asarray(M.diagonal())
+    vec = -(minv[:, None] * (L @ V))                 # 2 H N
+    n = trimesh.Trimesh(V, F, process=False).vertex_normals
+    H = 0.5 * np.sum(vec * n, axis=1)
+    sample = _fps(V, 90)
+    vmag = np.linalg.norm(vec, axis=1)
+    clamp = np.percentile(vmag[sample], 80)
+    vclamp = vec * np.minimum(1.0, clamp / np.maximum(vmag, 1e-9))[:, None]
+    factor = 0.085 / np.median(vmag[sample])
+    cap = float(np.percentile(np.abs(H - np.median(H)), 96))
+    med = float(np.median(H))
+
+    faces = faces_pv(F)
+    psample = V[sample] + n[sample] * 0.004        # arrow bases (lifted off surface)
+    vsample = vclamp[sample] * factor              # arrow vectors
+
+    def Ry(t):
+        c, s = np.cos(t), np.sin(t)
+        return np.array([[c, 0, s], [0, 1.0, 0], [-s, 0, c]])
+
+    pv.global_theme.transparent_background = True
+    raw = []
+    for k in range(n_frames):
+        R = Ry(2 * np.pi * k / n_frames).T          # rotate geometry about vertical axis
+        p = pv.Plotter(off_screen=True, window_size=(720, 720))
+        p.set_background("white")
+        m = pv.PolyData(V @ R, faces); m["s"] = H
+        p.add_mesh(m, scalars="s", cmap="coolwarm", clim=(med - cap, med + cap),
+                   smooth_shading=True, show_scalar_bar=False, ambient=0.3,
+                   diffuse=0.72, specular=0.2, specular_power=18)
+        p.add_arrows(psample @ R, vsample @ R, mag=1.0, color="#0f172a")
+        p.camera_position = CAM
+        p.reset_camera()
+        p.camera.zoom(1.3)
+        p.enable_anti_aliasing("ssaa")
+        raw.append(p.screenshot(transparent_background=False, return_img=True))
+        p.close()
+
+    def box(a):
+        mk = (a[:, :, :3] < 245).any(2)
+        ys, xs = np.where(mk)
+        return xs.min(), ys.min(), xs.max() + 1, ys.max() + 1
+    bs = [box(a) for a in raw]
+    pad = 6
+    x0 = max(min(b[0] for b in bs) - pad, 0); y0 = max(min(b[1] for b in bs) - pad, 0)
+    x1 = min(max(b[2] for b in bs) + pad, raw[0].shape[1])
+    y1 = min(max(b[3] for b in bs) + pad, raw[0].shape[0])
+    imgs = [Image.fromarray(a[y0:y1, x0:x1]).convert("P", palette=Image.ADAPTIVE, colors=128)
+            for a in raw]
+    imgs[0].save(str(OUT / out_name), save_all=True, append_images=imgs[1:],
+                 loop=0, duration=80, disposal=2, optimize=True)
+    print(f"[ok] {out_name}  ({len(imgs)} frames)")
+
+
 def build_curvature():
     from PIL import Image
     V, F = load_mesh(SPHERE)
