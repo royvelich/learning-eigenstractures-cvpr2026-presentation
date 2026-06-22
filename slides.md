@@ -5962,6 +5962,7 @@ In this experiemnt, we show that we can train at low resolution, and still infer
 ---
 layout: default
 class: text-left
+hide: true
 ---
 
 <div class="h-full flex flex-col pt-2 pb-2 px-2 text-center">
