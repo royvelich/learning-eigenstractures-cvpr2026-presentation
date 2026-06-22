@@ -825,7 +825,7 @@ Three scales → R, G, B. Corresponding regions share colour across poses — th
 ---
 layout: default
 class: text-center
-clicks: 3
+clicks: 2
 ---
 
 <div class="h-full flex flex-col pt-2 pb-2 px-2 text-center">
@@ -836,37 +836,33 @@ clicks: 3
 Matching points is <span class="grad">combinatorially hard</span>
 </h1>
 
-<div class="flex-1 min-h-0 flex items-center">
+<div class="flex-1 min-h-0 grid items-center gap-6" style="grid-template-columns: 1fr 1fr;">
 
-  <div class="flex-1 min-h-0 h-full flex items-center justify-center">
-    <img :src="`${$slidev.configs.base ?? '/'}applications/corr_horse_a.png`"
-         class="max-h-full max-w-full object-contain" alt="horse pose A" />
-  </div>
-
-  <div class="flex-1 min-h-0 h-full flex items-center justify-center">
-    <img :src="`${$slidev.configs.base ?? '/'}applications/corr_horse_b.png`"
-         class="max-h-full max-w-full object-contain" alt="horse pose B" />
-  </div>
-
+<div class="h-full min-h-0 flex items-center justify-center">
+  <img :src="`${$slidev.configs.base ?? '/'}applications/corr_lines.png`"
+       class="max-h-full max-w-full object-contain"
+       alt="corresponding points joined by lines across two horse poses" />
 </div>
 
-<div class="flex flex-col items-center justify-center gap-2 mt-2" style="font-size: 18px; color: var(--c-fg-muted)">
+<div class="flex flex-col items-start justify-center gap-5 text-left" style="font-size: 19px; color: var(--c-fg-muted)">
+
+<div>
+
+Each line joins a point on one pose to the <em>same</em> point on the other.
+
+</div>
 
 <div v-click="1">
 
-Match each of the $N$ points on $A$ to a point on $B$.
+Match all $N$ points: &nbsp; $N \cdot (N-1) \cdots 1 = N!$ matchings.
 
 </div>
 
-<div v-click="2">
+<div v-click="2" style="color: var(--c-accent)">
 
-$N \cdot (N-1) \cdots 1 = N!$ &nbsp;possible matchings.
+With $N\approx 8400$ that is $>10^{29000}$ — vs. $\sim 10^{80}$ atoms in the universe. Brute force is hopeless.
 
 </div>
-
-<div v-click="3" style="color: var(--c-accent)">
-
-With $N\approx 8400$: more than $10^{29000}$ — vs. $\sim 10^{80}$ atoms in the universe. Brute force is hopeless.
 
 </div>
 

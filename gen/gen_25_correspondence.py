@@ -33,6 +33,58 @@ TEAL = "#2B5876"
 BAND = "coolwarm"
 
 
+def fps(V, n, seed):
+    """Farthest-point sampling (euclidean) — returns n well-spread vertex ids."""
+    idx = [int(seed)]
+    d2 = np.sum((V - V[seed]) ** 2, axis=1)
+    for _ in range(n - 1):
+        j = int(np.argmax(d2))
+        idx.append(j)
+        d2 = np.minimum(d2, np.sum((V - V[j]) ** 2, axis=1))
+    return idx
+
+
+def render_correspondence_lines(n_pairs=6):
+    """Both poses in one scene with lines between corresponding points."""
+    import pyvista as pv
+    from PIL import Image
+
+    Va, Fa = load_mesh(POSE_A)
+    Vb, Fb = load_mesh(POSE_B)
+    Vb = Vb + np.array([0.0, -1.05, 0.0])         # stack B below A (screen-y axis)
+
+    seed = int(np.argmax(Va[:, 2]))                # start from the head
+    idx = fps(Va, n_pairs, seed)
+    palette = ["#e6194B", "#3cb44b", "#4363d8", "#f58231", "#911eb4", "#008080",
+               "#f032e6", "#9A6324"]
+
+    pv.global_theme.transparent_background = True
+    p = pv.Plotter(off_screen=True, window_size=(1180, 980))
+    p.set_background([1, 1, 1, 0])
+    p.add_mesh(pv.PolyData(Va, d.faces_pv(Fa)), color="#d4d4d8", smooth_shading=True,
+               ambient=0.34, diffuse=0.72, specular=0.12)
+    p.add_mesh(pv.PolyData(Vb, d.faces_pv(Fb)), color="#d4d4d8", smooth_shading=True,
+               ambient=0.34, diffuse=0.72, specular=0.12)
+    for k, i in enumerate(idx):
+        c = palette[k % len(palette)]
+        p.add_mesh(pv.Line(Va[i], Vb[i]), color=c, line_width=5)
+        p.add_mesh(pv.Sphere(radius=0.02, center=Va[i]), color=c)
+        p.add_mesh(pv.Sphere(radius=0.02, center=Vb[i]), color=c)
+
+    p.camera_position = [(1.0, 0.0, 0.0), (0.0, 0.0, 0.0), (0.0, 1.0, 0.0)]
+    p.reset_camera()
+    p.camera.zoom(1.3)
+    p.enable_anti_aliasing("msaa")
+    out = OUT_DIR / "corr_lines.png"
+    p.screenshot(str(out), transparent_background=True, return_img=False)
+    p.close()
+    im = Image.open(out)
+    bbox = im.getchannel("A").getbbox()
+    if bbox:
+        im.crop(bbox).save(out)
+    print(f"[ok] corr_lines.png  (pairs={idx})")
+
+
 def build():
     Va, Fa = load_mesh(POSE_A)
     Vb, Fb = load_mesh(POSE_B)
