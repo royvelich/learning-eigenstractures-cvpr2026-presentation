@@ -180,15 +180,14 @@ def build_sampling():
 
 
 def build_mass_compare():
-    """Same vertex i: a 1-ring cell vs. a Delaunay-refined cell (smaller area)."""
-    from scipy.spatial import Delaunay
+    """Same vertex i: the 1-ring fan vs. a 1-to-3 split (centroid per triangle)."""
 
     def cell_poly(P, tris, vi):
         pts = []
         for t in tris:
             if vi not in t:
                 continue
-            cen = P[t].mean(0)
+            cen = P[list(t)].mean(0)
             for a in t:
                 if a != vi:
                     pts.append((P[vi] + P[a]) / 2)
@@ -200,20 +199,26 @@ def build_mass_compare():
         area = 0.5 * abs(np.dot(x, np.roll(y, -1)) - np.dot(y, np.roll(x, -1)))
         return poly, area
 
-    ang_out = np.arctan2(RING[:, 1], RING[:, 0])
-    inner = np.array([[0.46 * np.cos(a + np.pi / 6), 0.46 * np.sin(a + np.pi / 6)]
-                      for a in ang_out])
+    # middle: the plain 1-ring fan (i = index 0, neighbours 1..6)
     Pc = np.vstack([I, RING])
-    Pf = np.vstack([I, RING, inner])
-    tc = Delaunay(Pc).simplices
-    tf = Delaunay(Pf).simplices
+    n = len(RING)
+    tc = [(0, 1 + k, 1 + (k + 1) % n) for k in range(n)]
+
+    # right: add each triangle's centroid and split it into 3 (i kept in place)
+    cents = np.array([Pc[list(t)].mean(0) for t in tc])
+    Pf = np.vstack([Pc, cents])
+    tf = []
+    for k, (o, a, b) in enumerate(tc):
+        c = 1 + n + k
+        tf += [(o, a, c), (a, b, c), (b, o, c)]
+
     _, area_c = cell_poly(Pc, tc, 0)
 
     def render(P, tris, out, label):
         polyc, area = cell_poly(P, tris, 0)
         fig, ax = plt.subplots(figsize=(5.6, 5.6))
         for t in tris:
-            ax.add_patch(Polygon(P[t], closed=True, facecolor=FILL,
+            ax.add_patch(Polygon(P[list(t)], closed=True, facecolor=FILL,
                                  edgecolor=EDGE, lw=1.6, zorder=1))
         ax.add_patch(Polygon(polyc, closed=True, facecolor="#34d399",
                              edgecolor="#059669", lw=2.2, alpha=0.5, zorder=3))
