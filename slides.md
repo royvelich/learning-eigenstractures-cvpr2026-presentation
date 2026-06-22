@@ -5324,83 +5324,6 @@ More challenging geometries — cosine similarities remain high across almost al
 ---
 layout: default
 class: text-left
-clicks: 2
-hide: true
----
-
-<div class="h-full flex flex-col pt-4 pb-3 px-2">
-
-<h1 class="!text-2xl !leading-snug !mb-6 font-serif text-center" style="color: #000">
-Train at low resolution, infer at higher resolution.
-</h1>
-
-<div class="flex-1 min-h-0 flex items-center justify-center">
-
-<div class="grid gap-2 items-center justify-items-center flex-none -translate-x-[30px]" style="grid-template-columns: 90px repeat(6, 135px); grid-template-rows: auto repeat(2, 135px);">
-
-<div></div>
-<div class="text-sm text-center transition-opacity duration-300 translate-y-4" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">
-
-$\mathbf{v}_{2}$
-
-</div>
-<div class="text-sm text-center transition-opacity duration-300 translate-y-4" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">
-
-$\mathbf{v}_{8}$
-
-</div>
-<div class="text-sm text-center transition-opacity duration-300 translate-y-4" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">
-
-$\mathbf{v}_{14}$
-
-</div>
-<div class="text-sm text-center transition-opacity duration-300 translate-y-4" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">
-
-$\mathbf{v}_{22}$
-
-</div>
-<div class="text-sm text-center transition-opacity duration-300 translate-y-4" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">
-
-$\mathbf{v}_{30}$
-
-</div>
-<div class="text-sm text-center transition-opacity duration-300 translate-y-4" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">
-
-$\mathbf{v}_{47}$
-
-</div>
-
-<div class="text-base text-right w-full pr-1 whitespace-nowrap transition-opacity duration-300" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">3K pts</div>
-<img class="w-[135px] h-[135px] object-contain block transition-opacity duration-300 delay-[0ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}rebuttal_screenshots/pegaso1/item_0000_pred_eigen001.png`" />
-<img class="w-[135px] h-[135px] object-contain block transition-opacity duration-300 delay-[80ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}rebuttal_screenshots/pegaso1/item_0000_pred_eigen007.png`" />
-<img class="w-[135px] h-[135px] object-contain block transition-opacity duration-300 delay-[160ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}rebuttal_screenshots/pegaso1/item_0000_pred_eigen013.png`" />
-<img class="w-[135px] h-[135px] object-contain block transition-opacity duration-300 delay-[240ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}rebuttal_screenshots/pegaso1/item_0000_pred_eigen021.png`" />
-<img class="w-[135px] h-[135px] object-contain block transition-opacity duration-300 delay-[320ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}rebuttal_screenshots/pegaso1/item_0000_pred_eigen029.png`" />
-<img class="w-[135px] h-[135px] object-contain block transition-opacity duration-300 delay-[400ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}rebuttal_screenshots/pegaso1/item_0000_pred_eigen046.png`" />
-
-<div class="text-base text-right w-full pr-1 whitespace-nowrap transition-opacity duration-300" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'">12K pts</div>
-<img class="w-[135px] h-[135px] object-contain block transition-opacity duration-300 delay-[0ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}rebuttal_screenshots/pegaso2/item_0000_pred_eigen001.png`" />
-<img class="w-[135px] h-[135px] object-contain block transition-opacity duration-300 delay-[80ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}rebuttal_screenshots/pegaso2/item_0000_pred_eigen007.png`" />
-<img class="w-[135px] h-[135px] object-contain block transition-opacity duration-300 delay-[160ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}rebuttal_screenshots/pegaso2/item_0000_pred_eigen013.png`" />
-<img class="w-[135px] h-[135px] object-contain block transition-opacity duration-300 delay-[240ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}rebuttal_screenshots/pegaso2/item_0000_pred_eigen021.png`" />
-<img class="w-[135px] h-[135px] object-contain block transition-opacity duration-300 delay-[320ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}rebuttal_screenshots/pegaso2/item_0000_pred_eigen029.png`" />
-<img class="w-[135px] h-[135px] object-contain block transition-opacity duration-300 delay-[400ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}rebuttal_screenshots/pegaso2/item_0000_pred_eigen046.png`" />
-
-</div>
-
-</div>
-
-</div>
-
-<!--
-In this experiemnt, we show that we can train at low resolution, and still infer at higher resolution.
-1. For example, when we train on 3K points — we get these predicted eigenvectors.
-2. When we infer on 12K points, using the same model, we still get identical color patterns.
--->
-
----
-layout: default
-class: text-left
 clicks: 3
 ---
 
@@ -5958,6 +5881,82 @@ $\mathbf{v}_{13}$
 1. GT eigenvectors of unseen shapes — never seen during training.
 2. Our predictions — same model, applied to new shapes.
 3. Cosine similarities remain high on low frequencies, but gradually drop at higher ones.
+-->
+
+---
+layout: default
+class: text-left
+clicks: 2
+---
+
+<div class="h-full flex flex-col pt-4 pb-3 px-2">
+
+<h1 class="!text-2xl !leading-snug !mb-6 font-serif text-center" style="color: #000">
+Train at low resolution, infer at higher resolution.
+</h1>
+
+<div class="flex-1 min-h-0 flex items-center justify-center">
+
+<div class="grid gap-2 items-center justify-items-center flex-none -translate-x-[30px]" style="grid-template-columns: 90px repeat(6, 135px); grid-template-rows: auto repeat(2, 135px);">
+
+<div></div>
+<div class="text-sm text-center transition-opacity duration-300 translate-y-4" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">
+
+$\mathbf{v}_{2}$
+
+</div>
+<div class="text-sm text-center transition-opacity duration-300 translate-y-4" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">
+
+$\mathbf{v}_{8}$
+
+</div>
+<div class="text-sm text-center transition-opacity duration-300 translate-y-4" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">
+
+$\mathbf{v}_{14}$
+
+</div>
+<div class="text-sm text-center transition-opacity duration-300 translate-y-4" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">
+
+$\mathbf{v}_{22}$
+
+</div>
+<div class="text-sm text-center transition-opacity duration-300 translate-y-4" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">
+
+$\mathbf{v}_{30}$
+
+</div>
+<div class="text-sm text-center transition-opacity duration-300 translate-y-4" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">
+
+$\mathbf{v}_{47}$
+
+</div>
+
+<div class="text-base text-right w-full pr-1 whitespace-nowrap transition-opacity duration-300" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'">3K pts</div>
+<img class="w-[135px] h-[135px] object-contain block transition-opacity duration-300 delay-[0ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}rebuttal_screenshots/pegaso1/item_0000_pred_eigen001.png`" />
+<img class="w-[135px] h-[135px] object-contain block transition-opacity duration-300 delay-[80ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}rebuttal_screenshots/pegaso1/item_0000_pred_eigen007.png`" />
+<img class="w-[135px] h-[135px] object-contain block transition-opacity duration-300 delay-[160ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}rebuttal_screenshots/pegaso1/item_0000_pred_eigen013.png`" />
+<img class="w-[135px] h-[135px] object-contain block transition-opacity duration-300 delay-[240ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}rebuttal_screenshots/pegaso1/item_0000_pred_eigen021.png`" />
+<img class="w-[135px] h-[135px] object-contain block transition-opacity duration-300 delay-[320ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}rebuttal_screenshots/pegaso1/item_0000_pred_eigen029.png`" />
+<img class="w-[135px] h-[135px] object-contain block transition-opacity duration-300 delay-[400ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}rebuttal_screenshots/pegaso1/item_0000_pred_eigen046.png`" />
+
+<div class="text-base text-right w-full pr-1 whitespace-nowrap transition-opacity duration-300" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'">12K pts</div>
+<img class="w-[135px] h-[135px] object-contain block transition-opacity duration-300 delay-[0ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}rebuttal_screenshots/pegaso2/item_0000_pred_eigen001.png`" />
+<img class="w-[135px] h-[135px] object-contain block transition-opacity duration-300 delay-[80ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}rebuttal_screenshots/pegaso2/item_0000_pred_eigen007.png`" />
+<img class="w-[135px] h-[135px] object-contain block transition-opacity duration-300 delay-[160ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}rebuttal_screenshots/pegaso2/item_0000_pred_eigen013.png`" />
+<img class="w-[135px] h-[135px] object-contain block transition-opacity duration-300 delay-[240ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}rebuttal_screenshots/pegaso2/item_0000_pred_eigen021.png`" />
+<img class="w-[135px] h-[135px] object-contain block transition-opacity duration-300 delay-[320ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}rebuttal_screenshots/pegaso2/item_0000_pred_eigen029.png`" />
+<img class="w-[135px] h-[135px] object-contain block transition-opacity duration-300 delay-[400ms]" :class="$clicks >= 2 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}rebuttal_screenshots/pegaso2/item_0000_pred_eigen046.png`" />
+
+</div>
+
+</div>
+
+</div>
+
+<!--
+In this experiemnt, we show that we can train at low resolution, and still infer at higher resolution.
+1. For example, when we train on 3K points — we get these predicted eigenvectors.
+2. When we infer on 12K points, using the same model, we still get identical color patterns.
 -->
 
 ---
