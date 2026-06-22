@@ -29,6 +29,7 @@ POSE_B = d.POSE_B                                   # horse-gallop-20
 KMAP = 80                                            # eigenfunctions for the map
 GREEN = "#39ff14"
 FG = "#0f172a"
+TEAL = "#2B5876"
 BAND = "coolwarm"
 
 
@@ -59,6 +60,40 @@ def build():
     d.render_field(Va, Fa, f, BAND, clim, str(OUT_DIR / "corr_func_a.png"))
     d.render_field(Vb, Fb, g, BAND, clim, str(OUT_DIR / "corr_func_b.png"))
     print("[ok] corr_func_a/b.png")
+
+    # ---- coefficient bars + compact C (the b = C a slide) --------------
+    n = 30
+    av, bv = a[:n], (C @ a)[:n]
+    ym = max(np.abs(av).max(), np.abs(bv).max()) * 1.12
+
+    def coeff_bars(vec, color, out):
+        fig, ax = plt.subplots(figsize=(4.4, 1.7))
+        ax.bar(np.arange(1, len(vec) + 1), vec, color=color, width=0.8)
+        ax.axhline(0, color="#cbd5e1", lw=0.8)
+        ax.set_ylim(-ym, ym)
+        ax.set_xlim(0.3, len(vec) + 0.7)
+        ax.set_xticks([1, 10, 20, 30])
+        ax.tick_params(labelsize=9)
+        ax.set_yticks([])
+        ax.spines[["top", "right", "left"]].set_visible(False)
+        plt.tight_layout()
+        plt.savefig(out, dpi=150, transparent=True, bbox_inches="tight", pad_inches=0.04)
+        plt.close()
+
+    coeff_bars(av, TEAL, str(OUT_DIR / "corr_coeff_a.png"))
+    coeff_bars(bv, "#b45309", str(OUT_DIR / "corr_coeff_b.png"))
+    print("[ok] corr_coeff_a/b.png")
+
+    Cn = C[:n, :n]
+    m = np.abs(Cn).max()
+    fig, ax = plt.subplots(figsize=(3.5, 3.5))
+    ax.imshow(Cn, cmap="RdBu_r", norm=colors.Normalize(-m, m))
+    ax.set_xticks([]); ax.set_yticks([])
+    plt.tight_layout(pad=0.2)
+    plt.savefig(str(OUT_DIR / "corr_cmat_small.png"), dpi=150, transparent=True,
+                bbox_inches="tight", pad_inches=0.04)
+    plt.close()
+    print("[ok] corr_cmat_small.png")
 
     # ---- the functional map C (slide 3) --------------------------------
     n = 30

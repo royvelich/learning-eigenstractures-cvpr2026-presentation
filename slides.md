@@ -890,47 +890,71 @@ clicks: 2
 Match <span class="grad">functions</span>, not points
 </h1>
 
-<div class="flex-1 min-h-0 grid items-center gap-2" style="grid-template-columns: 1fr auto 1fr;">
+<div class="flex-1 min-h-0 grid items-stretch gap-3" style="grid-template-columns: 1fr 0.8fr 1fr;">
 
-<div class="h-full flex items-center justify-center">
+<!-- A: the function f and its coordinates a -->
+<div class="min-h-0 flex flex-col items-center justify-center gap-1">
   <img :src="`${$slidev.configs.base ?? '/'}applications/corr_func_a.png`"
-       class="max-h-full max-w-full object-contain" alt="a function on shape A" />
+       class="flex-1 min-h-0 max-h-full max-w-full object-contain" alt="a function f on shape A" />
+  <img :src="`${$slidev.configs.base ?? '/'}applications/corr_coeff_a.png`"
+       style="max-height: 26%" class="max-w-full object-contain" alt="coefficients of f" />
+
+  <div style="font-size: 14px; color: var(--c-fg-muted)">
+
+  coordinates of $f$ in $A$'s basis: $\mathbf{a}$
+
+  </div>
+
 </div>
 
-<div v-click="1" class="flex flex-col items-center justify-center" style="color: var(--c-fg-muted)">
-  <div style="font-size: 34px; line-height: 1">→</div>
-  <div style="font-size: 15px"><span style="font-style: italic">C</span></div>
+<!-- centre: C and b = C a -->
+<div v-click="1" class="flex flex-col items-center justify-center gap-2">
+  <img :src="`${$slidev.configs.base ?? '/'}applications/corr_cmat_small.png`"
+       style="max-height: 56%" class="max-w-full object-contain" alt="functional map C" />
+
+  <div style="font-size: 24px; color: var(--c-fg-body)">
+
+  $\mathbf{b} = C\,\mathbf{a}$
+
+  </div>
+
+  <div style="font-size: 13px; color: var(--c-fg-muted)">
+
+  change of coordinates
+
+  </div>
+
 </div>
 
-<div v-click="1" class="h-full flex items-center justify-center">
+<!-- B: the resulting coordinates b and the function g -->
+<div v-click="2" class="min-h-0 flex flex-col items-center justify-center gap-1">
   <img :src="`${$slidev.configs.base ?? '/'}applications/corr_func_b.png`"
-       class="max-h-full max-w-full object-contain" alt="the same function carried onto shape B" />
-</div>
+       class="flex-1 min-h-0 max-h-full max-w-full object-contain" alt="the function g on shape B" />
+  <img :src="`${$slidev.configs.base ?? '/'}applications/corr_coeff_b.png`"
+       style="max-height: 26%" class="max-w-full object-contain" alt="coefficients of g" />
+
+  <div style="font-size: 14px; color: var(--c-fg-muted)">
+
+  coordinates of $g$ in $B$'s basis: $\mathbf{b}$
+
+  </div>
 
 </div>
 
-<div class="flex flex-col items-center gap-1 mt-1" style="font-size: 18px; color: var(--c-fg-muted)">
-
-<div>
-
-A correspondence carries every <em>function</em> on $A$ to a function on $B$.
-
 </div>
 
-<div v-click="2">
+<div class="text-center mt-1" style="font-size: 17px; color: var(--c-fg-muted)">
 
-In the eigenbasis it is just a small matrix: &nbsp; $\mathbf{b} = C\,\mathbf{a}$.
-
-</div>
+Same function, two coordinate systems — $C$ translates $A$-coordinates into $B$-coordinates.
 
 </div>
 
 </div>
 
 <!--
-1. Instead of matching points, think of how a correspondence moves functions between the shapes.
-2. Painted on a different pose, the function lands on the same parts.
-3. Expressed in the LBO eigenbasis, this function-to-function map is a single matrix C acting on coefficient vectors.
+1. Any function on A is a list of coefficients — its coordinates in A's eigenbasis (just like the reconstruction earlier).
+2. The correspondence carries it to B, where it has its own coordinates b.
+3. Going from a to b is a single small matrix: b = C a — a change of coordinates between the two shapes' bases.
 -->
 
 ---
