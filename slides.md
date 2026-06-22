@@ -866,6 +866,56 @@ clicks: 2
 <div class="eyebrow">Application · Shape correspondence</div>
 
 <h1 class="!text-xl !leading-snug !mb-1 font-serif" style="color: #000">
+One map, <span class="grad">many transfers</span>
+</h1>
+
+<div class="flex-1 min-h-0 grid gap-1" style="grid-template-rows: 1fr 1fr 1fr;">
+
+<!-- Texture -->
+<div class="min-h-0 grid items-center gap-2" style="grid-template-columns: 140px 1fr 40px 1fr;">
+  <div class="text-left" style="font-size: 16px; font-weight: 600; color: var(--c-fg)">Texture</div>
+  <div class="h-full min-h-0 flex items-center justify-center"><img :src="`${$slidev.configs.base ?? '/'}applications/corr_tex_a.png`" class="max-h-full max-w-full object-contain" alt="textured pose A" /></div>
+  <div style="font-size: 26px; color: var(--c-fg-subtle)">→</div>
+  <div class="h-full min-h-0 flex items-center justify-center"><img :src="`${$slidev.configs.base ?? '/'}applications/corr_tex_b.png`" class="max-h-full max-w-full object-contain" alt="texture transferred to pose B" /></div>
+</div>
+
+<!-- Segmentation -->
+<div v-click="1" class="min-h-0 grid items-center gap-2" style="grid-template-columns: 140px 1fr 40px 1fr;">
+  <div class="text-left" style="font-size: 16px; font-weight: 600; color: var(--c-fg)">Segmentation</div>
+  <div class="h-full min-h-0 flex items-center justify-center"><img :src="`${$slidev.configs.base ?? '/'}applications/corr_seg_a.png`" class="max-h-full max-w-full object-contain" alt="segmented pose A" /></div>
+  <div style="font-size: 26px; color: var(--c-fg-subtle)">→</div>
+  <div class="h-full min-h-0 flex items-center justify-center"><img :src="`${$slidev.configs.base ?? '/'}applications/corr_seg_b.png`" class="max-h-full max-w-full object-contain" alt="segmentation transferred to pose B" /></div>
+</div>
+
+<!-- Animation -->
+<div v-click="2" class="min-h-0 grid items-center gap-2" style="grid-template-columns: 140px 1fr 40px 1fr;">
+  <div class="text-left" style="font-size: 16px; font-weight: 600; color: var(--c-fg)">Animation<br><span style="font-size: 12px; font-weight: 400; color: var(--c-fg-muted)">horse → camel</span></div>
+  <div class="h-full min-h-0 flex items-center justify-center"><img :src="`${$slidev.configs.base ?? '/'}applications/corr_anim_horse.gif`" class="max-h-full max-w-full object-contain" alt="horse gallop animation" /></div>
+  <div style="font-size: 26px; color: var(--c-fg-subtle)">→</div>
+  <div class="h-full min-h-0 flex items-center justify-center"><img :src="`${$slidev.configs.base ?? '/'}applications/corr_anim_camel.gif`" class="max-h-full max-w-full object-contain" alt="camel gallop animation" /></div>
+</div>
+
+</div>
+
+</div>
+
+<!--
+1. Once we have the correspondence, anything defined on one shape transfers to the other.
+2. [click] A part segmentation carries over — head, legs, tail land in the right places on the new pose.
+3. [click] And motion transfers across shapes — the horse's gallop drives the camel.
+-->
+
+---
+layout: default
+class: text-center
+clicks: 2
+---
+
+<div class="h-full flex flex-col pt-2 pb-2 px-2 text-center">
+
+<div class="eyebrow">Application · Shape correspondence</div>
+
+<h1 class="!text-xl !leading-snug !mb-1 font-serif" style="color: #000">
 Matching points is <span class="grad">combinatorially hard</span>
 </h1>
 
