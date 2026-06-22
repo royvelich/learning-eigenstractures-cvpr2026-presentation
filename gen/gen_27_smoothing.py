@@ -177,7 +177,7 @@ def build_coord_decomposition():
     # clamp arrow length so a few high-curvature bumps don't dominate
     clamp = np.percentile(vmag[sample], 80)
     vclamp = vec * np.minimum(1.0, clamp / np.maximum(vmag, 1e-9))[:, None]
-    factor = 0.085 / np.median(vmag[sample])
+    factor = 0.07 / np.median(vmag[sample])
     cap = float(np.percentile(np.abs(H - np.median(H)), 96))
     med = float(np.median(H))
     arr = _sphere_arr(V, F, H, (med - cap, med + cap),
@@ -186,7 +186,7 @@ def build_coord_decomposition():
     print("[ok] smooth_sph_Hvec.png")
 
 
-def build_Hvec_gif(n_frames=60, out_name="smooth_sph_Hvec.gif"):
+def build_Hvec_gif(n_frames=90, out_name="smooth_sph_Hvec.gif"):
     """Rotating turntable of the H-coloured sphere with mean-curvature arrows."""
     import pyvista as pv
     from PIL import Image
@@ -204,7 +204,7 @@ def build_Hvec_gif(n_frames=60, out_name="smooth_sph_Hvec.gif"):
     vmag = np.linalg.norm(vec, axis=1)
     clamp = np.percentile(vmag[sample], 80)
     vclamp = vec * np.minimum(1.0, clamp / np.maximum(vmag, 1e-9))[:, None]
-    factor = 0.085 / np.median(vmag[sample])
+    factor = 0.07 / np.median(vmag[sample])
     cap = float(np.percentile(np.abs(H - np.median(H)), 96))
     med = float(np.median(H))
 
@@ -238,7 +238,7 @@ def build_Hvec_gif(n_frames=60, out_name="smooth_sph_Hvec.gif"):
                    diffuse=0.72, specular=0.2, specular_power=18)
         p.add_arrows(psample @ R, vsample @ R, mag=1.0, color="#0f172a")
         p.camera_position = cam_fixed
-        p.camera.zoom(1.3)
+        p.camera.zoom(1.0)
         p.enable_anti_aliasing("ssaa")
         raw.append(p.screenshot(transparent_background=False, return_img=True))
         p.close()
@@ -255,7 +255,7 @@ def build_Hvec_gif(n_frames=60, out_name="smooth_sph_Hvec.gif"):
     imgs = [Image.fromarray(a[y0:y1, x0:x1]).convert("P", palette=Image.ADAPTIVE, colors=96)
             for a in raw]
     imgs[0].save(str(OUT / out_name), save_all=True, append_images=imgs[1:],
-                 loop=0, duration=95, disposal=2, optimize=True)
+                 loop=0, duration=70, disposal=2, optimize=True)
     print(f"[ok] {out_name}  ({len(imgs)} frames)")
 
 
@@ -275,7 +275,7 @@ def build_curvature():
 
 
 # ===========================================================================
-def build_flow_gif(n_steps=20, tau=6e-4, every=1, out_name="smooth_flow.gif"):
+def build_flow_gif(n_steps=42, tau=4e-5, every=1, out_name="smooth_flow.gif"):
     from PIL import Image
     V0, F = load_mesh(SPHERE)
     # implicit mean-curvature flow, recomputing L,M each step (true MCF)
@@ -302,7 +302,7 @@ def build_flow_gif(n_steps=20, tau=6e-4, every=1, out_name="smooth_flow.gif"):
     for V in sel:
         Vn = normalize(V)
         H = mean_curv_signed(Vn, F)
-        raw.append(_render_sphere(Vn, F, H, (med - cap, med + cap), None, window=(680, 680)))
+        raw.append(_render_sphere(Vn, F, H, (med - cap, med + cap), None, window=(600, 600)))
 
     # common content-box crop so the sphere stays put
     def box(a):
@@ -318,7 +318,7 @@ def build_flow_gif(n_steps=20, tau=6e-4, every=1, out_name="smooth_flow.gif"):
             for a in raw]
     # hold the last (smooth) frame a bit before looping
     imgs[0].save(str(OUT / out_name), save_all=True, append_images=imgs[1:],
-                 loop=0, duration=[90] * (len(imgs) - 1) + [1200], disposal=2, optimize=True)
+                 loop=0, duration=[70] * (len(imgs) - 1) + [1200], disposal=2, optimize=True)
     print(f"[ok] {out_name}  ({len(imgs)} frames)")
 
 
