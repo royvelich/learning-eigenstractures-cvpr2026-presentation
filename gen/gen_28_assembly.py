@@ -49,21 +49,27 @@ def _angle_arc(ax, V, A, B, r, color, label, lab_r=None):
             color=color, fontsize=17, ha="center", va="center", zorder=7)
 
 
-def build_onering():
+def build_onering(with_angles=True, out="asm_onering.png"):
     fig, ax = plt.subplots(figsize=(6.4, 6.0))
     n = len(RING)
-    # triangle fans
+    # triangle fans (tint the two triangles on edge i–j0 only when showing angles)
     for k in range(n):
         tri = np.array([I, RING[k], RING[(k + 1) % n]])
-        hot = (k == 0) or (k == n - 1)           # the two triangles on edge i–j0
+        hot = with_angles and ((k == 0) or (k == n - 1))
         ax.add_patch(Polygon(tri, closed=True, facecolor=HILITE if hot else FILL,
                              edgecolor=EDGE, lw=1.6, zorder=1))
     # spokes + ring edges already drawn by polygons; redraw highlighted edge i–j0
     ax.plot([I[0], RING[0][0]], [I[1], RING[0][1]], color=J_COL, lw=3.5, zorder=4)
 
-    # opposite angles: alpha at j1 (tri i,j0,j1), beta at j5 (tri i,j5,j0)
-    _angle_arc(ax, RING[1], I, RING[0], 0.30, WARM, r"$\alpha_{ij}$")
-    _angle_arc(ax, RING[5], RING[0], I, 0.30, COOL, r"$\beta_{ij}$")
+    if with_angles:
+        # opposite angles: alpha at j1 (tri i,j0,j1), beta at j5 (tri i,j5,j0)
+        _angle_arc(ax, RING[1], I, RING[0], 0.30, WARM, r"$\alpha_{ij}$")
+        _angle_arc(ax, RING[5], RING[0], I, 0.30, COOL, r"$\beta_{ij}$")
+    else:
+        # generic weight label on the highlighted edge
+        mid = 0.5 * (I + RING[0])
+        ax.text(mid[0], mid[1] + 0.16, r"$w_{ij}$", color=J_COL, fontsize=18,
+                ha="center", zorder=9)
 
     # vertices
     ax.scatter(*I, s=190, color=I_COL, zorder=8)
@@ -78,10 +84,10 @@ def build_onering():
     ax.set_aspect("equal"); ax.axis("off")
     ax.set_xlim(-1.4, 1.7); ax.set_ylim(-1.35, 1.4)
     plt.tight_layout()
-    plt.savefig(str(OUT_DIR / "asm_onering.png"), dpi=160, transparent=True,
+    plt.savefig(str(OUT_DIR / out), dpi=160, transparent=True,
                 bbox_inches="tight", pad_inches=0.04)
     plt.close()
-    print("[ok] asm_onering.png")
+    print(f"[ok] {out}")
 
 
 def build_row():
@@ -174,7 +180,8 @@ def build_sampling():
 
 
 if __name__ == "__main__":
-    build_onering()
+    build_onering(with_angles=False, out="asm_onering_plain.png")
+    build_onering(with_angles=True, out="asm_onering.png")
     build_row()
     build_mass()
     build_sampling()

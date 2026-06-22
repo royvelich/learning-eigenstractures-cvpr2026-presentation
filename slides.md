@@ -1301,7 +1301,7 @@ In practice, a surface is a <span class="grad">discrete mesh</span>
 ---
 layout: default
 class: text-center
-clicks: 3
+clicks: 2
 ---
 
 <div class="h-full flex flex-col pt-2 pb-2 px-2 text-center">
@@ -1315,29 +1315,25 @@ Assembling a row of the <span class="grad">stiffness matrix</span> <span style="
 <div class="flex-1 min-h-0 grid items-center gap-5" style="grid-template-columns: 1fr 1.05fr;">
 
 <div class="h-full min-h-0 flex items-center justify-center">
-  <img :src="`${$slidev.configs.base ?? '/'}applications/asm_onering.png`"
-       class="max-h-full max-w-full object-contain" alt="1-ring of vertex i with opposite angles" />
+  <img :src="`${$slidev.configs.base ?? '/'}applications/${$clicks >= 2 ? 'asm_onering' : 'asm_onering_plain'}.png`"
+       class="max-h-full max-w-full object-contain" alt="1-ring of vertex i" />
 </div>
 
-<div class="flex flex-col items-start justify-center gap-3 text-left" style="font-size: 18px; color: var(--c-fg-body)">
+<div class="flex flex-col items-center justify-center gap-4 text-center" style="font-size: 18px; color: var(--c-fg-body)">
 
 <div>
 
-A weighted sum of differences to the 1-ring neighbours:
+A weighted sum of differences to the 1-ring neighbours — one weight $w_{ij}$ per neighbour:
 
 $(Lf)_i=\displaystyle\sum_{j\in N(i)} w_{ij}\,(f_i-f_j)$
 
 </div>
 
-<div v-click="1">
-
-cotangent weights: $\;w_{ij}=\tfrac12(\cot\alpha_{ij}+\cot\beta_{ij})$
-
-</div>
-
 <div v-click="2">
 
-so &nbsp; $L_{ii}=\displaystyle\sum_j w_{ij}$ &nbsp;(diagonal), &nbsp; $L_{ij}=-w_{ij}$ &nbsp;(off-diagonal)
+One common choice — the <span class="grad">cotangent weights</span>:
+
+$w_{ij}=\tfrac12(\cot\alpha_{ij}+\cot\beta_{ij})$
 
 </div>
 
@@ -1345,7 +1341,7 @@ so &nbsp; $L_{ii}=\displaystyle\sum_j w_{ij}$ &nbsp;(diagonal), &nbsp; $L_{ij}=-
 
 </div>
 
-<div v-click="3" class="flex items-center justify-center mt-1" style="height: 26%">
+<div v-click="1" class="flex items-center justify-center mt-1" style="height: 22%">
   <img :src="`${$slidev.configs.base ?? '/'}applications/asm_row.png`"
        class="max-h-full max-w-full object-contain" alt="row i of L: diagonal and off-diagonal entries" />
 </div>
