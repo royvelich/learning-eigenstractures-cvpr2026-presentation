@@ -5983,6 +5983,39 @@ Predicted metric.
 ---
 layout: default
 class: text-left
+clicks: 1
+---
+
+<div class="h-full flex flex-col pt-4 pb-3 px-2">
+
+<h1 class="!text-2xl !leading-snug !mb-6 font-serif text-center" style="color: #000">
+Predicted vertex areas &nbsp;/&nbsp; sampling density.
+</h1>
+
+<div class="flex-1 min-h-0 flex items-center justify-center">
+
+<div class="grid gap-4 items-center justify-items-center flex-none" style="grid-template-columns: repeat(3, 200px); grid-auto-rows: 200px;">
+
+<img class="w-[200px] h-[200px] object-contain block transition-opacity duration-300 delay-[0ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/lion/item_0000_areas_pred.png`" />
+<img class="w-[200px] h-[200px] object-contain block transition-opacity duration-300 delay-[60ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/bimba/item_0000_areas_pred.png`" />
+<img class="w-[200px] h-[200px] object-contain block transition-opacity duration-300 delay-[120ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/elephant/item_0000_areas_pred.png`" />
+<img class="w-[200px] h-[200px] object-contain block transition-opacity duration-300 delay-[180ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/botijo/item_0000_areas_pred.png`" />
+<img class="w-[200px] h-[200px] object-contain block transition-opacity duration-300 delay-[240ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/david/item_0000_areas_pred.png`" />
+<img class="w-[200px] h-[200px] object-contain block transition-opacity duration-300 delay-[300ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/laurent_hand/item_0000_areas_pred.png`" />
+
+</div>
+
+</div>
+
+</div>
+
+<!--
+Our method also estimates the sampling density — the mass of each vertex — directly from the predicted eigenbasis.
+-->
+
+---
+layout: default
+class: text-left
 clicks: 2
 hide: true
 ---
@@ -6332,40 +6365,6 @@ $\mathbf{v}_{8}$
   opacity: 1;
 }
 </style>
-
----
-layout: default
-class: text-left
-clicks: 1
-hide: true
----
-
-<div class="h-full flex flex-col pt-4 pb-3 px-2">
-
-<h1 class="!text-2xl !leading-snug !mb-6 font-serif text-center" style="color: #000">
-Predicted vertex areas &nbsp;/&nbsp; sampling density.
-</h1>
-
-<div class="flex-1 min-h-0 flex items-center justify-center">
-
-<div class="grid gap-4 items-center justify-items-center flex-none" style="grid-template-columns: repeat(3, 200px); grid-auto-rows: 200px;">
-
-<img class="w-[200px] h-[200px] object-contain block transition-opacity duration-300 delay-[0ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/lion/item_0000_areas_pred.png`" />
-<img class="w-[200px] h-[200px] object-contain block transition-opacity duration-300 delay-[60ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/bimba/item_0000_areas_pred.png`" />
-<img class="w-[200px] h-[200px] object-contain block transition-opacity duration-300 delay-[120ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/elephant/item_0000_areas_pred.png`" />
-<img class="w-[200px] h-[200px] object-contain block transition-opacity duration-300 delay-[180ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/botijo/item_0000_areas_pred.png`" />
-<img class="w-[200px] h-[200px] object-contain block transition-opacity duration-300 delay-[240ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/david/item_0000_areas_pred.png`" />
-<img class="w-[200px] h-[200px] object-contain block transition-opacity duration-300 delay-[300ms]" :class="$clicks >= 1 ? 'opacity-100' : 'opacity-0'" :src="`${$slidev.configs.base ?? '/'}overfit_screenshots/laurent_hand/item_0000_areas_pred.png`" />
-
-</div>
-
-</div>
-
-</div>
-
-<!--
-Our method also estimates the sampling density — the mass of each vertex — directly from the predicted eigenbasis.
--->
 
 ---
 layout: default
