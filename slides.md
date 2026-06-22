@@ -825,6 +825,39 @@ Three scales → R, G, B. Corresponding regions share colour across poses — th
 ---
 layout: default
 class: text-center
+clicks: 1
+---
+
+<div class="h-full flex flex-col pt-2 pb-2 px-2 text-center">
+
+<div class="eyebrow">Application · Shape correspondence</div>
+
+<h1 class="!text-xl !leading-snug !mb-1 font-serif" style="color: #000">
+Matching points <span class="grad">across shapes</span>
+</h1>
+
+<div class="flex-1 min-h-0 flex items-center justify-center">
+  <img :src="`${$slidev.configs.base ?? '/'}applications/${$clicks >= 1 ? 'corr_pair_lines' : 'corr_pair'}.png`"
+       class="max-h-full max-w-full object-contain"
+       alt="two horse poses with lines joining corresponding points" />
+</div>
+
+<div class="text-center mt-1" style="font-size: 18px; color: var(--c-fg-muted)">
+
+A correspondence pairs each point on one shape with its <span class="grad">match</span> on the other.
+
+</div>
+
+</div>
+
+<!--
+1. We have two shapes — here two poses of the same horse.
+2. [click] A correspondence pairs each point with its counterpart on the other shape; each line is one such pair.
+-->
+
+---
+layout: default
+class: text-center
 clicks: 2
 ---
 
@@ -839,7 +872,7 @@ Matching points is <span class="grad">combinatorially hard</span>
 <div class="flex-1 min-h-0 grid items-center gap-6" style="grid-template-columns: 1fr 1fr;">
 
 <div class="h-full min-h-0 flex items-center justify-center">
-  <img :src="`${$slidev.configs.base ?? '/'}applications/corr_lines.png`"
+  <img :src="`${$slidev.configs.base ?? '/'}applications/corr_pair_lines.png`"
        class="max-h-full max-w-full object-contain"
        alt="corresponding points joined by lines across two horse poses" />
 </div>
@@ -848,7 +881,7 @@ Matching points is <span class="grad">combinatorially hard</span>
 
 <div>
 
-Each line joins a point on one pose to the <em>same</em> point on the other.
+Each line joins a point to its <em>match</em> on the other shape.
 
 </div>
 

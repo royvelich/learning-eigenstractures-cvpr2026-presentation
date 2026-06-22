@@ -45,44 +45,64 @@ def fps(V, n, seed):
 
 
 def render_correspondence_lines(n_pairs=6):
-    """Both poses in one scene with lines between corresponding points."""
+    """Two poses side by side; emit a no-lines and a with-lines image, aligned.
+
+    Renders both with an identical camera (set from the meshes before any lines
+    are added) and crops both to a common bounding box, so the slide can reveal
+    the lines on a click without the horses shifting.
+    """
     import pyvista as pv
     from PIL import Image
 
     Va, Fa = load_mesh(POSE_A)
     Vb, Fb = load_mesh(POSE_B)
-    Vb = Vb + np.array([0.0, -1.05, 0.0])         # stack B below A (screen-y axis)
+    Vb = Vb + np.array([0.0, -0.5, 1.25])         # B down-and-right (diagonal stagger)
 
     seed = int(np.argmax(Va[:, 2]))                # start from the head
     idx = fps(Va, n_pairs, seed)
     palette = ["#e6194B", "#3cb44b", "#4363d8", "#f58231", "#911eb4", "#008080",
                "#f032e6", "#9A6324"]
+    cam = [(1.0, 0.0, 0.0), (0.0, 0.0, 0.0), (0.0, 1.0, 0.0)]
+    tmp_plain = OUT_DIR / "_corr_pair_raw.png"
+    tmp_lines = OUT_DIR / "_corr_lines_raw.png"
 
-    pv.global_theme.transparent_background = True
-    p = pv.Plotter(off_screen=True, window_size=(1180, 980))
-    p.set_background([1, 1, 1, 0])
-    p.add_mesh(pv.PolyData(Va, d.faces_pv(Fa)), color="#d4d4d8", smooth_shading=True,
-               ambient=0.34, diffuse=0.72, specular=0.12)
-    p.add_mesh(pv.PolyData(Vb, d.faces_pv(Fb)), color="#d4d4d8", smooth_shading=True,
-               ambient=0.34, diffuse=0.72, specular=0.12)
-    for k, i in enumerate(idx):
-        c = palette[k % len(palette)]
-        p.add_mesh(pv.Line(Va[i], Vb[i]), color=c, line_width=5)
-        p.add_mesh(pv.Sphere(radius=0.02, center=Va[i]), color=c)
-        p.add_mesh(pv.Sphere(radius=0.02, center=Vb[i]), color=c)
+    def render(with_lines, path):
+        pv.global_theme.transparent_background = True
+        p = pv.Plotter(off_screen=True, window_size=(1700, 560))
+        p.set_background([1, 1, 1, 0])
+        p.add_mesh(pv.PolyData(Va, d.faces_pv(Fa)), color="#d4d4d8",
+                   smooth_shading=True, ambient=0.34, diffuse=0.72, specular=0.12)
+        p.add_mesh(pv.PolyData(Vb, d.faces_pv(Fb)), color="#d4d4d8",
+                   smooth_shading=True, ambient=0.34, diffuse=0.72, specular=0.12)
+        # fix the camera from the meshes alone, so both renders match exactly
+        p.camera_position = cam
+        p.reset_camera()
+        p.camera.Azimuth(22)        # 3/4 view so the lines fan out in projection
+        p.camera.Elevation(12)
+        p.camera.OrthogonalizeViewUp()
+        p.reset_camera()
+        p.camera.zoom(1.5)
+        if with_lines:
+            for k, i in enumerate(idx):
+                c = palette[k % len(palette)]
+                p.add_mesh(pv.Line(Va[i], Vb[i]), color=c, line_width=4)
+                p.add_mesh(pv.Sphere(radius=0.018, center=Va[i]), color=c)
+                p.add_mesh(pv.Sphere(radius=0.018, center=Vb[i]), color=c)
+        p.enable_anti_aliasing("msaa")
+        p.screenshot(str(path), transparent_background=True, return_img=False)
+        p.close()
 
-    p.camera_position = [(1.0, 0.0, 0.0), (0.0, 0.0, 0.0), (0.0, 1.0, 0.0)]
-    p.reset_camera()
-    p.camera.zoom(1.3)
-    p.enable_anti_aliasing("msaa")
-    out = OUT_DIR / "corr_lines.png"
-    p.screenshot(str(out), transparent_background=True, return_img=False)
-    p.close()
-    im = Image.open(out)
-    bbox = im.getchannel("A").getbbox()
-    if bbox:
-        im.crop(bbox).save(out)
-    print(f"[ok] corr_lines.png  (pairs={idx})")
+    render(False, tmp_plain)
+    render(True, tmp_lines)
+
+    # crop both to the common (with-lines) bounding box so they stay aligned
+    lines_im = Image.open(tmp_lines)
+    bbox = lines_im.getchannel("A").getbbox()
+    Image.open(tmp_plain).crop(bbox).save(OUT_DIR / "corr_pair.png")
+    lines_im.crop(bbox).save(OUT_DIR / "corr_pair_lines.png")
+    tmp_plain.unlink(missing_ok=True)
+    tmp_lines.unlink(missing_ok=True)
+    print(f"[ok] corr_pair.png / corr_pair_lines.png  (pairs={idx})")
 
 
 def build():
