@@ -34,21 +34,20 @@ def build():
         p.camera.zoom(1.35)
         p.enable_anti_aliasing("ssaa")
 
-    def save(p, name):
+    def render(name):
         arr = p.screenshot(transparent_background=True, return_img=True)
         p.close()
-        im = Image.fromarray(arr)
-        bb = im.getchannel("A").getbbox()
-        im.crop(bb).save(str(OUT_DIR / name))
-        print(f"[ok] {name}")
+        return (name, arr)
+
+    pv.global_theme.transparent_background = True
+    shots = []
 
     # 1) smooth surface
-    pv.global_theme.transparent_background = True
     p = pv.Plotter(off_screen=True, window_size=(1000, 1000))
     p.set_background([1, 1, 1, 0])
     p.add_mesh(pv.PolyData(V, faces), color="#c9ccd1", smooth_shading=True,
                ambient=0.32, diffuse=0.72, specular=0.18, specular_power=16)
-    setup(p); save(p, "disc_smooth.png")
+    setup(p); shots.append(render("disc_smooth.png"))
 
     # 2) surface + edges + vertices
     p = pv.Plotter(off_screen=True, window_size=(1000, 1000))
@@ -58,7 +57,7 @@ def build():
                ambient=0.4, diffuse=0.66)
     p.add_mesh(pv.PolyData(V), color="#0f172a", point_size=5.5,
                render_points_as_spheres=True)
-    setup(p); save(p, "disc_mesh.png")
+    setup(p); shots.append(render("disc_mesh.png"))
 
     # 3) a scalar function = values at the vertices: keep the triangulation +
     # edges, add the colour only on the vertex balls on top
@@ -70,7 +69,18 @@ def build():
     pts = pv.PolyData(V); pts["f"] = f
     p.add_mesh(pts, scalars="f", cmap="coolwarm", clim=(-cap, cap),
                point_size=22, render_points_as_spheres=True, show_scalar_bar=False)
-    setup(p); save(p, "disc_func.png")
+    setup(p); shots.append(render("disc_func.png"))
+
+    # crop all three to a common box so the framing never jumps between clicks
+    boxes = [Image.fromarray(a).getchannel("A").getbbox() for _, a in shots]
+    pad = 6
+    x0 = max(min(b[0] for b in boxes) - pad, 0)
+    y0 = max(min(b[1] for b in boxes) - pad, 0)
+    x1 = min(max(b[2] for b in boxes) + pad, shots[0][1].shape[1])
+    y1 = min(max(b[3] for b in boxes) + pad, shots[0][1].shape[0])
+    for name, a in shots:
+        Image.fromarray(a[y0:y1, x0:x1]).save(str(OUT_DIR / name))
+        print(f"[ok] {name}")
 
 
 if __name__ == "__main__":
