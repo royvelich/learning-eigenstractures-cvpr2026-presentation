@@ -3671,7 +3671,7 @@ The theorem generalizes to curved domains.
 ---
 layout: default
 class: text-left
-clicks: 14
+clicks: 15
 ---
 
 <script setup>
@@ -3814,7 +3814,7 @@ $\underbrace{\hspace{200px}}_{\text{smooth probe functions } \{f_i\}}$
 </svg>
 </div>
 <div class="ml-thumb-wrap" :style="{ opacity: $clicks >= 3 ? 1 : 0 }">
-<div class="ml-box ml-thumb-box">
+<div class="ml-box ml-thumb-box" :class="{ 'loss-fade-out': $clicks >= 15 }">
 <!-- Each eigen cell hosts a click-6 clone of signal_01. v-motion :initial offset = source position relative to this cell. Source = signal_01 at scalar row col 1, i.e. one row up (y = -110) and offset LEFT by this cell's column-left within the thumb-box: 0, 91.4, 219.2, 310.6 for cols 1, 2, 4, 5. -->
 <span class="ml-thumb-cell">
   <img class="ml-thumb" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_basis_2_0_tight.png`" alt="phi_0" />
@@ -3917,7 +3917,7 @@ $+$
 <!-- Signal_01 loss-expression container. The 5 children stay at their original
      CSS positions; on click 12 the container as a whole translateX+scales,
      keeping the INTERNAL spacing tight (gaps shrink proportionally with scale). -->
-<div class="ml-pl-loss-group" :class="{ 'shifted-l': $clicks >= 12 }">
+<div class="ml-pl-loss-group" :class="{ 'shifted-l': $clicks >= 12 }" :style="{ opacity: $clicks >= 15 ? 0 : 1, transition: 'opacity 500ms ease' }">
 <!-- Sum image: k=50 reconstruction of signal_01. Row 3 center (top:110, left:155.3 → centered on x=197.8). -->
 <img class="ml-pl-sum" :class="{ shown: $clicks >= 9 }" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_signal_diff_01_recon_k5_tight.png`" alt="" />
 <!-- Click 10: 'f' clone animates DOWN from signal_01 (row 1 col 1) to left:30, top:110. -->
@@ -3972,7 +3972,7 @@ $+$
 </div>
 <!-- Signal_02 loss-expression container. Same idea: container-level transform
      on click 20 shifts+scales the whole expression as a unit. -->
-<div class="ml-pl-loss-group shifted-m" :style="{ opacity: $clicks >= 13 ? 1 : 0, transition: 'opacity 500ms ease 250ms' }">
+<div class="ml-pl-loss-group shifted-m" :style="{ opacity: ($clicks >= 13 && $clicks < 15) ? 1 : 0, transition: 'opacity 500ms ease 250ms' }">
 <!-- Sum image: k=50 reconstruction of signal_02. -->
 <img class="ml-pl-sum" :class="{ shown: $clicks >= 13 }" :src="`${$slidev.configs.base ?? '/'}applications/manifold_pc_signal_diff_02_recon_k5_tight.png`" alt="" />
 <!-- f2 clone fades in at final position at click 13 -->
@@ -4067,7 +4067,7 @@ $+$
 </div>
 <!-- Click 22: underbrace below the full sum labeling the loss. The sum spans
      thumb-box x≈[-489, 417], center ≈ -36. Width ~905 visually. -->
-<div class="ml-loss-underbrace" :class="{ shown: $clicks >= 14 }" style="left: -30px; top: 200px;">
+<div class="ml-loss-underbrace" :class="{ shown: $clicks >= 14 && $clicks < 15 }" style="left: -30px; top: 200px;">
 
 $\underbrace{\hspace{420px}}_{\Large\sum_i \left\| f_i - \sum_{j=1}^{K} \langle f_i, b_j\rangle b_j \right\|^2}$
 
@@ -4083,7 +4083,7 @@ $\underbrace{\hspace{420px}}_{\Large\sum_i \left\| f_i - \sum_{j=1}^{K} \langle 
      underbrace expression (now with inner sum j=1..k). Centered on the
      slide horizontally and on the slot where the small expressions sat
      vertically. -->
-<div class="ml-final-loss" :class="{ shown: $clicks >= 23 }">
+<div class="ml-final-loss" :class="{ shown: $clicks >= 15 }">
 
 $\mathcal{L}\bigl(\{b_i\}_{i=1}^{K}\bigr) = \sum_{k=1}^{K} \left( \sum_i \bigl\| f_i - \sum_{j=1}^{k} \langle f_i, b_j\rangle b_j \bigr\|^2 \right)$
 
