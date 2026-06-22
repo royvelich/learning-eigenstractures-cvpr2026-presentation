@@ -57,8 +57,10 @@ def build_segmentation():
     seg[(z < -0.34) & (y > 0.0)] = 7                        # tail (full)
 
     base = _to_rgb(["#cbd0d6"])[0]
-    colors = _to_rgb(["#ef4444", "#3b82f6", "#22c55e", "#f59e0b",
-                      "#a855f7", "#14b8a6", "#ec4899"])
+    # 7 maximally-distinct categorical colours
+    # head, torso, front-L, front-R, hind-L, hind-R, tail
+    colors = _to_rgb(["#e6194B", "#4363d8", "#3cb44b", "#f58231",
+                      "#911eb4", "#42d4f4", "#f032e6"])
     col = np.tile(base, (len(Va), 1))
     m = seg > 0
     col[m] = colors[seg[m] - 1]
