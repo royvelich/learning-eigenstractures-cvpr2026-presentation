@@ -60,12 +60,13 @@ def build():
                render_points_as_spheres=True)
     setup(p); save(p, "disc_mesh.png")
 
-    # 3) a scalar function = values at the vertices: colour ONLY the vertex
-    # points (the surface stays neutral grey), with large balls
+    # 3) a scalar function = values at the vertices: keep the triangulation +
+    # edges, add the colour only on the vertex balls on top
     p = pv.Plotter(off_screen=True, window_size=(1000, 1000))
     p.set_background([1, 1, 1, 0])
-    p.add_mesh(pv.PolyData(V, faces), color="#d6d8dc", smooth_shading=True,
-               ambient=0.45, diffuse=0.6, specular=0.05)
+    p.add_mesh(pv.PolyData(V, faces), color="#dfe3e8", smooth_shading=False,
+               show_edges=True, edge_color="#475569", line_width=1,
+               ambient=0.4, diffuse=0.66)
     pts = pv.PolyData(V); pts["f"] = f
     p.add_mesh(pts, scalars="f", cmap="coolwarm", clim=(-cap, cap),
                point_size=22, render_points_as_spheres=True, show_scalar_bar=False)
