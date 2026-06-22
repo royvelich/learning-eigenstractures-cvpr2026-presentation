@@ -1264,6 +1264,42 @@ $\dfrac{\partial X}{\partial t} = -\Delta X = -2H\,N$ &nbsp;·&nbsp; <span style
 ---
 layout: default
 class: text-center
+clicks: 2
+---
+
+<div class="h-full flex flex-col pt-2 pb-2 px-2 text-center">
+
+<div class="eyebrow">Discretizing Δ on a mesh</div>
+
+<h1 class="!text-xl !leading-snug !mb-1 font-serif" style="color: #000">
+In practice, a surface is a <span class="grad">discrete mesh</span>
+</h1>
+
+<div class="flex-1 min-h-0 flex items-center justify-center">
+  <img :src="`${$slidev.configs.base ?? '/'}applications/${$clicks >= 2 ? 'disc_func' : ($clicks >= 1 ? 'disc_mesh' : 'disc_smooth')}.png`"
+       class="max-h-full max-w-full object-contain"
+       alt="armadillo: smooth surface, then discrete mesh, then a function on the vertices" />
+</div>
+
+<div class="text-center mt-1" style="font-size: 19px; color: var(--c-fg-body); min-height: 2.2em">
+
+<span v-show="$clicks < 1">A shape <em>looks</em> like a smooth surface…</span>
+<span v-show="$clicks === 1">…but we store it as a <span class="grad">finite mesh</span> — a discrete sample of vertices and faces.</span>
+<span v-show="$clicks >= 2">A scalar function is then a value <span class="grad">at each vertex</span> — $f \in \mathbb{R}^{N}$, one number per sample point.</span>
+
+</div>
+
+</div>
+
+<!--
+1. A 3D shape looks like a continuous, smooth surface.
+2. [click] But in practice it is a mesh — a finite set of sampled vertices joined into faces.
+3. [click] So a scalar function isn't a continuous f(x); it's a vector of values, one per vertex. This is what L and M will act on.
+-->
+
+---
+layout: default
+class: text-center
 clicks: 3
 ---
 
