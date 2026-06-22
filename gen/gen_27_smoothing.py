@@ -275,7 +275,7 @@ def build_curvature():
 
 
 # ===========================================================================
-def build_flow_gif(n_steps=42, tau=4e-5, every=1, out_name="smooth_flow.gif"):
+def build_flow_gif(n_steps=75, tau=2e-5, every=1, out_name="smooth_flow.gif"):
     from PIL import Image
     V0, F = load_mesh(SPHERE)
     # implicit mean-curvature flow, recomputing L,M each step (true MCF)
