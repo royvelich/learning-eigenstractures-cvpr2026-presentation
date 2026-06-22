@@ -1431,6 +1431,72 @@ But $L = M^{-1}S$ divides the area out → the Laplacian is <strong>sampling-ind
 
 ---
 layout: default
+class: text-center
+clicks: 2
+---
+
+<div class="h-full flex flex-col pt-2 pb-2 px-2 text-center">
+
+<div class="eyebrow">Discretizing Δ on a mesh</div>
+
+<h1 class="!text-xl !leading-snug !mb-1 font-serif" style="color: #000">
+The discrete Laplacian, <span class="grad">assembled</span>
+</h1>
+
+<div class="mt-1 mb-2" style="font-size: 40px; color: var(--c-fg)">
+
+$L \;=\; \textcolor{#047857}{M^{-1}}\,\textcolor{#b45309}{S}$
+
+</div>
+
+<div class="flex-1 min-h-0 grid grid-cols-2 gap-6 items-stretch">
+
+<div v-click="1" class="flex items-center gap-3 text-left" style="background: #fffbeb; border: 1px solid #fde68a; border-radius: 14px; padding: 12px 16px;">
+
+  <img :src="`${$slidev.configs.base ?? '/'}applications/asm_onering_plain.png`" style="width: 38%" class="object-contain" alt="1-ring" />
+
+  <div>
+
+  <div style="font-weight: 700; color: #b45309; font-size: 18px"><span style="font-style: italic">S</span> — integrate</div>
+
+  Sum the weighted differences $f_i-f_j$ over the 1-ring (geometry sets the weights). It is the *integrated* Laplacian over the vertex's cell: &nbsp; $(Sf)_i \approx \displaystyle\int_{\text{cell}_i}(-\Delta f)\,dA$.
+
+  </div>
+
+</div>
+
+<div v-click="2" class="flex items-center gap-3 text-left" style="background: #ecfdf5; border: 1px solid #a7f3d0; border-radius: 14px; padding: 12px 16px;">
+
+  <img :src="`${$slidev.configs.base ?? '/'}applications/mass_cell_a.png`" style="width: 38%" class="object-contain" alt="vertex area" />
+
+  <div>
+
+  <div style="font-weight: 700; color: #047857; font-size: 18px"><span style="font-style: italic">M</span><sup>−1</sup> — normalize</div>
+
+  Divide by the vertex area $A_i$, turning that integral into a *pointwise* value. This cancels the sampling density, so $L$ is mesh-agnostic and converges to the smooth $\Delta$.
+
+  </div>
+
+</div>
+
+</div>
+
+<div class="text-center mt-2" style="font-size: 17px; color: var(--c-fg-muted)">
+
+Geometry in $S$, normalization in $M^{-1}$ → one operator that approximates $\Delta$ however the surface is sampled.
+
+</div>
+
+</div>
+
+<!--
+1. To summarize: the discrete Laplacian is L = M⁻¹ S.
+2. [click] S says how to integrate — it accumulates the weighted differences of f over the local neighbourhood; that's the integrated Laplacian over the vertex's cell.
+3. [click] M⁻¹ says how to normalize — divide by the vertex area to get a pointwise value, which makes the operator independent of the sampling and convergent to the smooth Laplacian.
+-->
+
+---
+layout: default
 class: text-left
 ---
 
