@@ -1136,7 +1136,7 @@ Push a spike at a point through $C$ → it peaks at the <span class="lbo">corres
 ---
 layout: default
 class: text-center
-clicks: 2
+clicks: 3
 ---
 
 <div class="h-full flex flex-col pt-2 pb-2 px-2 text-center">
@@ -1147,35 +1147,85 @@ clicks: 2
 The Laplacian of the <span class="grad">coordinates</span> = curvature
 </h1>
 
-<div class="flex-1 min-h-0 grid items-center gap-4" style="grid-template-columns: 1.25fr 1fr;">
+<div class="flex-1 min-h-0 grid items-center gap-5" style="grid-template-columns: 0.85fr 1.15fr;">
 
-<div class="h-full min-h-0 flex items-center justify-center">
-  <img :src="`${$slidev.configs.base ?? '/'}applications/smooth_intuition.png`"
-       class="max-h-full max-w-full object-contain"
-       alt="1D schematic: position minus the average of its neighbours" />
+<!-- LEFT hero: bumpy shape → mean-curvature vector field -->
+<div class="h-full min-h-0 flex flex-col items-center justify-center gap-1">
+  <img :src="`${$slidev.configs.base ?? '/'}applications/${$clicks >= 3 ? 'smooth_sph_Hvec' : 'smooth_sph_plain'}.png`"
+       class="flex-1 min-h-0 max-h-full max-w-full object-contain" alt="bumpy sphere" />
+
+  <div v-show="$clicks < 3" style="font-size: 15px; color: var(--c-fg-muted)">
+
+  bumpy shape — position $X$
+
+  </div>
+
+  <div v-show="$clicks >= 3" style="font-size: 15px; color: var(--c-fg-body)">
+
+  $\Delta X = 2H\,N$ — colour $= H$
+
+  </div>
+
 </div>
 
-<div v-click="2" class="h-full min-h-0 flex flex-col items-center justify-center">
-  <img :src="`${$slidev.configs.base ?? '/'}applications/smooth_curv.png`"
-       class="flex-1 min-h-0 max-h-full max-w-full object-contain"
-       alt="bumpy sphere coloured by mean curvature" />
-  <div style="font-size: 13px; color: var(--c-fg-muted)">mean curvature on a real shape</div>
+<!-- RIGHT: per-coordinate pipeline -->
+<div class="h-full min-h-0 flex flex-col justify-center gap-1">
+
+<div v-click="1" class="grid grid-cols-3 gap-3 min-h-0">
+  <div class="flex flex-col items-center min-h-0"><img :src="`${$slidev.configs.base ?? '/'}applications/smooth_sph_x.png`" class="min-h-0 max-h-full object-contain"/><div style="font-size:14px;color:var(--c-fg-muted)">
+
+  $x$
+
+  </div></div>
+  <div class="flex flex-col items-center min-h-0"><img :src="`${$slidev.configs.base ?? '/'}applications/smooth_sph_y.png`" class="min-h-0 max-h-full object-contain"/><div style="font-size:14px;color:var(--c-fg-muted)">
+
+  $y$
+
+  </div></div>
+  <div class="flex flex-col items-center min-h-0"><img :src="`${$slidev.configs.base ?? '/'}applications/smooth_sph_z.png`" class="min-h-0 max-h-full object-contain"/><div style="font-size:14px;color:var(--c-fg-muted)">
+
+  $z$
+
+  </div></div>
+</div>
+
+<div v-click="2" style="font-size: 14px; color: var(--c-fg-subtle)">apply Δ to each ↓</div>
+
+<div v-click="2" class="grid grid-cols-3 gap-3 min-h-0">
+  <div class="flex flex-col items-center min-h-0"><img :src="`${$slidev.configs.base ?? '/'}applications/smooth_sph_lx.png`" class="min-h-0 max-h-full object-contain"/><div style="font-size:14px;color:var(--c-fg-muted)">
+
+  $\Delta x$
+
+  </div></div>
+  <div class="flex flex-col items-center min-h-0"><img :src="`${$slidev.configs.base ?? '/'}applications/smooth_sph_ly.png`" class="min-h-0 max-h-full object-contain"/><div style="font-size:14px;color:var(--c-fg-muted)">
+
+  $\Delta y$
+
+  </div></div>
+  <div class="flex flex-col items-center min-h-0"><img :src="`${$slidev.configs.base ?? '/'}applications/smooth_sph_lz.png`" class="min-h-0 max-h-full object-contain"/><div style="font-size:14px;color:var(--c-fg-muted)">
+
+  $\Delta z$
+
+  </div></div>
 </div>
 
 </div>
 
-<div class="text-center mt-1" :style="{ opacity: $clicks >= 1 ? 1 : 0, fontSize: '20px', color: 'var(--c-fg-body)' }">
+</div>
 
-$\Delta X = 2H\,N$ &nbsp;·&nbsp; <span style="font-size: 15px; color: var(--c-fg-muted)">apply $\Delta$ to the position $X$ → the <span class="grad">mean-curvature vector</span> (normal direction, size $2H$)</span>
+<div class="text-center mt-1" :style="{ opacity: $clicks >= 3 ? 1 : 0, fontSize: '18px', color: 'var(--c-fg-body)' }">
+
+Stack the three → $\Delta X = (\Delta x,\Delta y,\Delta z) = 2H\,N$, the <span class="grad">mean-curvature vector</span> at every point.
 
 </div>
 
 </div>
 
 <!--
-1. The Laplacian measures how far a value sits from the average of its neighbours — recall slide 2.
-2. [click] Apply it to the position itself: on flat regions a point equals its neighbour-average, so ΔX = 0; on a bump it sticks out along the normal, by an amount equal to the curvature.
-3. [click] So ΔX = 2HN — the mean-curvature vector. Here it is on a real bumpy shape.
+1. Start from the bumpy shape — its coordinates are three functions x, y, z on the surface.
+2. [click] Here is each coordinate painted on the sphere — smooth gradients.
+3. [click] Apply the Laplacian to each: smooth gradients become the bumpy curvature signal.
+4. [click] Stack the three Laplacians into a vector at each point — that vector is 2HN, the mean-curvature vector, and its size H colours the shape.
 -->
 
 ---

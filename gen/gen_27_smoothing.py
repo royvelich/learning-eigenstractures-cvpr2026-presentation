@@ -101,6 +101,91 @@ def _render_sphere(V, F, scal, clim, out, crop_box=None, window=(820, 820)):
     return arr
 
 
+CAM = [(1.0, 0.3, 0.0), (0, 0, 0), (0, 1, 0)]
+
+
+def _fps(V, n, seed=0):
+    idx = [seed]
+    d2 = np.sum((V - V[seed]) ** 2, axis=1)
+    for _ in range(n - 1):
+        j = int(np.argmax(d2)); idx.append(j)
+        d2 = np.minimum(d2, np.sum((V - V[j]) ** 2, axis=1))
+    return np.array(idx)
+
+
+def _sphere_arr(V, F, scal=None, clim=None, arrows=None, window=(760, 760)):
+    import pyvista as pv
+    pv.global_theme.transparent_background = True
+    p = pv.Plotter(off_screen=True, window_size=window)
+    p.set_background("white")
+    m = pv.PolyData(V, faces_pv(F))
+    if scal is None:
+        p.add_mesh(m, color="#cbd0d6", smooth_shading=True,
+                   ambient=0.3, diffuse=0.72, specular=0.2, specular_power=18)
+    else:
+        m["s"] = scal
+        p.add_mesh(m, scalars="s", cmap="coolwarm", clim=clim, smooth_shading=True,
+                   show_scalar_bar=False, ambient=0.3, diffuse=0.72,
+                   specular=0.2, specular_power=18)
+    if arrows is not None:
+        pts, vec = arrows
+        p.add_arrows(pts, vec, mag=1.0, color="#0f172a")
+    p.camera_position = CAM
+    p.reset_camera()
+    p.camera.zoom(1.35)
+    p.enable_anti_aliasing("ssaa")
+    arr = p.screenshot(transparent_background=False, return_img=True)
+    p.close()
+    return arr
+
+
+def _save_crop(arr, out, box=None):
+    from PIL import Image
+    if box is None:
+        mask = (arr[:, :, :3] < 245).any(2)
+        ys, xs = np.where(mask)
+        box = (xs.min(), ys.min(), xs.max() + 1, ys.max() + 1)
+    Image.fromarray(arr[box[1]:box[3], box[0]:box[2]]).save(str(out))
+    return box
+
+
+def build_coord_decomposition():
+    V, F = load_mesh(SPHERE)
+    L = igl.cotmatrix(V, F)
+    M = igl.massmatrix(V, F, igl.MASSMATRIX_TYPE_VORONOI)
+    minv = 1.0 / np.asarray(M.diagonal())
+    LX = minv[:, None] * (L @ V)              # = ΔX (igl sign: -2 H N)
+    vec = -LX                                  # = 2 H N  (deck PSD convention)
+    n = trimesh.Trimesh(V, F, process=False).vertex_normals
+    H = 0.5 * np.sum(vec * n, axis=1)          # signed mean curvature
+
+    # plain + coordinate fields + laplacian fields (identical geometry → same box)
+    _save_crop(_sphere_arr(V, F), OUT / "smooth_sph_plain.png")
+    names = ["x", "y", "z"]
+    for i, nm in enumerate(names):
+        cap = float(np.abs(V[:, i]).max())
+        _save_crop(_sphere_arr(V, F, V[:, i], (-cap, cap)),
+                   OUT / f"smooth_sph_{nm}.png")
+        capL = float(np.percentile(np.abs(LX[:, i]), 96))
+        _save_crop(_sphere_arr(V, F, LX[:, i], (-capL, capL)),
+                   OUT / f"smooth_sph_l{nm}.png")
+    print("[ok] smooth_sph_plain / _x/_y/_z / _lx/_ly/_lz.png")
+
+    # merged: H-coloured sphere with mean-curvature vectors at sampled points
+    sample = _fps(V, 90)
+    vmag = np.linalg.norm(vec, axis=1)
+    # clamp arrow length so a few high-curvature bumps don't dominate
+    clamp = np.percentile(vmag[sample], 80)
+    vclamp = vec * np.minimum(1.0, clamp / np.maximum(vmag, 1e-9))[:, None]
+    factor = 0.085 / np.median(vmag[sample])
+    cap = float(np.percentile(np.abs(H - np.median(H)), 96))
+    med = float(np.median(H))
+    arr = _sphere_arr(V, F, H, (med - cap, med + cap),
+                      arrows=(V[sample] + n[sample] * 0.004, vclamp[sample] * factor))
+    _save_crop(arr, OUT / "smooth_sph_Hvec.png")
+    print("[ok] smooth_sph_Hvec.png")
+
+
 def build_curvature():
     from PIL import Image
     V, F = load_mesh(SPHERE)
