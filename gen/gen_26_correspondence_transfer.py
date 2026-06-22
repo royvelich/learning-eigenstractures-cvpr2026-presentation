@@ -42,15 +42,20 @@ def build_segmentation():
     Vb, Fb = load_mesh(POSE_B)
     z, y = Va[:, 2], Va[:, 1]
 
-    seg = np.zeros(len(Va), dtype=int)            # 0 = torso
-    seg[z > 0.17] = 1                             # head
-    legs = y < -0.02                              # lower body → legs
-    seg[legs & (z > 0.0)] = 2                     # front legs
-    seg[legs & (z <= 0.0)] = 3                    # hind legs
-    seg[(z < -0.45) & (y > -0.05)] = 4           # tail (thin back appendage)
+    # confined local parts on a neutral base; gaps left between them so the
+    # segments don't touch (0 = unlabeled / grey)
+    seg = np.zeros(len(Va), dtype=int)
+    seg[z > 0.21] = 1                                       # head (muzzle / face)
+    seg[(np.abs(z) < 0.11) & (y > 0.05)] = 2               # torso / back
+    seg[(y < -0.07) & (z > 0.05)] = 3                      # front legs (lower)
+    seg[(y < -0.07) & (z < -0.12)] = 4                     # hind legs (lower)
+    seg[(z < -0.46) & (y > -0.02)] = 5                     # tail
 
-    colors = _to_rgb(["#3b82f6", "#ef4444", "#22c55e", "#f59e0b", "#a855f7"])
-    col = colors[seg]
+    base = _to_rgb(["#cbd0d6"])[0]
+    colors = _to_rgb(["#ef4444", "#3b82f6", "#22c55e", "#f59e0b", "#a855f7"])
+    col = np.tile(base, (len(Va), 1))
+    m = seg > 0
+    col[m] = colors[seg[m] - 1]
     d.render_field(Va, Fa, col, None, None, str(OUT_DIR / "corr_seg_a.png"), rgb=True)
     d.render_field(Vb, Fb, col, None, None, str(OUT_DIR / "corr_seg_b.png"), rgb=True)
     print("[ok] corr_seg_a/b.png  (segments:", np.bincount(seg), ")")
