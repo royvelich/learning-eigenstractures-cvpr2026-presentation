@@ -5962,6 +5962,44 @@ In this experiemnt, we show that we can train at low resolution, and still infer
 ---
 layout: default
 class: text-left
+---
+
+<div class="h-full flex flex-row gap-3">
+
+<div class="title-col">
+  <h1 class="!text-lg !leading-snug !mb-0 font-serif" style="color: #000">
+    Predicted metric.
+  </h1>
+</div>
+
+<div class="flex-1 min-w-0 flex items-center pr-6">
+  <img
+    :src="`${$slidev.configs.base ?? '/'}supp_metric@0.5x.png`"
+    class="h-full w-full object-contain object-right"
+    alt="Evaluation metric"
+  />
+</div>
+
+</div>
+
+<style>
+.slidev-layout {
+  padding: 0.75rem !important;
+}
+.title-col {
+  width: 14rem;
+  flex-shrink: 0;
+  padding-left: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: left;
+}
+</style>
+
+---
+layout: default
+class: text-left
 clicks: 2
 hide: true
 ---
@@ -7367,45 +7405,6 @@ hide: true
     :src="`${$slidev.configs.base ?? '/'}supp_overfit2@0.5x.png`"
     class="h-full w-full object-contain object-right"
     alt="Overfitting eigenfunctions, part II"
-  />
-</div>
-
-</div>
-
-<style>
-.slidev-layout {
-  padding: 0.75rem !important;
-}
-.title-col {
-  width: 14rem;
-  flex-shrink: 0;
-  padding-left: 1.5rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  text-align: left;
-}
-</style>
-
----
-layout: default
-class: text-left
-hide: true
----
-
-<div class="h-full flex flex-row gap-3">
-
-<div class="title-col">
-  <h1 class="!text-lg !leading-snug !mb-0 font-serif" style="color: #000">
-    Predicted metric.
-  </h1>
-</div>
-
-<div class="flex-1 min-w-0 flex items-center pr-6">
-  <img
-    :src="`${$slidev.configs.base ?? '/'}supp_metric@0.5x.png`"
-    class="h-full w-full object-contain object-right"
-    alt="Evaluation metric"
   />
 </div>
 
