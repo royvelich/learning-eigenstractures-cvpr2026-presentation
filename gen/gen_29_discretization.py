@@ -55,7 +55,7 @@ def build():
     p.add_mesh(pv.PolyData(V, faces), color="#dfe3e8", smooth_shading=False,
                show_edges=True, edge_color="#475569", line_width=1,
                ambient=0.4, diffuse=0.66)
-    p.add_mesh(pv.PolyData(V), color="#0f172a", point_size=5.5,
+    p.add_mesh(pv.PolyData(V), color="#0f172a", point_size=16,
                render_points_as_spheres=True)
     setup(p); shots.append(render("disc_mesh.png"))
 
@@ -68,7 +68,7 @@ def build():
                ambient=0.4, diffuse=0.66)
     pts = pv.PolyData(V); pts["f"] = f
     p.add_mesh(pts, scalars="f", cmap="coolwarm", clim=(-cap, cap),
-               point_size=22, render_points_as_spheres=True, show_scalar_bar=False)
+               point_size=16, render_points_as_spheres=True, show_scalar_bar=False)
     setup(p); shots.append(render("disc_func.png"))
 
     # crop all three to a common box so the framing never jumps between clicks
