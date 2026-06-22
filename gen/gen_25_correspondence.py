@@ -68,7 +68,7 @@ def render_correspondence_lines(n_pairs=6):
 
     def render(with_lines, path):
         pv.global_theme.transparent_background = True
-        p = pv.Plotter(off_screen=True, window_size=(1700, 560))
+        p = pv.Plotter(off_screen=True, window_size=(2400, 1500))
         p.set_background([1, 1, 1, 0])
         p.add_mesh(pv.PolyData(Va, d.faces_pv(Fa)), color="#d4d4d8",
                    smooth_shading=True, ambient=0.34, diffuse=0.72, specular=0.12)
@@ -85,10 +85,10 @@ def render_correspondence_lines(n_pairs=6):
         if with_lines:
             for k, i in enumerate(idx):
                 c = palette[k % len(palette)]
-                p.add_mesh(pv.Line(Va[i], Vb[i]), color=c, line_width=4)
-                p.add_mesh(pv.Sphere(radius=0.018, center=Va[i]), color=c)
-                p.add_mesh(pv.Sphere(radius=0.018, center=Vb[i]), color=c)
-        p.enable_anti_aliasing("msaa")
+                p.add_mesh(pv.Line(Va[i], Vb[i]), color=c, line_width=6)
+                p.add_mesh(pv.Sphere(radius=0.016, center=Va[i]), color=c)
+                p.add_mesh(pv.Sphere(radius=0.016, center=Vb[i]), color=c)
+        p.enable_anti_aliasing("ssaa")
         p.screenshot(str(path), transparent_background=True, return_img=False)
         p.close()
 
