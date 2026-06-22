@@ -110,7 +110,7 @@ def build_row():
                 arrowprops=dict(arrowstyle="-|>", color=WARM, lw=2))
     ax.text(0.5 * w, -0.32, "off-diagonal: one $-w_{ij}$ per neighbour", ha="left",
             color=COOL, fontsize=13)
-    ax.text(len(cells) * w + 0.15, 0.5, "← row $i$ of $L$", va="center", fontsize=14, color=FG)
+    ax.text(len(cells) * w + 0.15, 0.5, "← row $i$ of $S$", va="center", fontsize=14, color=FG)
     ax.set_xlim(0, len(cells) * w + 2.0); ax.set_ylim(-0.6, 1.5)
     ax.set_aspect("equal"); ax.axis("off")
     plt.tight_layout()
@@ -179,9 +179,66 @@ def build_sampling():
     print("[ok] asm_sampling.png")
 
 
+def build_mass_compare():
+    """Same vertex i: a 1-ring cell vs. a Delaunay-refined cell (smaller area)."""
+    from scipy.spatial import Delaunay
+
+    def cell_poly(P, tris, vi):
+        pts = []
+        for t in tris:
+            if vi not in t:
+                continue
+            cen = P[t].mean(0)
+            for a in t:
+                if a != vi:
+                    pts.append((P[vi] + P[a]) / 2)
+            pts.append(cen)
+        pts = np.array(pts)
+        ang = np.arctan2(pts[:, 1] - P[vi, 1], pts[:, 0] - P[vi, 0])
+        poly = pts[np.argsort(ang)]
+        x, y = poly[:, 0], poly[:, 1]
+        area = 0.5 * abs(np.dot(x, np.roll(y, -1)) - np.dot(y, np.roll(x, -1)))
+        return poly, area
+
+    ang_out = np.arctan2(RING[:, 1], RING[:, 0])
+    inner = np.array([[0.46 * np.cos(a + np.pi / 6), 0.46 * np.sin(a + np.pi / 6)]
+                      for a in ang_out])
+    Pc = np.vstack([I, RING])
+    Pf = np.vstack([I, RING, inner])
+    tc = Delaunay(Pc).simplices
+    tf = Delaunay(Pf).simplices
+    _, area_c = cell_poly(Pc, tc, 0)
+
+    def render(P, tris, out, label):
+        polyc, area = cell_poly(P, tris, 0)
+        fig, ax = plt.subplots(figsize=(5.6, 5.6))
+        for t in tris:
+            ax.add_patch(Polygon(P[t], closed=True, facecolor=FILL,
+                                 edgecolor=EDGE, lw=1.6, zorder=1))
+        ax.add_patch(Polygon(polyc, closed=True, facecolor="#34d399",
+                             edgecolor="#059669", lw=2.2, alpha=0.5, zorder=3))
+        for p in P[1:]:
+            ax.scatter(*p, s=55, color=NB, zorder=8)
+        ax.scatter(*P[0], s=200, color=I_COL, zorder=9)
+        ax.text(P[0][0], P[0][1] - 0.16, "$i$", color=I_COL, fontsize=20,
+                ha="center", va="top", zorder=10)
+        ax.text(0.0, 1.28, label, color="#047857", fontsize=18, ha="center")
+        ax.set_aspect("equal"); ax.axis("off")
+        ax.set_xlim(-1.35, 1.35); ax.set_ylim(-1.35, 1.5)
+        plt.tight_layout()
+        plt.savefig(str(OUT_DIR / out), dpi=160, transparent=True,
+                    bbox_inches="tight", pad_inches=0.04)
+        plt.close()
+
+    render(Pc, tc, "mass_cell_a.png", r"area $A_i$")
+    _, area_f = cell_poly(Pf, tf, 0)
+    ratio = area_f / area_c
+    render(Pf, tf, "mass_cell_b.png", rf"area $A_i' \approx {ratio:.1f}\,A_i$")
+    print(f"[ok] mass_cell_a/b.png  (ratio {ratio:.2f})")
+
+
 if __name__ == "__main__":
     build_onering(with_angles=False, out="asm_onering_plain.png")
     build_onering(with_angles=True, out="asm_onering.png")
     build_row()
-    build_mass()
-    build_sampling()
+    build_mass_compare()

@@ -1309,7 +1309,7 @@ clicks: 2
 <div class="eyebrow">Discretizing Δ on a mesh</div>
 
 <h1 class="!text-xl !leading-snug !mb-1 font-serif" style="color: #000">
-Assembling a row of the <span class="grad">stiffness matrix</span> <span style="font-style: italic">L</span>
+Assembling a row of the <span class="grad">stiffness matrix</span> <span style="font-style: italic">S</span>
 </h1>
 
 <div class="flex-1 min-h-0 grid items-center gap-5" style="grid-template-columns: 1fr 1.05fr;">
@@ -1325,7 +1325,7 @@ Assembling a row of the <span class="grad">stiffness matrix</span> <span style="
 
 A weighted sum of differences to the 1-ring neighbours — one weight $w_{ij}$ per neighbour:
 
-$(Lf)_i=\displaystyle\sum_{j\in N(i)} w_{ij}\,(f_i-f_j)$
+$(Sf)_i=\displaystyle\sum_{j\in N(i)} w_{ij}\,(f_i-f_j)$
 
 </div>
 
@@ -1369,29 +1369,53 @@ clicks: 1
 The mass matrix <span style="font-style: italic">M</span> — and why we <span class="grad">normalize</span>
 </h1>
 
-<div class="text-center mt-1 mb-1" style="font-size: 18px; color: var(--c-fg-body)">
+<div class="flex-1 min-h-0 grid items-center gap-5" style="grid-template-columns: 1.1fr 1fr 1fr;">
 
-Each vertex owns an area $A_i$ — its cell — giving the diagonal mass $M_{ii}=A_i$. &nbsp; $L$ is an *integral* over that cell, so $\Delta = M^{-1}L$ divides it back to a pointwise value.
+<!-- left: explanation -->
+<div class="flex flex-col items-start justify-center gap-3 text-left" style="font-size: 17px; color: var(--c-fg-body)">
+
+<div>
+
+Each vertex owns an area $A_i$ — its <span class="grad">cell</span>. That is the diagonal mass $M_{ii}=A_i$.
 
 </div>
 
-<div class="flex-1 min-h-0 grid items-center gap-6" style="grid-template-columns: 1fr 1.25fr;">
+<div>
 
+$S$ sums over that cell, so $(Sf)_i \propto A_i$ — it grows with sampling density.
+
+</div>
+
+<div v-click="1">
+
+Re-triangulate near $i$ → the cell shrinks ($A_i'\approx 0.2\,A_i$), and $S$ changes too.
+
+</div>
+
+<div v-click="1" style="color: var(--c-accent)">
+
+But $L = M^{-1}S$ divides the area out → the Laplacian is <strong>sampling-independent</strong>.
+
+</div>
+
+</div>
+
+<!-- middle: original 1-ring cell -->
 <div class="h-full min-h-0 flex flex-col items-center justify-center">
-  <img :src="`${$slidev.configs.base ?? '/'}applications/asm_mass.png`"
-       class="flex-1 min-h-0 max-h-full max-w-full object-contain" alt="vertex area A_i = M_ii" />
+  <img :src="`${$slidev.configs.base ?? '/'}applications/mass_cell_a.png`"
+       class="flex-1 min-h-0 max-h-full max-w-full object-contain" alt="1-ring cell, area A_i" />
 
-  <div style="font-size: 13px; color: var(--c-fg-muted)">
-
-  vertex area $=M_{ii}$
-
-  </div>
+  <div style="font-size: 13px; color: var(--c-fg-muted)">original sampling</div>
 
 </div>
 
-<div v-click="1" class="h-full min-h-0 flex items-center justify-center">
-  <img :src="`${$slidev.configs.base ?? '/'}applications/asm_sampling.png`"
-       class="max-h-full max-w-full object-contain" alt="coarse vs fine: dividing by area cancels sampling density" />
+<!-- right: refined cell -->
+<div v-click="1" class="h-full min-h-0 flex flex-col items-center justify-center">
+  <img :src="`${$slidev.configs.base ?? '/'}applications/mass_cell_b.png`"
+       class="flex-1 min-h-0 max-h-full max-w-full object-contain" alt="re-triangulated cell, smaller area" />
+
+  <div style="font-size: 13px; color: var(--c-fg-muted)">denser sampling — smaller cell</div>
+
 </div>
 
 </div>
@@ -1399,9 +1423,10 @@ Each vertex owns an area $A_i$ — its cell — giving the diagonal mass $M_{ii}
 </div>
 
 <!--
-1. Each vertex owns a piece of surface area — that area is its entry in the diagonal mass matrix.
-2. [click] L is an integrated quantity: it sums over the vertex's cell, so it scales with the cell area. Dividing by the area turns it into a per-area, pointwise value — the operator M⁻¹L.
-3. [click] That normalization is what cancels sampling artifacts: a coarse and a fine mesh give the same Δf even though their raw L values differ by the cell size.
+1. Each vertex owns a piece of surface area — that area is its entry in the diagonal mass matrix M.
+2. The stiffness matrix S sums over the vertex's cell, so it scales with the cell area.
+3. [click] Re-triangulate around i and the cell shrinks — S and the area both change with the sampling.
+4. [click] But the Laplacian L = M⁻¹S divides the area out, so it stays (nearly) the same — sampling-independent.
 -->
 
 ---
