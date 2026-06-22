@@ -186,7 +186,7 @@ def build_coord_decomposition():
     print("[ok] smooth_sph_Hvec.png")
 
 
-def build_Hvec_gif(n_frames=30, out_name="smooth_sph_Hvec.gif"):
+def build_Hvec_gif(n_frames=60, out_name="smooth_sph_Hvec.gif"):
     """Rotating turntable of the H-coloured sphere with mean-curvature arrows."""
     import pyvista as pv
     from PIL import Image
@@ -194,8 +194,10 @@ def build_Hvec_gif(n_frames=30, out_name="smooth_sph_Hvec.gif"):
     V, F = load_mesh(SPHERE)
     L = igl.cotmatrix(V, F)
     M = igl.massmatrix(V, F, igl.MASSMATRIX_TYPE_VORONOI)
-    minv = 1.0 / np.asarray(M.diagonal())
-    vec = -(minv[:, None] * (L @ V))                 # 2 H N
+    md = np.asarray(M.diagonal())
+    V = V - (md[:, None] * V).sum(0) / md.sum()      # area-weighted centre of mass
+    minv = 1.0 / md
+    vec = -(minv[:, None] * (L @ V))                 # 2 H N  (L kills the shift)
     n = trimesh.Trimesh(V, F, process=False).vertex_normals
     H = 0.5 * np.sum(vec * n, axis=1)
     sample = _fps(V, 90)
@@ -215,18 +217,27 @@ def build_Hvec_gif(n_frames=30, out_name="smooth_sph_Hvec.gif"):
         return np.array([[c, 0, s], [0, 1.0, 0], [-s, 0, c]])
 
     pv.global_theme.transparent_background = True
+
+    # one fixed camera for every frame (rotation is about the centre of mass and
+    # the bounding sphere is rotation-invariant, so no per-frame reset is needed)
+    p0 = pv.Plotter(off_screen=True, window_size=(600, 600))
+    p0.add_mesh(pv.PolyData(V, faces))
+    p0.camera_position = CAM
+    p0.reset_camera()
+    cam_fixed = p0.camera_position
+    p0.close()
+
     raw = []
     for k in range(n_frames):
         R = Ry(2 * np.pi * k / n_frames).T          # rotate geometry about vertical axis
-        p = pv.Plotter(off_screen=True, window_size=(720, 720))
+        p = pv.Plotter(off_screen=True, window_size=(600, 600))
         p.set_background("white")
         m = pv.PolyData(V @ R, faces); m["s"] = H
         p.add_mesh(m, scalars="s", cmap="coolwarm", clim=(med - cap, med + cap),
                    smooth_shading=True, show_scalar_bar=False, ambient=0.3,
                    diffuse=0.72, specular=0.2, specular_power=18)
         p.add_arrows(psample @ R, vsample @ R, mag=1.0, color="#0f172a")
-        p.camera_position = CAM
-        p.reset_camera()
+        p.camera_position = cam_fixed
         p.camera.zoom(1.3)
         p.enable_anti_aliasing("ssaa")
         raw.append(p.screenshot(transparent_background=False, return_img=True))
@@ -241,10 +252,10 @@ def build_Hvec_gif(n_frames=30, out_name="smooth_sph_Hvec.gif"):
     x0 = max(min(b[0] for b in bs) - pad, 0); y0 = max(min(b[1] for b in bs) - pad, 0)
     x1 = min(max(b[2] for b in bs) + pad, raw[0].shape[1])
     y1 = min(max(b[3] for b in bs) + pad, raw[0].shape[0])
-    imgs = [Image.fromarray(a[y0:y1, x0:x1]).convert("P", palette=Image.ADAPTIVE, colors=128)
+    imgs = [Image.fromarray(a[y0:y1, x0:x1]).convert("P", palette=Image.ADAPTIVE, colors=96)
             for a in raw]
     imgs[0].save(str(OUT / out_name), save_all=True, append_images=imgs[1:],
-                 loop=0, duration=80, disposal=2, optimize=True)
+                 loop=0, duration=95, disposal=2, optimize=True)
     print(f"[ok] {out_name}  ({len(imgs)} frames)")
 
 
@@ -303,7 +314,7 @@ def build_flow_gif(n_steps=20, tau=6e-4, every=1, out_name="smooth_flow.gif"):
     x0 = max(min(b[0] for b in bs) - pad, 0); y0 = max(min(b[1] for b in bs) - pad, 0)
     x1 = min(max(b[2] for b in bs) + pad, raw[0].shape[1])
     y1 = min(max(b[3] for b in bs) + pad, raw[0].shape[0])
-    imgs = [Image.fromarray(a[y0:y1, x0:x1]).convert("P", palette=Image.ADAPTIVE, colors=128)
+    imgs = [Image.fromarray(a[y0:y1, x0:x1]).convert("P", palette=Image.ADAPTIVE, colors=96)
             for a in raw]
     # hold the last (smooth) frame a bit before looping
     imgs[0].save(str(OUT / out_name), save_all=True, append_images=imgs[1:],
