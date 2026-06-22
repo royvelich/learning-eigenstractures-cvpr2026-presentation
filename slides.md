@@ -824,6 +824,210 @@ Three scales → R, G, B. Corresponding regions share colour across poses — th
 
 ---
 layout: default
+class: text-center
+clicks: 3
+---
+
+<div class="h-full flex flex-col pt-2 pb-2 px-2 text-center">
+
+<div class="eyebrow">Application · Shape correspondence</div>
+
+<h1 class="!text-xl !leading-snug !mb-1 font-serif" style="color: #000">
+Matching points is <span class="grad">combinatorially hard</span>
+</h1>
+
+<div class="flex-1 min-h-0 flex gap-6 items-center justify-center">
+
+  <img :src="`${$slidev.configs.base ?? '/'}applications/corr_horse_a.png`"
+       class="max-h-full max-w-[46%] object-contain" alt="horse pose A" />
+
+  <img :src="`${$slidev.configs.base ?? '/'}applications/corr_horse_b.png`"
+       class="max-h-full max-w-[46%] object-contain" alt="horse pose B" />
+
+</div>
+
+<div class="flex flex-col items-center justify-center gap-2 mt-2" style="font-size: 18px; color: var(--c-fg-muted)">
+
+<div v-click="1">
+
+Match each of the $N$ points on $A$ to a point on $B$.
+
+</div>
+
+<div v-click="2">
+
+$N \cdot (N-1) \cdots 1 = N!$ &nbsp;possible matchings.
+
+</div>
+
+<div v-click="3" style="color: var(--c-accent)">
+
+With $N\approx 8400$: more than $10^{29000}$ — vs. $\sim 10^{80}$ atoms in the universe. Brute force is hopeless.
+
+</div>
+
+</div>
+
+</div>
+
+<!--
+1. A correspondence is a one-to-one matching between the points of two shapes.
+2. Counting them: the first point has N choices, the next N-1, and so on — N factorial matchings.
+3. For a real mesh that number is unimaginably large. We need structure, not search.
+-->
+
+---
+layout: default
+class: text-center
+clicks: 2
+---
+
+<div class="h-full flex flex-col pt-2 pb-2 px-2 text-center">
+
+<div class="eyebrow">Application · Shape correspondence</div>
+
+<h1 class="!text-xl !leading-snug !mb-1 font-serif" style="color: #000">
+Match <span class="grad">functions</span>, not points
+</h1>
+
+<div class="flex-1 min-h-0 grid items-center gap-2" style="grid-template-columns: 1fr auto 1fr;">
+
+<div class="h-full flex items-center justify-center">
+  <img :src="`${$slidev.configs.base ?? '/'}applications/corr_func_a.png`"
+       class="max-h-full max-w-full object-contain" alt="a function on shape A" />
+</div>
+
+<div v-click="1" class="flex flex-col items-center justify-center" style="color: var(--c-fg-muted)">
+  <div style="font-size: 34px; line-height: 1">→</div>
+  <div style="font-size: 15px"><span style="font-style: italic">C</span></div>
+</div>
+
+<div v-click="1" class="h-full flex items-center justify-center">
+  <img :src="`${$slidev.configs.base ?? '/'}applications/corr_func_b.png`"
+       class="max-h-full max-w-full object-contain" alt="the same function carried onto shape B" />
+</div>
+
+</div>
+
+<div class="flex flex-col items-center gap-1 mt-1" style="font-size: 18px; color: var(--c-fg-muted)">
+
+<div>
+
+A correspondence carries every <em>function</em> on $A$ to a function on $B$.
+
+</div>
+
+<div v-click="2">
+
+In the eigenbasis it is just a small matrix: &nbsp; $\mathbf{b} = C\,\mathbf{a}$.
+
+</div>
+
+</div>
+
+</div>
+
+<!--
+1. Instead of matching points, think of how a correspondence moves functions between the shapes.
+2. Painted on a different pose, the function lands on the same parts.
+3. Expressed in the LBO eigenbasis, this function-to-function map is a single matrix C acting on coefficient vectors.
+-->
+
+---
+layout: default
+class: text-center
+clicks: 2
+---
+
+<div class="h-full flex flex-col pt-2 pb-2 px-2 text-center">
+
+<div class="eyebrow">Application · Shape correspondence</div>
+
+<h1 class="!text-xl !leading-snug !mb-1 font-serif" style="color: #000">
+The map is a <span class="grad">small, near-diagonal</span> matrix
+</h1>
+
+<div class="flex-1 min-h-0 grid grid-cols-2 gap-6 items-center">
+
+<div class="h-full flex items-center justify-center">
+  <img :src="`${$slidev.configs.base ?? '/'}applications/corr_cmat.png`"
+       class="max-h-full max-w-full object-contain" alt="functional map C, near-diagonal" />
+</div>
+
+<div class="flex flex-col items-start gap-3 text-left" style="font-size: 19px; color: var(--c-fg-body)">
+
+<div v-click="1">
+
+$N!$ matchings &nbsp;→&nbsp; a <strong>$30\times 30$</strong> matrix $C$.
+
+</div>
+
+<div v-click="2">
+
+For a near-isometry $C$ is almost <strong>diagonal</strong> — the whole correspondence in ~30 numbers.
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<!--
+1. The combinatorial search collapses to estimating a small matrix of coefficients.
+2. When the two shapes are nearly isometric, that matrix is almost diagonal — a handful of numbers describe the entire map.
+-->
+
+---
+layout: default
+class: text-center
+clicks: 2
+---
+
+<div class="h-full flex flex-col pt-2 pb-2 px-2 text-center">
+
+<div class="eyebrow">Application · Shape correspondence</div>
+
+<h1 class="!text-xl !leading-snug !mb-1 font-serif" style="color: #000">
+Reading off matches: <span class="grad">transport a delta</span>
+</h1>
+
+<div class="flex-1 min-h-0 grid items-center gap-2" style="grid-template-columns: 1fr auto 1fr;">
+
+<div class="h-full flex items-center justify-center">
+  <img :src="`${$slidev.configs.base ?? '/'}applications/corr_delta_a_${Math.min($clicks, 2)}.png`"
+       class="max-h-full max-w-full object-contain" alt="a delta at a point on A" />
+</div>
+
+<div class="flex flex-col items-center justify-center" style="color: var(--c-fg-muted)">
+  <div style="font-size: 34px; line-height: 1">→</div>
+  <div style="font-size: 15px"><span style="font-style: italic">C</span></div>
+</div>
+
+<div class="h-full flex items-center justify-center">
+  <img :src="`${$slidev.configs.base ?? '/'}applications/corr_delta_b_${Math.min($clicks, 2)}.png`"
+       class="max-h-full max-w-full object-contain" alt="the delta transported onto B, peaked at the matching point" />
+</div>
+
+</div>
+
+<div class="text-center mt-1" style="font-size: 18px; color: var(--c-fg-muted)">
+
+Push a spike at a point through $C$ → it peaks at the <span class="lbo">corresponding point</span> on the other pose.
+
+</div>
+
+</div>
+
+<!--
+1. To recover an actual point match, place a delta at a point on A.
+2. Send its coefficients through C and reconstruct on B — the result peaks right at the corresponding point.
+3. Repeat per point and you have a dense correspondence — search replaced by linear algebra.
+-->
+
+---
+layout: default
 class: text-left
 ---
 
