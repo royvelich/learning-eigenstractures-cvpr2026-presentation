@@ -71,6 +71,31 @@ def build():
                point_size=16, render_points_as_spheres=True, show_scalar_bar=False)
     setup(p); shots.append(render("disc_func.png"))
 
+    # 4) highlight the 1-ring of a vertex on the chest (front, upper torso, centre)
+    import trimesh
+    nrm = trimesh.Trimesh(V, F, process=False).vertex_normals
+    chest = (V[:, 1] > 0.02) & (V[:, 1] < 0.30) & (np.abs(V[:, 0]) < 0.10)
+    cand = np.where(chest)[0]
+    ci = int(cand[np.argmax(V[cand, 2])])            # frontmost → on the chest
+    inc = np.array([fc for fc in F if ci in fc])     # incident (1-ring) faces
+    neigh = sorted({int(v) for fc in inc for v in fc if v != ci})
+
+    p = pv.Plotter(off_screen=True, window_size=(1000, 1000))
+    p.set_background([1, 1, 1, 0])
+    p.add_mesh(pv.PolyData(V, faces), color="#e2e5e9", smooth_shading=False,
+               show_edges=True, edge_color="#94a3b8", line_width=1,
+               ambient=0.45, diffuse=0.6)
+    p.add_mesh(pv.PolyData(V), color="#94a3b8", point_size=11,
+               render_points_as_spheres=True)
+    # the 1-ring fan: incident faces lifted slightly off the surface
+    p.add_mesh(pv.PolyData(V + nrm * 0.004, faces_pv(inc)), color="#fde68a",
+               opacity=0.95, show_edges=True, edge_color="#b45309", line_width=3)
+    p.add_mesh(pv.PolyData(V[neigh] + nrm[neigh] * 0.006), color="#f59e0b",
+               point_size=22, render_points_as_spheres=True)
+    p.add_mesh(pv.PolyData((V[ci] + nrm[ci] * 0.006)[None]), color="#e6194B",
+               point_size=30, render_points_as_spheres=True)
+    setup(p); shots.append(render("disc_ring.png"))
+
     # crop all three to a common box so the framing never jumps between clicks
     boxes = [Image.fromarray(a).getchannel("A").getbbox() for _, a in shots]
     pad = 6

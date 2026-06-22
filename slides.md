@@ -1264,7 +1264,7 @@ $\dfrac{\partial X}{\partial t} = -\Delta X = -2H\,N$ &nbsp;·&nbsp; <span style
 ---
 layout: default
 class: text-center
-clicks: 2
+clicks: 3
 ---
 
 <div class="h-full flex flex-col pt-2 pb-2 px-2 text-center">
@@ -1276,16 +1276,17 @@ In practice, a surface is a <span class="grad">discrete mesh</span>
 </h1>
 
 <div class="flex-1 min-h-0 flex items-center justify-center">
-  <img :src="`${$slidev.configs.base ?? '/'}applications/${$clicks >= 2 ? 'disc_func' : ($clicks >= 1 ? 'disc_mesh' : 'disc_smooth')}.png`"
+  <img :src="`${$slidev.configs.base ?? '/'}applications/${$clicks >= 3 ? 'disc_ring' : ($clicks >= 2 ? 'disc_func' : ($clicks >= 1 ? 'disc_mesh' : 'disc_smooth'))}.png`"
        class="max-h-full max-w-full object-contain"
-       alt="armadillo: smooth surface, then discrete mesh, then a function on the vertices" />
+       alt="armadillo: smooth surface, then discrete mesh, a function on the vertices, then a highlighted 1-ring" />
 </div>
 
 <div class="text-center mt-1" style="font-size: 18px; color: var(--c-fg-body); height: 3em; display: flex; align-items: center; justify-content: center">
 
 <span v-show="$clicks < 1">A shape <em>looks</em> like a smooth surface…</span>
 <span v-show="$clicks === 1">…but we store it as a <span class="grad">finite mesh</span> — a discrete sample of vertices and faces.</span>
-<span v-show="$clicks >= 2">A scalar function is then a value <span class="grad">at each vertex</span> — $f \in \mathbb{R}^{N}$, one number per sample point.</span>
+<span v-show="$clicks === 2">A scalar function is then a value <span class="grad">at each vertex</span> — $f \in \mathbb{R}^{N}$, one number per sample point.</span>
+<span v-show="$clicks >= 3">The discrete Laplacian acts <span class="grad">locally</span> — on a vertex's 1-ring neighbourhood.</span>
 
 </div>
 
