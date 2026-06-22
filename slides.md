@@ -1263,6 +1263,116 @@ $\dfrac{\partial X}{\partial t} = -\Delta X = -2H\,N$ &nbsp;·&nbsp; <span style
 
 ---
 layout: default
+class: text-center
+clicks: 3
+---
+
+<div class="h-full flex flex-col pt-2 pb-2 px-2 text-center">
+
+<div class="eyebrow">Discretizing Δ on a mesh</div>
+
+<h1 class="!text-xl !leading-snug !mb-1 font-serif" style="color: #000">
+Assembling a row of the <span class="grad">stiffness matrix</span> <span style="font-style: italic">L</span>
+</h1>
+
+<div class="flex-1 min-h-0 grid items-center gap-5" style="grid-template-columns: 1fr 1.05fr;">
+
+<div class="h-full min-h-0 flex items-center justify-center">
+  <img :src="`${$slidev.configs.base ?? '/'}applications/asm_onering.png`"
+       class="max-h-full max-w-full object-contain" alt="1-ring of vertex i with opposite angles" />
+</div>
+
+<div class="flex flex-col items-start justify-center gap-3 text-left" style="font-size: 18px; color: var(--c-fg-body)">
+
+<div>
+
+A weighted sum of differences to the 1-ring neighbours:
+
+$(Lf)_i=\displaystyle\sum_{j\in N(i)} w_{ij}\,(f_i-f_j)$
+
+</div>
+
+<div v-click="1">
+
+cotangent weights: $\;w_{ij}=\tfrac12(\cot\alpha_{ij}+\cot\beta_{ij})$
+
+</div>
+
+<div v-click="2">
+
+so &nbsp; $L_{ii}=\displaystyle\sum_j w_{ij}$ &nbsp;(diagonal), &nbsp; $L_{ij}=-w_{ij}$ &nbsp;(off-diagonal)
+
+</div>
+
+</div>
+
+</div>
+
+<div v-click="3" class="flex items-center justify-center mt-1" style="height: 26%">
+  <img :src="`${$slidev.configs.base ?? '/'}applications/asm_row.png`"
+       class="max-h-full max-w-full object-contain" alt="row i of L: diagonal and off-diagonal entries" />
+</div>
+
+</div>
+
+<!--
+1. The Laplacian at vertex i is local — a weighted sum of differences to its 1-ring.
+2. [click] The weights are the cotangents of the two angles opposite each edge.
+3. [click] Expanding the sum gives the row: the diagonal is the sum of the weights, each off-diagonal entry is minus one weight, and the row sums to zero.
+4. [click] So each row has the diagonal plus one entry per neighbour.
+-->
+
+---
+layout: default
+class: text-center
+clicks: 1
+---
+
+<div class="h-full flex flex-col pt-2 pb-2 px-2 text-center">
+
+<div class="eyebrow">Discretizing Δ on a mesh</div>
+
+<h1 class="!text-xl !leading-snug !mb-1 font-serif" style="color: #000">
+The mass matrix <span style="font-style: italic">M</span> — and why we <span class="grad">normalize</span>
+</h1>
+
+<div class="text-center mt-1 mb-1" style="font-size: 18px; color: var(--c-fg-body)">
+
+Each vertex owns an area $A_i$ — its cell — giving the diagonal mass $M_{ii}=A_i$. &nbsp; $L$ is an *integral* over that cell, so $\Delta = M^{-1}L$ divides it back to a pointwise value.
+
+</div>
+
+<div class="flex-1 min-h-0 grid items-center gap-6" style="grid-template-columns: 1fr 1.25fr;">
+
+<div class="h-full min-h-0 flex flex-col items-center justify-center">
+  <img :src="`${$slidev.configs.base ?? '/'}applications/asm_mass.png`"
+       class="flex-1 min-h-0 max-h-full max-w-full object-contain" alt="vertex area A_i = M_ii" />
+
+  <div style="font-size: 13px; color: var(--c-fg-muted)">
+
+  vertex area $=M_{ii}$
+
+  </div>
+
+</div>
+
+<div v-click="1" class="h-full min-h-0 flex items-center justify-center">
+  <img :src="`${$slidev.configs.base ?? '/'}applications/asm_sampling.png`"
+       class="max-h-full max-w-full object-contain" alt="coarse vs fine: dividing by area cancels sampling density" />
+</div>
+
+</div>
+
+</div>
+
+<!--
+1. Each vertex owns a piece of surface area — that area is its entry in the diagonal mass matrix.
+2. [click] L is an integrated quantity: it sums over the vertex's cell, so it scales with the cell area. Dividing by the area turns it into a per-area, pointwise value — the operator M⁻¹L.
+3. [click] That normalization is what cancels sampling artifacts: a coarse and a fine mesh give the same Δf even though their raw L values differ by the cell size.
+-->
+
+---
+layout: default
 class: text-left
 ---
 
