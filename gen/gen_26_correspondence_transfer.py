@@ -40,19 +40,25 @@ def build_texture():
 def build_segmentation():
     Va, Fa = load_mesh(POSE_A)
     Vb, Fb = load_mesh(POSE_B)
-    z, y = Va[:, 2], Va[:, 1]
+    x, y, z = Va[:, 0], Va[:, 1], Va[:, 2]
 
     # confined local parts on a neutral base; gaps left between them so the
-    # segments don't touch (0 = unlabeled / grey)
+    # segments don't touch (0 = unlabeled / grey). Each leg gets its own colour
+    # (left/right split by the x symmetry axis).
     seg = np.zeros(len(Va), dtype=int)
     seg[z > 0.21] = 1                                       # head (muzzle / face)
     seg[(np.abs(z) < 0.11) & (y > 0.05)] = 2               # torso / back
-    seg[(y < -0.07) & (z > 0.05)] = 3                      # front legs (lower)
-    seg[(y < -0.07) & (z < -0.12)] = 4                     # hind legs (lower)
-    seg[(z < -0.46) & (y > -0.02)] = 5                     # tail
+    front = (y < -0.07) & (z > 0.05)
+    hind = (y < -0.07) & (z < -0.12)
+    seg[front & (x < 0)] = 3                                # front-left leg
+    seg[front & (x >= 0)] = 4                               # front-right leg
+    seg[hind & (x < 0)] = 5                                 # hind-left leg
+    seg[hind & (x >= 0)] = 6                                # hind-right leg
+    seg[(z < -0.34) & (y > 0.0)] = 7                        # tail (full)
 
     base = _to_rgb(["#cbd0d6"])[0]
-    colors = _to_rgb(["#ef4444", "#3b82f6", "#22c55e", "#f59e0b", "#a855f7"])
+    colors = _to_rgb(["#ef4444", "#3b82f6", "#22c55e", "#f59e0b",
+                      "#a855f7", "#14b8a6", "#ec4899"])
     col = np.tile(base, (len(Va), 1))
     m = seg > 0
     col[m] = colors[seg[m] - 1]
