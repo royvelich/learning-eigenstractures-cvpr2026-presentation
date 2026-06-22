@@ -836,13 +836,17 @@ clicks: 3
 Matching points is <span class="grad">combinatorially hard</span>
 </h1>
 
-<div class="flex-1 min-h-0 flex gap-6 items-center justify-center">
+<div class="flex-1 min-h-0 flex items-center">
 
-  <img :src="`${$slidev.configs.base ?? '/'}applications/corr_horse_a.png`"
-       class="max-h-full max-w-[46%] object-contain" alt="horse pose A" />
+  <div class="flex-1 min-h-0 h-full flex items-center justify-center">
+    <img :src="`${$slidev.configs.base ?? '/'}applications/corr_horse_a.png`"
+         class="max-h-full max-w-full object-contain" alt="horse pose A" />
+  </div>
 
-  <img :src="`${$slidev.configs.base ?? '/'}applications/corr_horse_b.png`"
-       class="max-h-full max-w-[46%] object-contain" alt="horse pose B" />
+  <div class="flex-1 min-h-0 h-full flex items-center justify-center">
+    <img :src="`${$slidev.configs.base ?? '/'}applications/corr_horse_b.png`"
+         class="max-h-full max-w-full object-contain" alt="horse pose B" />
+  </div>
 
 </div>
 
