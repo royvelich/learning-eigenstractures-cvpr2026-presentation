@@ -2366,7 +2366,6 @@ Best <i>k</i>-term basis — a 3D toy example.
 layout: default
 class: text-left
 clicks: 7
-hide: true
 ---
 
 <script setup>
