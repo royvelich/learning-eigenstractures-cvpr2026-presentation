@@ -1388,7 +1388,7 @@ $S$ sums over that cell, so $(Sf)_i \propto A_i$ — it grows with sampling dens
 
 <div v-click="1">
 
-Re-triangulate near $i$ → the cell shrinks ($A_i'\approx 0.7\,A_i$), and $S$ changes too.
+Re-triangulate near $i$ → the cell shrinks ($A_i'\approx \tfrac14 A_i$), and $S$ changes too.
 
 </div>
 

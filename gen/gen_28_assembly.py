@@ -204,13 +204,16 @@ def build_mass_compare():
     n = len(RING)
     tc = [(0, 1 + k, 1 + (k + 1) % n) for k in range(n)]
 
-    # right: add each triangle's centroid and split it into 3 (i kept in place)
-    cents = np.array([Pc[list(t)].mean(0) for t in tc])
-    Pf = np.vstack([Pc, cents])
+    # right: 1-to-4 split of each fan triangle (add the 3 edge midpoints).
+    # i keeps a similar 6-fan, now to the spoke midpoints → ~1/4 the area.
+    spoke = 0.5 * RING                                  # mid(i, RING[k])
+    outer = 0.5 * (RING + np.roll(RING, -1, axis=0))    # mid(RING[k], RING[k+1])
+    Pf = np.vstack([I, RING, spoke, outer])
     tf = []
-    for k, (o, a, b) in enumerate(tc):
-        c = 1 + n + k
-        tf += [(o, a, c), (a, b, c), (b, o, c)]
+    for k in range(n):
+        B, C = 1 + k, 1 + (k + 1) % n
+        sk, sk1, ok = 1 + n + k, 1 + n + (k + 1) % n, 1 + 2 * n + k
+        tf += [(0, sk, sk1), (sk, B, ok), (sk1, ok, C), (sk, ok, sk1)]
 
     _, area_c = cell_poly(Pc, tc, 0)
 
@@ -238,8 +241,8 @@ def build_mass_compare():
     render(Pc, tc, "mass_cell_a.png", r"area $A_i$")
     _, area_f = cell_poly(Pf, tf, 0)
     ratio = area_f / area_c
-    render(Pf, tf, "mass_cell_b.png", rf"area $A_i' \approx {ratio:.1f}\,A_i$")
-    print(f"[ok] mass_cell_a/b.png  (ratio {ratio:.2f})")
+    render(Pf, tf, "mass_cell_b.png", r"area $A_i' \approx \frac{1}{4}\,A_i$")
+    print(f"[ok] mass_cell_a/b.png  (ratio {ratio:.3f})")
 
 
 if __name__ == "__main__":
