@@ -1135,6 +1135,84 @@ Push a spike at a point through $C$ → it peaks at the <span class="lbo">corres
 
 ---
 layout: default
+class: text-center
+clicks: 2
+---
+
+<div class="h-full flex flex-col pt-2 pb-2 px-2 text-center">
+
+<div class="eyebrow">Application · Mesh smoothing</div>
+
+<h1 class="!text-xl !leading-snug !mb-1 font-serif" style="color: #000">
+The Laplacian of the <span class="grad">coordinates</span> = curvature
+</h1>
+
+<div class="flex-1 min-h-0 grid items-center gap-4" style="grid-template-columns: 1.25fr 1fr;">
+
+<div class="h-full min-h-0 flex items-center justify-center">
+  <img :src="`${$slidev.configs.base ?? '/'}applications/smooth_intuition.png`"
+       class="max-h-full max-w-full object-contain"
+       alt="1D schematic: position minus the average of its neighbours" />
+</div>
+
+<div v-click="2" class="h-full min-h-0 flex flex-col items-center justify-center">
+  <img :src="`${$slidev.configs.base ?? '/'}applications/smooth_curv.png`"
+       class="flex-1 min-h-0 max-h-full max-w-full object-contain"
+       alt="bumpy sphere coloured by mean curvature" />
+  <div style="font-size: 13px; color: var(--c-fg-muted)">mean curvature on a real shape</div>
+</div>
+
+</div>
+
+<div class="text-center mt-1" :style="{ opacity: $clicks >= 1 ? 1 : 0, fontSize: '20px', color: 'var(--c-fg-body)' }">
+
+$\Delta X = 2H\,N$ &nbsp;·&nbsp; <span style="font-size: 15px; color: var(--c-fg-muted)">apply $\Delta$ to the position $X$ → the <span class="grad">mean-curvature vector</span> (normal direction, size $2H$)</span>
+
+</div>
+
+</div>
+
+<!--
+1. The Laplacian measures how far a value sits from the average of its neighbours — recall slide 2.
+2. [click] Apply it to the position itself: on flat regions a point equals its neighbour-average, so ΔX = 0; on a bump it sticks out along the normal, by an amount equal to the curvature.
+3. [click] So ΔX = 2HN — the mean-curvature vector. Here it is on a real bumpy shape.
+-->
+
+---
+layout: default
+class: text-center
+clicks: 1
+---
+
+<div class="h-full flex flex-col pt-2 pb-2 px-2 text-center">
+
+<div class="eyebrow">Application · Mesh smoothing</div>
+
+<h1 class="!text-xl !leading-snug !mb-1 font-serif" style="color: #000">
+Curvature flow <span class="grad">smooths</span> the surface
+</h1>
+
+<div class="flex-1 min-h-0 flex items-center justify-center">
+  <img :src="`${$slidev.configs.base ?? '/'}applications/smooth_flow.gif`"
+       class="max-h-full max-w-full object-contain"
+       alt="bumpy sphere smoothing under mean-curvature flow" />
+</div>
+
+<div class="text-center mt-1" style="font-size: 20px; color: var(--c-fg-body)">
+
+$\dfrac{\partial X}{\partial t} = -\Delta X = -2H\,N$ &nbsp;·&nbsp; <span style="font-size: 15px; color: var(--c-fg-muted)">diffuse the coordinates — bumps (high $H$) flow inward fast, flat regions stay</span>
+
+</div>
+
+</div>
+
+<!--
+1. Smoothing just runs the heat equation on the coordinates: move every point toward its neighbour-average.
+2. Each point slides along the normal at a speed set by curvature, so bumps melt away and the surface relaxes — mean-curvature flow.
+-->
+
+---
+layout: default
 class: text-left
 ---
 
