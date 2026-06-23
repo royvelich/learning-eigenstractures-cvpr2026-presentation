@@ -324,6 +324,69 @@ $\Delta_M f \;=\; -\operatorname{div}_M\!\big(\nabla_M f\big)$ &nbsp;·&nbsp; th
 ---
 layout: default
 class: text-center
+clicks: 2
+---
+
+<div class="h-full flex flex-col pt-2 pb-2 px-2 text-center">
+
+<div class="eyebrow">Warm-up · eigenbasis of a symmetric operator</div>
+
+<h1 class="!text-xl !leading-snug !mb-1 font-serif" style="color: #000">
+Reconstruction in an <span class="grad">eigenbasis</span> (in ℝ³)
+</h1>
+
+<div class="flex-1 min-h-0 grid items-center gap-4" style="grid-template-columns: 1fr 1.05fr;">
+
+<div class="h-full min-h-0 flex items-center justify-center">
+  <img :src="`${$slidev.configs.base ?? '/'}applications/eig_r3_k${Math.min($clicks, 2) + 1}.png`"
+       class="max-h-full max-w-full object-contain"
+       alt="reconstructing a vector from more and more eigenvectors of a 3x3 PSD matrix" />
+</div>
+
+<div class="flex flex-col items-start justify-center gap-2 text-left" style="font-size: 16px; color: var(--c-fg-body)">
+
+<div>
+
+A symmetric PSD operator $A=A^\top\succeq 0$ has an <span class="grad">orthonormal eigenbasis</span>:
+
+$A\,v_k = \lambda_k\,v_k,\quad \langle v_i,v_j\rangle=\delta_{ij}$
+
+</div>
+
+<div>
+
+Any vector is the sum of its projections: &nbsp; $b=\textstyle\sum_{k=1}^{3}\langle b,v_k\rangle\,v_k$
+
+</div>
+
+<div>
+
+Keep $K$ terms → a better and better approximation: &nbsp; $b\approx b_K=\textstyle\sum_{k=1}^{K}\langle b,v_k\rangle\,v_k$
+
+</div>
+
+</div>
+
+</div>
+
+<div v-click="2" class="text-center mt-1" style="font-size: 16px; color: var(--c-fg-muted)">
+
+The Laplacian is the same idea — an <em>infinite-dimensional</em> symmetric operator: its <span class="lbo">eigenfunctions</span> are the basis, and we reconstruct functions exactly like this.
+
+</div>
+
+</div>
+
+<!--
+1. Take a symmetric positive-semidefinite matrix — its eigenvectors form an orthonormal frame for R^3.
+2. A vector is just the sum of its projections onto that frame. Keep one term: a rough approximation.
+3. [click] Add the second, then the third — the reconstruction closes in on b, error to zero.
+4. [click] The Laplacian is the infinite-dimensional version: eigenfunctions replace eigenvectors, functions replace vectors.
+-->
+
+---
+layout: default
+class: text-center
 ---
 
 <div class="h-full flex flex-col pt-2 pb-2 px-2 text-center">
