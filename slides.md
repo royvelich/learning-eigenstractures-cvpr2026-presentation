@@ -343,25 +343,29 @@ Reconstruction in an <span class="grad">eigenbasis</span> (in ℝ³)
        alt="rotating eigenframe reconstructing a vector from more and more eigenvectors of a 3x3 PSD matrix" />
 </div>
 
-<div class="flex flex-col items-start justify-center gap-2 text-left" style="font-size: 16px; color: var(--c-fg-body)">
+<div class="flex flex-col items-center justify-center gap-3 text-center" style="font-size: 15px; color: var(--c-fg-body)">
 
-<div>
+<div class="flex flex-col items-center gap-0.5">
 
-A symmetric PSD operator $A=A^\top\succeq 0$ has an <span class="grad">orthonormal eigenbasis</span>:
+Symmetric PSD &rarr; <span class="grad">orthonormal eigenbasis</span>
 
-$A\,v_k = \lambda_k\,v_k,\quad \langle v_i,v_j\rangle=\delta_{ij}$
-
-</div>
-
-<div>
-
-Any vector is the sum of its projections: &nbsp; $b=\textstyle\sum_{k=1}^{3}\langle b,v_k\rangle\,v_k$
+$A\,v_k = \lambda_k\,v_k,\qquad \langle v_i,v_j\rangle=\delta_{ij}$
 
 </div>
 
-<div>
+<div class="flex flex-col items-center gap-0.5">
 
-Keep $K$ terms → a better and better approximation: &nbsp; $b\approx b_K=\textstyle\sum_{k=1}^{K}\langle b,v_k\rangle\,v_k$
+A vector = sum of its projections
+
+$b=\textstyle\sum_{k=1}^{3}\langle b,v_k\rangle\,v_k$
+
+</div>
+
+<div class="flex flex-col items-center gap-0.5">
+
+Keep $K$ terms &rarr; better approximation
+
+$b\approx b_K=\textstyle\sum_{k=1}^{K}\langle b,v_k\rangle\,v_k$
 
 </div>
 
