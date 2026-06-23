@@ -338,9 +338,9 @@ Reconstruction in an <span class="grad">eigenbasis</span> (in ℝ³)
 <div class="flex-1 min-h-0 grid items-center gap-4" style="grid-template-columns: 1fr 1.05fr;">
 
 <div class="h-full min-h-0 flex items-center justify-center">
-  <img :src="`${$slidev.configs.base ?? '/'}applications/eig_r3_k${Math.min($clicks, 2) + 1}.png`"
+  <img :src="`${$slidev.configs.base ?? '/'}applications/eig_r3_k${Math.min($clicks, 2) + 1}.gif`"
        class="max-h-full max-w-full object-contain"
-       alt="reconstructing a vector from more and more eigenvectors of a 3x3 PSD matrix" />
+       alt="rotating eigenframe reconstructing a vector from more and more eigenvectors of a 3x3 PSD matrix" />
 </div>
 
 <div class="flex flex-col items-start justify-center gap-2 text-left" style="font-size: 16px; color: var(--c-fg-body)">
